@@ -1,22 +1,21 @@
 // backend/routes/api/index.js
 const router = require('express').Router();
+const sessionRouter = require('./session.js');
+const usersRouter = require('./users.js');
+const { restoreUser } = require("../../utils/auth.js");
 
-// backend/routes/api/index.js
-// ...
+// Connect restoreUser middleware to the API router
+  // If current user session is valid, set req.user to the user in the database
+  // If current user session is not valid, set req.user to null
 
-router.post('/test', function(req, res) {
-    res.json({ requestBody: req.body });
-  });
-  
-  // ...
+router.use(restoreUser);
 
-// fetch('/api/test', {
-// method: "POST",
-// headers: {
-//     "Content-Type": "application/json",
-//     "XSRF-TOKEN": `RPKsbqjg-rgfdLS7Vh-qrscyyQpyKZyEkSno`
-// },
-// body: JSON.stringify({ hello: 'world' })
-// }).then(res => res.json()).then(data => console.log(data));
-  
+router.use('/session', sessionRouter);
+
+router.use('/users', usersRouter);
+
+router.post('/test', (req, res) => {
+  res.json({ requestBody: req.body });
+});
+
 module.exports = router;
