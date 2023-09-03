@@ -1,6 +1,6 @@
 'use strict';
 
-const spot = require('../models/spot');
+const { Spot } = require('../models/spot');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
