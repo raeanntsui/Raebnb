@@ -17,17 +17,15 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "CASCADE"
       })
 
+      //! Review(*) => User(1)
+      Review.belongsTo(models.User, {
+        foreignKey: "userId"
+      })
 
-      // //! Uncomment below
-      // //! Review(*) => User(1)
-      // Review.belongsTo(models.User, {
-      //   foreignKey: "userId"
-      // }),
-
-      // //! Review(*) => Spot(1)
-      // Review.belongsTo(models.Spot, {
-      //   foreignKey: "spotId"
-      // })
+      //! Review(*) => Spot(1)
+      Review.belongsTo(models.Spot, {
+        foreignKey: "spotId"
+      })
     }
   }
   Review.init({

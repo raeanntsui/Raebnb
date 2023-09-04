@@ -11,24 +11,30 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "CASCADE"
       })
 
-      //! Users(1) => Reviews(*)
+      //! Users(1) => Spots(*)
       User.hasMany(models.Booking, {
         foreignKey: "userId",
         onDelete: "CASCADE"
       })
 
-      //! Users(1) => Bookings(*) => Spots(1) MANY TO MANY!
-      User.belongsToMany(models.Spot, {
-        through: models.Booking,
+      //! Users(1) => Reviews(*)
+      User.hasMany(models.Booking, {
         foreignKey: "userId",
-        otherKey: "spotId"
-      })
+        onDelete: "CASCADE"
+      }) 
+
+      // //! Users(1) => Bookings(*) => Spots(1) MANY TO MANY!
+      // User.belongsToMany(models.Spot, {
+      //   through: models.Booking,
+      //   foreignKey: "userId",
+      //   otherKey: "spotId"
+      // })
       
-      User.belongsToMany(models.Spot, {
-        through: models.Review,
-        foreignKey: "userId",
-        otherKey: "spotId"
-      })
+      // User.belongsToMany(models.Spot, {
+      //   through: models.Review,
+      //   foreignKey: "userId",
+      //   otherKey: "spotId"
+      // })
     }
 
   };
