@@ -1,6 +1,8 @@
 'use strict';
 
+
 const { Review } = require('../models');
+
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -20,6 +22,8 @@ module.exports = {
     }
    ], { validate: true })
   },
+
+
 
 
   async down (queryInterface, Sequelize) {

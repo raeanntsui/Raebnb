@@ -1,7 +1,9 @@
 'use strict';
 
+
 // const { query } = require('express-validator');
 const { ReviewImage } = require('../models');
+
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -19,7 +21,8 @@ module.exports = {
    ], { validate: true })
   },
 
-  
+
+ 
   async down (queryInterface, Sequelize) {
     await queryInterface.dropTable("ReviewImages")
   }
