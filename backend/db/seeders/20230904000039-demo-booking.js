@@ -1,8 +1,10 @@
 'use strict';
-
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
 
 const { Booking } = require('../models');
-
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -23,13 +25,9 @@ module.exports = {
    ], { validate: true })
   },
 
-
-
-
   async down (queryInterface, Sequelize) {
     options.tableName = "Bookings";
     return queryInterface.dropTable(options);
-    // await queryInterface.dropTable("Bookings")
   }
 };
 
