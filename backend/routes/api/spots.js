@@ -6,8 +6,7 @@ router.get('/', async(req, res) => {
     const allSpots = await Spot.findAll({
         include: 
         [{
-            model: SpotImage,
-            attributes: "url"
+            model: SpotImage
         },
         {
             model: Review
