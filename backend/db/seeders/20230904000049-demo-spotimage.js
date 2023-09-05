@@ -12,14 +12,17 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await SpotImage.bulkCreate([
       {
+        spotId: 1,
         url: "atest.com",
         preview: true
       },
       {
+        spotId: 2,
         url: "btest.com",
         preview: true
       },
       {
+        spotId: 3,
         url: "ctest.com",
         preview: true
       }
