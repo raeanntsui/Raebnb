@@ -123,14 +123,17 @@ router.get('/:spotId', async(req, res) => {
             },
         ]
     });
-
+    
     if (!allSpots) {
         res.status(404)
         res.json({
             message: "Spot couldn't be found."
         })
     }
-    res.json(allSpots);
+
+    const owner = { allSpots, Owner: allSpots.User }
+    res.json(owner);
+    res
 })
 
 // router.post('/', async (req, res) => {
