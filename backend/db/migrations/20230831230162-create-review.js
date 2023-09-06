@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: "Spots", // needs to be table name
-          // key: "id" // connecting point on Spots table
+          key: "id" // connecting point on Spots table
         },
         onDelete: "CASCADE"
       },
