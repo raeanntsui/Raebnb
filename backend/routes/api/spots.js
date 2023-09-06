@@ -133,7 +133,8 @@ router.get('/:spotId', async(req, res) => {
 
     const owner = { allSpots, Owner: allSpots.User }
     res.json(owner);
-    res
+    // res
+    //! test comment 1:03pm
 })
 
 // router.post('/', async (req, res) => {
