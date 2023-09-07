@@ -220,7 +220,22 @@ router.post('/', requireAuth, validateSpot, async (req, res) => {
 router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId)
 
+    const { address, city, state, country, lat, lng, name, description, price } = req.body
 
+    if (spot) {
+        if (spot.ownerId === req.user.id) {
+            spot.ownerId = req.user.id;
+            spot.address = address;
+            spot.city = city;
+            spot.state = state;
+            spot.country = country;
+            spot.lat = lat;
+            spot.lng = lng;
+            spot.name = name;
+            spot.description = description;
+            spot.price = price;
+        }
+    }
 
     if (!spot) {
         res.status(400)
@@ -228,8 +243,34 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
             message: "Spot couldn't be found"
         })
     }
-
+    await spot.save()
     return res.json(spot)
 })
+
+//! Delete a Spot
+router.delete('/:spotId', requireAuth, async (req, res) => {
+    const spot = await Spot.findByPk(req.params.spotId)
+    // console.log("req.params.spotId", spotId)
+    // console.log("req.user.id", req.user.id)
+    // console.log("spot", spot)
+    if (spot) {
+        // check if the ownerId of the current spot is the same as the current user in session
+        if (spot.ownerId === req.user.id) {
+            await spot.destroy()
+            res.json({
+                message: "Successfully deleted."
+            })
+        }
+    }
+    
+    else if (!spot) {
+        res.status(404)
+        res.json({
+            message: "Spot couldn't be found"
+        })
+    }
+})
+
+
 
 module.exports = router;
