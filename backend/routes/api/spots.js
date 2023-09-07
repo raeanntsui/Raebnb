@@ -5,66 +5,39 @@ const { handleValidationErrors } = require('../../utils/validation');
 const { check } = require('express-validator')
 const router = express.Router();
 
-//! Get All Spots
-router.get('/', async(req, res) => {
-    const allSpots = await Spot.findAll({
-        include: [
-        {
-            model: SpotImage
-        },
-        {
-            model: Review        
-        }
-        ]   
-    });
-
-    //! Spots
-    // find all spots + add oneSpot in JSON form to spotsList array
-    let spotsList = [];
-    allSpots.forEach(oneSpot => {
-        spotsList.push(oneSpot.toJSON())
-    })
+const validateSpot = [
+    check('address')
+        .exists({ checkFalsy: true })
+        .withMessage('Street address is required'),
+    check('city')
+        .exists({ checkFalsy: true })
+        .withMessage('City is required'),
+    check('state')
+        .exists({ checkFalsy: true })
+        .withMessage('State is required'),
+    check('lat')
+        .exists({ checkFalsy: true })
+        .isDecimal()
+        .withMessage('Latitude is not valid'),
+    check('lng')
+        .exists({ checkFalsy: true })
+        .isDecimal()
+        .withMessage('Longitude is not valid'),
+    check('name')
+        .exists({ checkFalsy: true })
+        .isLength({ max: 49 })
+        .withMessage('Name must be less than 50 characters'),
+    check('description')
+        .exists({ checkFalsy: true })
+        .withMessage('Description is required'),
+    check('price')
+        .exists({ checkFalsy: true })
+        .isDecimal()
+        .withMessage('Price per day is required'),
+        handleValidationErrors
+]
     
-    //! Reviews => stars
-    // find star rating for each spot
-    spotsList.forEach(oneSpot => {
-        // set intial rating to 0
-        oneSpot.avgRating = 0;
-        console.log("***********oneSpot = ", oneSpot);
-        oneSpot.Reviews.forEach(star => {
-            console.log("***********star", star) 
-            oneSpot.avgRating = oneSpot.avgRating + star.stars
-        })
-
-        // now actually avg the avgRating
-        oneSpot.avgRating = oneSpot.avgRating / oneSpot.Reviews.length;
-        
-        if(!oneSpot.avgRating) oneSpot.avgRating = "No average rating for Spot found."
-        delete oneSpot.Reviews;
-    })
-
-    // find boolean for preview for each spot
-    //! SpotImages => preview => url
-    spotsList.forEach(oneSpot => {
-        console.log("***********SpotImage => oneSpot", oneSpot)
-        oneSpot.SpotImages.forEach(image => {
-            // console.log(image.preview)
-            console.log("***********image", image);
-            if (image.preview === true) {
-                // console.log(image)
-                oneSpot.previewImage = image.url;
-            }
-        })
-
-        if (!oneSpot.previewImage) oneSpot.previewImage = "No URL for preview image for Spot found.";
-        delete oneSpot.SpotImages;
-    })
-    
-    res.json(spotsList);
-})
-
 //! Get all Spots owned by the Current User
-//? Need to add authentication portion for this endpoint
 router.get('/current', async(req, res) => {
     const currentSpot = await Spot.findAll({
         where: {
@@ -85,7 +58,6 @@ router.get('/current', async(req, res) => {
         spotArray.push(spot.toJSON())
     })
 
-    //iterate thru spots for 1 review + add
     spotArray.forEach(spot => {
         spot.avgRating = 0;
         spot.Reviews.forEach(review => {
@@ -96,7 +68,6 @@ router.get('/current', async(req, res) => {
         delete spot.Reviews;
     })    
 
-    //iterate thru spots for images
     spotArray.forEach(spot => {
         spot.SpotImages.forEach(image => {
             if(image.preview !== undefined) spot.previewImage = image.url;
@@ -106,6 +77,52 @@ router.get('/current', async(req, res) => {
         delete spot.SpotImages;
     })
     res.json(spotArray);
+})
+
+//! Get All Spots
+router.get('/', async(req, res) => {
+    const allSpots = await Spot.findAll({
+        include: [
+        {
+            model: SpotImage
+        },
+        {
+            model: Review        
+        }
+        ]   
+    });
+
+    // find all spots + add oneSpot in JSON form to spotsList array
+    let spotsList = [];
+    allSpots.forEach(oneSpot => {
+        spotsList.push(oneSpot.toJSON())
+    })
+    
+    // find star rating for each spot
+    spotsList.forEach(oneSpot => {
+        oneSpot.avgRating = 0;
+        oneSpot.Reviews.forEach(star => {
+            oneSpot.avgRating = oneSpot.avgRating + star.stars
+        })
+
+        oneSpot.avgRating = oneSpot.avgRating / oneSpot.Reviews.length;
+        
+        if(!oneSpot.avgRating) oneSpot.avgRating = "No average rating for Spot found."
+        delete oneSpot.Reviews;
+    })
+
+    spotsList.forEach(oneSpot => {
+        oneSpot.SpotImages.forEach(image => {
+            if (image.preview === true) {
+                oneSpot.previewImage = image.url;
+            }
+        })
+
+        if (!oneSpot.previewImage) oneSpot.previewImage = "No URL for preview image for Spot found.";
+        delete oneSpot.SpotImages;
+    })
+    
+    res.json(spotsList);
 })
 
 //! Get details of a Spot from an id
@@ -148,40 +165,41 @@ router.get('/:spotId', async(req, res) => {
     res.json(spotOwner)
 })
 
-//!Create a Spot
-const validateSpotCreation = [
-    check('address')
-        .exists({ checkFalsy: true })
-        .withMessage('Street address is required'),
-    check('city')
-        .exists({ checkFalsy: true })
-        .withMessage('City is required'),
-    check('state')
-        .exists({ checkFalsy: true })
-        .withMessage('State is required'),
-    check('lat')
-        .exists({ checkFalsy: true })
-        .isDecimal()
-        .withMessage('Latitude is not valid'),
-    check('lng')
-        .exists({ checkFalsy: true })
-        .isDecimal()
-        .withMessage('Longitude is not valid'),
-    check('name')
-        .exists({ checkFalsy: true })
-        .isLength({ max: 49 })
-        .withMessage('Name must be less than 50 characters'),
-    check('description')
-        .exists({ checkFalsy: true })
-        .withMessage('Description is required'),
-    check('price')
-        .exists({ checkFalsy: true })
-        .isDecimal()
-        .withMessage('Price per day is required'),
-    handleValidationErrors
-]
+//! Add an Image to a Spot based on the Spot's id
+router.post('/:spotId/images', requireAuth, async(req, res) => {
+    // find specific spot by :spotId
+    const spot = await Spot.findByPk(req.params.spotId)
+    const { url, preview } = req.body
+    
+    if (spot) {
+        // check if user making the request to add an image is the same as the ownerId of the current spot
+        if (req.user.id === spot.ownerId) {
+            const newImageForSpot = await SpotImage.create({
+                spotId: req.params.spotId,
+                url,
+                preview
+            })
+        
+            return res.json({
+                id: newImageForSpot.id,
+                url: newImageForSpot.url,
+                preview: newImageForSpot.preview
+            })
+        }
+    }
 
-router.post('/', requireAuth, validateSpotCreation, async (req, res) => {
+    // if no spot exists, return error
+    if (!spot) {
+        res.status(404)
+        return res.json({
+            message: "Spot couldn't be found"
+        })
+    }
+
+})
+
+//! Create a Spot
+router.post('/', requireAuth, validateSpot, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body    
     const newSpot = await Spot.create({
         address, city, state, country, lat, lng, name, description, price
@@ -198,6 +216,20 @@ router.post('/', requireAuth, validateSpotCreation, async (req, res) => {
     res.json(owner)
 })
 
-//! Add an Image to a Spot based on the Spot's id
+//! Edit a Spot
+router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
+    const spot = await Spot.findByPk(req.params.spotId)
+
+
+
+    if (!spot) {
+        res.status(400)
+        return res.json({
+            message: "Spot couldn't be found"
+        })
+    }
+
+    return res.json(spot)
+})
 
 module.exports = router;
