@@ -37,7 +37,7 @@ const validateSpot = [
         handleValidationErrors
 ]
 
-//! Get all Reviews by a Spot's id
+//! ***************Get all Reviews by a Spot's id
 router.get('/:spotId/reviews', async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId)
    
@@ -68,7 +68,7 @@ router.get('/:spotId/reviews', async (req, res) => {
     })
 })
 
-//! Get all Spots owned by the Current User
+//! ***************Get all Spots owned by the Current User
 router.get('/current', async(req, res) => {
     const allSpots = await Spot.findAll({
         where: {
@@ -110,8 +110,15 @@ router.get('/current', async(req, res) => {
     res.json(spotArray);
 })
 
-//! Get All Spots
+//! *************** GET ALL SPOTS & ADD QUERY FILTERS TO GET ALL SPOTS
 router.get('/', async(req, res) => {
+
+    // query filter
+    const { page, size } = req.query
+    page = parseInt(page)
+    size = parseInt(size)
+
+    
     const allSpots = await Spot.findAll({
         include: [
         {
@@ -142,6 +149,7 @@ router.get('/', async(req, res) => {
         delete oneSpot.Reviews;
     })
 
+    // find url for each spot
     spotsList.forEach(oneSpot => {
         oneSpot.SpotImages.forEach(image => {
             if (image.preview === true) {
@@ -156,7 +164,40 @@ router.get('/', async(req, res) => {
     res.json(spotsList);
 })
 
-//! Get details of a Spot from an id
+const queryFilter = [
+    check('page')
+        .isInt({ min: 1, max: 10})
+        .withMessage(''),
+    check('size')
+        .isInt({ min: 1, max: 20})
+        .withMessage(''),
+    check('minLat')
+        .isDecimal()
+        .optional()
+        .withMessage('Minimum latitude is invalid'),
+    check('maxLat')
+        .isDecimal()
+        .optional()
+        .withMessage('Maximum latitude is invalid'),
+    check('minLng')
+        .isDecimal()
+        .optional()
+        .withMessage('Minimum longitude is invalid'),
+    check('maxLng')
+        .isDecimal()
+        .optional()
+        .withMessage('Maximum longitude is invalid'),
+    check('minPrice')
+        .isDecimal({ min: 0 })
+        .optional()
+        .withMessage('Minimum price must be greater than or equal to 0'),
+    check('maxPrice')
+        .isDecimal({ min: 0 })
+        .optional()
+        .withMessage('Maximum price must be greater than or equal to 0'),
+    handleValidationErrors
+]
+//! ***************Get details of a Spot from an id
 router.get('/:spotId', async(req, res) => {
     const allSpots = await Spot.findByPk(req.params.spotId, {
         include: [
@@ -207,7 +248,7 @@ const validateReview = [
     handleValidationErrors
 ]
 
-//! Create a Booking from a Spot based on the Spot's id
+//! ***************Create a Booking from a Spot based on the Spot's id
 router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     const booking = await Booking.findByPk(req.params.spotId)
     const user = await User.findByPk(req.user.id)
@@ -235,7 +276,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
 
 })
 
-//! Create a Review for a Spot based on the Spot's id
+//! ***************Create a Review for a Spot based on the Spot's id
 router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res) => {
     // find specified spot by :spotId
     const spot = await Spot.findByPk(req.params.spotId)
@@ -278,7 +319,7 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res) =>
     }
 })
 
-//! Add an Image to a Spot based on the Spot's id
+//! ***************Add an Image to a Spot based on the Spot's id
 router.post('/:spotId/images', requireAuth, async(req, res) => {
     // find specific spot by :spotId
     const spot = await Spot.findByPk(req.params.spotId)
@@ -312,7 +353,7 @@ router.post('/:spotId/images', requireAuth, async(req, res) => {
 
 })
 
-//! Create a Spot
+//! ***************Create a Spot
 router.post('/', requireAuth, validateSpot, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body    
     const newSpot = await Spot.create({
@@ -330,7 +371,7 @@ router.post('/', requireAuth, validateSpot, async (req, res) => {
     res.json(owner)
 })
 
-//! Edit a Spot
+//! ***************Edit a Spot
 router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId)
 
@@ -361,12 +402,9 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
     return res.json(spot)
 })
 
-//! Delete a Spot
+//! ***************Delete a Spot
 router.delete('/:spotId', requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId)
-    // console.log("req.params.spotId", spotId)
-    // console.log("req.user.id", req.user.id)
-    // console.log("spot", spot)
     if (spot) {
         // check if the ownerId of the current spot is the same as the current user in session
         if (spot.ownerId === req.user.id) {
