@@ -1,5 +1,5 @@
 const express = require('express');
-const { Spot, SpotImage, Review, User, Booking, ReviewImage } = require('../../db/models');
+const { Spot, SpotImage, Review, ReviewImage, User } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
 const { check } = require('express-validator')
@@ -36,10 +36,41 @@ const validateSpot = [
         .withMessage('Price per day is required'),
         handleValidationErrors
 ]
+
+//! Get all Reviews by a Spot's id
+router.get('/:spotId/reviews', async (req, res) => {
+    const spot = await Spot.findByPk(req.params.spotId)
+   
+    // check if spot exists FIRST! before finding reviews for the spot
+    if (!spot) {
+        res.status(404)
+        return res.json({
+            message: "Spot couldn't be found."
+        })
+    }
     
+    const allReviewsBySpotId = await Review.findAll({
+        where: { spotId: spot.id },
+        include: 
+        [
+            {
+                model: User,
+                attributes: [ "id", "firstName", "lastName" ]
+            },
+            {
+                model: ReviewImage,
+                attributes: [ "id", "url" ]
+            }]
+        })  
+
+    return res.json({
+        Reviews: allReviewsBySpotId
+    })
+})
+
 //! Get all Spots owned by the Current User
 router.get('/current', async(req, res) => {
-    const currentSpot = await Spot.findAll({
+    const allSpots = await Spot.findAll({
         where: {
             ownerId: req.user.id
         },
@@ -54,7 +85,7 @@ router.get('/current', async(req, res) => {
     });
 
     let spotArray = [];
-    currentSpot.forEach(spot => {
+    allSpots.forEach(spot => {
         spotArray.push(spot.toJSON())
     })
 
@@ -165,15 +196,70 @@ router.get('/:spotId', async(req, res) => {
     res.json(spotOwner)
 })
 
+const validateReview = [
+    check('review')
+        .exists({ checkFalsy: true })
+        .withMessage('Review text is required.'),
+    check('stars')
+        .exists({ checkFalsy: true })
+        .isInt({ min: 1, max: 5 })
+        .withMessage('Stars must be an integer from 1 to 5.'),
+    handleValidationErrors
+]
+
+//! Create a Review for a Spot based on the Spot's id
+router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res) => {
+    // find specified spot by :spotId
+    const spot = await Spot.findByPk(req.params.spotId)
+    
+    // check if a spot exists first before creating a review
+    if (!spot) {
+        res.status(404)
+        return res.json({
+            message: "Spot couldn't be found"
+        })
+    }
+    
+    // find review that matches req.user.id
+    const existingReview = await Review.findOne({
+        where: {
+            spotId: parseInt(req.params.spotId),
+            userId: req.user.id
+        }
+    })
+
+    // check if current review already exists
+    if (existingReview) {
+        res.status(500)
+        return res.json({
+            message: "User already has a review for this spot"
+        })
+    } else {
+        // destructure the incoming attributes from the req.body
+        const { review, stars } = req.body
+    
+        // create a new review
+        const newReviewForSpot = await Review.create({
+            userId: req.user.id,
+            spotId: parseInt(req.params.spotId),
+            review,
+            stars
+        })
+        res.status(201)
+        return res.json(newReviewForSpot)
+    }
+})
+
 //! Add an Image to a Spot based on the Spot's id
 router.post('/:spotId/images', requireAuth, async(req, res) => {
     // find specific spot by :spotId
     const spot = await Spot.findByPk(req.params.spotId)
+    const user = await User.findByPk(req.user.id)
     const { url, preview } = req.body
     
     if (spot) {
         // check if user making the request to add an image is the same as the ownerId of the current spot
-        if (req.user.id === spot.ownerId) {
+        if (user.id === spot.ownerId) {
             const newImageForSpot = await SpotImage.create({
                 spotId: req.params.spotId,
                 url,
@@ -207,7 +293,7 @@ router.post('/', requireAuth, validateSpot, async (req, res) => {
 
     if (!req.body) {
         res.status(400)
-        return res.json(validateSpotCreation)
+        return res.json(validateSpot)
     }
 
     const owner = { ...newSpot.toJSON(), ownerId: req.user.id }
