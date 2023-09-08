@@ -114,11 +114,19 @@ router.get('/current', async(req, res) => {
 router.get('/', async(req, res) => {
 
     // query filter
-    const { page, size } = req.query
+    let { page, size } = req.query
+
+    // set the default for page and size if they do not yet exist
+    if (!page) page = 1
+    if (!size) size = 20
+
     page = parseInt(page)
     size = parseInt(size)
 
-    
+    const pagination = {
+        limit: size,
+        offset: (page - 1) * size
+    }
     const allSpots = await Spot.findAll({
         include: [
         {
@@ -127,7 +135,7 @@ router.get('/', async(req, res) => {
         {
             model: Review        
         }
-        ]   
+        ], ...pagination   
     });
 
     // find all spots + add oneSpot in JSON form to spotsList array
@@ -161,16 +169,22 @@ router.get('/', async(req, res) => {
         delete oneSpot.SpotImages;
     })
     
-    res.json(spotsList);
+
+
+    res.json({
+        Spots: spotsList,
+        page: page,
+        size: size
+    });
 })
 
 const queryFilter = [
     check('page')
         .isInt({ min: 1, max: 10})
-        .withMessage(''),
+        .withMessage('Page must be greater than or equal to 1'),
     check('size')
         .isInt({ min: 1, max: 20})
-        .withMessage(''),
+        .withMessage('Size must be greater than or equal to 1'),
     check('minLat')
         .isDecimal()
         .optional()
