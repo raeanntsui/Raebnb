@@ -207,6 +207,34 @@ const validateReview = [
     handleValidationErrors
 ]
 
+//! Create a Booking from a Spot based on the Spot's id
+router.post('/:spotId/bookings', requireAuth, async (req, res) => {
+    const booking = await Booking.findByPk(req.params.spotId)
+    const user = await User.findByPk(req.user.id)
+    const spot = await Spot.findByPk(req.params.spotId)
+
+    if (booking.userId === req.user.id) {
+        res.status(403)
+        return res.json({
+            message: "Sorry, this spot is already booked for the specified dates"
+        })
+    }
+
+    if (!spot.ownerId) {
+
+    }
+
+    const { startDate, endDate } = req.body
+    const newBooking = await Booking.create({
+        spotId: parseInt(req.params.spotId),
+        userId,
+        startDate,
+        endDate
+    })
+
+
+})
+
 //! Create a Review for a Spot based on the Spot's id
 router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res) => {
     // find specified spot by :spotId

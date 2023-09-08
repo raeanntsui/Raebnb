@@ -56,7 +56,7 @@ router.get('/current', requireAuth, async (req, res) => {
         })
 
         if (review.Spot.previewImage === undefined) {
-            review.Spot.previewImage = "No preview image found for Review found"
+            review.Spot.previewImage = "No preview image for Review found"
             delete review.Spot.SpotImages
         }
     })
