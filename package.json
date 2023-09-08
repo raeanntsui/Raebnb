@@ -1,7 +1,4 @@
 {
-  "dependencies": {
-    "express-validator": "^7.0.1"
-  },
   "name": "raebnb",
   "description": "<!--!!START SILENT --> # Raebnb <!--!!END --> <!--!!ADD --> <!-- # `<name of application here>` --> <!--!!END_ADD -->",
   "version": "1.0.0",

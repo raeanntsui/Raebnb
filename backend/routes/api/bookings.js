@@ -96,7 +96,7 @@ router.get('/current', requireAuth, async (req, res) => {
 //         return res.json(booking)
 //     } 
 
-//     //! Error response: Can't edit a booking that's past the end date
+//! Error response: Can't edit a booking that's past the end date
 
 // })
 

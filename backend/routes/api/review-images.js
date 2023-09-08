@@ -24,21 +24,4 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
     }
 })
 
-// router.delete('/:imageId', requireAuth, async (req, res) => {
-//     const reviewImage = await ReviewImage.findByPk(req.params.imageId)    
-
-//     if (!reviewImage) {
-//         res.status(404)
-//         return res.json({
-//             message: "Review Image couldn't be found"
-//         })
-//     }
-
-//     await reviewImage.destroy()
-//     res.status(200)
-//     return res.json({
-//         message: "Successfully deleted"
-//     })
-// })
-
 module.exports = router;

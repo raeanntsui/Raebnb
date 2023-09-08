@@ -71,8 +71,15 @@ router.post('/:reviewId/images', requireAuth, async(req, res) => {
     const review = await Review.findByPk(req.params.reviewId)
     const user = await User.findByPk(req.user.id)
     const reviewImages = await ReviewImage.findAll()
-    // console.log("reviewimages possibly in array form", reviewImages)
     const { url } = req.body
+    
+    // if no reviews exist, return a 404 error
+    if (!review) {
+        res.status(404)
+        res.json({
+            message: "Review couldn't be found"
+        })
+    }
     
     // check if review exists
     if (review) {
@@ -80,7 +87,6 @@ router.post('/:reviewId/images', requireAuth, async(req, res) => {
         if (review.userId === user.id) {
             // check if the current review has less than 10 reviews
             if (reviewImages.length <= 10) {
-        // console.log("review images length ****", ReviewImage.length)
 
         // add the new image to review
         const newImageForReview = await ReviewImage.create({
@@ -98,13 +104,6 @@ router.post('/:reviewId/images', requireAuth, async(req, res) => {
         }
     }
 
-    // if no reviews exist, return a 404 error
-    if (!review) {
-        res.status(404)
-        res.json({
-            message: "Review couldn't be found"
-        })
-    }
 })
 
 //! Edit a Review
