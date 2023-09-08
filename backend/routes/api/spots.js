@@ -421,31 +421,52 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res) =>
     }
 })
 
-//! *************** Add an Image to a Spot based on the Spot's id
+//! *************** ADD AN IMAGE TO A SPOT BASED ON THE SPOT'S ID
+/*
+//! below copy is correct
+// router.post('/:spotId/images', requireAuth, async(req, res) => {
+//     // find specific spot by :spotId
+//     const spot = await Spot.findByPk(req.params.spotId)
+//     const { user } = req
+
+//     // const user = await User.findByPk(req.user.id)
+    
+//     if (spot) {
+//         if (user.id === spot.ownerId) {
+//             const { url, preview } = req.body
+//             const newImageForSpot = await SpotImage.create({
+//                 spotId: req.params.spotId,
+//                 url,
+//                 preview
+//             })
+//             res.status(201)
+//             return res.json({
+//                 id: newImageForSpot.id,
+//                 url: newImageForSpot.url,
+//                 preview: newImageForSpot.preview
+//             })
+//         } else {
+//             res.status(403)
+//             return res.json({
+//                 message: "Cannot add image, you are not the spot owner"
+//             })
+//         }
+//         // check if user making the request to add an image is the same as the ownerId of the current spot
+//     } else {
+//         res.status(404)
+//         return res.json({
+//             message: "Spot couldn't be found"
+//         })
+//     }
+// })
+*/
+
 router.post('/:spotId/images', requireAuth, async(req, res) => {
     // find specific spot by :spotId
     const spot = await Spot.findByPk(req.params.spotId)
     const user = await User.findByPk(req.user.id)
     const { url, preview } = req.body
     
-    if (spot) {
-        // check if user making the request to add an image is the same as the ownerId of the current spot
-        if (user.id === spot.ownerId) {
-            const newImageForSpot = await SpotImage.create({
-                spotId: req.params.spotId,
-                url,
-                preview
-            })
-        
-            return res.json({
-                id: newImageForSpot.id,
-                url: newImageForSpot.url,
-                preview: newImageForSpot.preview
-            })
-        }
-    }
-
-    // if no spot exists, return error
     if (!spot) {
         res.status(404)
         return res.json({
@@ -453,6 +474,27 @@ router.post('/:spotId/images', requireAuth, async(req, res) => {
         })
     }
 
+    if (spot && (user.id !== spot.ownerId)) {
+        res.status(404)
+        return res.json({
+            message: "Spot must belong to the current user"
+        })
+    }
+
+    if (spot && (user.id === spot.ownerId)) {
+        // check if user making the request to add an image is the same as the ownerId of the current spot
+        const newImageForSpot = await SpotImage.create({
+            spotId: req.params.spotId,
+            url,
+            preview
+        })
+    
+        return res.json({
+            id: newImageForSpot.id,
+            url: newImageForSpot.url,
+            preview: newImageForSpot.preview
+        }) 
+    } 
 })
 
 //! *************** Create a Spot
