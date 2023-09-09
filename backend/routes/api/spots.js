@@ -463,7 +463,7 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res) =>
 })
 
 //! *************** ADD AN IMAGE TO A SPOT BASED ON THE SPOT'S ID
-//? Create an Impage for a Spot
+//? Create an Image for a Spot
 router.post('/:spotId/images', requireAuth, async(req, res) => {
     // find specific spot by :spotId
     const spot = await Spot.findByPk(req.params.spotId)

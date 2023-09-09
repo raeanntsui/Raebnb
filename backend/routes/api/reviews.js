@@ -67,10 +67,18 @@ router.get('/current', requireAuth, async (req, res) => {
 
 //! **************** ADD AN IMAGE TO A REVIEW BASED ON THE REVIEW'S ID
 //? Create an Image for a Review
+//TODO Need to delete the reviewId, createdAt, and updatedAt fields from the response, everything else is working fine
 router.post('/:reviewId/images', requireAuth, async(req, res) => {
-    const review = await Review.findByPk(req.params.reviewId)
-    const user = await User.findByPk(req.user.id)
-    const reviewImages = await ReviewImage.findAll()
+
+    // find the review at the specified review id
+    const review = await Review.findByPk(req.params.reviewId, {
+        include: ReviewImage
+    })
+
+    // const user = await User.findByPk(req.user.id)
+    // const reviewImages = await ReviewImage.findAll()
+
+    // grab the incoming url from the req body
     const { url } = req.body
     
     // if no reviews exist, return a 404 error
@@ -80,51 +88,73 @@ router.post('/:reviewId/images', requireAuth, async(req, res) => {
             message: "Review couldn't be found"
         })
     }
-    
-    // check if review exists
-    if (review) {
-        // check if review belongs to the current user
-        if (review.userId === user.id) {
-            // check if the current review has less than 10 reviews
-            if (reviewImages.length <= 10) {
-                // add the new image to review
-                const newImageForReview = await ReviewImage.create({
-                    reviewId: req.params.reviewId,
-                    url
-                })
-                res.status(200)
-                return res.json(newImageForReview)
-    } else {
-        // if there are too many reviews (over 10) return a 403 error
+
+    // if the current user and review's user id match...
+    if (req.user.id === review.userId) {
+        // and if the current review has less than 10 images
+        if (review.ReviewImages.length < 10) {
+            // go ahead and create a new image for the current review
+            const newReviewImage = await review.createReviewImage({
+                url,
+                // reviewId: req.params.reviewId
+            })    
+        
+            // delete the review, createdAt, and updatedAt attributes in the response
+            
+            await newReviewImage.save()
+            res.status(200)
+            return res.json(newReviewImage)
+        // if the current review exceeds 10 images, return 403 error
+        } else if (review.ReviewImages.length >= 10) {
+            res.status(403)
+            return res.json({
+                message: "Maximum number of images for this resource was reached"
+            })
+        }
+
+    // if the current user and review's user id DO NOT MATCH, return 403 error
+    } else if (req.user.id !== review.userId) {
         res.status(403)
         return res.json({
-            message: "Maximum number of images for this resource was reached"
+            message: "Forbidden: Review must belong to the current user in order to add an image for a review"
         })
-    }
-        }
     }
 
 })
-
-//! Edit a Review
+    
+//! **************** EDIT A REVIEW
+//? Edit a Review
 router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
-      const oneReview = await Review.findByPk(req.params.reviewId)
-      
-      if (!oneReview || req.user.id !== oneReview.userId) {
-        res.status(404)
-        return res.json({ message: "Review couldn't be found" })
-      }
-      
-      const { review, stars } = req.body;
-  
-      await oneReview.update({ review, stars })
-      res.json(oneReview)
-    }
-  )
+    const oneReview = await Review.findByPk(req.params.reviewId)
 
-//! Delete a Review
+    // check if the current user is authorized to edit a review
+    if (req.user.id !== oneReview.userId) {
+        res.status(403)
+        return res.json({ 
+            message: "Forbidden: Current user is not authorized to edit this review" 
+        })
+    }
+
+    // if the current review does not exist
+    if (!oneReview) {
+        res.status(404)
+        return res.json({ 
+            message: "Review couldn't be found" 
+        })
+    }
+
+    const { review, stars } = req.body;
+
+    await oneReview.update({ review, stars })
+    res.json(oneReview)
+})
+
+//! **************** DELETE A REVIEW
+//? Delete a Review
 router.delete('/:reviewId', requireAuth, async (req, res) => {
     const review = await Review.findByPk(req.params.reviewId)
+    // check if the current user is authorized to delete a review
+
     if (!review) {
             res.status(404)
             return res.json({
