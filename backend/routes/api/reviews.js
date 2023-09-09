@@ -69,44 +69,44 @@ router.get('/current', requireAuth, async (req, res) => {
 //! **************** ADD AN IMAGE TO A REVIEW BASED ON THE REVIEW'S ID
 //? Create an Image for a Review
 //!MINE
-// router.post('/:reviewId/images', requireAuth, async(req, res) => {
-//     const review = await Review.findByPk(req.params.reviewId)
-//     const user = await User.findByPk(req.user.id)
-//     const reviewImages = await ReviewImage.findAll()
-//     const { url } = req.body
+router.post('/:reviewId/images', requireAuth, async(req, res) => {
+    const review = await Review.findByPk(req.params.reviewId)
+    const user = await User.findByPk(req.user.id)
+    const reviewImages = await ReviewImage.findAll()
+    const { url } = req.body
     
-//     // if no reviews exist, return a 404 error
-//     if (!review) {
-//         res.status(404)
-//         return res.json({
-//             message: "Review couldn't be found"
-//         })
-//     }
+    // if no reviews exist, return a 404 error
+    if (!review) {
+        res.status(404)
+        return res.json({
+            message: "Review couldn't be found"
+        })
+    }
     
-//     // check if review exists
-//     if (review) {
-//         // check if review belongs to the current user
-//         if (review.userId === user.id) {
-//             // check if the current review has less than 10 reviews
-//             if (reviewImages.length <= 10) {
-//                 // add the new image to review
-//                 const newImageForReview = await ReviewImage.create({
-//                     reviewId: req.params.reviewId,
-//                     url
-//                 })
-//                 res.status(200)
-//                 return res.json(newImageForReview)
-//     } else {
-//         // if there are too many reviews (over 10) return a 403 error
-//         res.status(403)
-//         return res.json({
-//             message: "Maximum number of images for this resource was reached"
-//         })
-//     }
-//         }
-//     }
+    // check if review exists
+    if (review) {
+        // check if review belongs to the current user
+        if (review.userId === user.id) {
+            // check if the current review has less than 10 reviews
+            if (reviewImages.length <= 10) {
+                // add the new image to review
+                const newImageForReview = await ReviewImage.create({
+                    reviewId: req.params.reviewId,
+                    url
+                })
+                res.status(200)
+                return res.json(newImageForReview)
+    } else {
+        // if there are too many reviews (over 10) return a 403 error
+        res.status(403)
+        return res.json({
+            message: "Maximum number of images for this resource was reached"
+        })
+    }
+        }
+    }
 
-// })
+})
 
 //! Edit a Review
 router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
