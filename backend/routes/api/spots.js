@@ -503,41 +503,75 @@ router.post('/:spotId/images', requireAuth, async(req, res) => {
 })
 
 //! *************** CREATE A SPOT
-router.post('/', requireAuth, validateSpot, async (req, res) => {
-    if (!req.body) {
-        res.status(400)
-        return res.json(validateSpot)
-    }
+//! MINE BELOW
+// router.post('/', requireAuth, validateSpot, async (req, res) => {
+//     if (!req.body) {
+//         res.status(400)
+//         return res.json(validateSpot)
+//     }
 
-    // extract components from req.body
-    const { 
-        address, 
-        city, 
-        state, 
-        country, 
-        lat, 
-        lng, 
-        name, 
-        description, 
-        price } = req.body    
+//     // extract components from req.body
+//     const { 
+//         address, 
+//         city, 
+//         state, 
+//         country, 
+//         lat, 
+//         lng, 
+//         name, 
+//         description, 
+//         price } = req.body    
     
-    // create a new spot
-    const newSpot = await Spot.create({
-       ownerId: req.user.id, 
-       address, 
-       city, 
-       state, 
-       country, 
-       lat, 
-       lng, 
-       name, 
-       description, 
-       price
-    })
+//     // create a new spot
+//     const newSpot = await Spot.create({
+//        ownerId: req.user.id, 
+//        address, 
+//        city, 
+//        state, 
+//        country, 
+//        lat, 
+//        lng, 
+//        name, 
+//        description, 
+//        price
+//     })
 
-    res.status(201)
-    return res.json(newSpot)
-})
+//     res.status(201)
+//     return res.json(newSpot)
+// })
+
+router.post("/", requireAuth, validateSpot, async (req, res) => {
+    try {
+      const {
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price,
+      } = req.body;
+  
+      const newSpot = await Spot.create({
+        ownerId: req.user.id,
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price,
+      });
+      res.status(201).json(newSpot);
+    } catch (error) {
+      console.error("Error creating new spot:", error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  });
 
 //! *************** Edit a Spot
 router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
