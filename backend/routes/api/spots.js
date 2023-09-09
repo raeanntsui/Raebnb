@@ -22,10 +22,12 @@ const validateSpot = [
     check('lat')
         .exists({ checkFalsy: true })
         .isFloat({ min: -500, max: 500 })
+        .isDecimal()
         .withMessage('Latitude is not valid'),
     check('lng')
         .exists({ checkFalsy: true })
         .isFloat({ min: -500, max: 500 })
+        .isDecimal()
         .withMessage('Longitude is not valid'),
     check('name')
         .exists({ checkFalsy: true })
@@ -36,6 +38,7 @@ const validateSpot = [
         .withMessage('Description is required'),
     check('price')
         .exists({ checkFalsy: true })
+        .isDecimal()
         .withMessage('Price per day is required'),
     handleValidationErrors
 ]
@@ -158,7 +161,7 @@ router.get('/current', async(req, res) => {
         where: {
             ownerId: req.user.id
         },
-        include: [ { model: Review }, { model: SpotImage } ]
+        include: [{ model: Review }, { model: SpotImage }]
     });
 
     // create a variable that can hold all the spots as you iterate through the spots array
@@ -256,7 +259,7 @@ router.get('/', queryFilter, async(req, res) => {
     });
 })
 
-//! *************** Get details of a Spot from an id
+//! *************** GET DETAILS OF A SPOT FROM AN ID
 router.get('/:spotId', async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId, {
         include: [
@@ -284,20 +287,78 @@ router.get('/:spotId', async (req, res) => {
         })
     }
 
-    const spotOwner = { ...spot.toJSON(), Owner: spot.User}
-    delete spotOwner.User
 
-    spotOwner.numReviews = spotOwner.Reviews.length;
 
-    spotOwner.avgRating = 0;
-    spotOwner.Reviews.forEach(review => {
-        spotOwner.avgRating = spotOwner.avgRating + review.stars
-    })
+    // const spotOwner = { ...spot.toJSON(), Owner: spot.User}
+    // delete spotOwner.User
 
-    spotOwner.avgRating = spotOwner.avgRating / spotOwner.Reviews.length
+    // spotOwner.numReviews = spotOwner.Reviews.length;
+
+    // spotOwner.avgRating = 0;
+    // spotOwner.Reviews.forEach(review => {
+    //     spotOwner.avgRating = spotOwner.avgRating + review.stars
+    // })
+
+
+
+    // spotOwner.avgRating = spotOwner.avgRating / spotOwner.Reviews.length
+
+    // res.status(200)
+    // return res.json(spotOwner)
+
+
+
+
+
+
+
+
+
+
+    // get the total number of reviews
+    const numReviews = spot.Reviews.length
+
+    // find the TOTAL star rating & initialize current total star rating to 0
+    const totalStars = 0
+
+    // iterate through each review
+    for (let i = 0; i < spot.Reviews.length; i++) {
+        // get the current review in the loop
+        const review = spot.Reviews[i]
+        // add the star rating from each iterated review to totalStars
+        totalStars = totalStars + review.stars
+    }
+
+    
+    // find the AVERAGE star rating & initialize current average star rating to 0
+    const avgStars = 0
+    if (spot.Reviews.length > 0) {
+        avgStars = totalStars / spot.Reviews.length
+    }
+
+    delete spot.Reviews
 
     res.status(200)
-    return res.json(spotOwner)
+    return res.json({
+        id: spot.id,
+        ownerId: spot.ownerId,
+        address: spot.address,
+        city: spot.city,
+        state: spot.state,
+        country: spot.country,
+        lat: spot.lat,
+        lng: spot.lng,
+        name: spot.name,
+        description: spot.description,
+        price: spot.price,
+        createdAt: spot.createdAt,
+        updatedAt: spot.updatedAt,
+        numReviews: numReviews,
+        avgRating: avgStars,
+        SpotImages: spot.SpotImages,
+        Owner: spot.User,
+    })
+
 })
 
 const validateReview = [
@@ -503,75 +564,43 @@ router.post('/:spotId/images', requireAuth, async(req, res) => {
 })
 
 //! *************** CREATE A SPOT
-//! MINE BELOW
-// router.post('/', requireAuth, validateSpot, async (req, res) => {
-//     if (!req.body) {
-//         res.status(400)
-//         return res.json(validateSpot)
-//     }
-
-//     // extract components from req.body
-//     const { 
-//         address, 
-//         city, 
-//         state, 
-//         country, 
-//         lat, 
-//         lng, 
-//         name, 
-//         description, 
-//         price } = req.body    
-    
-//     // create a new spot
-//     const newSpot = await Spot.create({
-//        ownerId: req.user.id, 
-//        address, 
-//        city, 
-//        state, 
-//        country, 
-//        lat, 
-//        lng, 
-//        name, 
-//        description, 
-//        price
-//     })
-
-//     res.status(201)
-//     return res.json(newSpot)
-// })
-
-router.post("/", requireAuth, validateSpot, async (req, res) => {
-    try {
-      const {
-        address,
-        city,
-        state,
-        country,
-        lat,
-        lng,
-        name,
-        description,
-        price,
-      } = req.body;
-  
-      const newSpot = await Spot.create({
-        ownerId: req.user.id,
-        address,
-        city,
-        state,
-        country,
-        lat,
-        lng,
-        name,
-        description,
-        price,
-      });
-      res.status(201).json(newSpot);
-    } catch (error) {
-      console.error("Error creating new spot:", error);
-      res.status(500).json({ message: "Internal Server Error" });
+//? Create a Spot
+router.post('/', requireAuth, validateSpot, async (req, res) => {
+    if (!req.body) {
+        res.status(400)
+        return res.json(validateSpot)
     }
-  });
+
+    // extract components from req.body
+    const { 
+        address, 
+        city, 
+        state, 
+        country, 
+        lat, 
+        lng, 
+        name, 
+        description, 
+        price } = req.body    
+    
+    // create a new spot
+    const newSpot = await Spot.create({
+       ownerId: req.user.id, 
+       address, 
+       city, 
+       state, 
+       country, 
+       lat, 
+       lng, 
+       name, 
+       description, 
+       price
+    })
+
+    res.status(201)
+    return res.json(newSpot)
+})
+
 
 //! *************** Edit a Spot
 router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
