@@ -12,23 +12,61 @@ const validateBooking = [
         handleValidationErrors
 ]
 
-//! Get all of the Current User's Bookings
+//! *************** GET ALL OF THE CURRENT USER'S BOOKINGS
+//? Get All Current User's Bookings
 router.get('/current', requireAuth, async (req, res) => {
+    // const bookings = await Booking.findAll({
+    //     where: { userId: req.user.id },
+    //     include: [ 
+    //         { 
+    //         model: Spot, 
+    //         attributes: [ 
+    //             "id", 
+    //             "ownerId", 
+    //             "address", 
+    //             "city", 
+    //             "state", 
+    //             "country", 
+    //             "lat", 
+    //             "lng", 
+    //             "name", 
+    //             "price" 
+    //         ],
+    //             include:[
+    //                 { 
+    //                     model: SpotImage, 
+    //                     attributes: [ "url", "preview" ] 
+    //                 }
+    //             ]
+    //         }
+    //     ]
+    // })
+
     const bookings = await Booking.findAll({
         where: { userId: req.user.id },
-        include: [ 
-            { 
-            model: Spot, 
-            attributes: [ "id", "ownerId", "address", "city", "state", "country", "lat", "lng", "name", "price" ],
-                include:[
-                    { 
-                        model: SpotImage, 
-                        attributes: [ "url", "preview" ] 
-                    }
-                ]
-            }
-        ]
-    })
+        include: [
+          {
+            model: Spot,
+            include: [
+                { 
+                    model: SpotImage 
+                }
+            ],
+            attributes: [
+              "id",
+              "ownerId",
+              "address",
+              "city",
+              "state",
+              "country",
+              "lat",
+              "lng",
+              "name",
+              "price",
+            ],
+          },
+        ],
+      });
 
     const bookingsArray = [];
     bookings.forEach(booking => {
@@ -43,12 +81,15 @@ router.get('/current', requireAuth, async (req, res) => {
         if (!booking.Spot.previewImage) {
             booking.Spot.previewImage = "No preview image for Booking found"
         }
+
         delete booking.Spot.SpotImages
     })
-    return res.json({Bookings: bookingsArray})
+
+    res.status(200)
+    return res.json({ Bookings: bookingsArray })
 })
 
-//! Edit a Booking
+//! *************** Edit a Booking
 //! Need to create a body validation error function (above incomplete)
 
 router.put('/:bookingId', requireAuth, async (req, res) => {
@@ -196,7 +237,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
 
 })
 
-//! Delete a Booking
+//! *************** Delete a Booking
 router.delete('/:bookingId', requireAuth, async (req, res) => {
     const user = await User.findByPk(req.user.id)
     const booking = await Booking.findByPk(req.params.bookingId)

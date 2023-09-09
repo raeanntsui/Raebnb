@@ -191,7 +191,7 @@ router.get('/current', async(req, res) => {
             spot.avgRating = spot.avgRating + review.stars;
         })
         spot.avgRating = spot.avgRating / spot.Reviews.length;
-        if(!spot.avgRating) spot.avgRating = "No average rating for Spot found.";
+        if (!spot.avgRating) spot.avgRating = "No average rating for Spot found.";
         delete spot.Reviews;
     })    
 
@@ -348,10 +348,19 @@ router.get('/:spotId', async (req, res) => {
 })
 
 //! *************** CREATE A BOOKING FROM A SPOT BASED ON THE SPOT'S ID
+//? Create a Booking Based on a Spot id
 router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId)
+    const user = await User.findByPk(req.user.id)
     
-    // if a spot does not exist...
+    // destructure the req.body to be used later
+    const { startDate, endDate } = req.body
+    
+    // convert the given req.body startDate & endDate from STRING to OBJECT
+    const newBookingStartDate = new Date(startDate)
+    const newBookingEndDate = new Date(endDate)
+    
+    // spot check: if a spot does not exist...
     if (!spot) {
         // if a spot does not exist, return an error
         res.status(404)
@@ -360,21 +369,16 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
         })
     }
 
-    // destructure the req.body to be used later
-    const { startDate, endDate } = req.body
-    
-    // convert the given req.body startDate & endDate from STRING to OBJECT
-    const newBookingStartDate = new Date(startDate)
-    const newBookingEndDate = new Date(endDate)
-    
+    // authorization check: check if the current spot's owner is the same as the current user
     if (spot.ownerId === req.user.id) {
         res.status(403)
         return res.json({
-            message: "Spot does not belong to the current user. Cannot create a booking."
+            message: "Spot belongs to the current user. Cannot create a booking."
         })
     }
 
-    // check if dates are valid before booking (date validation check)
+    // date check: check if dates are valid before booking (date validation check)
+    // if the new booking start date is ON or comes AFTER the new booking end date, return 400 error
     if (newBookingStartDate >= newBookingEndDate) {
         res.status(400)
         return res.json({
@@ -389,12 +393,12 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     const existingBooking = await Booking.findOne({
         where: {
             spotId: spot.id,
-            startDate: { [Op.lte]: newBookingStartDate },
-            endDate: { [Op.gte]: newBookingEndDate }
+            startDate: { [Op.lt]: newBookingEndDate },
+            endDate: { [Op.gt]: newBookingStartDate }
         }, 
     })
     
-    // check for an existing booking
+    // existing booking check: check if an existing booking actually exists
     if (existingBooking) {
         res.status(403)
         return res.json({
@@ -406,12 +410,12 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
         })
     }
     
-    // if a spot exists & no errors then create a new booking
+    // if no errors are hit then create a new booking
     const newBooking = await Booking.create({
         spot: spot.id,
         user: req.user.id,
-        startDate: newBookingStartDate,
-        endDate: newBookingEndDate
+        startDate,
+        endDate
     })
     res.status(200)
     return res.json(newBooking)
