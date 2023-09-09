@@ -501,7 +501,7 @@ router.post('/:spotId/images', requireAuth, async(req, res) => {
 router.post('/', requireAuth, validateSpot, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body    
     const newSpot = await Spot.create({
-        address, city, state, country, lat, lng, name, description, price
+       ownerId: req.user.id, address, city, state, country, lat, lng, name, description, price
     })
 
     if (!req.body) {
@@ -509,10 +509,10 @@ router.post('/', requireAuth, validateSpot, async (req, res) => {
         return res.json(validateSpot)
     }
 
-    const owner = { ...newSpot.toJSON(), ownerId: req.user.id }
+    // const owner = { ...newSpot.toJSON(), ownerId: req.user.id }
 
     res.status(201)
-    res.json(owner)
+    res.json(newSpot)
 })
 
 //! *************** Edit a Spot
@@ -546,7 +546,7 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
     return res.json(spot)
 })
 
-//! ***************Delete a Spot
+//! *************** Delete a Spot
 router.delete('/:spotId', requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId)
     if (spot) {

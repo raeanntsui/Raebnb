@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       })
 
       //! Users(1) => Reviews(*)
-      User.hasMany(models.Booking, {
+      User.hasMany(models.Review, {
         foreignKey: "userId",
         onDelete: "CASCADE"
       }) 

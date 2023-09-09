@@ -17,14 +17,12 @@ module.exports = {
       },
       spotId: {
         type: Sequelize.INTEGER,
-        references: {
-          model: "Spots",
-          key: "id"
-        },
+        references: {model: "Spots"},
         onDelete: "CASCADE"
       },
       url: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       preview: {
         type: Sequelize.BOOLEAN
@@ -42,6 +40,7 @@ module.exports = {
     }, options);
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('SpotImages');
+    options.tableName = "SpotImages"
+    await queryInterface.dropTable(options);
   }
 };

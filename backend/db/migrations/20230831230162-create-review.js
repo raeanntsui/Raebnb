@@ -17,25 +17,21 @@ module.exports = {
       },
       spotId: {
         type: Sequelize.INTEGER,
-        references: {
-          model: "Spots", // needs to be table name
-          key: "id" // connecting point on Spots table
-        },
+        references: {model: "Spots"},
         onDelete: "CASCADE"
       },
       userId: {
         type: Sequelize.INTEGER,
-        references: {
-          model: "Users",
-          // key: "id"
-        },
+        references: {model: "Users"},
         onDelete: "CASCADE"
       },
       review: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       stars: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
@@ -50,6 +46,7 @@ module.exports = {
     }, options);
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Reviews');
+    options.tableName = "Reviews"
+    await queryInterface.dropTable(options);
   }
 };
