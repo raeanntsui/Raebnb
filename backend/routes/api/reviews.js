@@ -146,23 +146,37 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
     const { review, stars } = req.body;
 
     await oneReview.update({ review, stars })
-    res.json(oneReview)
+
+    res.status(200)
+    return res.json(oneReview)
 })
 
 //! **************** DELETE A REVIEW
 //? Delete a Review
 router.delete('/:reviewId', requireAuth, async (req, res) => {
-    const review = await Review.findByPk(req.params.reviewId)
-    // check if the current user is authorized to delete a review
+    const currentReview = await Review.findByPk(req.params.reviewId)
+    console.log("*************** CURRENT REVIEW", currentReview)
+    console.log("*************** req.params.reviewId", req.params.reviewId)
+    
+    // if current review does not exist, return 404 error
+    if (!currentReview) {
+        res.status(404)
+        return res.json({
+            message: "Review couldn't be found."
+        })
+    }
+    
+    // check if the current user is authorized to delete the current review
+    if (req.user.id !== currentReview.userId) {
+        res.status(403)
+        return res.json({
+            message: "Forbidden: Current user is not authorized to delete this review"
+        })
+    }
 
-    if (!review) {
-            res.status(404)
-            return res.json({
-                message: "Review couldn't be found."
-            })
-        }
-
-    await review.destroy()
+    // if no errors are hit, proceed with deletion of review
+    await currentReview.destroy()
+    res.status(200)
     return res.json({
         message: "Successfully deleted."
     })
