@@ -21,24 +21,27 @@ const validateSpot = [
         .withMessage('Country is required'),
     check('lat')
         .exists({ checkFalsy: true })
-        .isFloat({ min: -500, max: 500 })
         .isDecimal()
+        .isFloat({ min: -90, max: 90 })
         .withMessage('Latitude is not valid'),
     check('lng')
         .exists({ checkFalsy: true })
-        .isFloat({ min: -500, max: 500 })
         .isDecimal()
+        .isFloat({ min: -180, max: 180 })
         .withMessage('Longitude is not valid'),
     check('name')
         .exists({ checkFalsy: true })
         .isLength({ max: 50 })
         .withMessage('Name must be less than 50 characters'),
+    check('name')
+        .exists({ checkFalsy: true })
+        .isLength({ min: 1 })
+        .withMessage('Name is required'),
     check('description')
         .exists({ checkFalsy: true })
         .withMessage('Description is required'),
     check('price')
         .exists({ checkFalsy: true })
-        .isDecimal()
         .withMessage('Price per day is required'),
     handleValidationErrors
 ]
@@ -85,6 +88,17 @@ const queryFilter = [
     handleValidationErrors,
   ];
 
+  const validateReview = [
+    check('review')
+        .exists({ checkFalsy: true })
+        .withMessage('Review text is required.'),
+    check('stars')
+        .exists({ checkFalsy: true })
+        .isInt({ min: 1, max: 5 })
+        .withMessage('Stars must be an integer from 1 to 5.'),
+    handleValidationErrors
+]
+
 //! *************** Get all Bookings for a Spot based on the Spot's id
 router.get('/:spotId/bookings', requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId)
@@ -124,11 +138,12 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
     }
 })
 
-//! *************** Get all Reviews by a Spot's id
+//! *************** GET ALL REVIEWS BY A SPOT'S ID
+//? Get Reviews by Spot Id
 router.get('/:spotId/reviews', async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId)
    
-    // check if spot exists FIRST! before finding reviews for the spot
+    // if no spot exists, then return error
     if (!spot) {
         res.status(404)
         return res.json({
@@ -150,9 +165,8 @@ router.get('/:spotId/reviews', async (req, res) => {
             }]
         })  
 
-    return res.json({
-        Reviews: allReviewsBySpotId
-    })
+    res.status(200)
+    return res.json({ Reviews: allReviewsBySpotId })
 })
 
 //! *************** GET ALL SPOTS OWNED BY THE CURRENT USER
@@ -287,34 +301,6 @@ router.get('/:spotId', async (req, res) => {
         })
     }
 
-
-
-    // const spotOwner = { ...spot.toJSON(), Owner: spot.User}
-    // delete spotOwner.User
-
-    // spotOwner.numReviews = spotOwner.Reviews.length;
-
-    // spotOwner.avgRating = 0;
-    // spotOwner.Reviews.forEach(review => {
-    //     spotOwner.avgRating = spotOwner.avgRating + review.stars
-    // })
-
-
-
-    // spotOwner.avgRating = spotOwner.avgRating / spotOwner.Reviews.length
-
-    // res.status(200)
-    // return res.json(spotOwner)
-
-
-
-
-
-
-
-
-
-
     // get the total number of reviews
     const numReviews = spot.Reviews.length
 
@@ -328,7 +314,6 @@ router.get('/:spotId', async (req, res) => {
         // add the star rating from each iterated review to totalStars
         totalStars = totalStars + review.stars
     }
-
     
     // find the AVERAGE star rating & initialize current average star rating to 0
     const avgStars = 0
@@ -336,6 +321,7 @@ router.get('/:spotId', async (req, res) => {
         avgStars = totalStars / spot.Reviews.length
     }
 
+    // remove the Reviews column from the response
     delete spot.Reviews
 
     res.status(200)
@@ -360,18 +346,6 @@ router.get('/:spotId', async (req, res) => {
     })
 
 })
-
-const validateReview = [
-    check('review')
-        .exists({ checkFalsy: true })
-        .withMessage('Review text is required.'),
-    check('stars')
-        .exists({ checkFalsy: true })
-        .isInt({ min: 1, max: 5 })
-        .withMessage('Stars must be an integer from 1 to 5.'),
-    handleValidationErrors
-]
-
 
 //! *************** CREATE A BOOKING FROM A SPOT BASED ON THE SPOT'S ID
 router.post('/:spotId/bookings', requireAuth, async (req, res) => {
@@ -444,6 +418,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
 })
 
 //! *************** CREATE A REVIEW FOR A SPOT BASED ON THE SPOT'S ID
+//? Create a Review for a Spot
 router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res) => {
     // find specified spot by :spotId
     const spot = await Spot.findByPk(req.params.spotId)
@@ -488,45 +463,7 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res) =>
 })
 
 //! *************** ADD AN IMAGE TO A SPOT BASED ON THE SPOT'S ID
-/*
-//! below copy is correct
-// router.post('/:spotId/images', requireAuth, async(req, res) => {
-//     // find specific spot by :spotId
-//     const spot = await Spot.findByPk(req.params.spotId)
-//     const { user } = req
-
-//     // const user = await User.findByPk(req.user.id)
-    
-//     if (spot) {
-//         if (user.id === spot.ownerId) {
-//             const { url, preview } = req.body
-//             const newImageForSpot = await SpotImage.create({
-//                 spotId: req.params.spotId,
-//                 url,
-//                 preview
-//             })
-//             res.status(201)
-//             return res.json({
-//                 id: newImageForSpot.id,
-//                 url: newImageForSpot.url,
-//                 preview: newImageForSpot.preview
-//             })
-//         } else {
-//             res.status(403)
-//             return res.json({
-//                 message: "Cannot add image, you are not the spot owner"
-//             })
-//         }
-//         // check if user making the request to add an image is the same as the ownerId of the current spot
-//     } else {
-//         res.status(404)
-//         return res.json({
-//             message: "Spot couldn't be found"
-//         })
-//     }
-// })
-*/
-
+//? Create an Impage for a Spot
 router.post('/:spotId/images', requireAuth, async(req, res) => {
     // find specific spot by :spotId
     const spot = await Spot.findByPk(req.params.spotId)
@@ -566,11 +503,6 @@ router.post('/:spotId/images', requireAuth, async(req, res) => {
 //! *************** CREATE A SPOT
 //? Create a Spot
 router.post('/', requireAuth, validateSpot, async (req, res) => {
-    if (!req.body) {
-        res.status(400)
-        return res.json(validateSpot)
-    }
-
     // extract components from req.body
     const { 
         address, 
@@ -602,7 +534,7 @@ router.post('/', requireAuth, validateSpot, async (req, res) => {
 })
 
 
-//! *************** Edit a Spot
+//! *************** EDIT A SPOT
 router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId)
 
@@ -633,15 +565,21 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
     return res.json(spot)
 })
 
-//! *************** Delete a Spot
+//! *************** DELETE A SPOT
 router.delete('/:spotId', requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId)
     if (spot) {
         // check if the ownerId of the current spot is the same as the current user in session
         if (spot.ownerId === req.user.id) {
             await spot.destroy()
-            res.json({
+            res.status(200)
+            return res.json({
                 message: "Successfully deleted."
+            })
+        } else {
+            res.status(403)
+            return res.json({
+                message: "Forbidden: Current user is not authorized to delete this spot"
             })
         }
     }

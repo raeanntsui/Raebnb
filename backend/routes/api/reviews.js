@@ -16,11 +16,11 @@ const validateReview = [
     handleValidationErrors
 ]
 
+//! **************** GET ALL REVIEWS OF THE CURRENT USER
+//? Get Reviews of Current User
 router.get('/current', requireAuth, async (req, res) => {
     const allReviews = await Review.findAll({
-        where: {
-            userId: req.user.id
-        },
+        where: { userId: req.user.id },
         include: 
         [
         {
@@ -61,14 +61,12 @@ router.get('/current', requireAuth, async (req, res) => {
         }
     })
 
-    res.json({
-        Reviews: reviewArray
-    })
+    res.status(200)
+    return res.json({ Reviews: reviewArray })
 })
 
 //! **************** ADD AN IMAGE TO A REVIEW BASED ON THE REVIEW'S ID
 //? Create an Image for a Review
-//!MINE
 router.post('/:reviewId/images', requireAuth, async(req, res) => {
     const review = await Review.findByPk(req.params.reviewId)
     const user = await User.findByPk(req.user.id)
