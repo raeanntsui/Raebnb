@@ -62,7 +62,13 @@ router.get('/current', requireAuth, async (req, res) => {
     })
 
     res.status(200)
-    return res.json({ Reviews: reviewArray })
+    return res.json({ 
+        Reviews: reviewArray.map(aReview => ({
+            ...aReview,
+            createdAt: aReview.createdAt.toISOString().replace("T", " ").split(".")[0],
+            updatedAt: aReview.updatedAt.toISOString().replace("T", " ").split(".")[0]
+        }))
+     })
 })
 
 //! **************** ADD AN IMAGE TO A REVIEW BASED ON THE REVIEW'S ID

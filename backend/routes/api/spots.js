@@ -445,6 +445,8 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     res.status(200)
     return res.json({
         ...newBooking.toJSON(),
+        startDate: newBooking.startDate.toISOString().split("T")[0],
+        endDate: newBooking.endDate.toISOString().split("T")[0],
         createdAt: newBooking.createdAt.toISOString().replace("T", " ").split(".")[0],
         updatedAt: newBooking.updatedAt.toISOString().replace("T", " ").split(".")[0]
     })
