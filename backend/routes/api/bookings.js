@@ -4,6 +4,7 @@ const { requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
 const { check } = require('express-validator')
 const router = express.Router();
+const { Op } = require("sequelize")
 
 const validateBooking = [
     check('endDate')
@@ -89,13 +90,12 @@ router.get('/current', requireAuth, async (req, res) => {
     return res.json({ Bookings: bookingsArray })
 })
 
-//! *************** Edit a Booking
-//! Need to create a body validation error function (above incomplete)
-
+//! *************** EDIT A BOOKING
+//? Edit a Booking
 router.put('/:bookingId', requireAuth, async (req, res) => {
     const booking = await Booking.findByPk(req.params.bookingId)
 
-    // if a booking does not exist...
+    // booking check: check if a booking does not exist...
     if (!booking) {
         res.status(404)
         return res.json({
@@ -103,6 +103,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         })
     }
 
+    // authorization check: check if the booking belongs to the current user
     if (booking.userId !== req.user.id) {
         res.status(403)
         return res.json({
@@ -140,9 +141,13 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     // find an existing booking
     const existingBooking = await Booking.findOne({
         where: {
-            spot: booking.spotId,
-            startDate: { [Op.lte]: editEndDate },
-            endDate: { [Op.gte]: editStartDate }
+            spotId: booking.spotId,
+            id: {
+                // check if booking id is not equal booking id
+                [Op.ne]: booking.id
+            },
+            startDate: { [Op.lt]: editEndDate },
+            endDate: { [Op.gt]: editStartDate }
             }
     })
 
@@ -157,7 +162,6 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
             }
         })
     }
-
     
     await booking.update({
         spotId: booking.userId, 
@@ -165,79 +169,88 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         startDate, 
         endDate
     })
-    return res.json(booking)
+
+    return res.json({
+        ...booking.toJSON(),
+        startDate: booking.startDate.toISOString().split("T")[0],
+        endDate: booking.endDate.toISOString().split("T")[0],
+        createdAt: booking.createdAt.toISOString().replace("T", " ").split(".")[0],
+        updatedAt: booking.updatedAt.toISOString().replace("T", " ").split(".")[0]
+    })
 })
 
-router.put('/:bookingId', requireAuth, async (req, res) => {
-    const booking = await Booking.findByPk(req.params.bookingId)
+// router.put('/:bookingId', requireAuth, async (req, res) => {
+//     const booking = await Booking.findByPk(req.params.bookingId)
     
-    // if booking does not exist, throw error
-    if (!booking) {
-        res.status(404)
-        return res.json({
-            message: "Booking couldn't be found"
-        })
-    }
+//     // if booking does not exist, throw error
+//     if (!booking) {
+//         res.status(404)
+//         return res.json({
+//             message: "Booking couldn't be found"
+//         })
+//     }
     
-    // if they are the same, continue to edit the booking as intended
-    const { startDate, endDate } = req.body
+//     // if they are the same, continue to edit the booking as intended
+//     const { startDate, endDate } = req.body
 
-    // converts date from string to object
-    const editStartDate = new Date(startDate)
-    const editEndDate = new Date(endDate)
+//     // converts date from string to object
+//     const editStartDate = new Date(startDate)
+//     const editEndDate = new Date(endDate)
     
-    //? Error response: Can't edit a booking that's past the end date
-    const currentBookingDate = new Date()
-    if (currentBookingDate > editEndDate) {
-        res.status(403)
-        return res.json({
-            message: "Past bookings can't be modified"
-        })
-    } 
+//     //? Error response: Can't edit a booking that's past the end date
+//     const currentBookingDate = new Date()
+//     if (currentBookingDate > editEndDate) {
+//         res.status(403)
+//         return res.json({
+//             message: "Past bookings can't be modified"
+//         })
+//     } 
     
-    // if a booking currently exists... and if the booking's user id and the current user id are the same
-    if (booking && (booking.userId === req.user.id)) {
+//     // if a booking currently exists... and if the booking's user id and the current user id are the same
+//     if (booking && (booking.userId === req.user.id)) {
 
-        // check if the (new end date) editEndDate does not come before the (new start date) editStartDate
-        if (editStartDate < editEndDate ) {
-            // update the booking with the given req.body components
-            await booking.update({
-                spotId: booking.userId, 
-                userId: req.user.id, 
-                startDate, 
-                endDate
-            })
-            res.status(200)
-            return res.json(booking)
-        } else {
-            // if the (new end date) editEndDate comes BEFORE the (new start date) editStartDate, throw error
-            res.status(400)
-            return res.json({
-                message: "Bad Request",
-                error: "endDate cannot come before startDate"
-            })
-        }
-    } 
+//         // check if the (new end date) editEndDate does not come before the (new start date) editStartDate
+//         if (editStartDate < editEndDate ) {
+//             // update the booking with the given req.body components
+//             await booking.update({
+//                 spotId: booking.userId, 
+//                 userId: req.user.id, 
+//                 startDate, 
+//                 endDate
+//             })
+//             res.status(200)
+//             return res.json(booking)
+//         } else {
+//             // if the (new end date) editEndDate comes BEFORE the (new start date) editStartDate, throw error
+//             res.status(400)
+//             return res.json({
+//                 message: "Bad Request",
+//                 error: "endDate cannot come before startDate"
+//             })
+//         }
+//     } 
 
-  //? Error response: Bookings that have been started can't be deleted
-    //! not sure what this means
-    if (currentBookingDate === editStartDate) {
-        res.status(403)
-        res.json({
-            message: "Start date conflicts with an existing booking"
-        })
-    }
+//   //? Error response: Bookings that have been started can't be deleted
+//     //! not sure what this means
+//     if (currentBookingDate === editStartDate) {
+//         res.status(403)
+//         return res.json({
+//             message: "Start date conflicts with an existing booking"
+//         })
+//     }
 
-    if (currentBookingDate === editEndDate) {
-        res.status(403)
-        res.json({
-            message: "End date conflicts with an existing booking"
-        })
-    }
+//     if (currentBookingDate === editEndDate) {
+//         res.status(403)
+//         return res.json({
+//             message: "End date conflicts with an existing booking"
+//         })
+//     }
 
-})
+// })
 
-//! *************** Delete a Booking
+
+
+//! *************** DELETE A BOOKING
 router.delete('/:bookingId', requireAuth, async (req, res) => {
     const user = await User.findByPk(req.user.id)
     const booking = await Booking.findByPk(req.params.bookingId)
@@ -255,7 +268,7 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
         if (!spot || spot.ownerId !== req.user.id) {
             res.status(404)
             return res.json({
-                message: "Booking couldn't be found"
+                message: "Forbidden: Booking does not belong to the current user"
             })
         }
     }
@@ -276,7 +289,7 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
     // if no other errors are ran, continue to delete the booking
     await booking.destroy()
     res.status(200)
-    res.json({
+    return res.json({
         message: "Successfully deleted"
     })
 })
