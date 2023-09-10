@@ -493,7 +493,11 @@ router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res) =>
         })
 
         res.status(201)
-        return res.json(newReviewForSpot)
+        return res.json({ 
+            ...newReviewForSpot.toJSON(),
+            createdAt: newReviewForSpot.createdAt.toISOString().replace("T", " ").split(".")[0],
+            updatedAt: newReviewForSpot.updatedAt.toISOString().replace("T", " ").split(".")[0]
+        })
     }
 })
 
