@@ -14,7 +14,7 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
         })
     }
     
-    const review = await Review.findByPk(req.user.id)
+    const review = await Review.findByPk(reviewImage.reviewId)
     
     if (!review) {
         res.status(404)
