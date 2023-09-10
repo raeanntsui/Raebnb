@@ -351,14 +351,7 @@ router.get('/:spotId', async (req, res) => {
 //? Create a Booking Based on a Spot id
 router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId)
-    const user = await User.findByPk(req.user.id)
-    
-    // destructure the req.body to be used later
-    const { startDate, endDate } = req.body
-    
-    // convert the given req.body startDate & endDate from STRING to OBJECT
-    const newBookingStartDate = new Date(startDate)
-    const newBookingEndDate = new Date(endDate)
+    // const user = await User.findByPk(req.user.id)
     
     // spot check: if a spot does not exist...
     if (!spot) {
@@ -373,10 +366,17 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     if (spot.ownerId === req.user.id) {
         res.status(403)
         return res.json({
-            message: "Spot belongs to the current user. Cannot create a booking."
+            message: "Forbidden: Spot belongs to the current user. Cannot create a booking."
         })
     }
 
+    // destructure the req.body to be used later
+    const { startDate, endDate } = req.body
+    
+    // convert the given req.body startDate & endDate from STRING to OBJECT
+    const newBookingStartDate = new Date(startDate)
+    const newBookingEndDate = new Date(endDate)
+    
     // date check: check if dates are valid before booking (date validation check)
     // if the new booking start date is ON or comes AFTER the new booking end date, return 400 error
     if (newBookingStartDate >= newBookingEndDate) {
@@ -412,13 +412,17 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     
     // if no errors are hit then create a new booking
     const newBooking = await Booking.create({
-        spot: spot.id,
-        user: req.user.id,
-        startDate,
-        endDate
+        spotId: spot.id,
+        userId: req.user.id,
+        startDate: startDate,
+        endDate: endDate
     })
     res.status(200)
-    return res.json(newBooking)
+    return res.json({
+        ...newBooking.toJSON(),
+        createdAt: newBooking.createdAt.toISOString().replace("T", " ").split(".")[0],
+        updatedAt: newBooking.updatedAt.toISOString().replace("T", " ").split(".")[0]
+    })
 })
 
 //! *************** CREATE A REVIEW FOR A SPOT BASED ON THE SPOT'S ID
