@@ -111,17 +111,6 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         })
     }
 
-    // if the current date is past the start date
-    // if (editEndDate < dateRightNow) {
-    //     res.status(403)
-    //     return res.json({
-    //         message: "Past bookings can't be modified"
-    //     })
-    // }
-
-
-
-
     // find an existing booking
     const existingBooking = await Booking.findOne({
         where: {
@@ -135,8 +124,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
             }
     })
 
-    // console.log("existing enddate is ****", existingBooking.endDate)
-
+    // if the existing booking end date is already past, then you cannot edit the booking
     if (booking.endDate < dateRightNow) {
         res.status(403)
         return res.json({
