@@ -124,6 +124,14 @@ router.post('/:reviewId/images', requireAuth, async(req, res) => {
 router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
     const oneReview = await Review.findByPk(req.params.reviewId)
 
+    // if the current review does not exist
+    if (!oneReview) {
+        res.status(404)
+        return res.json({ 
+            message: "Review couldn't be found" 
+        })
+    }
+    
     // check if the current user is authorized to edit a review
     if (req.user.id !== oneReview.userId) {
         res.status(403)
@@ -132,13 +140,6 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
         })
     }
 
-    // if the current review does not exist
-    if (!oneReview) {
-        res.status(404)
-        return res.json({ 
-            message: "Review couldn't be found" 
-        })
-    }
 
     const { review, stars } = req.body;
 

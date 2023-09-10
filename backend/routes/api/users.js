@@ -97,11 +97,11 @@ router.post(
     let errors = {};
 
     if (existingUsername) {
-      errors.username = "Username must be unique";
+      errors.username = "Username already exists";
     }
 
     if (existingEmail) {
-      errors.email = "Email must be unique";
+      errors.email = "User with that email already exists";
     }
 
     if (Object.keys(errors).length > 0) {
