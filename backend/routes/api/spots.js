@@ -431,6 +431,10 @@ router.get("/:spotId", async (req, res) => {
 
 
 
+
+
+
+
 //! *************** CREATE A BOOKING FROM A SPOT BASED ON THE SPOT'S ID
 //? Create a Booking Based on a Spot id
 router.post('/:spotId/bookings', requireAuth, async (req, res) => {
@@ -648,7 +652,7 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
     }
 
     if (!spot) {
-        res.status(400)
+        res.status(404)
         return res.json({
             message: "Spot couldn't be found"
         })
