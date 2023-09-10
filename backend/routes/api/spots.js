@@ -221,7 +221,13 @@ router.get('/current', async(req, res) => {
     })
 
     res.status(200)
-    return res.json({ Spots: spotArray });
+    return res.json({ 
+        Spots: spotArray.map(aSpot => ({
+            ...aSpot,
+            createdAt: aSpot.createdAt.toISOString().replace("T", " ").split(".")[0],
+            updatedAt: aSpot.updatedAt.toISOString().replace("T", " ").split(".")[0]
+        }))
+     })
 })
 
 //! *************** GET ALL SPOTS & ADD QUERY FILTERS TO GET ALL SPOTS
@@ -281,159 +287,90 @@ router.get('/', queryFilter, async(req, res) => {
         delete oneSpot.SpotImages;
     })
     
-    return res.json({
-        Spots: spotsList,
+    return res.json({ 
+        Spots: spotsList.map(aSpot => ({
+            ...aSpot,
+            createdAt: aSpot.createdAt.toISOString().replace("T", " ").split(".")[0],
+            updatedAt: aSpot.updatedAt.toISOString().replace("T", " ").split(".")[0]
+        })),
         page: page,
         size: size
-    });
+     })
 })
 
 //! *************** GET DETAILS OF A SPOT FROM AN ID
-// router.get('/:spotId', async (req, res) => {
-//     const spot = await Spot.findByPk(req.params.spotId, {
-//         include: [
-//             {
-//                 model: SpotImage,
-//                 as: "SpotImages",
-//                 attributes: [ "id", "url", "preview" ]
-//             },
-//             {
-//                 model: User,
-//                 attributes: [ "id", "firstName", "lastName" ]
-//             },
-//             {
-//                 model: Review,
-//                 // attributes: [ "stars" ]
-//             }
-//         ]
-//     });
-
-//     // if a spot does not exist
-//     if (!spot) {
-//         res.status(404)
-//         return res.json({
-//             message: "Spot couldn't be found."
-//         })
-//     }
-
-//     // get the total number of reviews
-//     const numReviews = spot.Reviews.length
-
-//     // find the TOTAL star rating & initialize current total star rating to 0
-//     const totalStars = 0
-
-//     // iterate through each review
-//     for (let i = 0; i < spot.Reviews.length; i++) {
-//         // get the current review in the loop
-//         const review = spot.Reviews[i]
-//         // add the star rating from each iterated review to totalStars
-//         totalStars = totalStars + review.stars
-//     }
-    
-//     // find the AVERAGE star rating & initialize current average star rating to 0
-//     const avgStars = 0
-//     if (spot.Reviews.length > 0) {
-//         avgStars = totalStars / spot.Reviews.length
-//     }
-
-//     // remove the Reviews column from the response
-//     delete spot.Reviews
-
-//     res.status(200)
-//     return res.json({
-//         id: spot.id,
-//         ownerId: spot.ownerId,
-//         address: spot.address,
-//         city: spot.city,
-//         state: spot.state,
-//         country: spot.country,
-//         lat: spot.lat,
-//         lng: spot.lng,
-//         name: spot.name,
-//         description: spot.description,
-//         price: spot.price,
-//         createdAt: spot.createdAt,
-//         updatedAt: spot.updatedAt,
-//         numReviews: numReviews,
-//         avgRating: avgStars,
-//         SpotImages: spot.SpotImages,
-//         Owner: spot.User,
-//     })
-
-// })
-
-
-
-
-
-
-
-
-
-router.get("/:spotId", async (req, res) => {
-    const spotId = req.params.spotId;
-  
-    const spot = await Spot.findByPk(spotId, {
-      include: [
-        {
-          model: User,
-          attributes: ["id", "firstName", "lastName"],
-        },
-        {
-          model: SpotImage,
-          as: "SpotImages",
-          attributes: ["id", "url", "preview"],
-        },
-        {
-          model: Review,
-          attributes: ["stars"],
-        },
-      ],
+router.get('/:spotId', async (req, res) => {
+    const spot = await Spot.findByPk(req.params.spotId, {
+        include: [
+            {
+                model: SpotImage,
+                as: "SpotImages",
+                attributes: [ "id", "url", "preview" ]
+            },
+            {
+                model: User,
+                attributes: [ "id", "firstName", "lastName" ]
+            },
+            {
+                model: Review
+            }
+        ]
     });
-  
+
+    // if a spot does not exist
     if (!spot) {
-      return res.status(404).json({ message: "Spot couldn't be found" });
+        res.status(404)
+        return res.json({
+            message: "Spot couldn't be found."
+        })
     }
-  
-    const numReviews = spot.Reviews.length;
-    const totalStars = spot.Reviews.reduce(
-      (total, review) => total + review.stars,
-      0
-    );
-    let avgStarRating = 0;
-  
-    if (numReviews > 0) {
-      avgStarRating = totalStars / numReviews;
+
+    // get the total number of reviews
+    const numReviews = spot.Reviews.length
+
+    // set current total star rating to 0
+    let totalStars = 0
+
+    // iterate through each review
+    for (let i = 0; i < spot.Reviews.length; i++) {
+        // get the current review in the loop
+        const review = spot.Reviews[i]
+        console.log('review****', review)
+        // add the star rating from each iterated review to totalStars
+        totalStars = totalStars + review.stars
     }
-  
-    return res.status(200).json({
-      id: spot.id,
-      ownerId: spot.ownerId,
-      address: spot.address,
-      city: spot.city,
-      state: spot.state,
-      country: spot.country,
-      lat: spot.lat,
-      lng: spot.lng,
-      name: spot.name,
-      description: spot.description,
-      price: spot.price,
-      createdAt: spot.createdAt,
-      updatedAt: spot.updatedAt,
-      numReviews: numReviews,
-      avgRating: avgStarRating,
-      SpotImages: spot.SpotImages,
-      Owner: spot.User,
-    });
-  });
+    
+    // find the AVERAGE star rating & initialize current average star rating to 0
+    let avgStars = 0
+    if (spot.Reviews.length > 0) {
+        avgStars = totalStars / spot.Reviews.length
+    }
 
+    // remove the Reviews column from the response
+    delete spot.Reviews
 
+    res.status(200)
+    return res.json({
+        id: spot.id,
+        ownerId: spot.ownerId,
+        address: spot.address,
+        city: spot.city,
+        state: spot.state,
+        country: spot.country,
+        lat: spot.lat,
+        lng: spot.lng,
+        name: spot.name,
+        description: spot.description,
+        price: spot.price,
+        createdAt: spot.createdAt.toISOString().replace("T", " ").split(".")[0],
+        updatedAt: spot.updatedAt.toISOString().replace("T", " ").split(".")[0],
+        numReviews: numReviews,
+        avgRating: avgStars,
+        SpotImages: spot.SpotImages,
+        Owner: spot.User,
+    })
 
-
-
-
-
-
+})
 
 //! *************** CREATE A BOOKING FROM A SPOT BASED ON THE SPOT'S ID
 //? Create a Booking Based on a Spot id
@@ -600,33 +537,17 @@ router.post('/:spotId/images', requireAuth, async(req, res) => {
 //? Create a Spot
 router.post('/', requireAuth, validateSpot, async (req, res) => {
     // extract components from req.body
-    const { 
-        address, 
-        city, 
-        state, 
-        country, 
-        lat, 
-        lng, 
-        name, 
-        description, 
-        price } = req.body    
+    const { address, city, state, country, lat, lng, name, description, price } = req.body    
     
     // create a new spot
-    const newSpot = await Spot.create({
-       ownerId: req.user.id, 
-       address, 
-       city, 
-       state, 
-       country, 
-       lat, 
-       lng, 
-       name, 
-       description, 
-       price
-    })
+    const newSpot = await Spot.create({ ownerId: req.user.id, address, city, state, country, lat, lng, name, description, price })
 
     res.status(201)
-    return res.json(newSpot)
+    return res.json({ 
+        ...newSpot.toJSON(),
+        createdAt: newSpot.createdAt.toISOString().replace("T", " ").split(".")[0],
+        updatedAt: newSpot.updatedAt.toISOString().replace("T", " ").split(".")[0]
+    })
 })
 
 
@@ -635,30 +556,30 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId)
 
     const { address, city, state, country, lat, lng, name, description, price } = req.body
-
-    if (spot) {
-        if (spot.ownerId === req.user.id) {
-            spot.ownerId = req.user.id;
-            spot.address = address;
-            spot.city = city;
-            spot.state = state;
-            spot.country = country;
-            spot.lat = lat;
-            spot.lng = lng;
-            spot.name = name;
-            spot.description = description;
-            spot.price = price;
-        }
-    }
-
+    
     if (!spot) {
         res.status(404)
         return res.json({
             message: "Spot couldn't be found"
         })
     }
-    await spot.save()
-    return res.json(spot)
+
+  
+    if (spot.ownerId !== req.user.id) {
+        res.status(403)
+        return res.json({
+            message: "Forbidden: Spot does not belong to the current user"
+        })
+    }
+
+    await spot.update({ address, city, state, country, lat, lng, name, description, price })
+
+    res.status(200)
+    return res.json({ 
+        ...spot.toJSON(),
+        createdAt: spot.createdAt.toISOString().replace("T", " ").split(".")[0],
+        updatedAt: spot.updatedAt.toISOString().replace("T", " ").split(".")[0]
+     })
 })
 
 //! *************** DELETE A SPOT
