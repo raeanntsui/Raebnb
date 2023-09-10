@@ -573,14 +573,14 @@ router.post('/:spotId/images', requireAuth, async(req, res) => {
         })
     }
 
-    if (spot && (user.id !== spot.ownerId)) {
-        res.status(404)
+    if (user.id !== spot.ownerId) {
+        res.status(403)
         return res.json({
-            message: "Spot must belong to the current user"
+            message: "Forbidden: Spot must belong to the current user"
         })
     }
 
-    if (spot && (user.id === spot.ownerId)) {
+    if (user.id === spot.ownerId) {
         // check if user making the request to add an image is the same as the ownerId of the current spot
         const newImageForSpot = await SpotImage.create({
             spotId: req.params.spotId,
