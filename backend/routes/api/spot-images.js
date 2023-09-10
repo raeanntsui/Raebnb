@@ -6,11 +6,27 @@ const router = express.Router();
 //! Delete a Spot Image
 router.delete('/:imageId', requireAuth, async (req, res) => {
     const spotImage = await SpotImage.findByPk(req.params.imageId)    
-
+    
     if (!spotImage) {
         res.status(404)
         return res.json({
             message: "Spot Image couldn't be found"
+        })
+    }
+    
+    const spot = await Spot.findByPk(spotImage.spotId)
+
+    if (!spot) {
+        res.status(404)
+        return res.json({
+            message: "Spot couldn't be found"
+        })
+    }
+    
+    if (req.user.id !== spot.ownerId) {
+        res.status(403)
+        return res.json({
+            message: "Forbidden: Spot must belong to the current user"
         })
     }
 
@@ -20,11 +36,5 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
         message: "Successfully deleted"
     })
 })
-
-// Find all spot images
-// router.get('/all', requireAuth, async (req, res) => {
-//     const allSpotImages = await SpotImage.findAll()
-//     return res.json(allSpotImages)
-// })
 
 module.exports = router;
