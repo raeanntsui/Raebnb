@@ -99,7 +99,7 @@ const queryFilter = [
     handleValidationErrors
 ]
 
-//! *************** Get all Bookings for a Spot based on the Spot's id
+//! *************** GET ALL BOOKINGS FOR A SPOT BASED ON THE SPOT'S ID
 router.get('/:spotId/bookings', requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId)
     
@@ -111,31 +111,46 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
         })
     }
 
-    if (spot) {
-        // check if spot owner and current user are not the same
-        if (spot.ownerId !== req.user.id) {
-            const allBookings = await Booking.findAll({
-                where: {
-                    spotId: req.params.spotId
-                },
-                    attributes: [ "spotId", "startDate", "endDate" ]
-            })
-            return res.json({ Bookings: allBookings })
-        } else {
-            // otherwise if you are the owner of the spot then...
-            // find all the bookings associated with the user
-            const allBookings = await Booking.findAll({
-                where: {
-                    spotId: req.params.spotId
-                },
-                include: [{
-                    model: User,
-                    attributes: [ "id", "firstName", "lastName" ]
-                }]
-            })
-            return res.json({ Bookings: allBookings })
-        }
+    // check if spot owner and current user are not the same
+    if (spot.ownerId !== req.user.id) {
+        const allBookings = await Booking.findAll({
+            where: {
+                spotId: req.params.spotId
+            },
+                attributes: [ "spotId", "startDate", "endDate" ]
+        })
+        
+        res.status(200)
+        return res.json({ 
+            Bookings: allBookings.map(aBooking => ({
+                ...aBooking.toJSON(),
+                startDate: aBooking.startDate.toISOString().split("T")[0],
+                endDate: aBooking.endDate.toISOString().split("T")[0],
+            }))
+         })
+
+    } else {
+        // otherwise if you are the owner of the spot then...
+        // find all the bookings associated with the user
+        const allBookings = await Booking.findAll({
+            where: { spotId: spot.id },
+            include: [{
+                model: User,
+                attributes: [ "id", "firstName", "lastName" ]
+            }]
+        })
+        res.status(200)
+        return res.json({ 
+            Bookings: allBookings.map(aBooking => ({
+                ...aBooking.toJSON(),
+                startDate: aBooking.startDate.toISOString().split("T")[0],
+                endDate: aBooking.endDate.toISOString().split("T")[0],
+                createdAt: aBooking.createdAt.toISOString().replace("T", " ").split(".")[0],
+                updatedAt: aBooking.updatedAt.toISOString().replace("T", " ").split(".")[0]
+            }))
+         })
     }
+    
 })
 
 //! *************** GET ALL REVIEWS BY A SPOT'S ID
@@ -274,78 +289,147 @@ router.get('/', queryFilter, async(req, res) => {
 })
 
 //! *************** GET DETAILS OF A SPOT FROM AN ID
-router.get('/:spotId', async (req, res) => {
-    const spot = await Spot.findByPk(req.params.spotId, {
-        include: [
-            {
-                model: SpotImage,
-                as: "SpotImages",
-                attributes: [ "id", "url", "preview" ]
-            },
-            {
-                model: User,
-                attributes: [ "id", "firstName", "lastName" ]
-            },
-            {
-                model: Review,
-                // attributes: [ "stars" ]
-            }
-        ]
-    });
+// router.get('/:spotId', async (req, res) => {
+//     const spot = await Spot.findByPk(req.params.spotId, {
+//         include: [
+//             {
+//                 model: SpotImage,
+//                 as: "SpotImages",
+//                 attributes: [ "id", "url", "preview" ]
+//             },
+//             {
+//                 model: User,
+//                 attributes: [ "id", "firstName", "lastName" ]
+//             },
+//             {
+//                 model: Review,
+//                 // attributes: [ "stars" ]
+//             }
+//         ]
+//     });
 
-    // if a spot does not exist
-    if (!spot) {
-        res.status(404)
-        return res.json({
-            message: "Spot couldn't be found."
-        })
-    }
+//     // if a spot does not exist
+//     if (!spot) {
+//         res.status(404)
+//         return res.json({
+//             message: "Spot couldn't be found."
+//         })
+//     }
 
-    // get the total number of reviews
-    const numReviews = spot.Reviews.length
+//     // get the total number of reviews
+//     const numReviews = spot.Reviews.length
 
-    // find the TOTAL star rating & initialize current total star rating to 0
-    const totalStars = 0
+//     // find the TOTAL star rating & initialize current total star rating to 0
+//     const totalStars = 0
 
-    // iterate through each review
-    for (let i = 0; i < spot.Reviews.length; i++) {
-        // get the current review in the loop
-        const review = spot.Reviews[i]
-        // add the star rating from each iterated review to totalStars
-        totalStars = totalStars + review.stars
-    }
+//     // iterate through each review
+//     for (let i = 0; i < spot.Reviews.length; i++) {
+//         // get the current review in the loop
+//         const review = spot.Reviews[i]
+//         // add the star rating from each iterated review to totalStars
+//         totalStars = totalStars + review.stars
+//     }
     
-    // find the AVERAGE star rating & initialize current average star rating to 0
-    const avgStars = 0
-    if (spot.Reviews.length > 0) {
-        avgStars = totalStars / spot.Reviews.length
+//     // find the AVERAGE star rating & initialize current average star rating to 0
+//     const avgStars = 0
+//     if (spot.Reviews.length > 0) {
+//         avgStars = totalStars / spot.Reviews.length
+//     }
+
+//     // remove the Reviews column from the response
+//     delete spot.Reviews
+
+//     res.status(200)
+//     return res.json({
+//         id: spot.id,
+//         ownerId: spot.ownerId,
+//         address: spot.address,
+//         city: spot.city,
+//         state: spot.state,
+//         country: spot.country,
+//         lat: spot.lat,
+//         lng: spot.lng,
+//         name: spot.name,
+//         description: spot.description,
+//         price: spot.price,
+//         createdAt: spot.createdAt,
+//         updatedAt: spot.updatedAt,
+//         numReviews: numReviews,
+//         avgRating: avgStars,
+//         SpotImages: spot.SpotImages,
+//         Owner: spot.User,
+//     })
+
+// })
+
+
+
+
+
+
+
+
+
+router.get("/:spotId", async (req, res) => {
+    const spotId = req.params.spotId;
+  
+    const spot = await Spot.findByPk(spotId, {
+      include: [
+        {
+          model: User,
+          attributes: ["id", "firstName", "lastName"],
+        },
+        {
+          model: SpotImage,
+          as: "SpotImages",
+          attributes: ["id", "url", "preview"],
+        },
+        {
+          model: Review,
+          attributes: ["stars"],
+        },
+      ],
+    });
+  
+    if (!spot) {
+      return res.status(404).json({ message: "Spot couldn't be found" });
     }
+  
+    const numReviews = spot.Reviews.length;
+    const totalStars = spot.Reviews.reduce(
+      (total, review) => total + review.stars,
+      0
+    );
+    let avgStarRating = 0;
+  
+    if (numReviews > 0) {
+      avgStarRating = totalStars / numReviews;
+    }
+  
+    return res.status(200).json({
+      id: spot.id,
+      ownerId: spot.ownerId,
+      address: spot.address,
+      city: spot.city,
+      state: spot.state,
+      country: spot.country,
+      lat: spot.lat,
+      lng: spot.lng,
+      name: spot.name,
+      description: spot.description,
+      price: spot.price,
+      createdAt: spot.createdAt,
+      updatedAt: spot.updatedAt,
+      numReviews: numReviews,
+      avgRating: avgStarRating,
+      SpotImages: spot.SpotImages,
+      Owner: spot.User,
+    });
+  });
 
-    // remove the Reviews column from the response
-    delete spot.Reviews
 
-    res.status(200)
-    return res.json({
-        id: spot.id,
-        ownerId: spot.ownerId,
-        address: spot.address,
-        city: spot.city,
-        state: spot.state,
-        country: spot.country,
-        lat: spot.lat,
-        lng: spot.lng,
-        name: spot.name,
-        description: spot.description,
-        price: spot.price,
-        createdAt: spot.createdAt,
-        updatedAt: spot.updatedAt,
-        numReviews: numReviews,
-        avgRating: avgStars,
-        SpotImages: spot.SpotImages,
-        Owner: spot.User,
-    })
 
-})
+
 
 //! *************** CREATE A BOOKING FROM A SPOT BASED ON THE SPOT'S ID
 //? Create a Booking Based on a Spot id

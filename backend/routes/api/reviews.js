@@ -75,9 +75,6 @@ router.post('/:reviewId/images', requireAuth, async(req, res) => {
         include: ReviewImage
     })
 
-    // const user = await User.findByPk(req.user.id)
-    // const reviewImages = await ReviewImage.findAll()
-
     // grab the incoming url from the req body
     const { url } = req.body
     
@@ -96,14 +93,14 @@ router.post('/:reviewId/images', requireAuth, async(req, res) => {
             // go ahead and create a new image for the current review
             const newReviewImage = await review.createReviewImage({
                 url,
-                // reviewId: req.params.reviewId
             })    
-        
-            // delete the review, createdAt, and updatedAt attributes in the response
             
             await newReviewImage.save()
             res.status(200)
-            return res.json(newReviewImage)
+            return res.json({
+                id: newReviewImage.id,
+                url: newReviewImage.url
+            })
         // if the current review exceeds 10 images, return 403 error
         } else if (review.ReviewImages.length >= 10) {
             res.status(403)
