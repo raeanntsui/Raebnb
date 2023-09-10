@@ -162,8 +162,9 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
 
 //! *************** DELETE A BOOKING
 router.delete('/:bookingId', requireAuth, async (req, res) => {
-    const user = await User.findByPk(req.user.id)
+    // const user = await User.findByPk(req.user.id)
     const booking = await Booking.findByPk(req.params.bookingId)
+    const spot = await Spot.findByPk(req.user.id)
     
     if (!booking) {
         res.status(404)
@@ -174,13 +175,21 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
 
     // check if booking OR spot belongs to the current user 
     if (booking.userId !== req.user.id) {
-        const spot = await Spot.findByPk(booking.spotId)
-        if (!spot || spot.ownerId !== req.user.id) {
-            res.status(404)
-            return res.json({
-                message: "Forbidden: Booking does not belong to the current user"
-            })
-        }
+        res.status(403)
+        return res.json({
+            message: "Forbidden: Booking does not belong to the current user"
+        })
+    }
+
+    console.log("booking.userId *** ", booking.userId)
+    console.log("req.user.id *** ", req.user.id)   
+    console.log("spot.ownerId *** ", spot.ownerId)
+
+    if (spot.ownerId !== req.user.id) {
+        res.status(403)
+        return res.json({
+            message: "Forbidden: Spot does not belong to the current user"
+        })
     }
     
     // convert the existing booking date from string to object(used later for comparison)
@@ -196,12 +205,14 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
         })
     }
 
-    // if no other errors are ran, continue to delete the booking
-    await booking.destroy()
-    res.status(200)
-    return res.json({
-        message: "Successfully deleted"
-    })
+    if (booking && (booking.userId === req.user.id || spot.ownerId === req.user.id)) {
+        // if no other errors are ran, continue to delete the booking
+        await booking.destroy()
+        res.status(200)
+        return res.json({
+            message: "Successfully deleted"
+        })
+    }
 })
 
 module.exports = router;
