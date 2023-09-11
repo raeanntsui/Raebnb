@@ -113,15 +113,31 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
 
     // find an existing booking
     const existingBooking = await Booking.findOne({
+        // where: {
+        //     spotId: booking.spotId,
+        //     id: {
+        //         // check if booking id is not equal booking id
+        //         [Op.ne]: booking.id
+        //     },
+        //     startDate: { [Op.lt]: editEndDate },
+        //     endDate: { [Op.gt]: editStartDate }
+        //     }
         where: {
+            id: { [Op.not]: booking.id },
             spotId: booking.spotId,
-            id: {
-                // check if booking id is not equal booking id
-                [Op.ne]: booking.id
+            [Op.or]: [
+              { 
+                startDate: { 
+                    [Op.between]: [editStartDate, editEndDate] 
+                } 
             },
-            startDate: { [Op.lt]: editEndDate },
-            endDate: { [Op.gt]: editStartDate }
-            }
+              { 
+                endDate: { 
+                    [Op.between]: [editStartDate, editEndDate] 
+                } 
+            },
+            ],
+          },
     })
 
     // if the existing booking end date is already past, then you cannot edit the booking
