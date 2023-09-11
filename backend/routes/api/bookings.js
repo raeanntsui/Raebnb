@@ -191,23 +191,22 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
 
     // check if booking OR spot belongs to the current user 
     if (booking.userId !== req.user.id) {
+        if (spot.ownerId !== req.user.id) {
+            res.status(403)
+            return res.json({
+                message: "Forbidden: Spot does not belong to the current user"
+            })
+        }
         res.status(403)
         return res.json({
             message: "Forbidden: Booking does not belong to the current user"
         })
     }
 
-    console.log("booking.userId *** ", booking.userId)
-    console.log("req.user.id *** ", req.user.id)   
-    console.log("spot.ownerId *** ", spot.ownerId)
+    // console.log("booking.userId *** ", booking.userId)
+    // console.log("req.user.id *** ", req.user.id)   
+    // console.log("spot.ownerId *** ", spot.ownerId)
 
-    if (spot.ownerId !== req.user.id) {
-        res.status(403)
-        return res.json({
-            message: "Forbidden: Spot does not belong to the current user"
-        })
-    }
-    
     // convert the existing booking date from string to object(used later for comparison)
     const existingBookingDate = new Date(booking.startDate)
     
