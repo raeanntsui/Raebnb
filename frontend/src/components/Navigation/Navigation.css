@@ -1,0 +1,11 @@
+.home-link {
+  border: solid red 2px;
+  border-radius: 6px;
+  padding: 4px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
