@@ -11,8 +11,7 @@
     "sequelize": "npm run --prefix backend sequelize",
     "sequelize-cli": "npm run --prefix backend sequelize-cli",
     "start": "npm start --prefix backend",
-    "build": "npm run --prefix backend build",
-    "render-postbuild": "npm run build --prefix frontend"
+    "build": "npm run --prefix backend build"
   },
   "repository": {
     "type": "git",
