@@ -8,19 +8,38 @@ import "./Navigation.css";
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
 
+  // return (
+  //   <ul id="sign-up">
+  //     <li id="airbnb-with-raebnb">
+  //       <NavLink exact to="/" className="home-link">
+  //         <img
+  //           id="airbnb-logo"
+  //           src="https://cdn.usbrandcolors.com/images/logos/airbnb-logo.svg"
+  //           height="30"
+  //         />
+  //         <p>Raebnb</p>
+  //       </NavLink>
+  //     </li>
+  //     {isLoaded && (
+  //       <li>
+  //         <ProfileButton user={sessionUser} />
+  //       </li>
+  //     )}
+  //   </ul>
+  // );
+
   return (
-    <ul id="sign-up">
-      <li>
-        <NavLink exact to="/" className="home-link">
-          Home
-        </NavLink>
-      </li>
-      {isLoaded && (
-        <li>
-          <ProfileButton user={sessionUser} />
-        </li>
-      )}
-    </ul>
+    <div id="airbnb-with-raebnb">
+      <NavLink exact to="/" id="home-link">
+        <img
+          id="airbnb-logo"
+          src="https://cdn.usbrandcolors.com/images/logos/airbnb-logo.svg"
+          height="30"
+        />
+        raebnb
+      </NavLink>
+      {isLoaded && <ProfileButton user={sessionUser} />}
+    </div>
   );
 }
 

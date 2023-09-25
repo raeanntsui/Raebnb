@@ -2,35 +2,3 @@
 * {
   font-family: "Montserrat", sans-serif;
 }
-
-#top-bar {
-  justify-content: space-between;
-  display: flex;
-  align-items: center;
-  border-bottom: lightgrey 1px solid;
-  /* height: 40px; */
-}
-
-/* #airbnb-logo-and-title > a { 
-  font-weight: bold;
-  color: #ff5a5f;
-  text-decoration: none;
-  border: blue 1px solid;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px;
-} */
-
-#root {
-  /* padding-left: 15px;
-  padding-right: 15px; */
-  display: flex;
-  justify-content: space-between;
-  border: green 1px solid;
-  /* height: 40px; */
-}
-
-#airbnb-logo {
-  border: green 3px dotted;
-}

@@ -2,6 +2,7 @@
 import { csrfFetch } from "./csrf";
 
 const SET_USER = "session/setUser";
+
 const REMOVE_USER = "session/removeUser";
 
 const setUser = (user) => {
@@ -50,6 +51,7 @@ export const signup = (user) => async (dispatch) => {
   return response;
 };
 
+// restore user thunk
 export const restoreUser = () => async (dispatch) => {
   const response = await csrfFetch("/api/session");
   const data = await response.json();
