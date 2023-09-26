@@ -14,7 +14,7 @@ module.exports = {
       [
         {
           spotId: 1,
-          url: "https://media.istockphoto.com/id/488613191/photo/bed-made-of-cartons-of-a-homeless-man.jpg?s=612x612&w=0&k=20&c=FFioOmWC16MTl0qCiENpB6NOvwIqxqC4Wv6aOjN1cWg=",
+          url: "https://media.istockphoto.com/id/524085051/photo/beautiful-exterior-of-new-luxury-home-at-twilight.jpg?s=612x612&w=0&k=20&c=wPqEpJkL22wE3NHSCgdWXq2FC8a-KvSCpP7XRIZHuOU=",
           preview: true,
         },
         {
@@ -24,7 +24,17 @@ module.exports = {
         },
         {
           spotId: 3,
-          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxh-UEZzu76rsOsj8eGaMu7HRKgl5Ld8aItXRKuK-ok00IG2UGa4VFMARFckeCZ63d5oM&usqp=CAU",
+          url: "https://media.istockphoto.com/id/1269776313/photo/suburban-house.jpg?s=612x612&w=0&k=20&c=iNaSdrxJt7H37rjQZumXYScrmSTRm2fDJrqZzxpDL_k=",
+          preview: true,
+        },
+        {
+          spotId: 4,
+          url: "https://photos.zillowstatic.com/fp/6ea16928e76d02ff3343c76cb86c4027-uncropped_scaled_within_1344_1008.webp",
+          preview: true,
+        },
+        {
+          spotId: 5,
+          url: "https://img.zumpercdn.com/489504409/1280x960?dpr=1&fit=crop&h=542&q=76&w=991",
           preview: true,
         },
       ],
