@@ -48,13 +48,11 @@ function ProfileButton({ user }) {
         <i class="fa-solid fa-bars"></i>
         <i className="fa-solid fa-user" />
       </button>
-      <ul className={ulClassName} ref={ulRef}>
+      <ul id="dropdown" className={ulClassName} ref={ulRef}>
         {user ? (
           <>
             <li>{user.username}</li>
-            <li>
-              {user.firstName} {user.lastName}
-            </li>
+            <li>Hello, {user.firstName}</li>
             <li>{user.email}</li>
             <li>
               <button onClick={logout}>Log Out</button>

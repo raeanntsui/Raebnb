@@ -7,7 +7,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
+  /* height: 50px; */
 }
 
 #airbnb-logo {
@@ -31,7 +31,7 @@ button {
   padding: 10px 10px;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: right;
   background-color: white;
   border-radius: 25px;
   border: lightgrey 1px solid;
@@ -40,4 +40,12 @@ button {
 button > i {
   padding: 0px 5px;
   color: darkslategrey;
+}
+
+#dropdown {
+  border: blue 1px solid;
+}
+
+menu {
+  border: pink solid 2px;
 }
