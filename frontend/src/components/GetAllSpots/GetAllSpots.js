@@ -12,11 +12,11 @@ function ShowAllSpots() {
 
   const selectAllSpots = useSelector((state) => state.spots.allSpots);
 
-  console.log("*******selectAllSpots", selectAllSpots);
+  // console.log("*******selectAllSpots", selectAllSpots);
 
   // store selectAllSpots (an object) as an array
   const allSpots = Object.values(selectAllSpots);
-  console.log("allSpots", allSpots);
+  // console.log("allSpots", allSpots);
 
   useEffect(() => {
     // dispatch to trigger retrieval of data when the ShowAllSpots mounts
@@ -27,18 +27,20 @@ function ShowAllSpots() {
 
   return (
     <>
-      <div>
+      <div id="main-spots-div">
         {allSpots.map((spot) => (
-          <div key={spot.id}>
-            <img src={spot.previewImage} alt={spot.name} />
-            <p>
-              {spot.city}, {spot.state}
-            </p>
-            <p>${spot.price} night</p>
-            <p>
-              <i class="fa-solid fa-star"></i> {spot.avgRating}
-            </p>
-          </div>
+          <NavLink to={`/spots/${spot.id}`}>
+            <div key={spot.id}>
+              <img src={spot.previewImage} alt={spot.name} />
+              <p>
+                {spot.city}, {spot.state}
+              </p>
+              <p>${spot.price} night</p>
+              <p>
+                <i class="fa-solid fa-star"></i> {spot.avgRating}
+              </p>
+            </div>
+          </NavLink>
         ))}
       </div>
     </>

@@ -13,6 +13,7 @@
 #airbnb-logo {
   padding: 0px 5px;
   height: 25px;
+  transform: rotate(180deg);
 }
 
 #home-link {

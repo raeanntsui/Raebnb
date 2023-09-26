@@ -1,9 +1,13 @@
 import { csrfFetch } from "./csrf";
 
-// 1. action constant
+//! 1. action constant
+//? GET_ALL_SPOTS action constant
 const GET_ALL_SPOTS = "spots/getAllSpots";
+//? GET_A_SPOT action constant
+const GET_A_SPOT = "spots/getASpot";
 
-// 2. action creator getAllSpots
+//! 2. action creator
+//? getAllSpots action creator
 // action creator: create & return action objects that describe events/changes that occurred in the application
 const getAllSpotsActionCreator = (spots) => {
   return {
@@ -12,7 +16,16 @@ const getAllSpotsActionCreator = (spots) => {
   };
 };
 
-// 3. getAllSpots Thunk
+//? getASpot action creator
+const getASpotActionCreator = (spot) => {
+  return {
+    type: GET_A_SPOT,
+    spot,
+  };
+};
+
+//! 3. Thunks
+//? getAllSpots thunk
 // make network requests
 export const getAllSpotsThunk = () => async (dispatch) => {
   const res = await csrfFetch("/api/spots");
@@ -26,9 +39,21 @@ export const getAllSpotsThunk = () => async (dispatch) => {
   }
 };
 
+//? getASpot thunk
+export const getASpotThunk = (spotId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/spots/${spotId}`);
+  if (res.ok) {
+    const spot = await res.json();
+    console.log("spotId****** ", spotId);
+    dispatch(getASpotActionCreator(spot));
+    return res;
+  }
+};
+
 // 4. what is the initial state of the app?
 const initialState = {
   allSpots: {},
+  aSpot: {},
 };
 
 // 5. spots reducer
@@ -46,13 +71,19 @@ const spotsReducer = (state = initialState, action) => {
       //   console.log("allSpots", allSpots);
       // loop through each spot in the spots array and add to the newState, the key = id
       action.spots.Spots.forEach((spot) => {
-        console.log("spot", spot);
-        console.log("spot.id", spot.id);
+        // console.log("spot", spot);
+        // console.log("spot.id", spot.id);
         newState.allSpots[spot.id] = spot;
       });
       return newState;
     default:
       return state;
+  }
+
+  switch (action.type) {
+    case GET_A_SPOT:
+      newState = { ...state, aSpot: {} };
+      action.spot;
   }
 };
 
