@@ -15,8 +15,21 @@ module.exports = {
         {
           spotId: 1,
           userId: 1,
-          review: "This place is great!",
+          review: "An absolutely amazing experience! I highly recommend!",
           stars: 5,
+        },
+        {
+          spotId: 1,
+          userId: 2,
+          review: "Nothing worth noting.",
+          stars: 3,
+        },
+        {
+          spotId: 1,
+          userId: 3,
+          review:
+            "Great private place to relax, me and my husband enjoyed this home.",
+          stars: 4,
         },
         {
           spotId: 2,

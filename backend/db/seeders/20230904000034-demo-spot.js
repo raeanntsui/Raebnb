@@ -14,14 +14,15 @@ module.exports = {
       [
         {
           ownerId: 1,
-          address: "123 Gardenview Drive",
+          address: "123 Garden Drive",
           city: "Maple Heights",
           state: "OH",
           country: "USA",
           lat: 41.41841,
           lng: -81.53903,
           name: "Raeann's Home",
-          description: "A cardboard house",
+          description:
+            "My home is a walk-up townhouse in desirable Fairview Slopes. Enjoy unreal views from every room, including 4 private patios! Everything at your fingertips- fully equipped chef-style kitchen, private hot tub + shower, fire pit, BBQ, and a king-size bed.",
           price: 80.0,
         },
         {

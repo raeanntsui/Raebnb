@@ -35,9 +35,7 @@ function ShowSingleSpotDetails() {
           {spot.city}, {spot.state}, {spot.country}
         </div>
         <div>
-          <p>
-            Hosted by {spot.Owner && spot.Owner.firstName} {spot.Owner.lastName}
-          </p>
+          <p>Hosted by {spot.Owner && spot.Owner.firstName}</p>
         </div>
         <div>
           <p>Spot description: {spot.description}</p>
@@ -57,11 +55,10 @@ function ShowSingleSpotDetails() {
       </div>
 
       <div>
-        <div>
+        <div id="reviews-and-ratings">
           <i class="fa-solid fa-star"></i>
           {spot.numReviews === 0 ? `No ratings yet!` : `${spot.avgRating}`}
-        </div>
-        <div>
+          {!spot.numReviews ? " " : " · "}
           {spot.numReviews === 0
             ? `New`
             : spot.numReviews === 1
@@ -69,6 +66,8 @@ function ShowSingleSpotDetails() {
             : `${spot.numReviews} reviews`}
         </div>
       </div>
+
+      <div id="reviews"></div>
     </>
   );
 }
