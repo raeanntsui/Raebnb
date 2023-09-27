@@ -5,8 +5,6 @@ import { csrfFetch } from "./csrf";
 const GET_ALL_SPOTS = "spots/getAllSpots";
 //? GET_A_SPOT action constant
 const GET_SINGLE_SPOT = "spots/getSingleSpot";
-//? GET_ALL_REVIEWS action constant
-const GET_ALL_REVIEWS = "spots/getAllReviews";
 
 //! 2. action creator
 //? getAllSpots action creator
@@ -22,13 +20,6 @@ const getSingleSpotActionCreator = (spot) => {
   return {
     type: GET_SINGLE_SPOT,
     spot,
-  };
-};
-//? getAllReviews action creator
-const getAllReviewsActionCreator = (reviews) => {
-  return {
-    type: GET_ALL_REVIEWS,
-    reviews,
   };
 };
 
@@ -56,24 +47,11 @@ export const getSingleSpotThunk = (spotId) => async (dispatch) => {
     return res;
   }
 };
-//? getAllReviews thunk
-export const getAllReviewsThunk = (spotId) => async (dispatch) => {
-  // retrieve all the reviews at specified spotId
-  const res = await csrfFetch(`/api/spots/${spotId}/reviews`);
-  if (res.ok) {
-    // parse the json response body showing the reviews from specified spotId
-    const reviews = await res.json();
-    // dispatch to the redux store that were getting all reviews
-    dispatch(getAllReviewsActionCreator(reviews));
-    return res;
-  }
-};
 
 // 4. what is the initial state of the app?
 const initialState = {
   allSpots: {},
   singleSpot: {},
-  allReviews: {},
 };
 
 // 5. spots reducer
@@ -97,12 +75,6 @@ const spotsDetailsReducer = (state = initialState, action) => {
       return newState;
     case GET_SINGLE_SPOT:
       newState = { ...state, singleSpot: action.spot };
-      return newState;
-    case GET_ALL_REVIEWS:
-      newState = { ...state, allReviews: {} };
-      action.reviews.Reviews.forEach((review) => {
-        newState.allReviews[review.id] = review;
-      });
       return newState;
     default:
       return state;

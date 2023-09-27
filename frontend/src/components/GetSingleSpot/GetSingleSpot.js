@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleSpotThunk } from "../../store/spots";
-import { getAllReviewsThunk } from "../../store/spots";
+import { getAllReviewsThunk } from "../../store/reviews";
 import "./GetSingleSpot.css";
 
 function ShowSingleSpotDetails() {
   const dispatch = useDispatch();
 
   const spot = useSelector((state) => state.spots.singleSpot);
-  const allReviewsObject = useSelector((state) => state.spots.allReviews);
+  const allReviewsObject = useSelector((state) => state.spots.reviews);
   console.log(
     "🚀 ~ file: GetSingleSpot.js:13 ~ ShowSingleSpotDetails ~ allReviewsObject:",
     allReviewsObject
@@ -40,11 +40,10 @@ function ShowSingleSpotDetails() {
     dispatch(getAllReviewsThunk(spotId));
   }, [dispatch, spotId]);
 
-  if (!allReviewsObject) {
-    return null;
-  }
+  // if (!allReviewsObject) {
+  //   return null;
+  // }
 
-  // add a popup window for the reserve button
   const reserveButtonPopUp = () => {
     alert("Feature coming soon");
   };
@@ -99,9 +98,9 @@ function ShowSingleSpotDetails() {
       <div id="reviews">
         <h1>Reviews</h1>
         <div>
-          {Object.keys(allReviewsObject).map((singleReview) => (
+          {/* {Object.keys(allReviewsObject).map((singleReview) => (
             <p>{singleReview.review}</p>
-          ))}
+          ))} */}
         </div>
       </div>
     </>
