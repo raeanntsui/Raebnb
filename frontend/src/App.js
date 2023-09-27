@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import ShowAllSpots from "./components/GetAllSpots/GetAllSpots";
+import ShowSingleSpotDetails from "./components/GetSingleSpot/GetSingleSpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +21,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <ShowAllSpots />
+          </Route>
+          <Route exact path="/spots/:spotId">
+            <ShowSingleSpotDetails />
           </Route>
         </Switch>
       )}

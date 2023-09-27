@@ -4,7 +4,7 @@ import { csrfFetch } from "./csrf";
 //? GET_ALL_SPOTS action constant
 const GET_ALL_SPOTS = "spots/getAllSpots";
 //? GET_A_SPOT action constant
-const GET_A_SPOT = "spots/getASpot";
+const GET_SINGLE_SPOT = "spots/getSingleSpot";
 
 //! 2. action creator
 //? getAllSpots action creator
@@ -17,9 +17,9 @@ const getAllSpotsActionCreator = (spots) => {
 };
 
 //? getASpot action creator
-const getASpotActionCreator = (spot) => {
+const getSingleSpotActionCreator = (spot) => {
   return {
-    type: GET_A_SPOT,
+    type: GET_SINGLE_SPOT,
     spot,
   };
 };
@@ -40,12 +40,12 @@ export const getAllSpotsThunk = () => async (dispatch) => {
 };
 
 //? getASpot thunk
-export const getASpotThunk = (spotId) => async (dispatch) => {
+export const getSingleSpotThunk = (spotId) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${spotId}`);
   if (res.ok) {
     const spot = await res.json();
-    console.log("spotId****** ", spotId);
-    dispatch(getASpotActionCreator(spot));
+    // console.log("spotId****** ", spotId);
+    dispatch(getSingleSpotActionCreator(spot));
     return res;
   }
 };
@@ -53,7 +53,7 @@ export const getASpotThunk = (spotId) => async (dispatch) => {
 // 4. what is the initial state of the app?
 const initialState = {
   allSpots: {},
-  aSpot: {},
+  singleSpot: {},
 };
 
 // 5. spots reducer
@@ -67,7 +67,6 @@ const spotsReducer = (state = initialState, action) => {
       // { ..., allSpots: {} } : appending new property + values "allSpots" to the newState
       // create a shallow copy (...state + allSpots) for newState
       newState = { ...state, allSpots: {} };
-
       //   console.log("allSpots", allSpots);
       // loop through each spot in the spots array and add to the newState, the key = id
       action.spots.Spots.forEach((spot) => {
@@ -76,14 +75,11 @@ const spotsReducer = (state = initialState, action) => {
         newState.allSpots[spot.id] = spot;
       });
       return newState;
+    case GET_SINGLE_SPOT:
+      newState = { ...state, singleSpot: action.spot };
+      return newState;
     default:
       return state;
-  }
-
-  switch (action.type) {
-    case GET_A_SPOT:
-      newState = { ...state, aSpot: {} };
-      action.spot;
   }
 };
 
