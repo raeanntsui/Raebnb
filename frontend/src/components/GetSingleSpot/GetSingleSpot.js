@@ -2,18 +2,47 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleSpotThunk } from "../../store/spots";
+import { getAllReviewsThunk } from "../../store/spots";
 import "./GetSingleSpot.css";
 
 function ShowSingleSpotDetails() {
   const dispatch = useDispatch();
 
   const spot = useSelector((state) => state.spots.singleSpot);
+  const allReviewsObject = useSelector((state) => state.spots.allReviews);
+  console.log(
+    "🚀 ~ file: GetSingleSpot.js:13 ~ ShowSingleSpotDetails ~ allReviewsObject:",
+    allReviewsObject
+  );
+
+  // const allReviewsArray = Object.keys(allReviewsObject).map((review) => {
+  //   return {
+  //     review: review,
+  //     ...allReviewsObject[review],
+  //   };
+  // });
+
+  // console.log(
+  //   "🚀 ~ file: GetSingleSpot.js:24 ~ allReviewsArray ~ allReviewsArray:",
+  //   allReviewsArray
+  // );
+
+  // Object.keys(spot);
+  // console.log(
+  //   "🚀 ~ file: GetSingleSpot.js:19 ~ ShowSingleSpotDetails ~ Object.values(spot):",
+  //   Object.keys(spot)
+  // );
 
   const { spotId } = useParams();
 
   useEffect(() => {
     dispatch(getSingleSpotThunk(spotId));
+    dispatch(getAllReviewsThunk(spotId));
   }, [dispatch, spotId]);
+
+  if (!allReviewsObject) {
+    return null;
+  }
 
   // add a popup window for the reserve button
   const reserveButtonPopUp = () => {
@@ -56,7 +85,7 @@ function ShowSingleSpotDetails() {
 
       <div>
         <div id="reviews-and-ratings">
-          <i class="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
           {spot.numReviews === 0 ? `No ratings yet!` : `${spot.avgRating}`}
           {!spot.numReviews ? " " : " · "}
           {spot.numReviews === 0
@@ -67,7 +96,14 @@ function ShowSingleSpotDetails() {
         </div>
       </div>
 
-      <div id="reviews"></div>
+      <div id="reviews">
+        <h1>Reviews</h1>
+        <div>
+          {Object.keys(allReviewsObject).map((singleReview) => (
+            <p>{singleReview.review}</p>
+          ))}
+        </div>
+      </div>
     </>
   );
 }

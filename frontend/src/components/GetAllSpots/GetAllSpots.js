@@ -10,12 +10,12 @@ function ShowAllSpots() {
   // dispatch needed to change the state of app via component (ShowAllSpots)
   const dispatch = useDispatch();
 
-  const selectAllSpots = useSelector((state) => state.spots.allSpots);
+  const spots = useSelector((state) => state.spots.allSpots);
 
-  // console.log("*******selectAllSpots", selectAllSpots);
+  // console.log("*******spots", spots);
 
-  // store selectAllSpots (an object) as an array
-  const allSpots = Object.values(selectAllSpots);
+  // store spots (an object) as an array
+  const allSpots = Object.values(spots);
   // console.log("allSpots", allSpots);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ function ShowAllSpots() {
               </p>
               <p>${spot.price} night</p>
               <p>
-                <i class="fa-solid fa-star"></i> {spot.avgRating}
+                <i className="fa-solid fa-star"></i> {spot.avgRating}
               </p>
             </div>
           </NavLink>
