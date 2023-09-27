@@ -1,3 +1,14 @@
 img {
   height: 250px;
 }
+
+#all-images {
+  border: green 3px solid;
+}
+
+#callout-box {
+  border: red 3px solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
