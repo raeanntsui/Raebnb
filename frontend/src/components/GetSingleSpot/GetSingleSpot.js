@@ -26,9 +26,10 @@ function ShowSingleSpotDetails() {
       <div id="spot-details">
         <h1>Name: {spot.name}</h1>
         <div>
-          {spot.SpotImages.map((image) => (
-            <img src={image.url} />
-          ))}
+          {spot.SpotImages &&
+            spot.SpotImages.map((image) => (
+              <img src={image.url} key={image.id} />
+            ))}
         </div>
         <div>
           Location:
