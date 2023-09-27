@@ -36,9 +36,12 @@ function ShowAllSpots() {
                 {spot.city}, {spot.state}
               </p>
               <p>${spot.price} night</p>
-              <p>
-                <i className="fa-solid fa-star"></i> {spot.avgRating}
-              </p>
+              <div>
+                <i className="fa-solid fa-star"></i>{" "}
+                {/* {!spot.avgStarRating ? `New` : spot.avgStarRating.toFixed(2)} */}
+                {/* {!spot.avgRating ? `New` : spot.avgRating.toFixed(2)} */}
+                {spot.avgRating}
+              </div>
             </div>
           </NavLink>
         ))}

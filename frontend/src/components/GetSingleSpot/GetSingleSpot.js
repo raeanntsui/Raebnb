@@ -9,7 +9,7 @@ function ShowSingleSpotDetails() {
   const dispatch = useDispatch();
 
   const spot = useSelector((state) => state.spots.singleSpot);
-  const allReviewsObject = useSelector((state) => state.spots.reviews);
+  const allReviewsObject = useSelector((state) => state.reviews.allReviews);
   console.log(
     "🚀 ~ file: GetSingleSpot.js:13 ~ ShowSingleSpotDetails ~ allReviewsObject:",
     allReviewsObject
@@ -40,9 +40,9 @@ function ShowSingleSpotDetails() {
     dispatch(getAllReviewsThunk(spotId));
   }, [dispatch, spotId]);
 
-  // if (!allReviewsObject) {
-  //   return null;
-  // }
+  if (!allReviewsObject) {
+    return null;
+  }
 
   const reserveButtonPopUp = () => {
     alert("Feature coming soon");
@@ -85,7 +85,9 @@ function ShowSingleSpotDetails() {
       <div>
         <div id="reviews-and-ratings">
           <i className="fa-solid fa-star"></i>
-          {spot.numReviews === 0 ? `No ratings yet!` : `${spot.avgRating}`}
+          {spot.numReviews === 0
+            ? `No ratings yet!`
+            : `${spot.avgRating.toFixed(2)}`}
           {!spot.numReviews ? " " : " · "}
           {spot.numReviews === 0
             ? `New`
@@ -98,9 +100,15 @@ function ShowSingleSpotDetails() {
       <div id="reviews">
         <h1>Reviews</h1>
         <div>
-          {/* {Object.keys(allReviewsObject).map((singleReview) => (
-            <p>{singleReview.review}</p>
-          ))} */}
+          {Object.values(allReviewsObject).map((singleReview) => (
+            <>
+              <div>
+                <h3>{singleReview.User.firstName}</h3>
+                <h4>{singleReview.createdAt}</h4>
+                <p>{singleReview.review}</p>
+              </div>
+            </>
+          ))}
         </div>
       </div>
     </>
