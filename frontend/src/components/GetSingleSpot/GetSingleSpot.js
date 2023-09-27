@@ -17,8 +17,7 @@ function ShowSingleSpotDetails() {
   }, [dispatch, spotId]);
 
   // add a popup window for the reserve button
-  const reserveButtonPopUp = (event) => {
-    event.preventDefault();
+  const reserveButtonPopUp = () => {
     alert("Feature coming soon");
   };
 
@@ -27,16 +26,16 @@ function ShowSingleSpotDetails() {
       <div id="spot-details">
         <h1>Name: {spot.name}</h1>
         <div>
+          {spot.SpotImages.map((image) => (
+            <img src={image.url} />
+          ))}
+        </div>
+        <div>
           Location:
           {spot.city}, {spot.state}, {spot.country}
         </div>
         <div>
-          {spot.SpotImages.map((image) => (
-            <img key={image.id} src={image.url} />
-          ))}
-        </div>
-        <div>
-          <p>Hosted by {spot.Owner.firstName}</p>
+          <p>Hosted by {spot.Owner && spot.Owner.firstName}</p>
         </div>
         <div>
           <p>Spot description: {spot.description}</p>
