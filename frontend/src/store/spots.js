@@ -5,6 +5,8 @@ import { csrfFetch } from "./csrf";
 const GET_ALL_SPOTS = "spots/getAllSpots";
 //? GET_A_SPOT action constant
 const GET_SINGLE_SPOT = "spots/getSingleSpot";
+//? CREATE_NEW_SPOT action constant
+const CREATE_NEW_SPOT = "spots/createNewSpot";
 
 //! 2. action creator
 //? getAllSpots action creator
@@ -20,6 +22,13 @@ const getSingleSpotActionCreator = (spot) => {
   return {
     type: GET_SINGLE_SPOT,
     spot,
+  };
+};
+//? const createNewSpot
+const createNewSpotActionCreator = (newSpot) => {
+  return {
+    type: CREATE_NEW_SPOT,
+    newSpot,
   };
 };
 
@@ -47,11 +56,36 @@ export const getSingleSpotThunk = (spotId) => async (dispatch) => {
     return res;
   }
 };
+//? createNewSpotThunk
+// export const createNewSpotThunk = (newSpotId) => async (dispatch) => {
+//   const res = await csrfFetch(`/api/spots/${newSpotId}`);
+//   // method: "POST",
+//   // body: JSON.stringify(newSpotId);
+//   if (res.ok) {
+//     const newSpot = await res.json();
+//     dispatch(createNewSpotActionCreator(newSpotId));
+//     return res;
+//   }
+// };
+
+export const createNewSpotThunk = (newSpotId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/spots/${newSpotId}`, {
+    method: "POST",
+    body: JSON.stringify(newSpotId),
+  });
+
+  if (res.ok) {
+    const newSpot = await res.json();
+    dispatch(createNewSpotActionCreator(newSpot));
+    return newSpot;
+  }
+};
 
 // 4. what is the initial state of the app?
 const initialState = {
   allSpots: {},
   singleSpot: {},
+  newSpot: {},
 };
 
 // 5. spots reducer
@@ -68,13 +102,17 @@ const spotsDetailsReducer = (state = initialState, action) => {
       //   console.log("allSpots", allSpots);
       // loop through each spot in the spots array and add to the newState, the key = id
       action.spots.Spots.forEach((spot) => {
-        // console.log("spot", spot);
-        // console.log("spot.id", spot.id);
+        console.log("spot", spot);
+        console.log("spot.id", spot.id);
+        // console.log("Spots *** ", Spots);
         newState.allSpots[spot.id] = spot;
       });
       return newState;
     case GET_SINGLE_SPOT:
       newState = { ...state, singleSpot: action.spot };
+      return newState;
+    case CREATE_NEW_SPOT:
+      newState = { ...state, newSpot: action.newSpot };
       return newState;
     default:
       return state;

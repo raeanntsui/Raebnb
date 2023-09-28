@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 function NewSpot() {
-  const sessionUser = useSelector((state) => state.session.user);
-  const dispatch = useDispatch();
+  // const sessionUser = useSelector((state) => state.session.user);
+  // const dispatch = useDispatch();
   const history = useHistory();
   const [country, setCountry] = useState("");
   const [address, setAddress] = useState("");
@@ -15,62 +15,63 @@ function NewSpot() {
   const [price, setPrice] = useState("");
   const [previewImage, setPreviewImage] = useState("");
   const [imageURL, setImageURL] = useState("");
-  const [errors, setErrors] = useState({});
+  const [errorsObject, setErrorsObject] = useState({});
 
-  const errorsObject = {};
-  if (!country) errorsObject.country = "Country is required";
-  else {
-    errorsObject.country = "";
-  }
+  // synchronize errors
+  useEffect(() => {}, [errorsObject]);
 
-  if (!address) errorsObject.address = "Street address is required";
-  else {
-    errorsObject.address = "";
-  }
-  if (!city) errorsObject.city = "City is required";
-  else {
-    errorsObject.city = "";
-  }
-  if (!state) errorsObject.state = "State is required";
-  else {
-    errorsObject.state = "";
-  }
-  if (!description) errorsObject.description = "Description is required";
-  else {
-    errorsObject.description = "";
-  }
-  if (description && description.length < 30)
-    errorsObject.description = "Description needs a minimum of 30 characters";
-  else {
-    errorsObject.description = "";
-  }
-  if (!title) errorsObject.title = "Name is required";
-  else {
-    errorsObject.title = "";
-  }
-  if (!price) errorsObject.price = "Price is required";
-  else {
-    errorsObject.price = "";
-  }
-  if (!previewImage) errorsObject.previewImage = "Preview image is required";
-  else {
-    errorsObject.previewImage = "";
-  }
-  if (
-    (imageURL && !imageURL.includes(".jpg")) ||
-    !imageURL.includes(".jpeg") ||
-    !imageURL.includes(".png")
-  )
-    errorsObject.imageURL = "Image URL must end in .png, .jpg, or .jpeg";
-  else {
-    errorsObject.imageURL = "";
-  }
+  const handleSubmit = async (event) => {
+    // prevent submission button from being clicked unless there are no validation errors in errorsObject
+    event.preventDefault();
+
+    // set the current state of the errors object to empty {}
+    setErrorsObject({});
+
+    // placeholder for adding errors
+    let errorsObject = {};
+
+    // validation errors here
+    if (!country) errorsObject.country = "Country is required";
+    if (!address) errorsObject.address = "Street address is required";
+    if (!city) errorsObject.city = "City is required";
+    if (!state) errorsObject.state = "State is required";
+    if (!description) errorsObject.description = "Description is required";
+    if (description && description.length < 30)
+      errorsObject.description = "Description needs a minimum of 30 characters";
+    if (!title) errorsObject.title = "Name is required";
+    if (!price) errorsObject.price = "Price is required";
+    if (!previewImage) errorsObject.previewImage = "Preview image is required";
+    if (
+      (imageURL && !imageURL.includes(".jpg")) ||
+      !imageURL.includes(".jpeg") ||
+      !imageURL.includes(".png")
+    )
+      errorsObject.imageURL = "Image URL must end in .png, .jpg, or .jpeg";
+
+    //   const newSpotOnSubmit = {
+    //     country,
+    //     address,
+    //     city,
+    //     state,
+    //     description,
+    //     title,
+    //     price,
+    //     previewImage,
+    //! need to add imageURLs here
+    //   };
+
+    // if (Object.keys(errorsObject).length === 0) {
+    //   // allow form submission if there are no errors found in errorsObject
+    // }
+  };
+
+  //TODO CREATE VALIDATION HANDLER : validateNewSpot
 
   return (
     <div>
       <div>
         <h1>Create a new Spot</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="titles">
             <h2>Where's your place located?</h2>
             <h3>
@@ -195,7 +196,9 @@ function NewSpot() {
               onChange={(e) => setImageURL(e.target.value)}
             ></input>
           </div>
-          <button type="submit">Create Spot</button>
+          <button type="submit" id="create-spot-submit-button">
+            Create Spot
+          </button>
         </form>
       </div>
     </div>

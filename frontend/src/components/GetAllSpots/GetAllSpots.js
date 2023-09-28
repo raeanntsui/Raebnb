@@ -12,17 +12,15 @@ function ShowAllSpots() {
 
   const spots = useSelector((state) => state.spots.allSpots);
 
-  console.log("*******spots", spots);
+  // console.log("*******spots", spots);
+  // console.log("Spots ***** ", Spots.spots);
 
   // store spots (an object) as an array
   const allSpots = Object.values(spots);
   // console.log("allSpots", allSpots);
 
   useEffect(() => {
-    // dispatch to trigger retrieval of data when the ShowAllSpots mounts
-    // getAllSpotsThunk will fetch data from /api/spots
     dispatch(getAllSpotsThunk());
-    // run this useEffect if dispatch changes (which should only change one time)
   }, [dispatch]);
 
   return (
@@ -38,7 +36,7 @@ function ShowAllSpots() {
               <p>${spot.price} night</p>
               <div>
                 <i className="fa-solid fa-star"></i>{" "}
-                {!spot.avgRating
+                {!spot.avgRating || isNaN(spot.avgRating)
                   ? `New`
                   : parseFloat(spot.avgRating).toFixed(2)}
                 {/* {spot.avgRating} */}
