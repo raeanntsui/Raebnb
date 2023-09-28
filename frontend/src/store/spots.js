@@ -57,17 +57,6 @@ export const getSingleSpotThunk = (spotId) => async (dispatch) => {
   }
 };
 //? createNewSpotThunk
-// export const createNewSpotThunk = (newSpotId) => async (dispatch) => {
-//   const res = await csrfFetch(`/api/spots/${newSpotId}`);
-//   // method: "POST",
-//   // body: JSON.stringify(newSpotId);
-//   if (res.ok) {
-//     const newSpot = await res.json();
-//     dispatch(createNewSpotActionCreator(newSpotId));
-//     return res;
-//   }
-// };
-
 export const createNewSpotThunk = (newSpotId) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${newSpotId}`, {
     method: "POST",
@@ -85,7 +74,7 @@ export const createNewSpotThunk = (newSpotId) => async (dispatch) => {
 const initialState = {
   allSpots: {},
   singleSpot: {},
-  newSpot: {},
+  // newSpot: {},
 };
 
 // 5. spots reducer
@@ -113,6 +102,8 @@ const spotsDetailsReducer = (state = initialState, action) => {
       return newState;
     case CREATE_NEW_SPOT:
       newState = { ...state, newSpot: action.newSpot };
+      // newState = { ...state, allSpots: { ...state.allSpots } };
+      // newState.allSpots[action.spot.id] = action.spot;
       return newState;
     default:
       return state;

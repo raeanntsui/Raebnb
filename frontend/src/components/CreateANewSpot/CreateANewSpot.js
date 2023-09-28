@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { createNewSpotThunk } from "../../store/spots";
 
 function NewSpot() {
   // const sessionUser = useSelector((state) => state.session.user);
   // const dispatch = useDispatch();
   const history = useHistory();
+  const dispatch = useDispatch();
   const [country, setCountry] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -48,21 +50,26 @@ function NewSpot() {
     )
       errorsObject.imageURL = "Image URL must end in .png, .jpg, or .jpeg";
 
-    //   const newSpotOnSubmit = {
-    //     country,
-    //     address,
-    //     city,
-    //     state,
-    //     description,
-    //     title,
-    //     price,
-    //     previewImage,
-    //! need to add imageURLs here
-    //   };
+    const newSpotOnSubmit = {
+      country,
+      address,
+      city,
+      state,
+      description,
+      title,
+      price,
+      previewImage,
+      //imgurl
+    };
+    if (Object.keys(errorsObject).length === 0) {
+      // allow form submission if there are no errors found in errorsObject
+    }
 
-    // if (Object.keys(errorsObject).length === 0) {
-    //   // allow form submission if there are no errors found in errorsObject
-    // }
+    if (newSpotOnSubmit) {
+      dispatch(createNewSpotThunk(newSpotOnSubmit.id));
+      history.push(`/spot/${newSpotOnSubmit.id}`);
+    }
+    return errorsObject;
   };
 
   //TODO CREATE VALIDATION HANDLER : validateNewSpot
