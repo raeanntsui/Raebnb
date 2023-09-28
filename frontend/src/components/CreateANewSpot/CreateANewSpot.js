@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-// import { NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 function NewSpot() {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
   const [country, setCountry] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");

@@ -51,8 +51,13 @@ menu {
   border: pink solid 2px;
 }
 
+#create-new-spot {
+  text-decoration: none;
+}
+
 #create-spot-button {
   box-shadow: 2px 2px 2px lightgrey;
+  text-decoration: none;
 }
 
 #create-spot-button:active {
