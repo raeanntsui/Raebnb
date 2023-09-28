@@ -12,7 +12,7 @@ function ShowAllSpots() {
 
   const spots = useSelector((state) => state.spots.allSpots);
 
-  // console.log("*******spots", spots);
+  console.log("*******spots", spots);
 
   // store spots (an object) as an array
   const allSpots = Object.values(spots);
@@ -38,9 +38,10 @@ function ShowAllSpots() {
               <p>${spot.price} night</p>
               <div>
                 <i className="fa-solid fa-star"></i>{" "}
-                {/* {!spot.avgStarRating ? `New` : spot.avgStarRating.toFixed(2)} */}
-                {/* {!spot.avgRating ? `New` : spot.avgRating.toFixed(2)} */}
-                {spot.avgRating}
+                {!spot.avgRating
+                  ? `New`
+                  : parseFloat(spot.avgRating).toFixed(2)}
+                {/* {spot.avgRating} */}
               </div>
             </div>
           </NavLink>

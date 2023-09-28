@@ -50,3 +50,15 @@ button > i {
 menu {
   border: pink solid 2px;
 }
+
+#create-spot-button {
+  box-shadow: 2px 2px 2px lightgrey;
+}
+
+#create-spot-button:active {
+  background-color: lightgrey;
+}
+
+#create-spot-button:hover {
+  background-color: lightgrey;
+}

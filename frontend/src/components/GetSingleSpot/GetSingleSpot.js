@@ -9,6 +9,10 @@ function ShowSingleSpotDetails() {
   const dispatch = useDispatch();
 
   const spot = useSelector((state) => state.spots.singleSpot);
+  console.log(
+    "🚀 ~ file: GetSingleSpot.js:12 ~ ShowSingleSpotDetails ~ spot:",
+    spot
+  );
   const allReviewsObject = useSelector((state) => state.reviews.allReviews);
   console.log(
     "🚀 ~ file: GetSingleSpot.js:13 ~ ShowSingleSpotDetails ~ allReviewsObject:",
@@ -40,7 +44,10 @@ function ShowSingleSpotDetails() {
     dispatch(getAllReviewsThunk(spotId));
   }, [dispatch, spotId]);
 
-  if (!allReviewsObject) {
+  if (
+    Object.keys(allReviewsObject).length === 0 ||
+    Object.keys(spot).length === 0
+  ) {
     return null;
   }
 
@@ -103,7 +110,9 @@ function ShowSingleSpotDetails() {
           {Object.values(allReviewsObject).map((singleReview) => (
             <>
               <div>
-                <h3>{singleReview.User.firstName}</h3>
+                <h3>
+                  {singleReview.User.firstName} {singleReview.User.lastName}
+                </h3>
                 <h4>{singleReview.createdAt}</h4>
                 <p>{singleReview.review}</p>
               </div>
