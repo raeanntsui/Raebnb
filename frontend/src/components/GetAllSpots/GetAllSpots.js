@@ -27,8 +27,12 @@ function ShowAllSpots() {
     <>
       <div id="main-spots-div">
         {allSpots.map((spot) => (
-          <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-            <div>
+          <NavLink
+            key={spot.id}
+            to={`/spots/${spot.id}`}
+            id="get-all-spots-nav-link"
+          >
+            <div id="test-div">
               <img src={spot.previewImage} alt={spot.name} />
               <p>
                 {spot.city}, {spot.state}

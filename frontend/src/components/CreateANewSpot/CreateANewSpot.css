@@ -4,18 +4,24 @@ button:hover {
 }
 
 #form-container {
-  border: green 4px solid;
-  width: 800px;
+  /* border: green 4px solid; */
+  width: 500px;
   margin: auto;
+}
+
+form > p {
+  color: red;
 }
 
 .titles {
   border: 2px red solid;
   flex-direction: row;
+  /* border-bottom: 2px solid black; */
 }
 
 .inputs {
-  border: 2px blue solid;
+  /* border: 4px blue dotted; */
+  padding-bottom: 20px;
 }
 
 input {
@@ -25,6 +31,16 @@ input {
 }
 
 #form-container > p {
-  color: red;
+  /* color: red; */
   margin: 5px 0px;
+}
+
+#city-state > label {
+  display: inline-block;
+  width: fit-content;
+}
+
+.textarea-box {
+  width: 100%;
+  height: 150px;
 }

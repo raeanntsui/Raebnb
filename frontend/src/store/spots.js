@@ -78,7 +78,7 @@ export const getSingleSpotThunk = (spotId) => async (dispatch) => {
 };
 //? createNewSpotThunk
 export const createNewSpotThunk = (spot) => async (dispatch) => {
-  console.log("before csrfFetch");
+  // console.log("before csrfFetch");
   let res;
   try {
     res = await csrfFetch("/api/spots", {
@@ -102,10 +102,10 @@ export const createImageThunk = (url, preview, spotId) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ url, preview }),
   });
-  console.log("res for images", res);
+  // console.log("res for images", res);
   if (res.ok) {
     const newImage = await res.json();
-    console.log("res for new images", newImage);
+    // console.log("res for new images", newImage);
     dispatch(createNewImageActionCreator(newImage));
     return newImage;
   } else {

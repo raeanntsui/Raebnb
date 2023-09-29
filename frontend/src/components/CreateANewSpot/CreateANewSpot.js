@@ -210,6 +210,7 @@ function NewSpot() {
         </div>
         <div className="inputs">
           <textarea
+            className="textarea-box"
             value={description}
             placeholder="Please write at least 30 characters"
             onChange={(e) => setDescription(e.target.value)}
