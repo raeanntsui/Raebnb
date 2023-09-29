@@ -24,8 +24,9 @@ function ManageSpot() {
   }, [dispatch]);
   return (
     <>
-      {allSpots.map((spot) => {
-        if (sessionUser && sessionUser.id === spots.AllSpots.ownerId) {
+      {allSpots.map(
+        (spot) => {
+          // if (sessionUser && sessionUser.id === spots.AllSpots.ownerId) {
           <NavLink key={spot.id} to={`/spots/${spot.id}`}>
             <div>
               <img src={spot.previewImage} alt={spot.name} />
@@ -42,7 +43,8 @@ function ManageSpot() {
             </div>
           </NavLink>;
         }
-      })}
+        //   }
+      )}
     </>
   );
 }

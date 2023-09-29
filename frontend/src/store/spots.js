@@ -141,12 +141,7 @@ const spotsDetailsReducer = (state = initialState, action) => {
   const newSpots = { ...state.allSpots };
   switch (action.type) {
     case GET_ALL_SPOTS:
-      // { ... state } : copies the properties + values of the current state into newState
-      // { ..., allSpots: {} } : appending new property + values "allSpots" to the newState
-      // create a shallow copy (...state + allSpots) for newState
       newState = { ...state, allSpots: {} };
-      //   console.log("allSpots", allSpots);
-      // loop through each spot in the spots array and add to the newState, the key = id
       action.spots.Spots.forEach((spot) => {
         newState.allSpots[spot.id] = spot;
       });
