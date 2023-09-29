@@ -37,8 +37,30 @@ const createNewReviewActionCreator = (review) => {
   };
 };
 
+//? create new review thunk
+export const createNewReviewThunk =
+  (review, stars, spotId) => async (dispatch) => {
+    console.log("before csrfFetch");
+    let res;
+    try {
+      res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ review, stars }),
+      });
+      console.log("res for new review", res);
+      const newReview = await res.json();
+      dispatch(createNewReviewActionCreator(newReview));
+      return newReview;
+    } catch (e) {
+      return await e.json();
+    }
+  };
+
 const initialState = {
+  // all reviews is really spots
   allReviews: {},
+  user: {},
 };
 
 const reviewsReducer = (state = initialState, action) => {
@@ -50,6 +72,12 @@ const reviewsReducer = (state = initialState, action) => {
         newState.allReviews[review.id] = review;
       });
       return newState;
+    case CREATE_NEW_REVIEW:
+      return {
+        ...state,
+        // user: user,
+        // allReviews: reviews,
+      };
     default:
       return state;
   }

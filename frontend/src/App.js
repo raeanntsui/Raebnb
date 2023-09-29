@@ -23,6 +23,9 @@ function App() {
           <Route exact path="/">
             <ShowAllSpots />
           </Route>
+          {/* <Route exact path="/reviews/new">
+            <ShowSingleSpotDetails />
+          </Route> */}
           <Route exact path="/spots/new">
             <NewSpot />
           </Route>

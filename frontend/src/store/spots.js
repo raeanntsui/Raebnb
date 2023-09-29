@@ -82,19 +82,7 @@ export const createNewSpotThunk = (spot) => async (dispatch) => {
   } catch (e) {
     // console.log("ERROR (e) ****", e);
     return await e.json();
-    // console.log("Error body: ", errorJson);
   }
-  // console.log("after csrfFetch");
-  // if (res.ok) {
-  //   const newSpot = await res.json();
-  //   dispatch(createNewSpotActionCreator(newSpot));
-  //   return newSpot;
-  // } else {
-  //   console.log("before error");
-  //   const error = await res.json();
-  //   console.log("after error");
-  //   return error;
-  // }
 };
 
 //? createImageThunk
