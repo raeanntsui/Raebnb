@@ -10,7 +10,7 @@ const CREATE_NEW_SPOT = "spots/createNewSpot";
 // ? CREATE_NEW_IMAGE action constant
 const CREATE_NEW_IMAGE = "/spots/createNewImage";
 //? MANAGE_SPOTS action constant
-const MANAGE_SPOTS = "/spots/manageSpots";
+// const MANAGE_SPOTS = "/spots/manageSpots";
 
 //******************! 2. action creator: updates store
 //? getAllSpots action creator
@@ -45,12 +45,12 @@ const createNewImageActionCreator = (newImage) => {
 };
 
 //? manageSpots action creator
-const manageSpotsActionCreator = (currentSpots) => {
-  return {
-    type: MANAGE_SPOTS,
-    currentSpots,
-  };
-};
+// const manageSpotsActionCreator = (currentSpots) => {
+//   return {
+//     type: MANAGE_SPOTS,
+//     currentSpots,
+//   };
+// };
 
 //******************! 3. Thunks
 //? getAllSpots thunk
@@ -115,16 +115,16 @@ export const createImageThunk = (url, preview, spotId) => async (dispatch) => {
 };
 
 //? manageSpotsThunk
-export const manageSpotsThunk = () => async (dispatch) => {
-  const res = await csrfFetch(`/api/spots/current`);
-  if (res.ok) {
-    console.log("🚀 ~ file: spots.js:121 ~ manageSpotsThunk ~ res:", res);
-    const currentSpots = await res.json();
-    // console.log("spotId****** ", spotId);
-    dispatch(manageSpotsActionCreator(currentSpots));
-    return res;
-  }
-};
+// export const manageSpotsThunk = () => async (dispatch) => {
+//   const res = await csrfFetch(`/api/spots/current`);
+//   if (res.ok) {
+//     console.log("🚀 ~ file: spots.js:121 ~ manageSpotsThunk ~ res:", res);
+//     const currentSpots = await res.json();
+//     // console.log("spotId****** ", spotId);
+//     dispatch(manageSpotsActionCreator(currentSpots));
+//     return res;
+//   }
+// };
 
 // 4. what is the initial state of the app?
 const initialState = {
@@ -155,12 +155,12 @@ const spotsDetailsReducer = (state = initialState, action) => {
         singleSpot: action.spot,
         allSpots: newSpots,
       };
-    case MANAGE_SPOTS:
-      newState = { ...state, allSpots: {} };
-      action.spot.Spots.forEach((spot) => {
-        newState.allSpots[spot.id] = spot;
-      });
-      return newState;
+    // case MANAGE_SPOTS:
+    //   newState = { ...state, allSpots: {} };
+    //   action.spot.Spots.forEach((spot) => {
+    //     newState.allSpots[spot.id] = spot;
+    //   });
+    //   return newState;
     default:
       return state;
   }
