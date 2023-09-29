@@ -1,3 +1,29 @@
-#create-spot-submit-button:hover {
-  color: lightgrey;
+button:hover {
+  background-color: lightgrey;
+}
+
+#form-container {
+  border: green 4px solid;
+  width: 800px;
+  margin: auto;
+}
+
+.titles {
+  border: 2px red solid;
+  flex-direction: row;
+}
+
+.inputs {
+  border: 2px blue solid;
+}
+
+input {
+  width: 100%;
+  margin: auto;
+  background-color: rgb(233, 242, 255);
+}
+
+#form-container > p {
+  color: red;
+  margin: 5px 0px;
 }
