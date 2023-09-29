@@ -29,7 +29,7 @@ function Navigation({ isLoaded }) {
           <button
             id="create-spot-button"
             // onClick={handleButtonClick}
-            component={NewSpot}
+            // component={NewSpot}
           >
             Create a New Spot
           </button>

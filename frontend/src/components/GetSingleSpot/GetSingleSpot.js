@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleSpotThunk } from "../../store/spots";
@@ -9,6 +9,7 @@ function ShowSingleSpotDetails() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const spot = useSelector((state) => state.spots.singleSpot);
+  const [isLoaded, setIsLoaded] = useState(false);
   // console.log(
   //   "🚀 ~ file: GetSingleSpot.js:12 ~ ShowSingleSpotDetails ~ spot:",
   //   spot
@@ -31,7 +32,8 @@ function ShowSingleSpotDetails() {
   }, [dispatch, spotId]);
 
   if (
-    Object.keys(allReviewsObject).length === 0 ||
+    // Object.keys(allReviewsObject).length === 0 ||
+    !spot ||
     Object.keys(spot).length === 0
   ) {
     return null;

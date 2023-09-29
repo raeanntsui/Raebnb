@@ -7,8 +7,10 @@ const GET_ALL_SPOTS = "spots/getAllSpots";
 const GET_SINGLE_SPOT = "spots/getSingleSpot";
 //? CREATE_NEW_SPOT action constant
 const CREATE_NEW_SPOT = "spots/createNewSpot";
+// ? CREATE_NEW_IMAGE action constant
+const CREATE_NEW_IMAGE = "/spots/createNewImage";
 
-//! 2. action creator
+//! 2. action creator: updates store
 //? getAllSpots action creator
 // action creator: create & return action objects that describe events/changes that occurred in the application
 const getAllSpotsActionCreator = (spots) => {
@@ -29,6 +31,14 @@ const createNewSpotActionCreator = (newSpot) => {
   return {
     type: CREATE_NEW_SPOT,
     newSpot,
+  };
+};
+
+//? createNewImage action creator
+const createNewImageActionCreator = (newImage) => {
+  return {
+    type: CREATE_NEW_IMAGE,
+    newImage,
   };
 };
 
@@ -58,18 +68,49 @@ export const getSingleSpotThunk = (spotId) => async (dispatch) => {
 };
 //? createNewSpotThunk
 export const createNewSpotThunk = (spot) => async (dispatch) => {
-  const res = await csrfFetch("/api/spots", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(spot),
-  });
-
-  if (res.ok) {
+  console.log("before csrfFetch");
+  let res;
+  try {
+    res = await csrfFetch("/api/spots", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(spot),
+    });
     const newSpot = await res.json();
     dispatch(createNewSpotActionCreator(newSpot));
     return newSpot;
+  } catch (e) {
+    // console.log("ERROR (e) ****", e);
+    return await e.json();
+    // console.log("Error body: ", errorJson);
+  }
+  // console.log("after csrfFetch");
+  // if (res.ok) {
+  //   const newSpot = await res.json();
+  //   dispatch(createNewSpotActionCreator(newSpot));
+  //   return newSpot;
+  // } else {
+  //   console.log("before error");
+  //   const error = await res.json();
+  //   console.log("after error");
+  //   return error;
+  // }
+};
+
+//? createImageThunk
+export const createImageThunk = (url, preview, spotId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/spots/${spotId}/images`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ url, preview }),
+  });
+  console.log("res for images", res);
+  if (res.ok) {
+    const newImage = await res.json();
+    console.log("res for new images", newImage);
+    dispatch(createNewImageActionCreator(newImage));
+    return newImage;
   } else {
-    // not sure if this line is necessary : refer to articleReducer in react example
     const error = await res.json();
     return error;
   }
@@ -87,6 +128,7 @@ const initialState = {
 // action = action that has occurred
 const spotsDetailsReducer = (state = initialState, action) => {
   let newState;
+  const newSpots = { ...state.allSpots };
   switch (action.type) {
     case GET_ALL_SPOTS:
       // { ... state } : copies the properties + values of the current state into newState
@@ -96,9 +138,6 @@ const spotsDetailsReducer = (state = initialState, action) => {
       //   console.log("allSpots", allSpots);
       // loop through each spot in the spots array and add to the newState, the key = id
       action.spots.Spots.forEach((spot) => {
-        console.log("spot", spot);
-        console.log("spot.id", spot.id);
-        // console.log("Spots *** ", Spots);
         newState.allSpots[spot.id] = spot;
       });
       return newState;
@@ -108,12 +147,22 @@ const spotsDetailsReducer = (state = initialState, action) => {
     case CREATE_NEW_SPOT:
       return {
         ...state,
-        [action.spots.newSpot.id]: action.newSpot,
+        singleSpot: action.spot,
+        allSpots: newSpots,
       };
-    // newState = { ...state, newSpot: action.newSpot };
-    // newState = { ...state, allSpots: { ...state.allSpots } };
-    // newState.allSpots[action.spot.id] = action.spot;
+    // newState = { ...state };
+    // newState.allSpots = newSpots;
+    // newState.singleSpot = action.spot;
     // return newState;
+    // return {
+    //   ...state,
+    //   // allSpots: object of objects containing all spots >> { {spot1}, {spot2}, etc }
+    //   // allSpots: newSpots,
+    //   // singleSpot : becomes object containing new spot information
+    //   // action.spot = new spot
+    //   //? singleSpot: action.spot,
+    //   newState.allSpots = action.spot
+    // };
     default:
       return state;
   }
