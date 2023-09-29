@@ -24,6 +24,9 @@ export const getAllReviewsThunk = (spotId) => async (dispatch) => {
   }
 };
 
+//! CREATE A NEW REVIEW!
+const CREATE_NEW_REVIEW = "spots/createNewReview";
+
 const initialState = {
   allReviews: {},
 };
