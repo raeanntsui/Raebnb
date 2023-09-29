@@ -26,36 +26,36 @@ export const getAllReviewsThunk = (spotId) => async (dispatch) => {
 
 //! CREATE A NEW REVIEW!
 
-//? create new review action constant
-const CREATE_NEW_REVIEW = "spots/createNewReview";
+// //? create new review action constant
+// const CREATE_NEW_REVIEW = "spots/createNewReview";
 
-//? create new review action creator
-const createNewReviewActionCreator = (review) => {
-  return {
-    type: CREATE_NEW_REVIEW,
-    review,
-  };
-};
+// //? create new review action creator
+// const createNewReviewActionCreator = (review) => {
+//   return {
+//     type: CREATE_NEW_REVIEW,
+//     review,
+//   };
+// };
 
-//? create new review thunk
-export const createNewReviewThunk =
-  (review, stars, spotId) => async (dispatch) => {
-    console.log("before csrfFetch");
-    let res;
-    try {
-      res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ review, stars }),
-      });
-      console.log("res for new review", res);
-      const newReview = await res.json();
-      dispatch(createNewReviewActionCreator(newReview));
-      return newReview;
-    } catch (e) {
-      return await e.json();
-    }
-  };
+// //? create new review thunk
+// export const createNewReviewThunk =
+//   (review, stars, spotId) => async (dispatch) => {
+//     console.log("before csrfFetch");
+//     let res;
+//     try {
+//       res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({ review, stars }),
+//       });
+//       console.log("res for new review", res);
+//       const newReview = await res.json();
+//       dispatch(createNewReviewActionCreator(newReview));
+//       return newReview;
+//     } catch (e) {
+//       return await e.json();
+//     }
+//   };
 
 const initialState = {
   // all reviews is really spots
@@ -72,12 +72,12 @@ const reviewsReducer = (state = initialState, action) => {
         newState.allReviews[review.id] = review;
       });
       return newState;
-    case CREATE_NEW_REVIEW:
-      return {
-        ...state,
-        // user: user,
-        // allReviews: reviews,
-      };
+    // case CREATE_NEW_REVIEW:
+    //   return {
+    //     ...state,
+    // user: user,
+    // allReviews: reviews,
+    // };
     default:
       return state;
   }

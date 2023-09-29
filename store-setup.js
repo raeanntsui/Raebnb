@@ -1,5 +1,6 @@
 store = {
   session: {},
+  //! spots
   spots: {
     // Notice there are two slices of state within spots. This is to handle your two different routes for getting a spot.
     // Refer to your API Docs to get more information.
@@ -22,8 +23,10 @@ store = {
   },
   // Again the idea here is two have separate slices for the different data responses you receive from your routes.
   // For example, you could use each of these slices specifically for the component you are dealing with on the frontend.
+  //! reviews
   reviews: {
     // When on a single spot, use the spot slice.
+    //! spot
     spot: {
       [reviewId]: {
         reviewData,
@@ -35,6 +38,7 @@ store = {
       optionalOrderedList: [],
     },
     // When on the user's reviews, use the user slice.
+    //! user
     user: {
       [reviewId]: {
         reviewData,
@@ -49,6 +53,7 @@ store = {
       optionalOrderedList: [],
     },
   },
+  //! bookings
   bookings: {
     user: {
       [bookingId]: {

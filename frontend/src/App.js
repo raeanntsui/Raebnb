@@ -7,6 +7,7 @@ import Navigation from "./components/Navigation";
 import ShowAllSpots from "./components/GetAllSpots/GetAllSpots";
 import ShowSingleSpotDetails from "./components/GetSingleSpot/GetSingleSpot";
 import NewSpot from "./components/CreateANewSpot/CreateANewSpot";
+import ManageSpot from "./components/ManageSpot/ManageSpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,9 @@ function App() {
           {/* <Route exact path="/reviews/new">
             <ShowSingleSpotDetails />
           </Route> */}
+          <Route exact path="/spots/current">
+            <ManageSpot />
+          </Route>
           <Route exact path="/spots/new">
             <NewSpot />
           </Route>

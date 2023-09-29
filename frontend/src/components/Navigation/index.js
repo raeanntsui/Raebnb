@@ -24,6 +24,9 @@ function Navigation({ isLoaded }) {
         />
         raebnb
       </NavLink>
+      {/* <NavLink exact to="/spots/current">
+        {sessionUser && <button>Manage Spots</button>}
+      </NavLink> */}
       <NavLink exact to="/spots/new" id="create-new-spot">
         {sessionUser && (
           <button

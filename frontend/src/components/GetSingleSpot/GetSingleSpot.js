@@ -10,20 +10,9 @@ function ShowSingleSpotDetails() {
   const sessionUser = useSelector((state) => state.session.user);
   const spot = useSelector((state) => state.spots.singleSpot);
   const [isLoaded, setIsLoaded] = useState(false);
-  // console.log(
-  //   "🚀 ~ file: GetSingleSpot.js:12 ~ ShowSingleSpotDetails ~ spot:",
-  //   spot
-  // );
-  const allReviewsObject = useSelector((state) => state.reviews.allReviews);
-  // console.log(
-  //   "🚀 ~ file: GetSingleSpot.js:13 ~ ShowSingleSpotDetails ~ allReviewsObject:",
-  //   allReviewsObject
-  // );
 
-  // check if user has posted a review or not
-  // useEffect(() => {
-  //   if(sessionUser) {setUserHasPostedReview(true)}
-  // })
+  const allReviewsObject = useSelector((state) => state.reviews.allReviews);
+
   const { spotId } = useParams();
 
   useEffect(() => {
@@ -31,11 +20,7 @@ function ShowSingleSpotDetails() {
     dispatch(getAllReviewsThunk(spotId));
   }, [dispatch, spotId]);
 
-  if (
-    // Object.keys(allReviewsObject).length === 0 ||
-    !spot ||
-    Object.keys(spot).length === 0
-  ) {
+  if (!spot || Object.keys(spot).length === 0) {
     return null;
   }
 
@@ -48,13 +33,7 @@ function ShowSingleSpotDetails() {
       <div id="spot-details">
         <NavLink exact to="/reviews/new" id="create-new-review">
           {sessionUser && (
-            <button
-              id="create-review-button"
-              // onClick={handleButtonClick}
-              // component={NewSpot}
-            >
-              Create a New Review
-            </button>
+            <button id="create-review-button">Create a New Review</button>
           )}
         </NavLink>
         <h1>Name: {spot.name}</h1>

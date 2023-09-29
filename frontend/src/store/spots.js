@@ -1,6 +1,6 @@
 import { csrfFetch } from "./csrf";
 
-//! 1. action constant
+//******************! 1. action constant
 //? GET_ALL_SPOTS action constant
 const GET_ALL_SPOTS = "spots/getAllSpots";
 //? GET_A_SPOT action constant
@@ -9,8 +9,10 @@ const GET_SINGLE_SPOT = "spots/getSingleSpot";
 const CREATE_NEW_SPOT = "spots/createNewSpot";
 // ? CREATE_NEW_IMAGE action constant
 const CREATE_NEW_IMAGE = "/spots/createNewImage";
+//? MANAGE_SPOTS action constant
+const MANAGE_SPOTS = "/spots/manageSpots";
 
-//! 2. action creator: updates store
+//******************! 2. action creator: updates store
 //? getAllSpots action creator
 // action creator: create & return action objects that describe events/changes that occurred in the application
 const getAllSpotsActionCreator = (spots) => {
@@ -42,7 +44,15 @@ const createNewImageActionCreator = (newImage) => {
   };
 };
 
-//! 3. Thunks
+//? manageSpots action creator
+const manageSpotsActionCreator = (currentSpots) => {
+  return {
+    type: MANAGE_SPOTS,
+    currentSpots,
+  };
+};
+
+//******************! 3. Thunks
 //? getAllSpots thunk
 // make network requests
 export const getAllSpotsThunk = () => async (dispatch) => {
@@ -104,11 +114,23 @@ export const createImageThunk = (url, preview, spotId) => async (dispatch) => {
   }
 };
 
+//? manageSpotsThunk
+export const manageSpotsThunk = () => async (dispatch) => {
+  const res = await csrfFetch(`/api/spots/current`);
+  if (res.ok) {
+    console.log("🚀 ~ file: spots.js:121 ~ manageSpotsThunk ~ res:", res);
+    const currentSpots = await res.json();
+    // console.log("spotId****** ", spotId);
+    dispatch(manageSpotsActionCreator(currentSpots));
+    return res;
+  }
+};
+
 // 4. what is the initial state of the app?
 const initialState = {
   allSpots: {},
   singleSpot: {},
-  // newSpot: {},
+  // user: {},
 };
 
 // 5. spots reducer
@@ -138,19 +160,12 @@ const spotsDetailsReducer = (state = initialState, action) => {
         singleSpot: action.spot,
         allSpots: newSpots,
       };
-    // newState = { ...state };
-    // newState.allSpots = newSpots;
-    // newState.singleSpot = action.spot;
-    // return newState;
-    // return {
-    //   ...state,
-    //   // allSpots: object of objects containing all spots >> { {spot1}, {spot2}, etc }
-    //   // allSpots: newSpots,
-    //   // singleSpot : becomes object containing new spot information
-    //   // action.spot = new spot
-    //   //? singleSpot: action.spot,
-    //   newState.allSpots = action.spot
-    // };
+    case MANAGE_SPOTS:
+      newState = { ...state, allSpots: {} };
+      action.spot.Spots.forEach((spot) => {
+        newState.allSpots[spot.id] = spot;
+      });
+      return newState;
     default:
       return state;
   }

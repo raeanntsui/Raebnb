@@ -1,5 +1,6 @@
 // frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect, useRef } from "react";
+import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
@@ -44,17 +45,6 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      {/* {sessionUser && (
-        <button
-          id="create-spot-button"
-          // onClick={}
-          onItemClick={"Hello"}
-          modalComponent={<CreateANewSpotFormModal />}
-        >
-          Create a New Spot
-        </button>
-      )} */}
-
       <button onClick={openMenu}>
         <i className="fa-solid fa-bars"></i>
         <i className="fa-solid fa-user" />
@@ -67,6 +57,9 @@ function ProfileButton({ user }) {
             <li>Hello, {user.firstName}</li>
             <li>{user.email}</li>
             <li>
+              <NavLink exact to="/spots/current">
+                <button id="manage-spot-button">Manage Spots</button>
+              </NavLink>
               <button onClick={logout}>Log Out</button>
             </li>
           </>

@@ -1,32 +1,31 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { getSingleSpotThunk } from "../../store/spots";
 import { getAllSpotsThunk } from "../../store/spots";
-import "./GetAllSpots.css";
+import { manageSpotsThunk } from "../../store/spots";
+import "./ManageSpot.css";
 
-// show all spots on landing page
-function ShowAllSpots() {
-  // dispatch needed to change the state of app via component (ShowAllSpots)
+function ManageSpot() {
   const dispatch = useDispatch();
-
+  const sessionUser = useSelector((state) => state.session.user);
+  console.log(
+    "🚀 ~ file: ManageSpot.js:11 ~ ManageSpot ~ sessionUser:",
+    sessionUser
+  );
   const spots = useSelector((state) => state.spots.allSpots);
+  console.log("🚀 ~ file: ManageSpot.js:13 ~ ManageSpot ~ spots:", spots);
 
-  // console.log("*******spots", spots);
-  // console.log("Spots ***** ", Spots.spots);
-
-  // store spots (an object) as an array
   const allSpots = Object.values(spots);
-  // console.log("allSpots", allSpots);
 
   useEffect(() => {
     dispatch(getAllSpotsThunk());
+    dispatch(manageSpotsThunk());
   }, [dispatch]);
-
   return (
     <>
-      <div id="main-spots-div">
-        {allSpots.map((spot) => (
+      {allSpots.map((spot) => {
+        if (sessionUser && sessionUser.id === spots.AllSpots.ownerId) {
           <NavLink key={spot.id} to={`/spots/${spot.id}`}>
             <div>
               <img src={spot.previewImage} alt={spot.name} />
@@ -41,11 +40,11 @@ function ShowAllSpots() {
                   : parseFloat(spot.avgRating).toFixed(2)}
               </div>
             </div>
-          </NavLink>
-        ))}
-      </div>
+          </NavLink>;
+        }
+      })}
     </>
   );
 }
 
-export default ShowAllSpots;
+export default ManageSpot;
