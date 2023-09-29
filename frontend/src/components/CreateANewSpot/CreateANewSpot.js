@@ -128,10 +128,10 @@ function NewSpot() {
       if (!res.errors) {
         //TODO
         await dispatch(createImageThunk(previewImage, true, res.id));
-        // dispatch(createImageThunk(firstImageURL, res.id));
-        // dispatch(createImageThunk(secondImageURL, res.id));
-        // dispatch(createImageThunk(thirdImageURL, res.id));
-        // dispatch(createImageThunk(fourthImageURL, res.id));
+        await dispatch(createImageThunk(firstImageURL, false, res.id));
+        await dispatch(createImageThunk(secondImageURL, false, res.id));
+        await dispatch(createImageThunk(thirdImageURL, false, res.id));
+        await dispatch(createImageThunk(fourthImageURL, false, res.id));
         history.push(`/spots/${res.id}`);
       }
 
@@ -294,7 +294,7 @@ function NewSpot() {
               type="text"
               value={fourthImageURL}
               placeholder="Image URL"
-              onChange={(e) => fourthImageURL(e.target.value)}
+              onChange={(e) => setFourthImageURL(e.target.value)}
             ></input>
             {submit && validationErrors.fourthImageURL && (
               <p>{validationErrors.fourthImageURL}</p>
