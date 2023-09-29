@@ -35,6 +35,7 @@ function Navigation({ isLoaded }) {
           </button>
         )}
       </NavLink>
+
       {isLoaded && <ProfileButton user={sessionUser} />}
     </div>
   );

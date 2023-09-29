@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleSpotThunk } from "../../store/spots";
 import { getAllReviewsThunk } from "../../store/reviews";
@@ -7,36 +7,22 @@ import "./GetSingleSpot.css";
 
 function ShowSingleSpotDetails() {
   const dispatch = useDispatch();
-
+  const sessionUser = useSelector((state) => state.session.user);
   const spot = useSelector((state) => state.spots.singleSpot);
-  console.log(
-    "🚀 ~ file: GetSingleSpot.js:12 ~ ShowSingleSpotDetails ~ spot:",
-    spot
-  );
+  // console.log(
+  //   "🚀 ~ file: GetSingleSpot.js:12 ~ ShowSingleSpotDetails ~ spot:",
+  //   spot
+  // );
   const allReviewsObject = useSelector((state) => state.reviews.allReviews);
-  console.log(
-    "🚀 ~ file: GetSingleSpot.js:13 ~ ShowSingleSpotDetails ~ allReviewsObject:",
-    allReviewsObject
-  );
-
-  // const allReviewsArray = Object.keys(allReviewsObject).map((review) => {
-  //   return {
-  //     review: review,
-  //     ...allReviewsObject[review],
-  //   };
-  // });
-
   // console.log(
-  //   "🚀 ~ file: GetSingleSpot.js:24 ~ allReviewsArray ~ allReviewsArray:",
-  //   allReviewsArray
+  //   "🚀 ~ file: GetSingleSpot.js:13 ~ ShowSingleSpotDetails ~ allReviewsObject:",
+  //   allReviewsObject
   // );
 
-  // Object.keys(spot);
-  // console.log(
-  //   "🚀 ~ file: GetSingleSpot.js:19 ~ ShowSingleSpotDetails ~ Object.values(spot):",
-  //   Object.keys(spot)
-  // );
-
+  // check if user has posted a review or not
+  // useEffect(() => {
+  //   if(sessionUser) {setUserHasPostedReview(true)}
+  // })
   const { spotId } = useParams();
 
   useEffect(() => {
@@ -58,6 +44,17 @@ function ShowSingleSpotDetails() {
   return (
     <>
       <div id="spot-details">
+        <NavLink exact to="/reviews/new" id="create-new-review">
+          {sessionUser && (
+            <button
+              id="create-review-button"
+              // onClick={handleButtonClick}
+              // component={NewSpot}
+            >
+              Create a New Review
+            </button>
+          )}
+        </NavLink>
         <h1>Name: {spot.name}</h1>
         <div id="all-images">
           {spot.SpotImages &&

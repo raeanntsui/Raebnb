@@ -3,11 +3,14 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createNewSpotThunk } from "../../store/spots";
 
+//! Other notes (not sure if this is needed)
+// session user
+// useEffect for synchronizing error messages
 function NewSpot() {
   // const sessionUser = useSelector((state) => state.session.user);
-  // const dispatch = useDispatch();
-  const history = useHistory();
-  const dispatch = useDispatch();
+
+  const [errorsObject, setErrorsObject] = useState({});
+
   const [country, setCountry] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -17,10 +20,12 @@ function NewSpot() {
   const [price, setPrice] = useState("");
   const [previewImage, setPreviewImage] = useState("");
   const [imageURL, setImageURL] = useState("");
-  const [errorsObject, setErrorsObject] = useState({});
 
-  // synchronize errors
-  useEffect(() => {}, [errorsObject]);
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  // synchronize errors???
+  // useEffect(() => {}, [errorsObject]);
 
   const handleSubmit = async (event) => {
     // prevent submission button from being clicked unless there are no validation errors in errorsObject
@@ -31,6 +36,45 @@ function NewSpot() {
 
     // placeholder for adding errors
     let errorsObject = {};
+
+    // newSpot that will be made
+    const newSpotOnSubmit = {
+      country,
+      address,
+      city,
+      state,
+      description,
+      title,
+      price,
+      previewImage,
+      imageURL,
+      // might need forEach for imageURL
+      lat: 1,
+      lng: 1,
+    };
+
+    const result = await dispatch(createNewSpotThunk(newSpotOnSubmit));
+    if (result.error) {
+      console.log(result);
+      setErrorsObject(result.errors);
+    } else {
+      // reset();
+      dispatch(createNewSpotThunk(newSpotOnSubmit.id));
+      history.push(`/spot/${newSpotOnSubmit.id}`);
+    }
+
+    // const reset = () => {
+    //   setCountry("");
+    //   setAddress("");
+    //   setCity("");
+    //   setState("");
+    //   setCity("");
+    //   setDescription("");
+    //   setTitle("");
+    //   setPrice("");
+    //   setPreviewImage("");
+    //   setImageURL("");
+    // };
 
     // validation errors here
     if (!country) errorsObject.country = "Country is required";
@@ -50,17 +94,6 @@ function NewSpot() {
     )
       errorsObject.imageURL = "Image URL must end in .png, .jpg, or .jpeg";
 
-    const newSpotOnSubmit = {
-      country,
-      address,
-      city,
-      state,
-      description,
-      title,
-      price,
-      previewImage,
-      //imgurl
-    };
     if (Object.keys(errorsObject).length === 0) {
       // allow form submission if there are no errors found in errorsObject
     }

@@ -57,16 +57,21 @@ export const getSingleSpotThunk = (spotId) => async (dispatch) => {
   }
 };
 //? createNewSpotThunk
-export const createNewSpotThunk = (newSpotId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/spots/${newSpotId}`, {
+export const createNewSpotThunk = (spot) => async (dispatch) => {
+  const res = await csrfFetch("/api/spots", {
     method: "POST",
-    body: JSON.stringify(newSpotId),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(spot),
   });
 
   if (res.ok) {
     const newSpot = await res.json();
     dispatch(createNewSpotActionCreator(newSpot));
     return newSpot;
+  } else {
+    // not sure if this line is necessary : refer to articleReducer in react example
+    const error = await res.json();
+    return error;
   }
 };
 
@@ -101,10 +106,14 @@ const spotsDetailsReducer = (state = initialState, action) => {
       newState = { ...state, singleSpot: action.spot };
       return newState;
     case CREATE_NEW_SPOT:
-      newState = { ...state, newSpot: action.newSpot };
-      // newState = { ...state, allSpots: { ...state.allSpots } };
-      // newState.allSpots[action.spot.id] = action.spot;
-      return newState;
+      return {
+        ...state,
+        [action.spots.newSpot.id]: action.newSpot,
+      };
+    // newState = { ...state, newSpot: action.newSpot };
+    // newState = { ...state, allSpots: { ...state.allSpots } };
+    // newState.allSpots[action.spot.id] = action.spot;
+    // return newState;
     default:
       return state;
   }
