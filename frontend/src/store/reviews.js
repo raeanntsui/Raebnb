@@ -55,35 +55,7 @@ export const createNewReviewThunk = (review, spotId) => async (dispatch) => {
   }
 };
 
-// editing state name currently
-// const initialState = {
-//   // all reviews is really spots
-//   allReviews: {},
-//   user: {},
-// };
-
-// const reviewsReducer = (state = initialState, action) => {
-//   let newState;
-//   switch (action.type) {
-//     case GET_ALL_REVIEWS:
-//       newState = { ...state, allReviews: {} };
-//       action.reviews.Reviews.forEach((review) => {
-//         newState.allReviews[review.id] = review;
-//       });
-//       return newState;
-//     case CREATE_NEW_REVIEW:
-//       return {
-//         ...state,
-//         user: user,
-//         allReviews: reviews,
-//       };
-//     default:
-//       return state;
-//   }
-// };
-
 const initialState = {
-  // all reviews is really spots
   spot: {},
   user: {},
 };
@@ -100,8 +72,8 @@ const reviewsReducer = (state = initialState, action) => {
     case CREATE_NEW_REVIEW:
       return {
         ...state,
-        user: user,
-        allReviews: reviews,
+        user: action.review,
+        spot: action.reviews,
       };
     default:
       return state;
