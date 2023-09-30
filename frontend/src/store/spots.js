@@ -9,6 +9,8 @@ const GET_SINGLE_SPOT = "spots/getSingleSpot";
 const CREATE_NEW_SPOT = "spots/createNewSpot";
 // ? CREATE_NEW_IMAGE action constant
 const CREATE_NEW_IMAGE = "/spots/createNewImage";
+//? UPDATE_SPOT action constant
+// const UPDATE_SPOT = "/spots/updateSpot"
 
 //******************! 2. action creator: updates store
 //? getAllSpots action creator

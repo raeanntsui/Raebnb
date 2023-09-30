@@ -7,10 +7,10 @@ import "./ManageSpot.css";
 function ManageSpot() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  //   console.log(
-  //     "🚀 ~ file: ManageSpot.js:11 ~ ManageSpot ~ sessionUser:",
-  //     sessionUser
-  //   );
+  console.log(
+    "🚀 ~ file: ManageSpot.js:11 ~ ManageSpot ~ sessionUser:",
+    sessionUser
+  );
   const spots = useSelector((state) => state.spots.allSpots);
   //   console.log("🚀 ~ file: ManageSpot.js:13 ~ ManageSpot ~ spots:", spots);
 
@@ -23,11 +23,12 @@ function ManageSpot() {
     return null;
   }
 
+  // if user logs out or no user is logged in currently, redirect to main landing page
   if (!sessionUser) {
-    // if user logs out or no user is logged in currently, redirect to main landing page
     return <Redirect to="/"></Redirect>;
   }
 
+  //! filter the spots that are owned by the current session user
   const userSpotsArray = allSpots.filter(
     (spot) => spot.ownerId === sessionUser.id
   );
@@ -38,23 +39,28 @@ function ManageSpot() {
 
   return (
     <>
-      {userSpotsArray.map((spot) => (
-        <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-          <div>
-            <img src={spot.previewImage} alt={spot.name} />
-            <p>
-              {spot.city}, {spot.state}
-            </p>
-            <p>${spot.price} night</p>
+      <h1>Manage Spots</h1>
+      <div id="user-single-spot">
+        {userSpotsArray.map((spot) => (
+          <NavLink key={spot.id} to={`/spots/${spot.id}`}>
             <div>
-              <i className="fa-solid fa-star"></i>{" "}
-              {!spot.avgRating || isNaN(spot.avgRating)
-                ? `New`
-                : parseFloat(spot.avgRating).toFixed(2)}
+              <img src={spot.previewImage} alt={spot.name} />
+              <p>
+                {spot.city}, {spot.state}
+              </p>
+              <p>${spot.price} night</p>
+              <div>
+                <i className="fa-solid fa-star"></i>{" "}
+                {!spot.avgRating || isNaN(spot.avgRating)
+                  ? `New`
+                  : parseFloat(spot.avgRating).toFixed(2)}
+                <button>Update</button>
+                <button>Delete</button>
+              </div>
             </div>
-          </div>
-        </NavLink>
-      ))}
+          </NavLink>
+        ))}
+      </div>
     </>
   );
 }

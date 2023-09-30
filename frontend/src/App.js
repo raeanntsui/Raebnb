@@ -8,6 +8,7 @@ import ShowAllSpots from "./components/GetAllSpots/GetAllSpots";
 import ShowSingleSpotDetails from "./components/GetSingleSpot/GetSingleSpot";
 import NewSpot from "./components/CreateANewSpot/CreateANewSpot";
 import ManageSpot from "./components/ManageSpot/ManageSpot";
+import NewReviewModal from "./components/Reviews/CreateReview";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,8 +25,8 @@ function App() {
           <Route exact path="/">
             <ShowAllSpots />
           </Route>
-          {/* <Route exact path="/reviews/new">
-            <ShowSingleSpotDetails />
+          {/* <Route exact path="/spots/:spotId/review">
+            <NewReview />
           </Route> */}
           <Route exact path="/spots/current">
             <ManageSpot />
@@ -35,6 +36,7 @@ function App() {
           </Route>
           <Route exact path="/spots/:spotId">
             <ShowSingleSpotDetails />
+            <NewReviewModal />
           </Route>
         </Switch>
       )}
