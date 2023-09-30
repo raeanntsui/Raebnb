@@ -31,11 +31,11 @@ function ShowSingleSpotDetails() {
   return (
     <>
       <div id="spot-details">
-        <NavLink exact to="/reviews/new" id="create-new-review">
+        {/* <NavLink exact to="/reviews/new" id="create-new-review">
           {sessionUser && (
             <button id="create-review-button">Create a New Review</button>
           )}
-        </NavLink>
+        </NavLink> */}
         <h1>Name: {spot.name}</h1>
         <div id="all-images">
           {spot.SpotImages &&

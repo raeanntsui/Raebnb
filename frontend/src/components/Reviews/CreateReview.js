@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
@@ -7,25 +7,35 @@ import { useModal } from "../../context/Modal";
 import "./CreateReview.css";
 
 function NewReviewModal() {
-  const dispatch = useDispatch();
-  const [newReview, setNewReview] = useState("");
-  const [rating, setRating] = useState("");
-  const { closeModal } = useModal();
-  const [errors, setErrors] = useState({});
+  // const dispatch = useDispatch();
+  // const [newReview, setNewReview] = useState("");
+  // const [rating, setRating] = useState("");
+  // const { closeModal } = useModal();
+  // const [errors, setErrors] = useState({});
+  const { setModalContent, setOnModalClose } = useModal();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!review || review.length < 10) errors.review = "Enter";
+    // if (!review || review.length < 10) errors.review = "Enter";
   };
+
+  const PostReviewModalContent = () => (
+    <form onSubmit={handleSubmit}>
+      <h1>How was your stay?</h1>
+      <textarea placeholder="Leave your review here"></textarea>
+    </form>
+  );
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <h1>Test</h1>
-        <label>How was your stay?</label>
-        <input placeholder="Leave your review here"></input>
-      </form>
-      <button type="submit">Post Review</button>;
+      <button
+        onClick={() => {
+          setModalContent(PostReviewModalContent);
+        }}
+        type="submit"
+      >
+        Post Your Review
+      </button>
     </>
   );
 }
