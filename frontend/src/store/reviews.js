@@ -1,8 +1,12 @@
 import { csrfFetch } from "./csrf";
 
+//! REVIEW ACTION CONSTANTS
 //? GET_ALL_REVIEWS action constant
 const GET_ALL_REVIEWS = "spots/getAllReviews";
+//? create new review action constant
+const CREATE_NEW_REVIEW = "spots/createNewReview";
 
+//! REVIEW ACTION CREATORS
 //? getAllReviews action creator
 const getAllReviewsActionCreator = (reviews) => {
   return {
@@ -11,6 +15,15 @@ const getAllReviewsActionCreator = (reviews) => {
   };
 };
 
+//? create new review action creator
+const createNewReviewActionCreator = (review) => {
+  return {
+    type: CREATE_NEW_REVIEW,
+    review,
+  };
+};
+
+//! REVIEW THUNKS
 //? getAllReviews thunk
 export const getAllReviewsThunk = (spotId) => async (dispatch) => {
   // retrieve all the reviews at specified spotId
@@ -23,43 +36,55 @@ export const getAllReviewsThunk = (spotId) => async (dispatch) => {
     return res;
   }
 };
-
-//! CREATE A NEW REVIEW!
-
-// //? create new review action constant
-const CREATE_NEW_REVIEW = "spots/createNewReview";
-
-// //? create new review action creator
-const createNewReviewActionCreator = (review) => {
-  return {
-    type: CREATE_NEW_REVIEW,
-    review,
-  };
+//? create new review thunk
+export const createNewReviewThunk = (review, spotId) => async (dispatch) => {
+  console.log("before csrfFetch");
+  let res;
+  try {
+    res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(review),
+    });
+    console.log("res for new review", res);
+    const newReview = await res.json();
+    dispatch(createNewReviewActionCreator(newReview));
+    return newReview;
+  } catch (e) {
+    return await e.json();
+  }
 };
 
-// //? create new review thunk
-export const createNewReviewThunk =
-  (review, stars, spotId) => async (dispatch) => {
-    console.log("before csrfFetch");
-    let res;
-    try {
-      res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ review, stars }),
-      });
-      console.log("res for new review", res);
-      const newReview = await res.json();
-      dispatch(createNewReviewActionCreator(newReview));
-      return newReview;
-    } catch (e) {
-      return await e.json();
-    }
-  };
+// editing state name currently
+// const initialState = {
+//   // all reviews is really spots
+//   allReviews: {},
+//   user: {},
+// };
+
+// const reviewsReducer = (state = initialState, action) => {
+//   let newState;
+//   switch (action.type) {
+//     case GET_ALL_REVIEWS:
+//       newState = { ...state, allReviews: {} };
+//       action.reviews.Reviews.forEach((review) => {
+//         newState.allReviews[review.id] = review;
+//       });
+//       return newState;
+//     case CREATE_NEW_REVIEW:
+//       return {
+//         ...state,
+//         user: user,
+//         allReviews: reviews,
+//       };
+//     default:
+//       return state;
+//   }
+// };
 
 const initialState = {
   // all reviews is really spots
-  allReviews: {},
+  spot: {},
   user: {},
 };
 
@@ -67,9 +92,9 @@ const reviewsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case GET_ALL_REVIEWS:
-      newState = { ...state, allReviews: {} };
+      newState = { ...state, spot: {} };
       action.reviews.Reviews.forEach((review) => {
-        newState.allReviews[review.id] = review;
+        newState.spot[review.id] = review;
       });
       return newState;
     case CREATE_NEW_REVIEW:

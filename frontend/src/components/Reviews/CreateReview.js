@@ -16,6 +16,7 @@ function NewReviewModal() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     // if (!review || review.length < 10) errors.review = "Enter";
   };
 
@@ -23,6 +24,10 @@ function NewReviewModal() {
     <form onSubmit={handleSubmit}>
       <h1>How was your stay?</h1>
       <textarea placeholder="Leave your review here"></textarea>
+      <div className="rating-input">
+        <i className="fa-solid fa-star"></i>
+        <i className="fa-regular fa-star"></i>
+      </div>
     </form>
   );
 
