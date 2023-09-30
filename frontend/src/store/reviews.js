@@ -1,12 +1,12 @@
 import { csrfFetch } from "./csrf";
 
-//! REVIEW ACTION CONSTANTS
+//! ****************** REVIEW ACTION CONSTANTS
 //? GET_ALL_REVIEWS action constant
 const GET_ALL_REVIEWS = "spots/getAllReviews";
 //? create new review action constant
 const CREATE_NEW_REVIEW = "spots/createNewReview";
 
-//! REVIEW ACTION CREATORS
+//! ****************** REVIEW ACTION CREATORS
 //? getAllReviews action creator
 const getAllReviewsActionCreator = (reviews) => {
   return {
@@ -23,7 +23,7 @@ const createNewReviewActionCreator = (review) => {
   };
 };
 
-//! REVIEW THUNKS
+//! ****************** REVIEW THUNKS
 //? getAllReviews thunk
 export const getAllReviewsThunk = (spotId) => async (dispatch) => {
   // retrieve all the reviews at specified spotId
@@ -55,26 +55,31 @@ export const createNewReviewThunk = (review, spotId) => async (dispatch) => {
   }
 };
 
+//! ****************** REVIEWS INITIAL STATE
 const initialState = {
   spot: {},
   user: {},
 };
 
+//! ****************** REVIEWS REDUCER
 const reviewsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case GET_ALL_REVIEWS:
-      newState = { ...state, spot: {} };
+      newState = { ...state, spot: {}, user: {} };
       action.reviews.Reviews.forEach((review) => {
         newState.spot[review.id] = review;
       });
       return newState;
     case CREATE_NEW_REVIEW:
-      return {
+      newState = {
         ...state,
-        user: action.review,
-        spot: action.reviews,
+        // user: action.user,
+        // spot: action.spot
+        spot: { ...state.spot },
+        user: { ...state.user },
       };
+      newState.spot[action.newReview.id] = action.newReview;
     default:
       return state;
   }
