@@ -1,5 +1,5 @@
 #spot-details-container {
-  border: 2px solid green;
+  /* border: 2px solid green; */
   margin: 30px 30px;
 }
 
@@ -76,25 +76,25 @@ img {
 }
 
 #all-images {
-  border: green 3px solid;
+  /* border: green 3px solid; */
   display: grid;
   /* grid-template-columns: ; */
 }
 
 #spot-images-container {
-  border: 2px solid black;
+  /* border: 2px solid black; */
   display: flex;
   align-items: flex-start;
 }
 
 #first-image {
-  border: 4px dotted green;
+  /* border: 4px dotted green; */
   flex: 1;
   /* margin-right: 10px; */
 }
 
 #other-images {
-  border: 4px dashed blue;
+  /* border: 4px dashed blue; */
   flex-wrap: wrap;
   justify-content: space-between;
   width: calc(50%-5px);
