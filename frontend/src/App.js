@@ -10,6 +10,7 @@ import NewSpot from "./components/CreateANewSpot/CreateANewSpot";
 import ManageSpot from "./components/ManageSpot/ManageSpot";
 import NewReviewModal from "./components/Reviews/CreateReview";
 import UpdateSpot from "./components/UpdateSpot/UpdateSpot";
+import DeleteSpot from "./components/DeleteSpot/DeleteSpot";
 
 function App() {
   const dispatch = useDispatch();

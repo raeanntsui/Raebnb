@@ -1,16 +1,12 @@
 import { csrfFetch } from "./csrf";
 
 //******************! 1. action constant
-//? GET_ALL_SPOTS action constant
 const GET_ALL_SPOTS = "spots/getAllSpots";
-//? GET_A_SPOT action constant
 const GET_SINGLE_SPOT = "spots/getSingleSpot";
-//? CREATE_NEW_SPOT action constant
 const CREATE_NEW_SPOT = "spots/createNewSpot";
-// ? CREATE_NEW_IMAGE action constant
 const CREATE_NEW_IMAGE = "/spots/createNewImage";
-//? UPDATE_SPOT action constant
 const UPDATE_SPOT = "/spots/updateSpot";
+const DELETE_SPOT = "/spots/deleteSpot";
 
 //******************! 2. action creator: updates store
 //? getAllSpots action creator
@@ -48,6 +44,13 @@ const createNewImageActionCreator = (newImage) => {
 const updateSpotActionCreator = (spot) => {
   return {
     type: UPDATE_SPOT,
+    spot,
+  };
+};
+
+const deleteReviewActionCreator = (spot) => {
+  return {
+    type: DELETE_SPOT,
     spot,
   };
 };
@@ -125,6 +128,21 @@ export const updateSpotThunk = (spot) => async (dispatch) => {
     const updateSpot = await res.json();
     dispatch(updateSpotActionCreator(spot));
     return updateSpot;
+  } catch (e) {
+    return await e.json();
+  }
+};
+
+//? deleteSpot Thunk
+export const deleteSpotThunk = (spotId) => async (dispatch) => {
+  try {
+    const res = await csrfFetch(`/api/spots/${spotId}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+    if (res.ok) {
+      dispatch(deleteReviewActionCreator(spotId));
+    }
   } catch (e) {
     return await e.json();
   }

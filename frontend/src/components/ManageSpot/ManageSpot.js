@@ -2,6 +2,8 @@ import React from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSpotsThunk } from "../../store/spots";
+import OpenModalButton from "../OpenModalButton";
+import DeleteSpot from "../DeleteSpot/DeleteSpot";
 import "./ManageSpot.css";
 
 function ManageSpot() {
@@ -61,9 +63,10 @@ function ManageSpot() {
             <NavLink to={`/spots/${spot.id}/edit`}>
               <button>Update</button>
             </NavLink>
-            <NavLink to={`/spots/${spot.id}/delete`}>
-              <button>Delete</button>
-            </NavLink>
+            <OpenModalButton
+              buttonText="Delete"
+              modalComponent={<DeleteSpot spot={spot} />}
+            />
           </>
         ))}
       </div>
