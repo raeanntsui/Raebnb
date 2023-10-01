@@ -1,19 +1,18 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import PostReviewModalContent from "./ReviewForm";
 import "./CreateReview.css";
+import { getAllReviewsThunk } from "../../store/reviews";
 
 function NewReviewModal({ spotId }) {
+  const dispatch = useDispatch();
   const { setModalContent, setOnModalClose } = useModal();
-  // hide button if current session user = spot owner
-  //! identify to the current session user and match to the current spot's ownerId
-  //? if (currentSessionUser.id === currentSpotReviews.userId) Hide review button
-  //? if (currentSessionUser.id !== Current spot user Id)
+
   //! current session user
-  const currentSessionUser = useSelector((state) => state.session.user.id);
-  console.log("currentSessionUser (session.user.id)", currentSessionUser);
-  // console.log("currentSessionUser (session.user.id)", currentSessionUser.id);
+  const currentSessionUser = useSelector((state) => state.session.user);
+  console.log("currentSessionUser (session.user)", currentSessionUser);
+
   //! current spot's details
   const currentSpotDetails = useSelector((state) => state.spots.singleSpot);
   // console.log(
@@ -21,42 +20,39 @@ function NewReviewModal({ spotId }) {
   //   currentSpotDetails
   // );
   //! current spot's owner
-  const currentSpotOwner = useSelector(
-    (state) => state.spots.singleSpot.ownerId
-  );
+  // const currentSpotOwner = useSelector(
+  //   (state) => state.spots.singleSpot.ownerId
+  // );
   // console.log("currentSpotOwner (spots.singleSpot.ownerId)", currentSpotOwner);
   //! current spot's reviews (in entirety)
   const currentSpotReviews = useSelector((state) => state.reviews.spot);
-  // console.log(
-  //   "🚀 ~ file: CreateReview.js:30 ~ NewReviewModal ~ currentSpotReviews:",
-  //   currentSpotReviews
-  // );
+  console.log(
+    "🚀 ~ file: CreateReview.js:30 ~ NewReviewModal ~ currentSpotReviews:",
+    currentSpotReviews
+  );
+
   //? convert current spot's reviews from object form to array form
   const currentSpotReviewsArray = Object.values(currentSpotReviews);
-  // console.log(
-  //   "🚀 ~ file: CreateReview.js:42 ~ NewReviewModal ~ currentSpotReviewsArray:",
-  //   currentSpotReviewsArray
-  // );
-
-  let filteredReview = currentSpotReviewsArray.filter(
-    (review) => currentSessionUser === review.userId
-  );
   console.log(
-    "🚀 ~ file: CreateReview.js:44 ~ NewReviewModal ~ filteredReviewUser:",
-    filteredReview
+    "🚀 ~ file: CreateReview.js:42 ~ NewReviewModal ~ currentSpotReviewsArray:",
+    currentSpotReviewsArray
   );
 
-  // console.log(
-  //   "userId of filtered review at current spot",
-  //   filteredReview[0].userId
-  // );
+  useEffect(() => {
+    dispatch(getAllReviewsThunk(spotId));
+  }, [dispatch, spotId]);
 
-  // (currentSessionUser !== currentSpotOwner || !filteredReview)
+  if (!currentSpotReviewsArray) return null;
+  if (!currentSessionUser) return null;
+
+  let filteredReview = currentSpotReviewsArray.find(
+    (review) => currentSessionUser.id === review.userId
+  );
 
   return (
     <>
-      {currentSessionUser &&
-      currentSessionUser !== currentSpotOwner &&
+      {currentSessionUser.id &&
+      currentSessionUser.id !== currentSpotDetails.Owner.id &&
       !filteredReview ? (
         <button
           onClick={() => {
