@@ -67,19 +67,19 @@ function NewReviewModal({ spot }) {
         {currentSessionUser?.id &&
         currentSessionUser?.id !== currentSpotDetails?.Owner?.id &&
         !filteredReview ? (
-          // <button
-          //   onClick={() => {
-          //     setModalContent(<PostReviewModalContent spot={spot} />);
-          //   }}
-          //   type="submit"
-          // >
-          //   Post Your Review
-          // </button>
-          <OpenModalButton
-            buttonText="Post Your Review"
-            modalComponent={<PostReviewModalContent spot={spot} />}
-          />
-        ) : null}
+          <button
+            onClick={() => {
+              setModalContent(<PostReviewModalContent spot={spot} />);
+            }}
+            type="submit"
+          >
+            Post Your Review
+          </button>
+        ) : // <OpenModalButton
+        //   buttonText="Post Your Review"
+        //   modalComponent={<PostReviewModalContent spot={spot} />}
+        // />
+        null}
       </div>
       <div>
         {currentSessionUser.id === filteredReview?.userId ? (

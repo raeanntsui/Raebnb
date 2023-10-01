@@ -60,6 +60,7 @@ function ProfileButton({ user }) {
               <NavLink exact to="/spots/current">
                 <button id="manage-spot-button">Manage Spots</button>
               </NavLink>
+
               <button onClick={logout}>Log Out</button>
             </li>
           </>

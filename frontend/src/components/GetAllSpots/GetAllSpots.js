@@ -33,16 +33,24 @@ function ShowAllSpots() {
             id="get-all-spots-nav-link"
           >
             <div id="test-div">
-              <img src={spot.previewImage} alt={spot.name} />
-              <p>
-                {spot.city}, {spot.state}
-              </p>
-              <p>${spot.price} night</p>
-              <div>
-                <i className="fa-solid fa-star"></i>{" "}
-                {!spot.avgRating || isNaN(spot.avgRating)
-                  ? `New`
-                  : parseFloat(spot.avgRating).toFixed(2)}
+              <img
+                src={spot.previewImage}
+                alt={spot.name}
+                id="landing-page-image"
+              />
+              <div id="landing-page-spot-info-div">
+                <div id="landing-page-spot-info">
+                  <p>
+                    {spot.city}, {spot.state}
+                  </p>
+                  <p id="bold-p">${spot.price} night</p>
+                </div>
+                <div id="landing-page-star-rating">
+                  <i className="fa-solid fa-star"></i>{" "}
+                  {!spot.avgRating || isNaN(spot.avgRating)
+                    ? `New`
+                    : parseFloat(spot.avgRating).toFixed(2)}
+                </div>
               </div>
             </div>
           </NavLink>

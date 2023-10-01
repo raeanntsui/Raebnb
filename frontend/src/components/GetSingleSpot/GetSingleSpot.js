@@ -26,9 +26,9 @@ function ShowSingleSpotDetails() {
     return null;
   }
 
-  if (!sessionUser) {
-    return null;
-  }
+  // if (!sessionUser) {
+  //   return null;
+  // }
 
   const reserveButtonPopUp = () => {
     alert("Feature coming soon");
@@ -63,40 +63,49 @@ function ShowSingleSpotDetails() {
           {spot.numReviews === 0
             ? `New`
             : spot.numReviews === 1
-            ? `1 review`
-            : `${spot.numReviews} reviews`}
+            ? `1 Review`
+            : `${spot.numReviews} Reviews`}
         </p>
       </div>
 
       <div>
         <div id="reviews-and-ratings">
           <i className="fa-solid fa-star"></i>
-          {spot.numReviews === 0
-            ? `No ratings yet!`
-            : `${spot?.avgRating?.toFixed(2)}`}
+          {spot.numReviews === 0 ? null : `${spot?.avgRating?.toFixed(2)}`}
           {!spot.numReviews ? " " : " · "}
           {spot.numReviews === 0
             ? `New`
             : spot.numReviews === 1
-            ? `1 review`
-            : `${spot.numReviews} reviews`}
+            ? `1 Review`
+            : `${spot.numReviews} Reviews`}
         </div>
       </div>
 
       <div id="reviews">
         <h1>Reviews</h1>
-        <div>
-          {Object.values(allReviewsObject).map((singleReview) => (
+        <div id="reviews-and-ratings">
+          {spot.numReviews === 0 ? (
             <>
+              <h3>Be the first to post a review</h3>
               <div>
-                <h3>
-                  {singleReview.User.firstName} {singleReview.User.lastName}
-                </h3>
-                <h4>{singleReview.createdAt}</h4>
-                <p>{singleReview.review}</p>
+                <NewReviewModal spot={spot} />
               </div>
             </>
-          ))}
+          ) : (
+            <div>
+              {Object.values(allReviewsObject).map((singleReview) => (
+                <>
+                  <div>
+                    <h3>
+                      {singleReview.User.firstName} {singleReview.User.lastName}
+                    </h3>
+                    <h4>{singleReview.createdAt}</h4>
+                    <p>{singleReview.review}</p>
+                  </div>
+                </>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       <NewReviewModal spot={spot} />
