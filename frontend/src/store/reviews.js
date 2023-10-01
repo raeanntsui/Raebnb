@@ -77,7 +77,7 @@ const reviewsReducer = (state = initialState, action) => {
         spot: { ...state.spot },
         user: { ...state.user },
       };
-      newState.spot[action.newReview.id] = action.newReview;
+      newState.spot[action.review.id] = action.review;
     default:
       return state;
   }

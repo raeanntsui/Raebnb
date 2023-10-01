@@ -12,7 +12,7 @@ function NewReviewModal({ spotId }) {
   //? if (currentSessionUser.id !== Current spot user Id)
   //! current session user
   const currentSessionUser = useSelector((state) => state.session.user.id);
-  // console.log("currentSessionUser (session.user.id)", currentSessionUser);
+  console.log("currentSessionUser (session.user.id)", currentSessionUser);
   // console.log("currentSessionUser (session.user.id)", currentSessionUser.id);
   //! current spot's details
   const currentSpotDetails = useSelector((state) => state.spots.singleSpot);
@@ -33,23 +33,44 @@ function NewReviewModal({ spotId }) {
   // );
   //? convert current spot's reviews from object form to array form
   const currentSpotReviewsArray = Object.values(currentSpotReviews);
+  console.log(
+    "🚀 ~ file: CreateReview.js:42 ~ NewReviewModal ~ currentSpotReviewsArray:",
+    currentSpotReviewsArray
+  );
+
+  let filteredReviewUser = currentSpotReviewsArray.filter((review) => {
+    // console.log(
+    //   "🚀 ~ file: CreateReview.js:43 ~ filteredReview ~ review:",
+    //   review
+    // );
+
+    // console.log(
+    //   "🚀 ~ file: CreateReview.js:43 ~ filteredReview ~ review.USERID:",
+    //   review.userId
+    // );
+    return currentSessionUser === review.userId;
+  });
+
   // console.log(
-  //   "🚀 ~ file: CreateReview.js:42 ~ NewReviewModal ~ currentSpotReviewsArray:",
-  //   currentSpotReviewsArray
+  //   "🚀 ~ file: CreateReview.js:44 ~ filteredReview ~ filteredReview:",
+  //   filteredReview
   // );
+
+  // console.log("alksdjalkj currentSporReviews.userId", currentSpotOwner.userId);
 
   return (
     <>
-      {currentSessionUser !== currentSpotOwner && (
-        <button
-          onClick={() => {
-            setModalContent(<PostReviewModalContent spotId={spotId} />);
-          }}
-          type="submit"
-        >
-          Post Your Review
-        </button>
-      )}
+      {currentSessionUser !== currentSpotOwner &&
+        currentSessionUser === filteredReviewUser && (
+          <button
+            onClick={() => {
+              setModalContent(<PostReviewModalContent spotId={spotId} />);
+            }}
+            type="submit"
+          >
+            Post Your Review
+          </button>
+        )}
     </>
   );
 }
