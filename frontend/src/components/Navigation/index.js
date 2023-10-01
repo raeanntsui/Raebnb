@@ -8,11 +8,11 @@ import NewSpot from "../CreateANewSpot/CreateANewSpot";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
-  const [showForm, setShowForm] = useState(false);
+  // const [showForm, setShowForm] = useState(false);
 
-  const handleButtonClick = () => {
-    setShowForm(true);
-  };
+  // const handleButtonClick = () => {
+  //   setShowForm(true);
+  // };
 
   return (
     <div id="airbnb-with-raebnb">
@@ -24,18 +24,9 @@ function Navigation({ isLoaded }) {
         />
         raebnb
       </NavLink>
-      {/* <NavLink exact to="/spots/current">
-        {sessionUser && <button>Manage Spots</button>}
-      </NavLink> */}
       <NavLink exact to="/spots/new" id="create-new-spot">
         {sessionUser && (
-          <button
-            id="create-spot-button"
-            // onClick={handleButtonClick}
-            // component={NewSpot}
-          >
-            Create a New Spot
-          </button>
+          <button id="create-spot-button">Create a New Spot</button>
         )}
       </NavLink>
 

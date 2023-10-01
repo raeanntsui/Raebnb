@@ -1,0 +1,16 @@
+#stars {
+  display: flex;
+  border: 2px solid red;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+textarea {
+  border: 2px solid green;
+  width: 97.5%;
+  justify-content: center;
+}
+
+form {
+  border: 5px solid blue;
+}

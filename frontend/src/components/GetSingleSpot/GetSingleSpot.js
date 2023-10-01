@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSingleSpotThunk } from "../../store/spots";
 import { getAllReviewsThunk } from "../../store/reviews";
 import "./GetSingleSpot.css";
+import NewReviewModal from "../Reviews/CreateReview";
 
 function ShowSingleSpotDetails() {
   const dispatch = useDispatch();
@@ -93,6 +94,7 @@ function ShowSingleSpotDetails() {
           ))}
         </div>
       </div>
+      <NewReviewModal spotId={spot.id} />
     </>
   );
 }

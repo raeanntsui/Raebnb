@@ -36,7 +36,7 @@ function App() {
           </Route>
           <Route exact path="/spots/:spotId">
             <ShowSingleSpotDetails />
-            <NewReviewModal />
+            {/* <NewReviewModal /> */}
           </Route>
         </Switch>
       )}
