@@ -2,8 +2,9 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { createNewReviewThunk } from "../../store/reviews";
+import { createNewReviewThunk, getAllReviewsThunk } from "../../store/reviews";
 import "./CreateReview.css";
+import { getSingleSpotThunk } from "../../store/spots";
 
 export default function PostReviewModalContent({ spotId }) {
   const dispatch = useDispatch();
@@ -43,6 +44,8 @@ export default function PostReviewModalContent({ spotId }) {
 
     if (Object.keys(validationErrors).length === 0) {
       await dispatch(createNewReviewThunk(newReviewOnSubmit, spotId));
+      //   await dispatch(getSingleSpotThunk(spotId));
+      await dispatch(getAllReviewsThunk(spotId));
       // history.push(`/spots/${res.id}/reviews`);
       closeModal();
       setSubmit(false);

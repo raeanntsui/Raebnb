@@ -25,9 +25,6 @@ function App() {
           <Route exact path="/">
             <ShowAllSpots />
           </Route>
-          {/* <Route exact path="/spots/:spotId/review">
-            <NewReview />
-          </Route> */}
           <Route exact path="/spots/current">
             <ManageSpot />
           </Route>
@@ -36,7 +33,6 @@ function App() {
           </Route>
           <Route exact path="/spots/:spotId">
             <ShowSingleSpotDetails />
-            {/* <NewReviewModal /> */}
           </Route>
         </Switch>
       )}

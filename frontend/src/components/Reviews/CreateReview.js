@@ -33,44 +33,37 @@ function NewReviewModal({ spotId }) {
   // );
   //? convert current spot's reviews from object form to array form
   const currentSpotReviewsArray = Object.values(currentSpotReviews);
-  console.log(
-    "🚀 ~ file: CreateReview.js:42 ~ NewReviewModal ~ currentSpotReviewsArray:",
-    currentSpotReviewsArray
-  );
-
-  let filteredReviewUser = currentSpotReviewsArray.filter((review) => {
-    // console.log(
-    //   "🚀 ~ file: CreateReview.js:43 ~ filteredReview ~ review:",
-    //   review
-    // );
-
-    // console.log(
-    //   "🚀 ~ file: CreateReview.js:43 ~ filteredReview ~ review.USERID:",
-    //   review.userId
-    // );
-    return currentSessionUser === review.userId;
-  });
-
   // console.log(
-  //   "🚀 ~ file: CreateReview.js:44 ~ filteredReview ~ filteredReview:",
-  //   filteredReview
+  //   "🚀 ~ file: CreateReview.js:42 ~ NewReviewModal ~ currentSpotReviewsArray:",
+  //   currentSpotReviewsArray
   // );
 
-  // console.log("alksdjalkj currentSporReviews.userId", currentSpotOwner.userId);
+  let filteredReview = currentSpotReviewsArray.filter(
+    (review) => currentSessionUser === review.userId
+  );
+  console.log(
+    "🚀 ~ file: CreateReview.js:44 ~ NewReviewModal ~ filteredReviewUser:",
+    filteredReview
+  );
+
+  console.log(
+    "userId of filtered review at current spot",
+    filteredReview[0].userId
+  );
 
   return (
     <>
-      {currentSessionUser !== currentSpotOwner &&
-        currentSessionUser === filteredReviewUser && (
-          <button
-            onClick={() => {
-              setModalContent(<PostReviewModalContent spotId={spotId} />);
-            }}
-            type="submit"
-          >
-            Post Your Review
-          </button>
-        )}
+      {(currentSessionUser !== currentSpotOwner ||
+        currentSessionUser === filteredReview) && (
+        <button
+          onClick={() => {
+            setModalContent(<PostReviewModalContent spotId={spotId} />);
+          }}
+          type="submit"
+        >
+          Post Your Review
+        </button>
+      )}
     </>
   );
 }
