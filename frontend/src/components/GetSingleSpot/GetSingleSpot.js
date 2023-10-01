@@ -10,10 +10,7 @@ function ShowSingleSpotDetails() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const spot = useSelector((state) => state.spots.singleSpot);
-  const [isLoaded, setIsLoaded] = useState(false);
-
   const allReviewsObject = useSelector((state) => state.reviews.spot);
-
   const { spotId } = useParams();
 
   useEffect(() => {
@@ -22,6 +19,14 @@ function ShowSingleSpotDetails() {
   }, [dispatch, spotId]);
 
   if (!spot || Object.keys(spot).length === 0) {
+    return null;
+  }
+
+  if (!allReviewsObject) {
+    return null;
+  }
+
+  if (!sessionUser) {
     return null;
   }
 
@@ -94,7 +99,7 @@ function ShowSingleSpotDetails() {
           ))}
         </div>
       </div>
-      <NewReviewModal spotId={spot.id} />
+      <NewReviewModal spot={spot} />
     </>
   );
 }

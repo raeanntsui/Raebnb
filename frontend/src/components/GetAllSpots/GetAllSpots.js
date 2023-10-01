@@ -8,21 +8,21 @@ import "./GetAllSpots.css";
 // show all spots on landing page
 function ShowAllSpots() {
   // dispatch needed to change the state of app via component (ShowAllSpots)
+
   const dispatch = useDispatch();
 
   const spots = useSelector((state) => state.spots.allSpots);
 
-  // console.log("*******spots", spots);
-  // console.log("Spots ***** ", Spots.spots);
-
-  // store spots (an object) as an array
   const allSpots = Object.values(spots);
   // console.log("allSpots", allSpots);
-
   useEffect(() => {
     dispatch(getAllSpotsThunk());
   }, [dispatch]);
 
+  if (!allSpots || !allSpots.length) {
+    dispatch(getAllSpotsThunk());
+    return null;
+  }
   return (
     <>
       <div id="main-spots-div">

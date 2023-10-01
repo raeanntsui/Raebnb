@@ -4,9 +4,10 @@ import { useModal } from "../../context/Modal";
 import PostReviewModalContent from "./ReviewForm";
 import "./CreateReview.css";
 import { getAllReviewsThunk } from "../../store/reviews";
-import { getSingleSpotThunk } from "../../store/spots";
+import DeleteReview from "../DeleteReview/DeleteReview";
+import OpenModalButton from "../OpenModalButton";
 
-function NewReviewModal({ spotId }) {
+function NewReviewModal({ spot }) {
   const dispatch = useDispatch();
   const { setModalContent, setOnModalClose } = useModal();
 
@@ -38,11 +39,15 @@ function NewReviewModal({ spotId }) {
     "🚀 ~ file: CreateReview.js:42 ~ NewReviewModal ~ currentSpotReviewsArray:",
     currentSpotReviewsArray
   );
+  // if (!filteredReview) {
+  //   dispatch(getAllReviewsThunk(spot.id));
+  //   return null;
+  // }
 
   // do stuff after component loads/re-render
   useEffect(() => {
-    dispatch(getAllReviewsThunk(spotId));
-  }, [dispatch, spotId]);
+    dispatch(getAllReviewsThunk(spot.id));
+  }, [dispatch, spot]);
 
   if (!currentSpotReviewsArray) return null;
   if (!currentSessionUser) return null;
@@ -51,20 +56,49 @@ function NewReviewModal({ spotId }) {
     (review) => currentSessionUser.id === review.userId
   );
 
+  console.log(
+    "🚀 ~ file: CreateReview.js:53 ~ NewReviewModal ~ filteredReview:",
+    filteredReview
+  );
+
   return (
     <>
-      {currentSessionUser?.id &&
-      currentSessionUser?.id !== currentSpotDetails?.Owner?.id &&
-      !filteredReview ? (
-        <button
-          onClick={() => {
-            setModalContent(<PostReviewModalContent spotId={spotId} />);
-          }}
-          type="submit"
-        >
-          Post Your Review
-        </button>
-      ) : null}
+      <div>
+        {currentSessionUser?.id &&
+        currentSessionUser?.id !== currentSpotDetails?.Owner?.id &&
+        !filteredReview ? (
+          // <button
+          //   onClick={() => {
+          //     setModalContent(<PostReviewModalContent spot={spot} />);
+          //   }}
+          //   type="submit"
+          // >
+          //   Post Your Review
+          // </button>
+          <OpenModalButton
+            buttonText="Post Your Review"
+            modalComponent={<PostReviewModalContent spot={spot} />}
+          />
+        ) : null}
+      </div>
+      <div>
+        {currentSessionUser.id === filteredReview?.userId ? (
+          <OpenModalButton
+            buttonText="Delete Review"
+            modalComponent={
+              <DeleteReview review={filteredReview} spot={spot} />
+            }
+          />
+        ) : //  <button
+        //     onClick={() => {
+        //       setModalContent(<DeleteReview review={filteredReview} />);
+        //     }}
+        //     type="submit"
+        //   >
+        //     Delete Review
+        //   </button>
+        null}
+      </div>
     </>
   );
 }

@@ -17,6 +17,7 @@ export default function PostReviewModalContent({ spotId }) {
 
   const { closeModal } = useModal();
   const { setModalContent, setOnModalClose } = useModal();
+  const currentSessionUser = useSelector((state) => state.session.user);
 
   // hide review button if current session user matches current spot owner
 
@@ -32,12 +33,14 @@ export default function PostReviewModalContent({ spotId }) {
 
   //! prevent entire page reload
   const handleSubmit = async (event) => {
+    if (!spotId) return null;
     // prevent page from refreshing on form submission via submit button
     event.preventDefault();
     setSubmit(true);
-
     const newReviewOnSubmit = {
       // names taken from backend
+      // userId: currentSessionUser,
+      // spotId,
       review: description,
       stars: starRating,
     };

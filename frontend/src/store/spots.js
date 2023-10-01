@@ -48,10 +48,10 @@ const updateSpotActionCreator = (spot) => {
   };
 };
 
-const deleteReviewActionCreator = (spot) => {
+const deleteReviewActionCreator = (spotId) => {
   return {
     type: DELETE_SPOT,
-    spot,
+    spotId,
   };
 };
 
@@ -180,6 +180,12 @@ const spotsDetailsReducer = (state = initialState, action) => {
       return {
         ...state,
         singleSpot: action.spot,
+        allSpots: newStateAllSpots,
+      };
+    case DELETE_SPOT:
+      delete newStateAllSpots[action.spotId];
+      return {
+        ...state,
         allSpots: newStateAllSpots,
       };
     default:
