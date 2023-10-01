@@ -46,15 +46,18 @@ function NewReviewModal({ spotId }) {
     filteredReview
   );
 
-  console.log(
-    "userId of filtered review at current spot",
-    filteredReview[0].userId
-  );
+  // console.log(
+  //   "userId of filtered review at current spot",
+  //   filteredReview[0].userId
+  // );
+
+  // (currentSessionUser !== currentSpotOwner || !filteredReview)
 
   return (
     <>
-      {(currentSessionUser !== currentSpotOwner ||
-        currentSessionUser === filteredReview) && (
+      {currentSessionUser &&
+      currentSessionUser !== currentSpotOwner &&
+      !filteredReview ? (
         <button
           onClick={() => {
             setModalContent(<PostReviewModalContent spotId={spotId} />);
@@ -63,7 +66,7 @@ function NewReviewModal({ spotId }) {
         >
           Post Your Review
         </button>
-      )}
+      ) : null}
     </>
   );
 }
