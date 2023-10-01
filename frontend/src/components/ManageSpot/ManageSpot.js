@@ -45,7 +45,12 @@ function ManageSpot() {
       <div id="user-single-spot">
         {userSpotsArray.map((spot) => (
           <>
-            <NavLink key={spot.id} to={`/spots/${spot.id}`}>
+            <div></div>
+            <NavLink
+              key={spot.id}
+              to={`/spots/${spot.id}`}
+              id="get-all-spots-nav-link"
+            >
               <div>
                 <img src={spot.previewImage} alt={spot.name} />
                 <p>
@@ -60,7 +65,7 @@ function ManageSpot() {
                 </div>
               </div>
             </NavLink>
-            <NavLink to={`/spots/${spot.id}/edit`}>
+            <NavLink to={`/spots/${spot.id}/edit`} id="get-all-spots-nav-link">
               <button>Update</button>
             </NavLink>
             <OpenModalButton

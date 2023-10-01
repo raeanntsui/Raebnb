@@ -35,6 +35,8 @@ function NewSpot() {
     if (description && description.length < 30)
       errorsObject.description = "Description needs a minimum of 30 characters";
     if (!title) errorsObject.title = "Name is required";
+    if (title.length > 50)
+      errorsObject.title = "Name must be under 50 characters long";
     if (!price) errorsObject.price = "Price is required";
     if (!previewImage) errorsObject.previewImage = "Preview image is required";
     if (
