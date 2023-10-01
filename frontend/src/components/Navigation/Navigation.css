@@ -4,6 +4,7 @@
 
 #airbnb-with-raebnb {
   /* border: red solid 2px; */
+  border-bottom: solid 1px lightgrey;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -44,9 +45,9 @@ button > i {
   color: darkslategrey;
 }
 
-#dropdown {
+/* #dropdown {
   border: blue 1px solid;
-}
+} */
 
 menu {
   border: pink solid 2px;

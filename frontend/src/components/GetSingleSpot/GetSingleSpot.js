@@ -36,79 +36,116 @@ function ShowSingleSpotDetails() {
 
   return (
     <>
-      <div id="spot-details">
-        <h1>Name: {spot.name}</h1>
-        <div id="all-images">
+      <div id="spot-details-container">
+        <div id="spot-details">
+          <h1>{spot.name}</h1>
+          <div id="cityStateCountry">
+            {spot.city}, {spot.state}, {spot.country}
+          </div>
+          {/* <div id="all-images">
           {spot.SpotImages &&
             spot.SpotImages.map((image) => (
               <img src={image.url} key={image.id} />
             ))}
-        </div>
-        <div>
-          Location:
-          {spot.city}, {spot.state}, {spot.country}
-        </div>
-        <div>
-          <p>Hosted by {spot.Owner && spot.Owner.firstName}</p>
-        </div>
-        <div>
-          <p>Spot description: {spot.description}</p>
-        </div>
-      </div>
-
-      <div id="callout-box">
-        <div>${spot.price} night</div>
-        <button onClick={reserveButtonPopUp}>Reserve</button>
-        <p>
-          {spot.numReviews === 0
-            ? `New`
-            : spot.numReviews === 1
-            ? `1 Review`
-            : `${spot.numReviews} Reviews`}
-        </p>
-      </div>
-
-      <div>
-        <div id="reviews-and-ratings">
-          <i className="fa-solid fa-star"></i>
-          {spot.numReviews === 0 ? null : `${spot?.avgRating?.toFixed(2)}`}
-          {!spot.numReviews ? " " : " · "}
-          {spot.numReviews === 0
-            ? `New`
-            : spot.numReviews === 1
-            ? `1 Review`
-            : `${spot.numReviews} Reviews`}
-        </div>
-      </div>
-
-      <div id="reviews">
-        <h1>Reviews</h1>
-        <div id="reviews-and-ratings">
-          {spot.numReviews === 0 ? (
-            <>
-              <h3>Be the first to post a review</h3>
-              <div>
-                <NewReviewModal spot={spot} />
+        </div> */}
+          <div id="spot-images-container">
+            {spot.SpotImages && spot.SpotImages.length > 0 && (
+              <div id="first-image">
+                <img src={spot.SpotImages[0].url} alt={`Large Image`} />
               </div>
-            </>
-          ) : (
-            <div>
-              {Object.values(allReviewsObject).map((singleReview) => (
-                <>
-                  <div>
-                    <h3>
-                      {singleReview.User.firstName} {singleReview.User.lastName}
-                    </h3>
-                    <h4>{singleReview.createdAt}</h4>
-                    <p>{singleReview.review}</p>
-                  </div>
-                </>
-              ))}
+            )}
+            <div id="other-images">
+              {spot.SpotImages &&
+                spot.SpotImages.slice(1, 5).map((image) => (
+                  <img src={image.url} key={image.id} alt={`Small Image`} />
+                ))}
             </div>
-          )}
+          </div>
+          <div id="mid-section-container">
+            <div id="hosted-by">
+              <p>
+                Hosted by {spot.Owner && spot.Owner.firstName}{" "}
+                {spot.Owner && spot.Owner.lastName}
+              </p>
+              <div>
+                <p>{spot.description}</p>
+              </div>
+            </div>
+
+            <div id="callout-box">
+              <div id="callout-top">
+                <div id="price">${spot.price} night</div>
+                {/* <div>
+                  {spot.numReviews === 0
+                    ? `New`
+                    : spot.numReviews === 1
+                    ? `1 Review`
+                    : `${spot.numReviews} Reviews`}
+                </div> */}
+                <div>
+                  <div id="reviews-and-ratings">
+                    <i className="fa-solid fa-star"></i>
+                    {spot.numReviews === 0
+                      ? null
+                      : `${spot?.avgRating?.toFixed(2)}`}
+                    {!spot.numReviews ? " " : " · "}
+                    {spot.numReviews === 0
+                      ? `New`
+                      : spot.numReviews === 1
+                      ? `1 Review`
+                      : `${spot.numReviews} Reviews`}
+                  </div>
+                </div>
+              </div>
+              <div id="callout-bottom">
+                <button id="callout-button" onClick={reserveButtonPopUp}>
+                  Reserve
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <div>
+          <div id="reviews-and-ratings-2">
+            <i id="star" className="fa-solid fa-star"></i>
+            {spot.numReviews === 0 ? null : `${spot?.avgRating?.toFixed(2)}`}
+            {!spot.numReviews ? " " : " · "}
+            {spot.numReviews === 0
+              ? `New`
+              : spot.numReviews === 1
+              ? `1 Review`
+              : `${spot.numReviews} Reviews`}
+          </div>
+        </div>
+
+        <div id="reviews">
+          {/* <h1>Reviews</h1> */}
+          <div>
+            {spot.numReviews === 0 ? (
+              <>
+                <h3>Be the first to post a review</h3>
+                <div>
+                  <NewReviewModal spot={spot} />
+                </div>
+              </>
+            ) : (
+              <div>
+                {Object.values(allReviewsObject).map((singleReview) => (
+                  <>
+                    <div id="single-review">
+                      <h3>{singleReview.User.firstName}</h3>
+                      <h4>{singleReview.createdAt.substring(0, 7)}</h4>
+                      <h5>{singleReview.review}</h5>
+                    </div>
+                  </>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+        <NewReviewModal spot={spot} />
       </div>
-      <NewReviewModal spot={spot} />
     </>
   );
 }

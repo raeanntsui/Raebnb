@@ -1,0 +1,38 @@
+#modal-content {
+  width: 75%;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+}
+#sign-up-h1 {
+  /* align-content: center; */
+  text-align: center;
+}
+form {
+  justify-content: center;
+  /* align-items: center; */
+  width: 90%;
+  /* border: red 2px solid; */
+  /* align-items: center; */
+  /* justify-content: space-around; */
+  /* box-sizing: border-box; */
+  /* text-align: center; */
+  /* align-items: right; */
+}
+
+#sign-up-button {
+  width: 90%;
+  text-align: center;
+  display: flex;
+  /* justify-content: center/; */
+  /* border: 2px solid green; */
+}
+
+/* input {
+  background-color: lightblue;
+} */
+
+form > input {
+  width: 97.5%;
+}
