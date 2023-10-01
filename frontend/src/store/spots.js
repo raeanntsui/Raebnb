@@ -10,7 +10,7 @@ const CREATE_NEW_SPOT = "spots/createNewSpot";
 // ? CREATE_NEW_IMAGE action constant
 const CREATE_NEW_IMAGE = "/spots/createNewImage";
 //? UPDATE_SPOT action constant
-// const UPDATE_SPOT = "/spots/updateSpot"
+const UPDATE_SPOT = "/spots/updateSpot";
 
 //******************! 2. action creator: updates store
 //? getAllSpots action creator
@@ -41,6 +41,14 @@ const createNewImageActionCreator = (newImage) => {
   return {
     type: CREATE_NEW_IMAGE,
     newImage,
+  };
+};
+
+//? updateSpot action creator
+const updateSpotActionCreator = (spot) => {
+  return {
+    type: UPDATE_SPOT,
+    spot,
   };
 };
 
@@ -106,11 +114,26 @@ export const createImageThunk = (url, preview, spotId) => async (dispatch) => {
   }
 };
 
+//? updateSpot Thunk
+export const updateSpotThunk = (spot) => async (dispatch) => {
+  try {
+    const res = await csrfFetch(`/api/spots/${spot.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(spot),
+    });
+    const updateSpot = await res.json();
+    dispatch(updateSpotActionCreator(spot));
+    return updateSpot;
+  } catch (e) {
+    return await e.json();
+  }
+};
+
 // 4. what is the initial state of the app?
 const initialState = {
   allSpots: {},
   singleSpot: {},
-  // user: {},
 };
 
 // 5. spots reducer
@@ -118,7 +141,7 @@ const initialState = {
 // action = action that has occurred
 const spotsDetailsReducer = (state = initialState, action) => {
   let newState;
-  const newSpots = { ...state.allSpots };
+  const newStateAllSpots = { ...state.allSpots };
   switch (action.type) {
     case GET_ALL_SPOTS:
       newState = { ...state, allSpots: {} };
@@ -133,7 +156,13 @@ const spotsDetailsReducer = (state = initialState, action) => {
       return {
         ...state,
         singleSpot: action.spot,
-        allSpots: newSpots,
+        allSpots: newStateAllSpots,
+      };
+    case UPDATE_SPOT:
+      return {
+        ...state,
+        singleSpot: action.spot,
+        allSpots: newStateAllSpots,
       };
     default:
       return state;

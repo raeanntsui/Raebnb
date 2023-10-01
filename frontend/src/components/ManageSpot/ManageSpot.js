@@ -42,23 +42,29 @@ function ManageSpot() {
       <h1>Manage Spots</h1>
       <div id="user-single-spot">
         {userSpotsArray.map((spot) => (
-          <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-            <div>
-              <img src={spot.previewImage} alt={spot.name} />
-              <p>
-                {spot.city}, {spot.state}
-              </p>
-              <p>${spot.price} night</p>
+          <>
+            <NavLink key={spot.id} to={`/spots/${spot.id}`}>
               <div>
-                <i className="fa-solid fa-star"></i>{" "}
-                {!spot.avgRating || isNaN(spot.avgRating)
-                  ? `New`
-                  : parseFloat(spot.avgRating).toFixed(2)}
-                <button>Update</button>
-                <button>Delete</button>
+                <img src={spot.previewImage} alt={spot.name} />
+                <p>
+                  {spot.city}, {spot.state}
+                </p>
+                <p>${spot.price} night</p>
+                <div>
+                  <i className="fa-solid fa-star"></i>{" "}
+                  {!spot.avgRating || isNaN(spot.avgRating)
+                    ? `New`
+                    : parseFloat(spot.avgRating).toFixed(2)}
+                </div>
               </div>
-            </div>
-          </NavLink>
+            </NavLink>
+            <NavLink to={`/spots/${spot.id}/edit`}>
+              <button>Update</button>
+            </NavLink>
+            <NavLink to={`/spots/${spot.id}/delete`}>
+              <button>Delete</button>
+            </NavLink>
+          </>
         ))}
       </div>
     </>

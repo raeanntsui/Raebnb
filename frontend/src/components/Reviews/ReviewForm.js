@@ -43,12 +43,13 @@ export default function PostReviewModalContent({ spotId }) {
     };
 
     if (Object.keys(validationErrors).length === 0) {
-      await dispatch(createNewReviewThunk(newReviewOnSubmit, spotId));
-      //   await dispatch(getSingleSpotThunk(spotId));
-      await dispatch(getAllReviewsThunk(spotId));
+      dispatch(createNewReviewThunk(newReviewOnSubmit, spotId));
+      dispatch(getSingleSpotThunk(spotId));
+      dispatch(getAllReviewsThunk(spotId));
       // history.push(`/spots/${res.id}/reviews`);
       closeModal();
       setSubmit(false);
+      return null;
     }
   };
 

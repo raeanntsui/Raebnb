@@ -4,6 +4,7 @@ import { useModal } from "../../context/Modal";
 import PostReviewModalContent from "./ReviewForm";
 import "./CreateReview.css";
 import { getAllReviewsThunk } from "../../store/reviews";
+import { getSingleSpotThunk } from "../../store/spots";
 
 function NewReviewModal({ spotId }) {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ function NewReviewModal({ spotId }) {
     currentSpotReviewsArray
   );
 
+  // do stuff after component loads/re-render
   useEffect(() => {
     dispatch(getAllReviewsThunk(spotId));
   }, [dispatch, spotId]);
@@ -51,8 +53,8 @@ function NewReviewModal({ spotId }) {
 
   return (
     <>
-      {currentSessionUser.id &&
-      currentSessionUser.id !== currentSpotDetails.Owner.id &&
+      {currentSessionUser?.id &&
+      currentSessionUser?.id !== currentSpotDetails?.Owner?.id &&
       !filteredReview ? (
         <button
           onClick={() => {

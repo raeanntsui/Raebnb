@@ -68,7 +68,7 @@ function ShowSingleSpotDetails() {
           <i className="fa-solid fa-star"></i>
           {spot.numReviews === 0
             ? `No ratings yet!`
-            : `${spot.avgRating.toFixed(2)}`}
+            : `${spot?.avgRating?.toFixed(2)}`}
           {!spot.numReviews ? " " : " · "}
           {spot.numReviews === 0
             ? `New`
