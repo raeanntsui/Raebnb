@@ -144,7 +144,7 @@ function NewSpot() {
   return (
     <div id="form-container">
       <h1>Create a new Spot</h1>
-      <form onSubmit={handleSubmit}>
+      <form id="create-form" onSubmit={handleSubmit}>
         <div id="titles">
           <h2>Where's your place located?</h2>
           <h3>
@@ -294,7 +294,9 @@ function NewSpot() {
             <p>{validationErrors.fourthImageURL}</p>
           )}
         </div>
-        <button type="submit">Create Spot</button>
+        <button id="create-spot-button" type="submit">
+          Create Spot
+        </button>
       </form>
     </div>
   );

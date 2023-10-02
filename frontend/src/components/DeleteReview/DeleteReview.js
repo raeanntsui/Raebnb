@@ -27,11 +27,19 @@ function DeleteReview({ review, spot }) {
   return (
     <>
       {exists && (
-        <div>
+        <div id="delete-review">
           <h1>Confirm Delete</h1>
           <h2>Are you sure you want to delete this review?</h2>
-          <button onClick={handleSubmit}>Yes (Delete Spot)</button>
-          <button onClick={doNotDeleteAndCloseModal}>No (Keep Spot)</button>
+          <div id="delete-review-button">
+            <button id="top-button-delete" onClick={handleSubmit}>
+              Yes (Delete Review)
+            </button>
+            <button
+              id="bottom-button-delete"
+              onClick={doNotDeleteAndCloseModal}>
+              No (Keep Review)
+            </button>
+          </div>
         </div>
       )}
     </>

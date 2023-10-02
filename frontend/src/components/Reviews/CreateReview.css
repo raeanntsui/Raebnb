@@ -14,11 +14,16 @@
 textarea {
   /* border: 2px solid green; */
   width: 97.5%;
+  display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 #submit-review-button {
+  justify-content: center;
   display: flex;
-  margin-left: 380px;
-  /* padding: 10px 10px; */
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

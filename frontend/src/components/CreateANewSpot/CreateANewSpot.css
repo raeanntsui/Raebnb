@@ -44,3 +44,9 @@ input {
   width: 100%;
   height: 150px;
 }
+
+#create-spot-button {
+  background-color: lightgrey;
+  justify-content: center;
+  display: flex;
+}
