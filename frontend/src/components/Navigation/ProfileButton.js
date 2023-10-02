@@ -45,9 +45,13 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fa-solid fa-bars"></i>
-        <i className="fa-solid fa-user" />
+      <button id="dropdown-button-w-icons" onClick={openMenu}>
+        <div>
+          <i className="fa-solid fa-bars"></i>
+        </div>
+        <div>
+          <i className="fa-solid fa-user" />
+        </div>
       </button>
 
       <ul id="dropdown" className={ulClassName} ref={ulRef}>

@@ -1,8 +1,10 @@
 .hidden {
   display: none;
+  /* position: relative;
+  display: inline-block; */
 }
 
-#airbnb-with-raebnb {
+#airbnb-with-raebnb-and-signin {
   /* border: red solid 2px; */
   padding-bottom: 20px;
   padding-top: 20px;
@@ -11,7 +13,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* min-height: 10px; */
   /* height: 50px; */
+  border: 4px dashed green;
 }
 
 #airbnb-logo {
@@ -21,7 +25,7 @@
 }
 
 #home-link {
-  /* border: purple solid 1px; */
+  border: orange dashed 4px;
   align-items: center;
   justify-content: space-between;
   display: flex;
@@ -48,10 +52,6 @@
   color: darkslategrey;
 }
 
-/* #dropdown {
-  border: blue 1px solid;
-} */
-
 menu {
   border: pink solid 2px;
 }
@@ -71,4 +71,43 @@ menu {
 
 #create-spot-button:hover {
   background-color: lightgrey;
+}
+
+#right-side-nav {
+  display: inline-block;
+  border: 2px solid red;
+  position: relative;
+}
+
+#nav-left-create-spot {
+  float: left;
+  padding: 0px 10px;
+}
+
+#nav-right-dropdown-menu {
+  float: right;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  padding: 5px 10px;
+  width: 200px;
+  height: auto;
+  border: 2px dashed yellowgreen;
+  text-align: right;
+}
+
+#dropdown {
+  border: red 2px dashed;
+  max-width: 100px;
+  position: relative;
+  /* display: inline-block; */
+  /* overflow: hidden; */
+}
+
+#dropdown-button-w-icons {
+  background-color: white;
+  border: solid 2px black;
+  border-radius: 4px;
+  width: 100px;
+  display: inline-block;
 }
