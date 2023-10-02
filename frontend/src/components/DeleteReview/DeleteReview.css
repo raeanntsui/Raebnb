@@ -1,0 +1,39 @@
+#delete-review-button {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#delete-review-button > button {
+  width: 150px;
+  height: 30px;
+  border-radius: 8px;
+}
+
+#top-button-delete {
+  background-color: #ff5a5f;
+  padding-bottom: 5px 0px;
+}
+
+#bottom-button-delete {
+  background-color: lightgrey;
+  padding-bottom: 5px 0px;
+}
+
+#delete-review > h1 {
+  /* font-size: 20px; */
+  text-align: center;
+  color: red;
+}
+
+#delete-review > h2 {
+  font-size: 20px;
+  text-align: center;
+}
+
+#modal-content {
+  width: 400px;
+}

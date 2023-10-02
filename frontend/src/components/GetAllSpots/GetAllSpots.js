@@ -46,7 +46,7 @@ function ShowAllSpots() {
                   <p id="bold-p">${spot.price} night</p>
                 </div>
                 <div id="landing-page-star-rating">
-                  <i className="fa-solid fa-star"></i>{" "}
+                  <i id="landing-page-star" className="fa-solid fa-star"></i>{" "}
                   {!spot.avgRating || isNaN(spot.avgRating)
                     ? `New`
                     : parseFloat(spot.avgRating).toFixed(2)}

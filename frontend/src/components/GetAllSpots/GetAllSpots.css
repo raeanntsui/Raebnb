@@ -1,10 +1,17 @@
 #main-spots-div {
   display: grid;
   grid-template-columns: repeat(4, 2fr);
-  margin: 30px 30px;
+  margin: 20px 30px;
+  gap: 10px;
   /* height: auto; */
   /* max-width: 100px; */
   /* border: black 2px dotted; */
+}
+
+#main-spots-div > p {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 #get-all-spots-nav-link {
@@ -42,4 +49,8 @@
   /* border: 1px solid red; */
   display: flex;
   justify-content: space-between;
+}
+
+#landing-page-star {
+  color: #ff9529;
 }
