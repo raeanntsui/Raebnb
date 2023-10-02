@@ -9,8 +9,21 @@ import NewReviewModal from "../Reviews/CreateReview";
 function ShowSingleSpotDetails() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  console.log("sessionUser.id", sessionUser.id);
   const spot = useSelector((state) => state.spots.singleSpot);
   const allReviewsObject = useSelector((state) => state.reviews.spot);
+  const userReviewArray = Object.values(allReviewsObject);
+  // console.log(
+  //   "🚀 ~ file: GetSingleSpot.js:15 ~ ShowSingleSpotDetails ~ userReview:",
+  //   userReviewArray
+  // );
+
+  // console.log("userReviewArray[0].userId", userReviewArray[0].userId);
+  // console.log("userReviewArray[0].userId", userReviewArray[0].userId);
+
+  // find the if the user has an existing review
+  //! find the session user
+
   const { spotId } = useParams();
 
   useEffect(() => {
@@ -25,10 +38,6 @@ function ShowSingleSpotDetails() {
   if (!allReviewsObject) {
     return null;
   }
-
-  // if (!sessionUser) {
-  //   return null;
-  // }
 
   const reserveButtonPopUp = () => {
     alert("Feature coming soon");
@@ -51,13 +60,13 @@ function ShowSingleSpotDetails() {
           <div id="spot-images-container">
             {spot.SpotImages && spot.SpotImages.length > 0 && (
               <div id="first-image">
-                <img src={spot.SpotImages[0].url} alt={`Large Image`} />
+                <img src={spot.SpotImages[0].url} alt={`Main Image`} />
               </div>
             )}
             <div id="other-images">
               {spot.SpotImages &&
                 spot.SpotImages.slice(1, 5).map((image) => (
-                  <img src={image.url} key={image.id} alt={`Small Image`} />
+                  <img src={image.url} key={image.id} alt={`Other Images`} />
                 ))}
             </div>
           </div>
@@ -120,14 +129,11 @@ function ShowSingleSpotDetails() {
         </div>
 
         <div id="reviews">
-          {/* <h1>Reviews</h1> */}
           <div>
             {spot.numReviews === 0 ? (
               <>
                 <h3>Be the first to post a review</h3>
-                <div>
-                  <NewReviewModal spot={spot} />
-                </div>
+                <div>{/* <NewReviewModal spot={spot} /> */}</div>
               </>
             ) : (
               <div>

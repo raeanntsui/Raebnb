@@ -114,7 +114,7 @@ menu {
 #dropdown.profile-dropdown {
   margin-left: -130px;
   border: grey solid 1px;
-  /* background-color: rgb(255, 255, 255); */
+  background-color: rgb(255, 255, 255);
   border-radius: 4px;
   box-shadow: 2px 2px 2px black;
   list-style: none;

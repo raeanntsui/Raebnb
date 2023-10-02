@@ -17,32 +17,17 @@ function NewReviewModal({ spot }) {
 
   //! current spot's details
   const currentSpotDetails = useSelector((state) => state.spots.singleSpot);
-  // console.log(
-  //   "🚀 ~ file: CreateReview.js:30 ~ NewReviewModal ~ currentSpotDetails:",
-  //   currentSpotDetails
-  // );
+
   //! current spot's owner
-  // const currentSpotOwner = useSelector(
-  //   (state) => state.spots.singleSpot.ownerId
-  // );
-  // console.log("currentSpotOwner (spots.singleSpot.ownerId)", currentSpotOwner);
+  const currentSpotOwner = useSelector(
+    (state) => state.spots.singleSpot.ownerId
+  );
+
   //! current spot's reviews (in entirety)
   const currentSpotReviews = useSelector((state) => state.reviews.spot);
-  console.log(
-    "🚀 ~ file: CreateReview.js:30 ~ NewReviewModal ~ currentSpotReviews:",
-    currentSpotReviews
-  );
 
   //? convert current spot's reviews from object form to array form
   const currentSpotReviewsArray = Object.values(currentSpotReviews);
-  console.log(
-    "🚀 ~ file: CreateReview.js:42 ~ NewReviewModal ~ currentSpotReviewsArray:",
-    currentSpotReviewsArray
-  );
-  // if (!filteredReview) {
-  //   dispatch(getAllReviewsThunk(spot.id));
-  //   return null;
-  // }
 
   // do stuff after component loads/re-render
   useEffect(() => {
@@ -56,11 +41,6 @@ function NewReviewModal({ spot }) {
     (review) => currentSessionUser.id === review.userId
   );
 
-  console.log(
-    "🚀 ~ file: CreateReview.js:53 ~ NewReviewModal ~ filteredReview:",
-    filteredReview
-  );
-
   return (
     <>
       <div>
@@ -71,8 +51,7 @@ function NewReviewModal({ spot }) {
             onClick={() => {
               setModalContent(<PostReviewModalContent spot={spot} />);
             }}
-            type="submit"
-          >
+            type="submit">
             Post Your Review
           </button>
         ) : // <OpenModalButton

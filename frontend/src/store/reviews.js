@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import { getSingleSpotThunk } from "./spots";
 
 //! ****************** REVIEW ACTION CONSTANTS
 const GET_ALL_REVIEWS = "spots/getAllReviews";
@@ -48,10 +49,13 @@ export const createNewReviewThunk = (review, spotId) => async (dispatch) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(review),
     });
-    // console.log("res for new review", res);
-    const newReview = await res.json();
-    dispatch(createNewReviewActionCreator(newReview));
-    return newReview;
+    if (res.ok) {
+      // console.log("res for new review", res);
+      const newReview = await res.json();
+      dispatch(createNewReviewActionCreator(review));
+      dispatch(getSingleSpotThunk(review));
+      return newReview;
+    }
   } catch (e) {
     return await e.json();
   }
