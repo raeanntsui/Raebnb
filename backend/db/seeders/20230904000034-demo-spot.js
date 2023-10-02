@@ -22,7 +22,7 @@ module.exports = {
           lng: -81.53903,
           name: "Raeann's Home",
           description:
-            "My home is a walk-up townhouse in desirable Fairview Slopes. Enjoy unreal views from every room, including 4 private patios! Everything at your fingertips- fully equipped chef-style kitchen, private hot tub + shower, fire pit, BBQ, and a king-size bed.",
+            "My home is a walk-up townhouse in desirable Fairview Slopes.",
           price: 80.0,
         },
         {
@@ -72,7 +72,7 @@ module.exports = {
           lng: -84.5399,
           name: "Park Lane",
           description:
-            "Situated on the peninsula with proximity to San Francisco and Silicon Valley, Borelle at One 90 in San Mateo features new construction, 2-story single family homes with Life Tested floor plans, smart home features, modern architecture and energy-efficient construction. This new home community is conveniently located near major Bay Area employers along with daily, local conveniences.",
+            "This is a random description about a house that is on Raebnb.",
           price: 1150.0,
         },
         {
@@ -85,7 +85,7 @@ module.exports = {
           lng: -84.5399,
           name: "Park Lane",
           description:
-            "Situated on the peninsula with proximity to San Francisco and Silicon Valley, Borelle at One 90 in San Mateo features new construction, 2-story single family homes with Life Tested floor plans, smart home features, modern architecture and energy-efficient construction. This new home community is conveniently located near major Bay Area employers along with daily, local conveniences.",
+            "This is a random description about a house that is on Raebnb.",
           price: 450.0,
         },
         {
@@ -98,7 +98,7 @@ module.exports = {
           lng: -84.5399,
           name: "Park Lane",
           description:
-            "Situated on the peninsula with proximity to San Francisco and Silicon Valley, Borelle at One 90 in San Mateo features new construction, 2-story single family homes with Life Tested floor plans, smart home features, modern architecture and energy-efficient construction. This new home community is conveniently located near major Bay Area employers along with daily, local conveniences.",
+            "This is a random description about a house that is on Raebnb.",
           price: 250.0,
         },
         {
@@ -110,8 +110,7 @@ module.exports = {
           lat: 39.37306,
           lng: -84.5399,
           name: "Park Lane",
-          description:
-            "Situated on the peninsula with proximity to San Francisco and Silicon Valley, Borelle at One 90 in San Mateo features new construction, 2-story single family homes with Life Tested floor plans, smart home features, modern architecture and energy-efficient construction. This new home community is conveniently located near major Bay Area employers along with daily, local conveniences.",
+          description: "Situated on the peninsula with proximity.",
           price: 150.0,
         },
       ],

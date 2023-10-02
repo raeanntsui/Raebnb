@@ -64,8 +64,7 @@ module.exports = {
         {
           spotId: 1,
           userId: 5,
-          review:
-            "Stayed at Best Western Sheepshead Bay. Ver scenic. Felt safe. Employees very helpful and kind. Shahedur Rahman at front desk was extremely kind and patient. He made us feel at home.",
+          review: "Stayed at Best Western Sheepshead Bay. Very scenic.",
           stars: 5,
         },
       ],
