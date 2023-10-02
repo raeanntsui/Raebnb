@@ -40,7 +40,7 @@ module.exports = {
         {
           ownerId: 3,
           address: "2022 Parkamo Avenue",
-          city: "Village Of Indian Springs",
+          city: "Springs",
           state: "OH",
           country: "USA",
           lat: 39.37306,
