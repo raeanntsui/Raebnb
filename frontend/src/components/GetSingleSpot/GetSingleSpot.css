@@ -121,7 +121,7 @@ h5 {
 
 #all-images {
   display: grid;
-  grid-template-columns: 575px 150px 150px;
+  grid-template-columns: 525px 150px 150px;
   grid-template-rows: 150px 150px;
   row-gap: 5px;
   column-gap: 5px;
