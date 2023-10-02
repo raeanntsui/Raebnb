@@ -15,7 +15,7 @@
   align-items: center;
   /* min-height: 10px; */
   /* height: 50px; */
-  border: 4px dashed green;
+  /* border: 4px dashed green; */
 }
 
 #airbnb-logo {
@@ -25,7 +25,7 @@
 }
 
 #home-link {
-  border: orange dashed 4px;
+  /* border: orange dashed 4px; */
   align-items: center;
   justify-content: space-between;
   display: flex;
@@ -58,6 +58,8 @@ menu {
 
 #create-new-spot {
   text-decoration: none;
+  margin-left: 100px;
+  /* border: 2px dashed orange; */
 }
 
 #create-spot-button {
@@ -74,14 +76,17 @@ menu {
 }
 
 #right-side-nav {
-  display: inline-block;
-  border: 2px solid red;
-  position: relative;
+  /* display: inline-block; */
+  /* border: 2px solid red; */
+  /* position: relative; */
+  display: flex;
 }
 
 #nav-left-create-spot {
   float: left;
   padding: 0px 10px;
+  display: flex;
+  align-items: center;
 }
 
 #nav-right-dropdown-menu {
@@ -90,24 +95,47 @@ menu {
   /* justify-content: center; */
   /* align-items: center; */
   padding: 5px 10px;
-  width: 200px;
+  /* width: 200px; */
   height: auto;
-  border: 2px dashed yellowgreen;
+  /* border: 2px dashed yellowgreen; */
   text-align: right;
-}
-
-#dropdown {
-  border: red 2px dashed;
-  max-width: 100px;
-  position: relative;
-  /* display: inline-block; */
-  /* overflow: hidden; */
+  /* margin-right: 50px; */
 }
 
 #dropdown-button-w-icons {
   background-color: white;
   border: solid 2px black;
   border-radius: 4px;
-  width: 100px;
-  display: inline-block;
+  width: 50px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#dropdown.profile-dropdown {
+  margin-left: -130px;
+  border: grey solid 1px;
+  /* background-color: rgb(255, 255, 255); */
+  border-radius: 4px;
+  box-shadow: 2px 2px 2px black;
+  list-style: none;
+  padding: 10px 10px;
+  z-index: 999;
+  position: fixed;
+}
+
+ul {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+ul li button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logout-button {
+  margin-left: 20px;
 }
