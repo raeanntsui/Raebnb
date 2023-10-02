@@ -73,8 +73,8 @@ function ShowSingleSpotDetails() {
           <div id="mid-section-container">
             <div id="hosted-by">
               <p>
-                Hosted by {spot.Owner && spot.Owner.firstName}{" "}
-                {spot.Owner && spot.Owner.lastName}
+                Hosted by {spot?.Owner && spot?.Owner?.firstName}{" "}
+                {spot?.Owner && spot?.Owner?.lastName}
               </p>
               <div>
                 <p>{spot.description}</p>
@@ -140,9 +140,9 @@ function ShowSingleSpotDetails() {
                 {Object.values(allReviewsObject).map((singleReview) => (
                   <>
                     <div id="single-review">
-                      <h3>{singleReview.User.firstName}</h3>
-                      <h4>{singleReview.createdAt.substring(0, 7)}</h4>
-                      <h5>{singleReview.review}</h5>
+                      <h3>{singleReview?.User?.firstName}</h3>
+                      <h4>{singleReview?.createdAt?.substring(0, 7)}</h4>
+                      <h5>{singleReview?.review}</h5>
                     </div>
                   </>
                 ))}

@@ -6,7 +6,11 @@ import { createNewReviewThunk, getAllReviewsThunk } from "../../store/reviews";
 import "./CreateReview.css";
 import { getSingleSpotThunk } from "../../store/spots";
 
-export default function PostReviewModalContent({ spotId }) {
+export default function PostReviewModalContent({ spot }) {
+  console.log(
+    "🚀 ~ file: ReviewForm.js:10 ~ PostReviewModalContent ~ spot:",
+    spot
+  );
   const dispatch = useDispatch();
   // const history = useHistory();
   const [validationErrors, setValidationErrors] = useState({});
@@ -31,32 +35,35 @@ export default function PostReviewModalContent({ spotId }) {
     setValidationErrors(errorsObject);
   }, [description]);
 
+  // console.log("🚀 ~ file: ReviewForm.js:45 ~ handleSubmit ~ spotId:", spotId);
   //! prevent entire page reload
   const handleSubmit = async (event) => {
-    if (!spotId) return null;
+    if (!spot.id) return null;
     // prevent page from refreshing on form submission via submit button
     event.preventDefault();
     setSubmit(true);
+
     const newReviewOnSubmit = {
       // names taken from backend
-      // userId: currentSessionUser,
-      // spotId,
+      userId: currentSessionUser.id,
+      spotId: spot.id,
       review: description,
       stars: starRating,
     };
-
     if (Object.keys(validationErrors).length === 0) {
-      dispatch(createNewReviewThunk(newReviewOnSubmit, spotId));
-      dispatch(getSingleSpotThunk(spotId));
-      dispatch(getAllReviewsThunk(spotId));
+      await dispatch(createNewReviewThunk(newReviewOnSubmit, spot.id));
+
+      // dispatch(getSingleSpotThunk(spotId));
+      // dispatch(getAllReviewsThunk(spotId));
       // history.push(`/spots/${res.id}/reviews`);
+
       closeModal();
       setSubmit(false);
       return null;
     }
   };
 
-  console.log("star rating*****", starRating);
+  // console.log("star rating*****", starRating);
   //! post new review content (description & star rating)
   const displayStarRating = hoverStarRating ? hoverStarRating : starRating;
   return (
@@ -65,8 +72,7 @@ export default function PostReviewModalContent({ spotId }) {
       <textarea
         placeholder="Leave your review here"
         value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      ></textarea>
+        onChange={(e) => setDescription(e.target.value)}></textarea>
       <p>{submit && validationErrors.description}</p>
       <div id="stars">
         <i
@@ -75,42 +81,39 @@ export default function PostReviewModalContent({ spotId }) {
           }
           onMouseEnter={() => setHoverStarRating(1)}
           onMouseLeave={() => setHoverStarRating(0)}
-          onClick={() => setStarRating(1)}
-        ></i>
+          onClick={() => setStarRating(1)}></i>
         <i
           className={
             displayStarRating >= 2 ? "fa-solid fa-star" : "fa-regular fa-star"
           }
           onMouseEnter={() => setHoverStarRating(2)}
           onMouseLeave={() => setHoverStarRating(0)}
-          onClick={() => setStarRating(2)}
-        ></i>
+          onClick={() => setStarRating(2)}></i>
         <i
           className={
             displayStarRating >= 3 ? "fa-solid fa-star" : "fa-regular fa-star"
           }
           onMouseEnter={() => setHoverStarRating(3)}
           onMouseLeave={() => setHoverStarRating(0)}
-          onClick={() => setStarRating(3)}
-        ></i>
+          onClick={() => setStarRating(3)}></i>
         <i
           className={
             displayStarRating >= 4 ? "fa-solid fa-star" : "fa-regular fa-star"
           }
           onMouseEnter={() => setHoverStarRating(4)}
           onMouseLeave={() => setHoverStarRating(0)}
-          onClick={() => setStarRating(4)}
-        ></i>
+          onClick={() => setStarRating(4)}></i>
         <i
           className={
             displayStarRating >= 5 ? "fa-solid fa-star" : "fa-regular fa-star"
           }
           onMouseEnter={() => setHoverStarRating(5)}
           onMouseLeave={() => setHoverStarRating(0)}
-          onClick={() => setStarRating(5)}
-        ></i>
+          onClick={() => setStarRating(5)}></i>
       </div>
-      <button>Submit Review</button>
+      <button type="submit" onClick={handleSubmit}>
+        Submit Review
+      </button>
     </form>
   );
 }

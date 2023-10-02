@@ -43,28 +43,27 @@ export const getAllReviewsThunk = (spotId) => async (dispatch) => {
 export const createNewReviewThunk = (review, spotId) => async (dispatch) => {
   // console.log("before csrfFetch");
   let res;
-  try {
-    res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(review),
-    });
-    if (res.ok) {
-      // console.log("res for new review", res);
-      const newReview = await res.json();
-      dispatch(createNewReviewActionCreator(review));
-      dispatch(getSingleSpotThunk(review));
-      return newReview;
-    }
-  } catch (e) {
-    return await e.json();
+  res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(review),
+  });
+  if (res.ok) {
+    // console.log("res for new review", res);
+    const newReview = await res.json();
+    dispatch(createNewReviewActionCreator(review));
+    // dispatch(getSingleSpotThunk(review));
+    return newReview;
+  } else {
+    const errors = await res.json();
+    return errors;
   }
 };
 
 export const deleteReviewThunk = (review, spot) => async (dispatch) => {
   let res;
   try {
-    res = await csrfFetch(`/api/spots/${spot.id}`, {
+    res = await csrfFetch(`/api/reviews/${review.id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
