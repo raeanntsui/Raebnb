@@ -54,11 +54,6 @@ module.exports = {
         },
         {
           spotId: 5,
-          url: "https://img.zumpercdn.com/489504409/1280x960?dpr=1&fit=crop&h=542&q=76&w=991",
-          preview: true,
-        },
-        {
-          spotId: 5,
           url: "https://a0.muscache.com/im/pictures/950b5439-cce6-41db-bef6-463e6855fa4f.jpg?im_w=1200",
           preview: true,
         },
@@ -90,7 +85,7 @@ module.exports = {
         {
           spotId: 6,
           url: "https://a0.muscache.com/im/pictures/950b5439-cce6-41db-bef6-463e6855fa4f.jpg?im_w=1200",
-          preview: true,
+          preview: false,
         },
         {
           spotId: 6,
@@ -105,11 +100,6 @@ module.exports = {
         {
           spotId: 6,
           url: "https://a0.muscache.com/im/pictures/88186409-9534-4d5b-a43d-ccdcb95eebde.jpg?im_w=1200",
-          preview: false,
-        },
-        {
-          spotId: 6,
-          url: "https://a0.muscache.com/im/pictures/edc00a90-3053-410b-aeec-cbda0877647d.jpg?im_w=1200",
           preview: false,
         },
         {
@@ -120,7 +110,7 @@ module.exports = {
         {
           spotId: 7,
           url: "https://a0.muscache.com/im/pictures/950b5439-cce6-41db-bef6-463e6855fa4f.jpg?im_w=1200",
-          preview: true,
+          preview: false,
         },
         {
           spotId: 7,
@@ -135,21 +125,11 @@ module.exports = {
         {
           spotId: 7,
           url: "https://a0.muscache.com/im/pictures/88186409-9534-4d5b-a43d-ccdcb95eebde.jpg?im_w=1200",
-          preview: false,
-        },
-        {
-          spotId: 7,
-          url: "https://a0.muscache.com/im/pictures/edc00a90-3053-410b-aeec-cbda0877647d.jpg?im_w=1200",
           preview: false,
         },
         {
           spotId: 8,
           url: "https://img.zumpercdn.com/489504409/1280x960?dpr=1&fit=crop&h=542&q=76&w=991",
-          preview: true,
-        },
-        {
-          spotId: 8,
-          url: "https://a0.muscache.com/im/pictures/950b5439-cce6-41db-bef6-463e6855fa4f.jpg?im_w=1200",
           preview: true,
         },
         {
