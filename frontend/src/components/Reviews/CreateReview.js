@@ -57,7 +57,7 @@ function NewReviewModal({ spot }) {
               Post Your Review
             </button>
           </>
-        ) : // <OpenModalButton
+        ) : // <OpenModalButton id="nothing"
         //   buttonText="Post Your Review"
         //   modalComponent={<PostReviewModalContent spot={spot} />}
         // />
