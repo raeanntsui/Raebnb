@@ -60,7 +60,7 @@ module.exports = {
           name: "Avalon 2",
           description:
             "Welcome to Avalon 2 in the popular community of River District.",
-          price: 100.0,
+          price: 900.0,
         },
         {
           ownerId: 4,
@@ -71,7 +71,47 @@ module.exports = {
           lat: 39.37306,
           lng: -84.5399,
           name: "Park Lane",
-          description: "Welcome to Park Lane!",
+          description:
+            "Situated on the peninsula with proximity to San Francisco and Silicon Valley, Borelle at One 90 in San Mateo features new construction, 2-story single family homes with Life Tested floor plans, smart home features, modern architecture and energy-efficient construction. This new home community is conveniently located near major Bay Area employers along with daily, local conveniences.",
+          price: 1150.0,
+        },
+        {
+          ownerId: 4,
+          address: "298 Waters Park Circle #101",
+          city: "Vancouver",
+          state: "BC",
+          country: "Canada",
+          lat: 39.37306,
+          lng: -84.5399,
+          name: "Park Lane",
+          description:
+            "Situated on the peninsula with proximity to San Francisco and Silicon Valley, Borelle at One 90 in San Mateo features new construction, 2-story single family homes with Life Tested floor plans, smart home features, modern architecture and energy-efficient construction. This new home community is conveniently located near major Bay Area employers along with daily, local conveniences.",
+          price: 450.0,
+        },
+        {
+          ownerId: 4,
+          address: "238 Berry Lane",
+          city: "Vancouver",
+          state: "BC",
+          country: "Canada",
+          lat: 39.37306,
+          lng: -84.5399,
+          name: "Park Lane",
+          description:
+            "Situated on the peninsula with proximity to San Francisco and Silicon Valley, Borelle at One 90 in San Mateo features new construction, 2-story single family homes with Life Tested floor plans, smart home features, modern architecture and energy-efficient construction. This new home community is conveniently located near major Bay Area employers along with daily, local conveniences.",
+          price: 250.0,
+        },
+        {
+          ownerId: 4,
+          address: "100 Circle Drive",
+          city: "Vancouver",
+          state: "BC",
+          country: "Canada",
+          lat: 39.37306,
+          lng: -84.5399,
+          name: "Park Lane",
+          description:
+            "Situated on the peninsula with proximity to San Francisco and Silicon Valley, Borelle at One 90 in San Mateo features new construction, 2-story single family homes with Life Tested floor plans, smart home features, modern architecture and energy-efficient construction. This new home community is conveniently located near major Bay Area employers along with daily, local conveniences.",
           price: 150.0,
         },
       ],

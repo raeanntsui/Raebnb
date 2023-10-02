@@ -9,7 +9,7 @@ import NewReviewModal from "../Reviews/CreateReview";
 function ShowSingleSpotDetails() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  console.log("sessionUser.id", sessionUser.id);
+  // console.log("sessionUser.id", sessionUser.id);
   const spot = useSelector((state) => state.spots.singleSpot);
   const allReviewsObject = useSelector((state) => state.reviews.spot);
   const userReviewArray = Object.values(allReviewsObject);
@@ -51,13 +51,13 @@ function ShowSingleSpotDetails() {
           <div id="cityStateCountry">
             {spot.city}, {spot.state}, {spot.country}
           </div>
-          {/* <div id="all-images">
-          {spot.SpotImages &&
-            spot.SpotImages.map((image) => (
-              <img src={image.url} key={image.id} />
-            ))}
-        </div> */}
-          <div id="spot-images-container">
+          <div id="all-images">
+            {spot.SpotImages &&
+              spot.SpotImages.map((image) => (
+                <img src={image.url} key={image.id} />
+              ))}
+          </div>
+          {/* <div id="spot-images-container">
             {spot.SpotImages && spot.SpotImages.length > 0 && (
               <div id="first-image">
                 <img src={spot.SpotImages[0].url} alt={`Main Image`} />
@@ -69,7 +69,7 @@ function ShowSingleSpotDetails() {
                   <img src={image.url} key={image.id} alt={`Other Images`} />
                 ))}
             </div>
-          </div>
+          </div> */}
           <div id="mid-section-container">
             <div id="hosted-by">
               <p>

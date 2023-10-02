@@ -38,6 +38,18 @@ module.exports = {
           stars: 3,
         },
         {
+          spotId: 2,
+          userId: 3,
+          review: "I love this place we would stay again.",
+          stars: 3,
+        },
+        {
+          spotId: 2,
+          userId: 4,
+          review: "I didn't like this place at all.",
+          stars: 1,
+        },
+        {
           spotId: 3,
           userId: 1,
           review: "This place is good.",
@@ -47,6 +59,13 @@ module.exports = {
           spotId: 4,
           userId: 2,
           review: "This place is fantastic.",
+          stars: 5,
+        },
+        {
+          spotId: 1,
+          userId: 5,
+          review:
+            "Stayed at Best Western Sheepshead Bay. Ver scenic. Felt safe. Employees very helpful and kind. Shahedur Rahman at front desk was extremely kind and patient. He made us feel at home.",
           stars: 5,
         },
       ],
