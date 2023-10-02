@@ -10,10 +10,10 @@ import OpenModalButton from "../OpenModalButton";
 function NewReviewModal({ spot }) {
   const dispatch = useDispatch();
   const { setModalContent, setOnModalClose } = useModal();
-
+  // console.log("spot kasjdlakjdsakldja", spot);
   //! current session user
   const currentSessionUser = useSelector((state) => state.session.user);
-  console.log("currentSessionUser (session.user)", currentSessionUser);
+  // console.log("currentSessionUser (session.user)", currentSessionUser);
 
   //! current spot's details
   const currentSpotDetails = useSelector((state) => state.spots.singleSpot);
@@ -47,13 +47,16 @@ function NewReviewModal({ spot }) {
         {currentSessionUser?.id &&
         currentSessionUser?.id !== currentSpotDetails?.Owner?.id &&
         !filteredReview ? (
-          <button
-            onClick={() => {
-              setModalContent(<PostReviewModalContent spot={spot} />);
-            }}
-            type="submit">
-            Post Your Review
-          </button>
+          <>
+            <h2>Be the first to post a review</h2>
+            <button
+              onClick={() => {
+                setModalContent(<PostReviewModalContent spot={spot} />);
+              }}
+              type="submit">
+              Post Your Review
+            </button>
+          </>
         ) : // <OpenModalButton
         //   buttonText="Post Your Review"
         //   modalComponent={<PostReviewModalContent spot={spot} />}

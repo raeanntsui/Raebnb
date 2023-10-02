@@ -112,7 +112,11 @@ export default function PostReviewModalContent({ spot }) {
           onClick={() => setStarRating(5)}></i>
       </div>
       <div id="stars2">Stars</div>
-      <button type="submit" onClick={handleSubmit}>
+      <button
+        disabled={!starRating}
+        id="submit-review-button"
+        type="submit"
+        onClick={handleSubmit}>
         Submit Review
       </button>
     </form>
