@@ -43,6 +43,8 @@ function ShowSingleSpotDetails() {
     alert("Feature coming soon");
   };
 
+  let counter = 1;
+
   return (
     <>
       <div id="spot-details-container">
@@ -54,7 +56,11 @@ function ShowSingleSpotDetails() {
           <div id="all-images">
             {spot.SpotImages &&
               spot.SpotImages.map((image) => (
-                <img src={image.url} key={image.id} />
+                <img
+                  src={image.url}
+                  key={image.id}
+                  className={`image${counter++}`}
+                />
               ))}
           </div>
           {/* <div id="spot-images-container">
