@@ -8,37 +8,52 @@ import "./GetAllSpots.css";
 // show all spots on landing page
 function ShowAllSpots() {
   // dispatch needed to change the state of app via component (ShowAllSpots)
+
   const dispatch = useDispatch();
 
-  const selectAllSpots = useSelector((state) => state.spots.allSpots);
+  const spots = useSelector((state) => state.spots.allSpots);
 
-  console.log("*******selectAllSpots", selectAllSpots);
-
-  // store selectAllSpots (an object) as an array
-  const allSpots = Object.values(selectAllSpots);
-  console.log("allSpots", allSpots);
-
+  const allSpots = Object.values(spots);
+  // console.log("allSpots", allSpots);
   useEffect(() => {
-    // dispatch to trigger retrieval of data when the ShowAllSpots mounts
-    // getAllSpotsThunk will fetch data from /api/spots
     dispatch(getAllSpotsThunk());
-    // run this useEffect if dispatch changes (which should only change one time)
   }, [dispatch]);
 
+  if (!allSpots || !allSpots.length) {
+    dispatch(getAllSpotsThunk());
+    return null;
+  }
   return (
     <>
-      <div>
+      <div id="main-spots-div">
         {allSpots.map((spot) => (
-          <div key={spot.id}>
-            <img src={spot.previewImage} alt={spot.name} />
-            <p>
-              {spot.city}, {spot.state}
-            </p>
-            <p>${spot.price} night</p>
-            <p>
-              <i class="fa-solid fa-star"></i> {spot.avgRating}
-            </p>
-          </div>
+          <NavLink
+            key={spot.id}
+            to={`/spots/${spot.id}`}
+            id="get-all-spots-nav-link"
+          >
+            <div id="test-div">
+              <img
+                src={spot.previewImage}
+                alt={spot.name}
+                id="landing-page-image"
+              />
+              <div id="landing-page-spot-info-div">
+                <div id="landing-page-spot-info">
+                  <p>
+                    {spot.city}, {spot.state}
+                  </p>
+                  <p id="bold-p">${spot.price} night</p>
+                </div>
+                <div id="landing-page-star-rating">
+                  <i className="fa-solid fa-star"></i>{" "}
+                  {!spot.avgRating || isNaN(spot.avgRating)
+                    ? `New`
+                    : parseFloat(spot.avgRating).toFixed(2)}
+                </div>
+              </div>
+            </div>
+          </NavLink>
         ))}
       </div>
     </>

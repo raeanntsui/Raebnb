@@ -14,8 +14,28 @@ module.exports = {
       [
         {
           spotId: 1,
-          url: "https://media.istockphoto.com/id/524085051/photo/beautiful-exterior-of-new-luxury-home-at-twilight.jpg?s=612x612&w=0&k=20&c=wPqEpJkL22wE3NHSCgdWXq2FC8a-KvSCpP7XRIZHuOU=",
+          url: "https://a0.muscache.com/im/pictures/950b5439-cce6-41db-bef6-463e6855fa4f.jpg?im_w=1200",
           preview: true,
+        },
+        {
+          spotId: 1,
+          url: "https://a0.muscache.com/im/pictures/885532ba-9b34-4a34-a712-82b3a77845d7.jpg?im_w=1200",
+          preview: false,
+        },
+        {
+          spotId: 1,
+          url: "https://a0.muscache.com/im/pictures/05cbf846-320b-4357-b5ba-d0962b1ee3c1.jpg?im_w=1200",
+          preview: false,
+        },
+        {
+          spotId: 1,
+          url: "https://a0.muscache.com/im/pictures/88186409-9534-4d5b-a43d-ccdcb95eebde.jpg?im_w=1200",
+          preview: false,
+        },
+        {
+          spotId: 1,
+          url: "https://a0.muscache.com/im/pictures/edc00a90-3053-410b-aeec-cbda0877647d.jpg?im_w=1200",
+          preview: false,
         },
         {
           spotId: 2,

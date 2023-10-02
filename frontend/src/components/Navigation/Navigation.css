@@ -1,22 +1,31 @@
 .hidden {
   display: none;
+  /* position: relative;
+  display: inline-block; */
 }
 
-#airbnb-with-raebnb {
+#airbnb-with-raebnb-and-signin {
   /* border: red solid 2px; */
+  padding-bottom: 20px;
+  padding-top: 20px;
+  border-bottom: solid 1px lightgrey;
+  /* margin-bottom: 20px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* min-height: 10px; */
   /* height: 50px; */
+  /* border: 4px dashed green; */
 }
 
 #airbnb-logo {
   padding: 0px 5px;
   height: 25px;
+  transform: rotate(180deg);
 }
 
 #home-link {
-  /* border: purple solid 1px; */
+  /* border: orange dashed 4px; */
   align-items: center;
   justify-content: space-between;
   display: flex;
@@ -27,25 +36,106 @@
   font-size: 20px;
 }
 
-button {
+#create-spot-button {
   padding: 10px 10px;
   display: flex;
-  justify-content: space-around;
-  align-items: right;
+  /* justify-content: space-around; */
+  /* align-items: right; */
   background-color: white;
-  border-radius: 25px;
+  border-radius: 8px;
   border: lightgrey 1px solid;
+  text-decoration: none;
 }
 
-button > i {
+#create-spot-button > i {
   padding: 0px 5px;
   color: darkslategrey;
 }
 
-#dropdown {
-  border: blue 1px solid;
-}
-
 menu {
   border: pink solid 2px;
+}
+
+#create-new-spot {
+  text-decoration: none;
+  margin-left: 100px;
+  /* border: 2px dashed orange; */
+}
+
+#create-spot-button {
+  box-shadow: 2px 2px 2px lightgrey;
+  text-decoration: none;
+}
+
+#create-spot-button:active {
+  background-color: lightgrey;
+}
+
+#create-spot-button:hover {
+  background-color: lightgrey;
+}
+
+#right-side-nav {
+  /* display: inline-block; */
+  /* border: 2px solid red; */
+  /* position: relative; */
+  display: flex;
+}
+
+#nav-left-create-spot {
+  float: left;
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
+}
+
+#nav-right-dropdown-menu {
+  float: right;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  padding: 5px 10px;
+  /* width: 200px; */
+  height: auto;
+  /* border: 2px dashed yellowgreen; */
+  text-align: right;
+  /* margin-right: 50px; */
+}
+
+#dropdown-button-w-icons {
+  background-color: white;
+  border: solid 2px black;
+  border-radius: 4px;
+  width: 50px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#dropdown.profile-dropdown {
+  margin-left: -130px;
+  border: grey solid 1px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  box-shadow: 2px 2px 2px black;
+  list-style: none;
+  padding: 10px 10px;
+  z-index: 999;
+  position: fixed;
+}
+
+ul {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+ul li button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logout-button {
+  margin-left: 20px;
 }

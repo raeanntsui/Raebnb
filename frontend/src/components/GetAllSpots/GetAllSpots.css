@@ -1,0 +1,45 @@
+#main-spots-div {
+  display: grid;
+  grid-template-columns: repeat(4, 2fr);
+  margin: 30px 30px;
+  /* height: auto; */
+  /* max-width: 100px; */
+  /* border: black 2px dotted; */
+}
+
+#get-all-spots-nav-link {
+  text-decoration: none;
+  color: black;
+  /* border: purple 2px solid; */
+  /* max-width: 200px; */
+  height: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  max-width: 200px;
+}
+
+#landing-page-image {
+  max-height: 150px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+#landing-page-spot-info > p {
+  margin: 0px;
+  font-size: 12px;
+}
+#landing-page-spot-info {
+  max-width: 200px;
+}
+#landing-page-star-rating {
+  font-size: 12px;
+  /* max-width: 50px; */
+  /* border: 1px dashed green; */
+}
+
+#landing-page-spot-info-div {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-between;
+}

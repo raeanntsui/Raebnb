@@ -44,8 +44,8 @@ function SignupFormModal() {
 
   return (
     <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 id="sign-up-h1">Sign Up</h1>
+      <form id="sign-up-forms" onSubmit={handleSubmit}>
         <label>
           Email
           <input
@@ -106,7 +106,9 @@ function SignupFormModal() {
           />
         </label>
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
+        <button id="sign-up-button" type="submit">
+          Sign Up
+        </button>
       </form>
     </>
   );
