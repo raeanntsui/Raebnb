@@ -93,7 +93,7 @@ function UpdateSpot() {
             reservation.
           </h3>
         </div>
-        <div className="inputs">
+        <div id="inputs-one">
           <label>
             Country
             <input
@@ -112,8 +112,7 @@ function UpdateSpot() {
               type="text"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              placeholder="Street Address"
-            ></input>
+              placeholder="Street Address"></input>
           </label>
           {submit && validationErrors.address && (
             <p>{validationErrors.address}</p>
@@ -125,8 +124,7 @@ function UpdateSpot() {
                 type="text"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                placeholder="City"
-              ></input>
+                placeholder="City"></input>
             </label>
             {submit && validationErrors.city && <p>{validationErrors.city}</p>}
             <label>
@@ -135,8 +133,7 @@ function UpdateSpot() {
                 type="text"
                 value={state}
                 onChange={(e) => setState(e.target.value)}
-                placeholder="State"
-              ></input>
+                placeholder="State"></input>
             </label>
             {submit && validationErrors.state && (
               <p>{validationErrors.state}</p>
@@ -144,57 +141,56 @@ function UpdateSpot() {
           </div>
         </div>
 
-        <div className="titles">
+        <div id="update-describe">
           <h2>Describe your place to guests.</h2>
           <h3>
             Mention the best features of your space, any special amenities like
             fast wifi or parking, and what you love about the neighborhood.
           </h3>
-        </div>
-        <div className="inputs">
-          <textarea
-            className="textarea-box"
-            value={description}
-            placeholder="Please write at least 30 characters"
-            onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
+          <div>
+            <textarea
+              className="textarea-box"
+              value={description}
+              placeholder="Please write at least 30 characters"
+              onChange={(e) => setDescription(e.target.value)}></textarea>
+          </div>
         </div>
         {submit && validationErrors.description && (
           <p>{validationErrors.description}</p>
         )}
-        <div className="titles">
+        <div id="update-titles">
           <h2>Create a title for your spot</h2>
           <h3>
             Catch guests' attention with a spot title that highlights what makes
             your place special.
           </h3>
-        </div>
-        <div className="inputs">
-          <input
-            type="text"
-            value={title}
-            placeholder="Name of your spot"
-            onChange={(e) => setTitle(e.target.value)}
-          ></input>
+          <div>
+            <input
+              type="text"
+              value={title}
+              placeholder="Name of your spot"
+              onChange={(e) => setTitle(e.target.value)}></input>
+          </div>
         </div>
         {submit && validationErrors.title && <p>{validationErrors.title}</p>}
-        <div className="titles">
+        <div id="update-price">
           <h2>Set a base price for your spot</h2>
           <h3>
             Competitive pricing can help your listing stand out and rank higher
             in search results
           </h3>
-        </div>
-        <div className="inputs">
-          <input
-            type="number"
-            value={price}
-            placeholder="Price per night (USD)"
-            onChange={(e) => setPrice(e.target.value)}
-          ></input>
+          <div>
+            <input
+              type="number"
+              value={price}
+              placeholder="Price per night (USD)"
+              onChange={(e) => setPrice(e.target.value)}></input>
+          </div>
         </div>
         {submit && validationErrors.price && <p>{validationErrors.price}</p>}
-        <button type="submit">Update your Spot</button>
+        <button id="update-spot-button" type="submit">
+          Update your Spot
+        </button>
       </form>
     </div>
   );
