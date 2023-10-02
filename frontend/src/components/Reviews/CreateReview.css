@@ -1,4 +1,10 @@
-#stars {
+#stars1 {
+  display: flex;
+  /* border: 2px solid red; */
+  /* align-items: center; */
+  justify-content: center;
+}
+#stars2 {
   display: flex;
   /* border: 2px solid red; */
   /* align-items: center; */
@@ -9,4 +15,10 @@ textarea {
   /* border: 2px solid green; */
   width: 97.5%;
   justify-content: center;
+}
+
+#submit-review-button {
+  display: flex;
+  margin-left: 380px;
+  /* padding: 10px 10px; */
 }

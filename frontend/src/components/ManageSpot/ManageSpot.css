@@ -1,12 +1,6 @@
 h1 {
   font-size: 30px;
 }
-#one {
-  border: 2px solid purple;
-}
-#two {
-  border: 2px solid red;
-}
 
 #manage-spot-div-master {
   display: flex;

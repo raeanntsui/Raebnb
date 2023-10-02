@@ -70,11 +70,11 @@ export default function PostReviewModalContent({ spot }) {
     <form onSubmit={handleSubmit}>
       <h1>How was your stay?</h1>
       <textarea
-        placeholder="Leave your review here"
+        placeholder="Leave your review here..."
         value={description}
         onChange={(e) => setDescription(e.target.value)}></textarea>
       <p>{submit && validationErrors.description}</p>
-      <div id="stars">
+      <div id="stars1">
         <i
           className={
             displayStarRating >= 1 ? "fa-solid fa-star" : "fa-regular fa-star"
@@ -111,7 +111,12 @@ export default function PostReviewModalContent({ spot }) {
           onMouseLeave={() => setHoverStarRating(0)}
           onClick={() => setStarRating(5)}></i>
       </div>
-      <button type="submit" onClick={handleSubmit}>
+      <div id="stars2">Stars</div>
+      <button
+        disabled={!starRating}
+        id="submit-review-button"
+        type="submit"
+        onClick={handleSubmit}>
         Submit Review
       </button>
     </form>

@@ -30,13 +30,13 @@ function ShowAllSpots() {
           <NavLink
             key={spot.id}
             to={`/spots/${spot.id}`}
-            id="get-all-spots-nav-link"
-          >
+            id="get-all-spots-nav-link">
             <div id="test-div">
               <img
                 src={spot.previewImage}
                 alt={spot.name}
                 id="landing-page-image"
+                title={spot.name}
               />
               <div id="landing-page-spot-info-div">
                 <div id="landing-page-spot-info">
