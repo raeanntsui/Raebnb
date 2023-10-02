@@ -1,4 +1,10 @@
-#stars {
+#stars1 {
+  display: flex;
+  /* border: 2px solid red; */
+  /* align-items: center; */
+  justify-content: center;
+}
+#stars2 {
   display: flex;
   /* border: 2px solid red; */
   /* align-items: center; */

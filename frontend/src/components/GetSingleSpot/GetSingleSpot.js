@@ -136,10 +136,14 @@ function ShowSingleSpotDetails() {
 
         <div id="reviews">
           <div>
-            {spot.numReviews === 0 ? (
+            {sessionUser && spot.numReviews === 0 ? (
               <>
                 <h3>Be the first to post a review</h3>
-                <div>{/* <NewReviewModal spot={spot} /> */}</div>
+                <div>
+                  <button onClick={<NewReviewModal spot={spot} />}>
+                    Post a review
+                  </button>
+                </div>
               </>
             ) : (
               <div>
