@@ -171,8 +171,7 @@ function NewSpot() {
               type="text"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              placeholder="Street Address"
-            ></input>
+              placeholder="Street Address"></input>
           </label>
           {submit && validationErrors.address && (
             <p>{validationErrors.address}</p>
@@ -184,18 +183,17 @@ function NewSpot() {
                 type="text"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                placeholder="City"
-              ></input>
+                placeholder="City"></input>
             </label>
             {submit && validationErrors.city && <p>{validationErrors.city}</p>}
+
             <label>
               State
               <input
                 type="text"
                 value={state}
                 onChange={(e) => setState(e.target.value)}
-                placeholder="State"
-              ></input>
+                placeholder="State"></input>
             </label>
             {submit && validationErrors.state && (
               <p>{validationErrors.state}</p>
@@ -215,8 +213,7 @@ function NewSpot() {
             className="textarea-box"
             value={description}
             placeholder="Please write at least 30 characters"
-            onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
+            onChange={(e) => setDescription(e.target.value)}></textarea>
         </div>
         {submit && validationErrors.description && (
           <p>{validationErrors.description}</p>
@@ -233,8 +230,7 @@ function NewSpot() {
             type="text"
             value={title}
             placeholder="Name of your spot"
-            onChange={(e) => setTitle(e.target.value)}
-          ></input>
+            onChange={(e) => setTitle(e.target.value)}></input>
         </div>
         {submit && validationErrors.title && <p>{validationErrors.title}</p>}
         <div className="titles">
@@ -249,8 +245,7 @@ function NewSpot() {
             type="number"
             value={price}
             placeholder="Price per night (USD)"
-            onChange={(e) => setPrice(e.target.value)}
-          ></input>
+            onChange={(e) => setPrice(e.target.value)}></input>
         </div>
         {submit && validationErrors.price && <p>{validationErrors.price}</p>}
         <div className="titles">
@@ -262,8 +257,7 @@ function NewSpot() {
             type="text"
             value={previewImage}
             placeholder="Preview Image URL"
-            onChange={(e) => setPreviewImage(e.target.value)}
-          ></input>
+            onChange={(e) => setPreviewImage(e.target.value)}></input>
           {submit && validationErrors.previewImage && (
             <p>{validationErrors.previewImage}</p>
           )}
@@ -271,8 +265,7 @@ function NewSpot() {
             type="text"
             value={firstImageURL}
             placeholder="Image URL"
-            onChange={(e) => setFirstImageURL(e.target.value)}
-          ></input>
+            onChange={(e) => setFirstImageURL(e.target.value)}></input>
           {submit && validationErrors.firstImageURL && (
             <p>{validationErrors.firstImageURL}</p>
           )}
@@ -280,8 +273,7 @@ function NewSpot() {
             type="text"
             value={secondImageURL}
             placeholder="Image URL"
-            onChange={(e) => setSecondImageURL(e.target.value)}
-          ></input>
+            onChange={(e) => setSecondImageURL(e.target.value)}></input>
           {submit && validationErrors.secondImageURL && (
             <p>{validationErrors.secondImageURL}</p>
           )}
@@ -289,8 +281,7 @@ function NewSpot() {
             type="text"
             value={thirdImageURL}
             placeholder="Image URL"
-            onChange={(e) => setThirdImageURL(e.target.value)}
-          ></input>
+            onChange={(e) => setThirdImageURL(e.target.value)}></input>
           {submit && validationErrors.thirdImageURL && (
             <p>{validationErrors.thirdImageURL}</p>
           )}
@@ -298,8 +289,7 @@ function NewSpot() {
             type="text"
             value={fourthImageURL}
             placeholder="Image URL"
-            onChange={(e) => setFourthImageURL(e.target.value)}
-          ></input>
+            onChange={(e) => setFourthImageURL(e.target.value)}></input>
           {submit && validationErrors.fourthImageURL && (
             <p>{validationErrors.fourthImageURL}</p>
           )}

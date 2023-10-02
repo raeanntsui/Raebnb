@@ -32,18 +32,18 @@
   font-size: 20px;
 }
 
-button {
+#create-spot-button {
   padding: 10px 10px;
   display: flex;
-  justify-content: space-around;
-  align-items: right;
+  /* justify-content: space-around; */
+  /* align-items: right; */
   background-color: white;
-  border-radius: 25px;
+  border-radius: 8px;
   border: lightgrey 1px solid;
   text-decoration: none;
 }
 
-button > i {
+#create-spot-button > i {
   padding: 0px 5px;
   color: darkslategrey;
 }

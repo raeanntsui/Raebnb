@@ -6,6 +6,10 @@ import "./UpdateSpot.css";
 
 function UpdateSpot() {
   const currentSpot = useSelector((state) => state.spots.singleSpot);
+  console.log(
+    "🚀 ~ file: UpdateSpot.js:9 ~ UpdateSpot ~ currentSpot:",
+    currentSpot
+  );
 
   const { spotId } = useParams();
   const [validationErrors, setValidationErrors] = useState({});

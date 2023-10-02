@@ -14,7 +14,7 @@ form > p {
 }
 
 .titles {
-  border: 2px red solid;
+  /* border: 2px red solid; */
   flex-direction: row;
   /* border-bottom: 2px solid black; */
 }

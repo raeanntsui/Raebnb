@@ -48,7 +48,7 @@ const updateSpotActionCreator = (spot) => {
   };
 };
 
-const deleteReviewActionCreator = (spotId) => {
+const deleteSpotActionCreator = (spotId) => {
   return {
     type: DELETE_SPOT,
     spotId,
@@ -141,7 +141,7 @@ export const deleteSpotThunk = (spotId) => async (dispatch) => {
       headers: { "Content-Type": "application/json" },
     });
     if (res.ok) {
-      dispatch(deleteReviewActionCreator(spotId));
+      dispatch(deleteSpotActionCreator(spotId));
     }
   } catch (e) {
     return await e.json();
