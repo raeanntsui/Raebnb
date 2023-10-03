@@ -4,11 +4,12 @@
   display: inline-block; */
 }
 
-#airbnb-with-raebnb-and-signin {
-  /* border: red solid 2px; */
-  padding-bottom: 20px;
-  padding-top: 20px;
-  border-bottom: solid 1px lightgrey;
+#header-nav-bar-container {
+  border: red dashed 3px;
+  padding: 10px 0px;
+  /* padding-bottom: 20px; */
+  /* padding-top: 20px; */
+  /* border-bottom: solid 1px lightgrey; */
   /* margin-bottom: 20px; */
   display: flex;
   justify-content: space-between;
@@ -18,7 +19,7 @@
   /* border: 4px dashed green; */
 }
 
-#airbnb-logo {
+#raebnb-logo {
   padding: 0px 5px;
   height: 25px;
   transform: rotate(180deg);
@@ -36,73 +37,78 @@
   font-size: 20px;
 }
 
-#create-spot-button {
-  padding: 10px 10px;
-  display: flex;
-  /* justify-content: space-around; */
-  /* align-items: right; */
-  background-color: white;
-  border-radius: 8px;
-  border: lightgrey 1px solid;
-  text-decoration: none;
-}
-
-#create-spot-button > i {
-  padding: 0px 5px;
-  color: darkslategrey;
-}
-
-menu {
-  border: pink solid 2px;
-}
-
-#create-new-spot {
-  text-decoration: none;
-  margin-left: 100px;
-  /* border: 2px dashed orange; */
-}
-
-#create-spot-button {
-  box-shadow: 2px 2px 2px lightgrey;
-  text-decoration: none;
-}
-
-#create-spot-button:active {
-  background-color: lightgrey;
-}
-
-#create-spot-button:hover {
-  background-color: lightgrey;
-}
-
 #right-side-nav {
   /* display: inline-block; */
-  /* border: 2px solid red; */
+  border: 2px solid blue;
   /* position: relative; */
   display: flex;
 }
 
-#nav-left-create-spot {
-  float: left;
-  padding: 0px 10px;
-  display: flex;
-  align-items: center;
+#right-side-nav-create-spot-button {
+  border: 2px dashed turquoise;
 }
 
+/* #create-spot-button { */
+/* padding: 10px 10px; */
+/* display: flex; */
+/* justify-content: space-around; */
+/* align-items: right; */
+/* background-color: white; */
+/* border-radius: 8px; */
+/* border: lightgrey 1px solid; */
+/* text-decoration: none; */
+/* } */
+
+/* #create-spot-button > i { */
+/* padding: 0px 5px; */
+/* color: darkslategrey; */
+/* } */
+
+/* menu { */
+/* border: pink solid 2px; */
+/* } */
+
+/* #create-new-spot { */
+/* text-decoration: none; */
+/* margin-left: 100px; */
+/* border: 2px dashed orange; */
+/* } */
+
+/* #create-spot-button { */
+/* box-shadow: 2px 2px 2px lightgrey; */
+/* text-decoration: none; */
+/* } */
+
+/* #create-spot-button:active { */
+/* background-color: lightgrey; */
+/* } */
+
+/* #create-spot-button:hover { */
+/* background-color: lightgrey; */
+/* } */
+
+/* #nav-left-create-spot { */
+/* float: left; */
+/* padding: 0px 10px; */
+/* display: flex; */
+/* align-items: center; */
+/* } */
+
+/* 
 #nav-right-dropdown-menu {
   float: right;
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
   padding: 5px 10px;
-  /* width: 200px; */
   height: auto;
-  /* border: 2px dashed yellowgreen; */
-  text-align: right;
-  /* margin-right: 50px; */
-}
+  text-align: right; */
+/* border: 2px dashed yellowgreen; */
+/* width: 200px; */
+/* display: flex; */
+/* justify-content: center; */
+/* align-items: center; */
+/* margin-right: 50px; */
+/* } */
 
-#dropdown-button-w-icons {
+/* #dropdown-button-w-icons {
   background-color: white;
   border: solid 1px lightgrey;
   box-shadow: 2px 2px 2px lightgrey;
@@ -112,13 +118,13 @@ menu {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-}
+} */
 
-#dropdown-button-w-icons:hover {
+/* #dropdown-button-w-icons:hover {
   background-color: lightgrey;
-}
+} */
 
-#dropdown.profile-dropdown {
+/* #dropdown.profile-dropdown {
   margin-left: -30px;
   border: grey solid 1px;
   background-color: rgb(255, 255, 255);
@@ -128,22 +134,22 @@ menu {
   padding: 10px 10px;
   z-index: 999;
   position: fixed;
-}
+} */
 
-ul {
+/* ul {
   display: flex;
   align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
-}
+} */
 
-ul li button {
+/* ul li button {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-decoration: none;
-}
+} */
 
-.logout-button {
+/* .logout-button {
   margin-left: 20px;
-}
+} */

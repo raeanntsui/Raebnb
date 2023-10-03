@@ -9,24 +9,23 @@ import NewSpot from "../CreateANewSpot/CreateANewSpot";
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
   return (
-    <div id="airbnb-with-raebnb-and-signin">
-      <NavLink exact to="/" id="home-link">
+    <div id="header-nav-bar-container">
+      <NavLink to="/" id="home-link">
         <img
-          id="airbnb-logo"
+          id="raebnb-logo"
           src="https://cdn.usbrandcolors.com/images/logos/airbnb-logo.svg"
-          height="30"
         />
         raebnb
       </NavLink>
       <div id="right-side-nav">
-        <div id="nav-left-create-spot">
+        <div id="right-side-nav-create-spot-button">
           <NavLink exact to="/spots/new" id="create-new-spot">
             {sessionUser && (
               <button id="create-spot-button">Create a New Spot</button>
             )}
           </NavLink>
         </div>
-        <div id="nav-right-dropdown-menu">
+        <div id="right-side-nav-profile-button">
           {isLoaded && <ProfileButton user={sessionUser} />}
         </div>
       </div>
