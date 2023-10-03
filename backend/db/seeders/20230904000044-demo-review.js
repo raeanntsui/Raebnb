@@ -21,8 +21,9 @@ module.exports = {
         {
           spotId: 1,
           userId: 2,
-          review: "Nothing worth noting.",
-          stars: 3,
+          review:
+            "Outstanding location, extremely clean and comfortable. Would love to return!",
+          stars: 4,
         },
         {
           spotId: 1,
@@ -34,37 +35,42 @@ module.exports = {
         {
           spotId: 2,
           userId: 1,
-          review: "This place is ok.",
-          stars: 3,
+          review:
+            "Edina and her family are lovely!! If we got the chance, we'd definitely come back again. Thanks for having us!",
+          stars: 5,
         },
         {
           spotId: 2,
           userId: 3,
-          review: "I love this place we would stay again.",
-          stars: 3,
+          review:
+            "Perfect for what we were looking for as you can easily walk to Ambleside.",
+          stars: 5,
         },
         {
           spotId: 2,
           userId: 4,
-          review: "I didn't like this place at all.",
-          stars: 1,
+          review:
+            "We had a wonderful stay and it truly felt like home after only a few days.",
+          stars: 4,
         },
         {
           spotId: 3,
           userId: 1,
-          review: "This place is good.",
+          review:
+            "The house was clean and spacious and had everything we need.",
           stars: 4,
         },
         {
           spotId: 4,
           userId: 2,
-          review: "This place is fantastic.",
+          review:
+            "Nice, clean place, very close to market for easy access. Good communication.",
           stars: 5,
         },
         {
           spotId: 1,
           userId: 5,
-          review: "Stayed at Best Western Sheepshead Bay. Very scenic.",
+          review: "Thank you for letting us stay in your place! Lovely place!",
           stars: 5,
         },
       ],
