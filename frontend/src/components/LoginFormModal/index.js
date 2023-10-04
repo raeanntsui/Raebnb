@@ -40,34 +40,45 @@ function LoginFormModal() {
       });
   };
 
-  // const
   return (
     <>
-      <h1>Log In</h1>
+      <h1 id="h1-form">Log In</h1>
       <form onSubmit={handleSubmit}>
-        <label>
-          Username or Email
-          <input
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.credential && <p>{errors.credential}</p>}
-        <button type="submit">Log In</button>
-        <button type="submit" onClick={loginDemoUser}>
-          Log in as Demo User
-        </button>
+        <div id="inputs-information">
+          <label>
+            Username or Email
+            <input
+              type="text"
+              value={credential}
+              onChange={(e) => setCredential(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div id="inputs-information">
+          <label>
+            Password
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+          {errors.credential && <p id="p-error">{errors.credential}</p>}
+        </div>
+        <div id="modal-buttons">
+          <button id="login-button" disabled={!credential} type="submit">
+            Log In
+          </button>
+          <button
+            id="submit-button"
+            disabled={!password}
+            type="submit"
+            onClick={loginDemoUser}>
+            Log in as Demo User
+          </button>
+        </div>
       </form>
     </>
   );

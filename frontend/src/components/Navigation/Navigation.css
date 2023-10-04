@@ -17,6 +17,17 @@
   right: 18%;
 }
 
+/* create new spot button */
+#create-new-spot {
+  text-decoration: none;
+  transition: 0.05s ease;
+}
+
+#create-spot-button:active {
+  transform: scale(0.9);
+  /* background-color: lightgreen; */
+}
+
 /* Navigation */
 
 #header-nav-bar-container {

@@ -25,6 +25,11 @@ p {
   color: black;
 }
 
+#p-error {
+  color: red;
+  padding: 3px 0px;
+}
+
 .p2 {
   color: #717171;
 }
@@ -41,4 +46,26 @@ button {
   justify-content: center;
   align-items: center;
   /* border: dotted rgb(16, 227, 16) 3px; */
+}
+
+/* Modal Input Information */
+#inputs-information {
+  padding-top: 0px;
+  padding-bottom: 15px;
+}
+
+#h1-form {
+  text-align: center;
+  padding: 10px 0px;
+}
+
+#modal-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0px;
+}
+
+#modal-content {
+  padding: 10px 10px;
 }

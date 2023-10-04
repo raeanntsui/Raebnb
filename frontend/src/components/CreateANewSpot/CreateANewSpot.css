@@ -32,11 +32,6 @@ form > p {
   /* border-bottom: grey 3px solid; */
 }
 
-#inputs-information {
-  padding-top: 0px;
-  padding-bottom: 15px;
-}
-
 input {
   width: 100%;
   margin: auto;
