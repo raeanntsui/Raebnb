@@ -4,21 +4,33 @@
   display: inline-block; */
 }
 
+.profile-dropdown {
+  /* margin-left: -60px; */
+  border: grey solid 1px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  box-shadow: 3px 3px 3px grey;
+  list-style: none;
+  padding: 10px 10px;
+  z-index: 1;
+  position: absolute;
+  float: right;
+  top: 8%;
+  right: 18%;
+}
+
+#test {
+  background-color: rgb(149, 212, 149);
+}
+
 /* Navigation */
 
 #header-nav-bar-container {
   border: red dashed 3px;
   padding: 10px 0px;
-  /* padding-bottom: 20px; */
-  /* padding-top: 20px; */
-  /* border-bottom: solid 1px lightgrey; */
-  /* margin-bottom: 20px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* min-height: 10px; */
-  /* height: 50px; */
-  /* border: 4px dashed green; */
 }
 
 #raebnb-logo {
@@ -28,7 +40,7 @@
 }
 
 #home-link {
-  /* border: orange dashed 4px; */
+  border: orange dashed 5px;
   align-items: center;
   justify-content: space-between;
   display: flex;
@@ -37,11 +49,14 @@
   text-decoration: none;
   font-weight: bold;
   font-size: 20px;
+  margin-left: 5px;
 }
 
 #right-side-nav {
   /* display: inline-block; */
-  border: 3px solid blue;
+  border: 5px dashed blue;
+  margin-right: 5px;
+  justify-content: start;
   /* position: relative; */
   display: flex;
 }
@@ -62,18 +77,24 @@
 
 /* Profile Buttons */
 #dropdown-button-w-icons {
-  background-color: #ff5a5f;
+  background-color: gray;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 40px;
   width: 70px;
+  transition: 0.05s ease;
+}
+
+#dropdown-button-w-icons:active {
+  transform: scale(0.9);
 }
 
 #bars-icon,
 #person-icon {
   color: white;
 }
+
 /* #create-spot-button { */
 /* padding: 10px 10px; */
 /* display: flex; */
