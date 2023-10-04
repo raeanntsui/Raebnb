@@ -46,19 +46,20 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button id="dropdown-button-w-icons" onClick={openMenu}>
-        <div>
-          <i className="fa-solid fa-bars"></i>
-        </div>
-        <div>
-          <i className="fa-solid fa-user" />
-        </div>
-      </button>
+      <div id="test">
+        <button id="dropdown-button-w-icons" onClick={openMenu}>
+          <div>
+            <i id="bars-icon" className="fa-solid fa-bars"></i>
+          </div>
+          <div>
+            <i id="person-icon" className="fa-solid fa-user" />
+          </div>
+        </button>
+      </div>
 
-      <ul id="dropdown" className={ulClassName} ref={ulRef}>
+      <ul id="dropdown-info" className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
             <li>Hello, {user.firstName}</li>
             <li>{user.email}</li>
             <li>
