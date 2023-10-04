@@ -1,5 +1,22 @@
 #login-button {
-  background-color: rgb(30, 95, 30);
+  background-color: rgb(59, 188, 59);
   color: white;
   border: none;
+}
+
+#demo-submit-button {
+  background-color: green;
+  color: white;
+  transition: 0.05s;
+}
+
+#modal-buttons-up-down {
+  /* border: green 5px dashed; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#btn {
+  padding: 5px;
 }

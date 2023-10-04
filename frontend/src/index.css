@@ -48,6 +48,19 @@ button {
   /* border: dotted rgb(16, 227, 16) 3px; */
 }
 
+#accepted-pressed-button {
+  transition: 0.03s;
+}
+
+#accepted-pressed-button:active {
+  transform: scale(0.9);
+}
+
+#reject-button-shake:active {
+  transform: translateX(6px);
+  background-color: red;
+}
+
 /* Modal Input Information */
 #inputs-information {
   padding-top: 0px;
@@ -59,7 +72,7 @@ button {
   padding: 10px 0px;
 }
 
-#modal-buttons {
+#modal-buttons-left-right {
   display: flex;
   justify-content: center;
   align-items: center;

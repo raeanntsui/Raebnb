@@ -67,17 +67,28 @@ function LoginFormModal() {
           </label>
           {errors.credential && <p id="p-error">{errors.credential}</p>}
         </div>
-        <div id="modal-buttons">
-          <button id="login-button" disabled={!credential} type="submit">
-            Log In
-          </button>
-          <button
-            id="submit-button"
-            disabled={!password}
-            type="submit"
-            onClick={loginDemoUser}>
-            Log in as Demo User
-          </button>
+        <div id="modal-buttons-up-down">
+          <div id="btn">
+            <button
+              id={
+                !credential || !password
+                  ? "reject-button-shake"
+                  : "login-button"
+              }
+              disabled={!credential || !password}
+              type="submit">
+              Log In
+            </button>
+          </div>
+          <div id="btn">
+            <button
+              id="accepted-pressed-button"
+              // disabled={!password}
+              type="submit"
+              onClick={loginDemoUser}>
+              Log in as Demo User
+            </button>
+          </div>
         </div>
       </form>
     </>
