@@ -48,14 +48,14 @@ function ProfileButton({ user }) {
     <>
       <button id="dropdown-button-w-icons" onClick={openMenu}>
         <div>
-          <i className="fa-solid fa-bars"></i>
+          <i id="bars-icon" className="fa-solid fa-bars"></i>
         </div>
         <div>
-          <i className="fa-solid fa-user" />
+          <i id="person-icon" className="fa-solid fa-user" />
         </div>
       </button>
 
-      <ul id="dropdown" className={ulClassName} ref={ulRef}>
+      <ul id="dropdown-info" className={ulClassName} ref={ulRef}>
         {user ? (
           <>
             <li>{user.username}</li>

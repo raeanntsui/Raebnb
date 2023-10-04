@@ -4,6 +4,8 @@
   display: inline-block; */
 }
 
+/* Navigation */
+
 #header-nav-bar-container {
   border: red dashed 3px;
   padding: 10px 0px;
@@ -39,15 +41,39 @@
 
 #right-side-nav {
   /* display: inline-block; */
-  border: 2px solid blue;
+  border: 3px solid blue;
   /* position: relative; */
   display: flex;
 }
 
 #right-side-nav-create-spot-button {
-  border: 2px dashed turquoise;
+  border: 3px dashed red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+#right-side-nav-profile-button {
+  border: 2px solid turquoise;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+/* Profile Buttons */
+#dropdown-button-w-icons {
+  background-color: #ff5a5f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 70px;
+}
+
+#bars-icon,
+#person-icon {
+  color: white;
+}
 /* #create-spot-button { */
 /* padding: 10px 10px; */
 /* display: flex; */

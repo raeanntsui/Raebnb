@@ -32,3 +32,13 @@ p {
 .NavLink {
   text-decoration: none;
 }
+
+button {
+  border-radius: 10px;
+  height: 40px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: dotted rgb(16, 227, 16) 3px;
+}
