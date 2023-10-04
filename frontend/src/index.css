@@ -45,11 +45,13 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 250px;
   /* border: dotted rgb(16, 227, 16) 3px; */
 }
 
 #accepted-pressed-button {
   transition: 0.03s;
+  /* width: 250px; */
 }
 
 #accepted-pressed-button:active {
