@@ -40,5 +40,5 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: dotted rgb(16, 227, 16) 3px;
+  /* border: dotted rgb(16, 227, 16) 3px; */
 }
