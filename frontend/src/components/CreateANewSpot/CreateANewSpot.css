@@ -1,12 +1,17 @@
+#h1-create-new-spot {
+  padding-bottom: 20px;
+}
+
 button:hover {
   background-color: lightgrey;
   text-decoration: none;
 }
 
 #form-container {
-  /* border: green 4px solid; */
-  width: 500px;
+  border: green 5px solid;
+  width: 600px;
   margin: auto;
+  padding: 20px 0px;
 }
 
 form > p {
@@ -14,14 +19,17 @@ form > p {
 }
 
 .titles {
-  /* border: 2px red solid; */
+  /* border: 5px rgb(247, 131, 237) dashed; */
   flex-direction: row;
   /* border-bottom: 2px solid black; */
+  /* padding: 10px 0px; */
 }
 
 .inputs {
-  /* border: 4px blue dotted; */
-  padding-bottom: 20px;
+  /* border: 5px blue dashed; */
+  padding-top: 5px;
+  padding-bottom: 30px;
+  /* border-bottom: grey 3px solid; */
 }
 
 input {
@@ -30,23 +38,25 @@ input {
   background-color: rgb(233, 242, 255);
 }
 
-#form-container > p {
-  /* color: red; */
-  margin: 5px 0px;
+#city-state {
+  /* border: 5px solid green; */
+  margin: 0;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 2fr 1fr;
+  justify-content: space-between;
 }
 
 #city-state > label {
-  display: inline-block;
-  width: fit-content;
+  margin: 0;
+}
+
+.comma {
+  display: flex;
 }
 
 .textarea-box {
   width: 100%;
   height: 150px;
-}
-
-#create-spot-button {
-  background-color: lightgrey;
-  justify-content: center;
-  display: flex;
+  resize: none;
 }

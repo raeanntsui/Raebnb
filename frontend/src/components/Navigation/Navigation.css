@@ -1,12 +1,10 @@
 .hidden {
   display: none;
-  /* position: relative;
-  display: inline-block; */
 }
 
 .profile-dropdown {
   /* margin-left: -60px; */
-  border: grey solid 1px;
+  border: blue solid 1px;
   background-color: rgb(255, 255, 255);
   border-radius: 4px;
   box-shadow: 3px 3px 3px grey;
@@ -17,10 +15,6 @@
   float: right;
   top: 8%;
   right: 18%;
-}
-
-#test {
-  background-color: rgb(149, 212, 149);
 }
 
 /* Navigation */
@@ -35,12 +29,16 @@
 
 #raebnb-logo {
   padding: 0px 5px;
-  height: 25px;
+  height: 35px;
   transform: rotate(180deg);
 }
 
+#raebnb-h1 {
+  color: #ff5a5f;
+}
+
 #home-link {
-  border: orange dashed 5px;
+  /* border: orange dashed 5px; */
   align-items: center;
   justify-content: space-between;
   display: flex;
@@ -53,31 +51,27 @@
 }
 
 #right-side-nav {
-  /* display: inline-block; */
-  border: 5px dashed blue;
+  /* border: 5px dashed blue; */
   margin-right: 5px;
   justify-content: start;
-  /* position: relative; */
   display: flex;
 }
 
 #right-side-nav-create-spot-button {
-  border: 3px dashed red;
+  /* border: 3px dashed red; */
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 10px;
 }
 
-#right-side-nav-profile-button {
+/* #right-side-nav-profile-button {
   border: 2px solid turquoise;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-}
+} */
 
 /* Profile Buttons */
 #dropdown-button-w-icons {
-  background-color: gray;
+  /* background-color: rgba(170, 57, 212, 0.756); */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,111 +86,5 @@
 
 #bars-icon,
 #person-icon {
-  color: white;
+  color: rgb(0, 0, 0);
 }
-
-/* #create-spot-button { */
-/* padding: 10px 10px; */
-/* display: flex; */
-/* justify-content: space-around; */
-/* align-items: right; */
-/* background-color: white; */
-/* border-radius: 8px; */
-/* border: lightgrey 1px solid; */
-/* text-decoration: none; */
-/* } */
-
-/* #create-spot-button > i { */
-/* padding: 0px 5px; */
-/* color: darkslategrey; */
-/* } */
-
-/* menu { */
-/* border: pink solid 2px; */
-/* } */
-
-/* #create-new-spot { */
-/* text-decoration: none; */
-/* margin-left: 100px; */
-/* border: 2px dashed orange; */
-/* } */
-
-/* #create-spot-button { */
-/* box-shadow: 2px 2px 2px lightgrey; */
-/* text-decoration: none; */
-/* } */
-
-/* #create-spot-button:active { */
-/* background-color: lightgrey; */
-/* } */
-
-/* #create-spot-button:hover { */
-/* background-color: lightgrey; */
-/* } */
-
-/* #nav-left-create-spot { */
-/* float: left; */
-/* padding: 0px 10px; */
-/* display: flex; */
-/* align-items: center; */
-/* } */
-
-/* 
-#nav-right-dropdown-menu {
-  float: right;
-  padding: 5px 10px;
-  height: auto;
-  text-align: right; */
-/* border: 2px dashed yellowgreen; */
-/* width: 200px; */
-/* display: flex; */
-/* justify-content: center; */
-/* align-items: center; */
-/* margin-right: 50px; */
-/* } */
-
-/* #dropdown-button-w-icons {
-  background-color: white;
-  border: solid 1px lightgrey;
-  box-shadow: 2px 2px 2px lightgrey;
-  border-radius: 8px;
-  width: 100px;
-  height: 38px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-} */
-
-/* #dropdown-button-w-icons:hover {
-  background-color: lightgrey;
-} */
-
-/* #dropdown.profile-dropdown {
-  margin-left: -30px;
-  border: grey solid 1px;
-  background-color: rgb(255, 255, 255);
-  border-radius: 4px;
-  box-shadow: 3px 3px 3px grey;
-  list-style: none;
-  padding: 10px 10px;
-  z-index: 999;
-  position: fixed;
-} */
-
-/* ul {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-} */
-
-/* ul li button {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-decoration: none;
-} */
-
-/* .logout-button {
-  margin-left: 20px;
-} */

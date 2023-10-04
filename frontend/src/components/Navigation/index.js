@@ -15,7 +15,7 @@ function Navigation({ isLoaded }) {
           id="raebnb-logo"
           src="https://cdn.usbrandcolors.com/images/logos/airbnb-logo.svg"
         />
-        raebnb
+        <h1 id="raebnb-h1">raebnb</h1>
       </NavLink>
       <div id="right-side-nav">
         <div id="right-side-nav-create-spot-button">

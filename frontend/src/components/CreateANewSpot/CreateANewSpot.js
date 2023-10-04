@@ -107,7 +107,6 @@ function NewSpot() {
     event.preventDefault();
     setSubmit(true);
 
-    // newSpot that will be made
     const newSpotOnSubmit = {
       country,
       address,
@@ -127,7 +126,6 @@ function NewSpot() {
 
     if (Object.keys(validationErrors).length === 0) {
       const res = await dispatch(createNewSpotThunk(newSpotOnSubmit));
-      console.log("response*******", res);
       if (!res.errors) {
         //TODO
         await dispatch(createImageThunk(previewImage, true, res.id));
@@ -143,9 +141,9 @@ function NewSpot() {
   };
   return (
     <div id="form-container">
-      <h1>Create a new Spot</h1>
+      <h1 id="h1-create-new-spot">Create a new Spot</h1>
       <form id="create-form" onSubmit={handleSubmit}>
-        <div id="titles">
+        <div className="titles">
           <h2>Where's your place located?</h2>
           <h3>
             Guests will only get your exact address once they booked a
@@ -185,6 +183,7 @@ function NewSpot() {
                 onChange={(e) => setCity(e.target.value)}
                 placeholder="City"></input>
             </label>
+
             {submit && validationErrors.city && <p>{validationErrors.city}</p>}
 
             <label>
