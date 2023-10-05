@@ -31,7 +31,7 @@
 /* Navigation */
 
 #header-nav-bar-container {
-  border: red dashed 3px;
+  /* border: red dashed 3px; */
   padding: 10px 0px;
   display: flex;
   justify-content: space-between;

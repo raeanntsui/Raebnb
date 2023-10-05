@@ -1,11 +1,18 @@
 #login-button {
-  background-color: rgb(59, 188, 59);
+  background-color: #ff5a5f;
+  color: white;
+  border: none;
+}
+
+#login-button:hover {
+  background-color: #ff5a60a7;
+  transition: 0.3s ease-out;
   color: white;
   border: none;
 }
 
 #demo-submit-button {
-  background-color: green;
+  background-color: #ff5a5f;
   color: white;
   transition: 0.05s;
 }

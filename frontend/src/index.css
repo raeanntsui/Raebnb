@@ -2,18 +2,21 @@
 * {
   font-family: "Montserrat", sans-serif;
   /* background-color: lightgrey; */
+  font-weight: 600;
   max-width: 1024px;
   margin: 0 auto;
 }
 
 h1 {
   font-size: 20px;
+  /* font-weight: 900; */
   color: blue;
 }
 
 h2 {
   font-size: 18px;
   color: green;
+  /* font-weight: bold; */
 }
 
 h3 {
@@ -59,8 +62,13 @@ button {
 }
 
 #reject-button-shake:active {
-  transform: translateX(6px);
-  background-color: red;
+  /* transform: translateX(6px); */
+  background-color: grey;
+  /* display: inline-block;
+  vertical-align: middle;
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  transition-duration: 0.3s; */
 }
 
 /* Modal Input Information */

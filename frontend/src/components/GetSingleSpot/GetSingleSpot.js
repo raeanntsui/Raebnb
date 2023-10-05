@@ -11,27 +11,8 @@ function ShowSingleSpotDetails() {
 
   //! session user id = 4
   const sessionUser = useSelector((state) => state.session.user);
-  console.log("sessionUser.id", sessionUser.id);
   const spot = useSelector((state) => state.spots.singleSpot);
-  console.log(
-    "🚀 ~ file: GetSingleSpot.js:16 ~ ShowSingleSpotDetails ~ spot.ownerId:",
-    spot.ownerId
-  );
-
   const allReviewsObject = useSelector((state) => state.reviews.spot);
-  console.log(
-    "🚀 ~ file: GetSingleSpot.js:15 ~ ShowSingleSpotDetails ~ allReviewsObject:",
-    allReviewsObject
-  );
-  // const userReviewArray = Object.values(allReviewsObject);
-  // console.log(
-  //   "🚀 ~ file: GetSingleSpot.js:15 ~ ShowSingleSpotDetails ~ userReview:",
-  //   userReviewArray
-  // );
-
-  // console.log("userReviewArray[0].userId", userReviewArray[0].userId);
-  // console.log("userReviewArray[0].userId", userReviewArray[0].userId);
-
   const { spotId } = useParams();
 
   useEffect(() => {
@@ -77,19 +58,6 @@ function ShowSingleSpotDetails() {
                 />
               ))}
           </div>
-          {/* <div id="spot-images-container">
-            {spot.SpotImages && spot.SpotImages.length > 0 && (
-              <div id="first-image">
-                <img src={spot.SpotImages[0].url} alt={`Main Image`} />
-              </div>
-            )}
-            <div id="other-images">
-              {spot.SpotImages &&
-                spot.SpotImages.slice(1, 5).map((image) => (
-                  <img src={image.url} key={image.id} alt={`Other Images`} />
-                ))}
-            </div>
-          </div> */}
           <div id="mid-section-container">
             <div id="hosted-by">
               <p>
@@ -104,13 +72,6 @@ function ShowSingleSpotDetails() {
             <div id="callout-box">
               <div id="callout-top">
                 <div id="price">${spot.price} night</div>
-                {/* <div>
-                  {spot.numReviews === 0
-                    ? `New`
-                    : spot.numReviews === 1
-                    ? `1 Review`
-                    : `${spot.numReviews} Reviews`}
-                </div> */}
                 <div>
                   <div id="reviews-and-ratings">
                     <i className="fa-solid fa-star"></i>
@@ -147,7 +108,6 @@ function ShowSingleSpotDetails() {
               : `${spot.numReviews} Reviews`}
           </div>
         </div>
-
         <div id="reviews">
           <div>
             <div>
