@@ -14,17 +14,13 @@ function ShowSingleSpotDetails() {
   const spot = useSelector((state) => state.spots.singleSpot);
   const allReviewsObject = useSelector((state) => state.reviews.spot);
   const { spotId } = useParams();
-
   useEffect(() => {
     dispatch(getSingleSpotThunk(spotId));
     dispatch(getAllReviewsThunk(spotId));
   }, [dispatch, spotId]);
 
   const reviewArr = Object.values(allReviewsObject);
-  console.log(
-    "🚀 ~ file: GetSingleSpot.js:36 ~ ShowSingleSpotDetails ~ reviewArr:",
-    reviewArr
-  );
+  console.log("🚀🚀🚀🚀🚀🚀 ~ ShowSingleSpotDetails ~ reviewArr:", reviewArr);
 
   if (!spot || Object.keys(spot).length === 0) {
     return null;
@@ -60,30 +56,34 @@ function ShowSingleSpotDetails() {
           </div>
           <div id="mid-section-container">
             <div id="hosted-by">
-              <p>
+              <h1>
                 Hosted by {spot?.Owner && spot?.Owner?.firstName}{" "}
                 {spot?.Owner && spot?.Owner?.lastName}
-              </p>
+              </h1>
               <div>
-                <p>{spot.description}</p>
+                <h2>{spot.description}</h2>
               </div>
             </div>
 
             <div id="callout-box">
               <div id="callout-top">
-                <div id="price">${spot.price} night</div>
+                <div id="price">
+                  <h2>${spot.price} night</h2>
+                </div>
                 <div>
                   <div id="reviews-and-ratings">
-                    <i className="fa-solid fa-star"></i>
-                    {spot.numReviews === 0
-                      ? null
-                      : `${spot?.avgRating?.toFixed(2)}`}
-                    {!spot.numReviews ? " " : " · "}
-                    {spot.numReviews === 0
-                      ? `New`
-                      : spot.numReviews === 1
-                      ? `1 Review`
-                      : `${spot.numReviews} Reviews`}
+                    <h2>
+                      <i className="fa-solid fa-star"></i>
+                      {spot.numReviews === 0
+                        ? null
+                        : `${spot?.avgRating?.toFixed(2)}`}
+                      {!spot.numReviews ? " " : " · "}
+                      {spot.numReviews === 0
+                        ? `New`
+                        : spot.numReviews === 1
+                        ? `1 Review`
+                        : `${spot.numReviews} Reviews`}
+                    </h2>
                   </div>
                 </div>
               </div>
@@ -98,14 +98,16 @@ function ShowSingleSpotDetails() {
 
         <div>
           <div id="reviews-and-ratings-2">
-            <i id="star" className="fa-solid fa-star"></i>
-            {spot.numReviews === 0 ? null : `${spot?.avgRating?.toFixed(2)}`}
-            {!spot.numReviews ? " " : " · "}
-            {spot.numReviews === 0
-              ? `New`
-              : spot.numReviews === 1
-              ? `1 Review`
-              : `${spot.numReviews} Reviews`}
+            <h2>
+              <i id="star" className="fa-solid fa-star"></i>
+              {spot.numReviews === 0 ? null : `${spot?.avgRating?.toFixed(2)}`}
+              {!spot.numReviews ? " " : " · "}
+              {spot.numReviews === 0
+                ? `New`
+                : spot.numReviews === 1
+                ? `1 Review`
+                : `${spot.numReviews} Reviews`}
+            </h2>
           </div>
         </div>
         <div id="reviews">
@@ -115,8 +117,8 @@ function ShowSingleSpotDetails() {
                 <>
                   <div id="single-review">
                     <h3>{singleReview?.User?.firstName}</h3>
-                    <h4>{singleReview?.createdAt?.substring(0, 7)}</h4>
-                    <h5>{singleReview?.review}</h5>
+                    <h4>{singleReview?.createdAt?.toLocaleString("en-US")}</h4>
+                    <h4>{singleReview?.review}</h4>
                   </div>
                 </>
               ))}

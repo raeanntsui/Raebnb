@@ -23,6 +23,11 @@ h3 {
   font-size: 16px;
   color: orange;
 }
+
+h4 {
+  font-size: 14px;
+  color: rgb(64, 115, 224);
+}
 p {
   font-size: 12px;
   color: black;
