@@ -20,12 +20,23 @@
 /* create new spot button */
 #create-new-spot {
   text-decoration: none;
-  transition: 0.05s ease;
+  /* background-color: #ff5a5f; */
+  /* transition: 0.05s ease; */
+}
+
+#create-spot-button {
+  /* text-decoration: none; */
+  background-color: #ff5a5f;
+  /* transition: 0.05s ease; */
+  color: white;
+  border: #ff5a5f solid 1px;
 }
 
 #create-spot-button:active {
   transform: scale(0.9);
-  /* background-color: lightgreen; */
+  transition: 0.05s;
+  background-color: #ff5a609b;
+  /* background-color: #d4454a; */
 }
 
 /* Navigation */

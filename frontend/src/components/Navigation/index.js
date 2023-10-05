@@ -21,7 +21,8 @@ function Navigation({ isLoaded }) {
         <div id="right-side-nav-create-spot-button">
           <NavLink exact to="/spots/new" id="create-new-spot">
             {sessionUser && (
-              <button id="create-spot-button">Create a New Spot</button>
+              // <button id="create-spot-button">Create a New Spot</button>
+              <h2>Create a New Spot</h2>
             )}
           </NavLink>
         </div>
