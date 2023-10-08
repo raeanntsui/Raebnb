@@ -87,7 +87,7 @@ function ManageSpot() {
                 </NavLink>
                 {/* <div></div> */}
                 <OpenModalButton
-                  // id="update-button"
+                  id="delete-button"
                   buttonText="Delete"
                   modalComponent={<DeleteSpot spot={spot} />}
                 />

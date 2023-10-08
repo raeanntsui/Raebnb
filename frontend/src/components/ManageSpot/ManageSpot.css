@@ -28,3 +28,16 @@
   border: 2px solid red;
   /* width: 150px; */
 }
+
+#update-button {
+  background-color: greenyellow;
+  transition: 0.03s;
+}
+
+#update-button:active {
+  transform: scale(0.9);
+}
+
+#delete-button {
+  background-color: aquamarine;
+}
