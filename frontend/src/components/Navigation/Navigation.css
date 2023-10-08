@@ -4,10 +4,11 @@
 
 .profile-dropdown {
   /* margin-left: -60px; */
-  border: blue solid 1px;
-  background-color: rgb(255, 255, 255);
-  border-radius: 4px;
-  box-shadow: 3px 3px 3px grey;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 12px;
+  padding: 0px 10px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+  background-color: white;
   list-style: none;
   padding: 10px 10px;
   z-index: 1;
@@ -100,6 +101,11 @@
   height: 40px;
   width: 70px;
   transition: 0.05s ease;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 12px;
+  padding: 0px 10px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+  background-color: white;
 }
 
 #dropdown-button-w-icons:active {

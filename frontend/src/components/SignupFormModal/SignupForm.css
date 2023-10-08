@@ -1,38 +1,28 @@
-#modal-content {
+/* #modal-content {
   width: 75%;
-  /* display: flex; */
   justify-content: center;
   align-items: center;
   border-radius: 15px;
-}
+} */
+
 #sign-up-h1 {
-  /* align-content: center; */
   text-align: center;
+  padding: 10px 0px;
 }
-form {
-  justify-content: center;
-  /* align-items: center; */
-  width: 90%;
-  /* border: red 2px solid; */
-  /* align-items: center; */
-  /* justify-content: space-around; */
-  /* box-sizing: border-box; */
-  /* text-align: center; */
-  /* align-items: right; */
+
+#sign-up-button-container {
+  padding: 20px 0px;
 }
 
 #sign-up-button {
-  width: 90%;
   text-align: center;
   display: flex;
-  /* justify-content: center/; */
-  /* border: 2px solid green; */
+  transition: 0.03s;
+  background-color: #ff5a5f;
+  color: white;
+  border: none;
 }
 
-/* input {
-  background-color: lightblue;
-} */
-
-form > input {
-  width: 97.5%;
+#sign-up-button:active {
+  transform: scale(0.9);
 }

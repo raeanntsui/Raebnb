@@ -106,9 +106,11 @@ function SignupFormModal() {
           />
         </label>
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button id="sign-up-button" type="submit">
-          Sign Up
-        </button>
+        <div id="sign-up-button-container">
+          <button id="sign-up-button" type="submit">
+            Sign Up
+          </button>
+        </div>
       </form>
     </>
   );

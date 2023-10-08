@@ -22,7 +22,7 @@ h2 {
 
 h3 {
   font-size: 16px;
-  color: orange;
+  color: #ff5a5f;
 }
 
 h4 {
@@ -49,6 +49,7 @@ p {
 
 button {
   border-radius: 10px;
+  border: none;
   height: 40px;
   width: 150px;
   display: flex;
@@ -60,6 +61,9 @@ button {
 
 #accepted-pressed-button {
   transition: 0.03s;
+  background-color: #ff5a5f;
+  color: white;
+  border: none;
   /* width: 250px; */
 }
 
@@ -96,5 +100,28 @@ button {
 }
 
 #modal-content {
-  padding: 10px 10px;
+  width: 75%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+}
+
+form {
+  justify-content: center;
+  width: 90%;
+  line-height: 30px;
+}
+
+form > input {
+  width: 97.5%;
+  /* border-radius: 10px; */
+}
+
+input {
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+
+input::placeholder {
+  padding-left: 10px;
 }

@@ -46,6 +46,11 @@
   background-color: #ff5a5f;
   color: white;
   border: none;
+  transition: 0.03s;
+}
+
+#callout-button:active {
+  transform: scale(0.9);
 }
 
 #hosted-by {
@@ -55,6 +60,7 @@
 
 #star {
   color: #ff9529;
+  /* vertical-align: middle; */
 }
 
 #reviews-and-ratings-2 > * {
