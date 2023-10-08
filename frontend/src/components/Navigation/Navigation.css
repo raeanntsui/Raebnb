@@ -6,16 +6,31 @@
   /* margin-left: -60px; */
   border: 1px solid rgb(221, 221, 221);
   border-radius: 12px;
-  padding: 0px 10px;
+  /* padding: 0px 10px; */
   box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
   background-color: white;
   list-style: none;
   padding: 10px 10px;
-  z-index: 1;
-  position: absolute;
   float: right;
-  top: 8%;
-  right: 18%;
+  margin-top: 10px;
+  /* top: 8%; */
+  /* right: 18%; */
+  z-index: 1;
+  position: relative;
+}
+#dropdown-h2 {
+  font-weight: 700;
+}
+
+#navlink-test:not(:hover) {
+  /* text-decoration: none; */
+  color: black;
+  transition: 0.3s;
+}
+
+#navlink-test:hover {
+  color: #ff5a5f;
+  transition: 0.3s;
 }
 
 /* create new spot button */
@@ -73,6 +88,7 @@
   font-weight: bold;
   font-size: 20px;
   margin-left: 5px;
+  /* position: fixed; */
 }
 
 #right-side-nav {
@@ -80,6 +96,8 @@
   margin-right: 5px;
   justify-content: start;
   display: flex;
+  max-height: 50px;
+  /* position: fixed; */
 }
 
 #right-side-nav-create-spot-button {
@@ -90,9 +108,10 @@
   margin-right: 10px;
 }
 
-/* #right-side-nav-profile-button {
-  border: 2px solid turquoise;
-} */
+#right-side-nav-profile-button {
+  /* border: 2px solid turquoise; */
+  max-width: 5em;
+}
 
 /* Profile Buttons */
 #dropdown-button-w-icons {
@@ -108,6 +127,7 @@
   padding: 0px 10px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
   background-color: white;
+  /* position: fixed; */
 }
 
 #dropdown-button-w-icons:active {
