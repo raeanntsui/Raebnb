@@ -54,10 +54,12 @@
   padding: 0px 5px;
   height: 35px;
   transform: rotate(180deg);
+  /* font-weight: 800; */
 }
 
 #raebnb-h1 {
   color: #ff5a5f;
+  font-weight: 700;
 }
 
 #home-link {
