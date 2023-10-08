@@ -36,13 +36,39 @@ function ShowSingleSpotDetails() {
 
   let counter = 1;
 
+  // date
+  const newDateFormatter = (date) => {
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    const adjustedDate = new Date(date);
+    const month = months[adjustedDate.getMonth()];
+    const year = adjustedDate.getFullYear();
+
+    return `${month} ${year}`;
+  };
+
   return (
     <>
       <div id="spot-details-container">
         <div id="spot-details">
-          <h1>{spot.name}</h1>
-          <div id="cityStateCountry">
-            {spot.city}, {spot.state}, {spot.country}
+          <div id="spot-details-header">
+            <h1>{spot.name}</h1>
+            <div id="cityStateCountry">
+              {spot.city}, {spot.state}, {spot.country}
+            </div>
           </div>
           <div id="all-images">
             {spot.SpotImages &&
@@ -117,7 +143,7 @@ function ShowSingleSpotDetails() {
                 <>
                   <div id="single-review">
                     <h3>{singleReview?.User?.firstName}</h3>
-                    <h4>{singleReview?.createdAt?.toLocaleString("en-US")}</h4>
+                    <h4>{newDateFormatter(singleReview.createdAt)}</h4>
                     <h4>{singleReview?.review}</h4>
                   </div>
                 </>
