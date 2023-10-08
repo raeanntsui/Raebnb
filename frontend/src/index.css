@@ -1,8 +1,9 @@
 /* TODO Add site wide styles */
 * {
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
+  font-family: "Poppins", sans-serif;
   /* background-color: lightgrey; */
-  font-weight: 600;
+  font-weight: 500;
   max-width: 1024px;
   margin: 0 auto;
   /* line-height: 25px; */
@@ -108,8 +109,12 @@ button {
 
 form {
   justify-content: center;
-  width: 90%;
+  /* width: 90%; */
   line-height: 30px;
+}
+
+#form-content-width {
+  width: 90%;
 }
 
 form > input {
