@@ -41,7 +41,14 @@ function ManageSpot() {
 
   return (
     <>
-      <h1>Manage Spots</h1>
+      <div id="manage-spots-header-and-button">
+        <h1>Manage Spots</h1>
+        <NavLink exact to="/spots/new" id="create-new-spot">
+          {sessionUser && (
+            <button id="create-spot-button">Create a New Spot</button>
+          )}
+        </NavLink>
+      </div>
       <div id="all-spots-container">
         {userSpotsArray.map((spot) => (
           <>
@@ -51,11 +58,13 @@ function ManageSpot() {
                 to={`/spots/${spot.id}`}
                 id="get-all-spots-nav-link">
                 <div id="image-div">
-                  <img
-                    id="manage-spots-image"
-                    src={spot.previewImage}
-                    alt={spot.name}
-                  />
+                  <div id="image-div-child">
+                    <img
+                      id="manage-spots-image"
+                      src={spot.previewImage}
+                      alt={spot.name}
+                    />
+                  </div>
                   <div id="manage-city-state-rating">
                     <div id="manage-city-state">
                       <p>
@@ -73,20 +82,15 @@ function ManageSpot() {
                 </div>
               </NavLink>
               <div id="update-delete">
-                <div>
-                  <NavLink
-                    to={`/spots/${spot.id}/edit`}
-                    id="get-all-spots-nav-link">
-                    <button id="update-button">Update</button>
-                  </NavLink>
-                </div>
-                <div id="delete-button-test">
-                  <OpenModalButton
-                    id="test-button"
-                    buttonText="Delete"
-                    modalComponent={<DeleteSpot spot={spot} />}
-                  />
-                </div>
+                <NavLink to={`/spots/${spot.id}/edit`}>
+                  <button id="update-button">Update</button>
+                </NavLink>
+                {/* <div></div> */}
+                <OpenModalButton
+                  // id="update-button"
+                  buttonText="Delete"
+                  modalComponent={<DeleteSpot spot={spot} />}
+                />
               </div>
             </div>
           </>
