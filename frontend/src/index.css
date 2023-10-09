@@ -1,28 +1,47 @@
 /* TODO Add site wide styles */
 * {
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
+  font-family: "Poppins", sans-serif;
   /* background-color: lightgrey; */
+  font-weight: 400;
   max-width: 1024px;
   margin: 0 auto;
+  /* line-height: 25px; */
+  text-decoration: none;
 }
 
 h1 {
-  font-size: 18px;
-  color: blue;
+  font-size: 20px;
+  font-weight: 600;
+  /* color: blue; */
 }
 
 h2 {
-  font-size: 16px;
-  color: green;
+  font-size: 18px;
+  font-weight: 600;
+  /* color: green; */
+  /* font-weight: bold; */
 }
 
 h3 {
+  font-size: 16px;
+  /* color: #ff5a5f; */
+  /* font-weight: 600; */
+}
+
+h4 {
   font-size: 14px;
-  color: orange;
+  /* color: rgb(64, 115, 224); */
 }
 p {
   font-size: 12px;
   color: black;
+  /* font-weight: 500; */
+}
+
+#p-error {
+  color: red;
+  padding: 3px 0px;
 }
 
 .p2 {
@@ -35,10 +54,83 @@ p {
 
 button {
   border-radius: 10px;
+  border: none;
   height: 40px;
   width: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 250px;
   /* border: dotted rgb(16, 227, 16) 3px; */
+}
+
+#accepted-pressed-button {
+  transition: 0.03s;
+  background-color: #ff5a5f;
+  color: white;
+  border: none;
+  /* width: 250px; */
+}
+
+#accepted-pressed-button:active {
+  transform: scale(0.9);
+}
+
+#reject-button-shake:active {
+  /* transform: translateX(6px); */
+  background-color: grey;
+  /* display: inline-block;
+  vertical-align: middle;
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  transition-duration: 0.3s; */
+}
+
+/* Modal Input Information */
+#inputs-information {
+  padding-top: 0px;
+  padding-bottom: 15px;
+}
+
+#h1-form {
+  text-align: center;
+  padding: 10px 0px;
+}
+
+#modal-buttons-left-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0px;
+}
+
+#modal-content {
+  width: 75%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+}
+
+form {
+  justify-content: center;
+  /* width: 90%; */
+  line-height: 30px;
+}
+
+#form-content-width {
+  width: 90%;
+}
+
+form > input {
+  width: 97.5%;
+  /* border-radius: 10px; */
+}
+
+input {
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+
+input::placeholder {
+  padding-left: 0px;
 }

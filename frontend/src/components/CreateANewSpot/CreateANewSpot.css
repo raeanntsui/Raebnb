@@ -2,13 +2,23 @@
   padding-bottom: 20px;
 }
 
-button:hover {
-  background-color: lightgrey;
-  text-decoration: none;
+#create-spot-button {
+  /* background-color: blue; */
+  background-color: #ff5a6099;
+  color: white;
+}
+
+#create-spot-button:hover {
+  background-color: #ff5a5f;
+  transition: 0.3s;
+}
+
+#create-spot-button:not(:hover) {
+  transition: 0.3s;
 }
 
 #form-container {
-  border: green 5px solid;
+  /* border: green 5px solid; */
   width: 600px;
   margin: auto;
   padding: 20px 0px;
@@ -22,13 +32,13 @@ form > p {
   /* border: 5px rgb(247, 131, 237) dashed; */
   flex-direction: row;
   /* border-bottom: 2px solid black; */
-  /* padding: 10px 0px; */
+  padding: 10px 0px;
 }
 
 .inputs {
   /* border: 5px blue dashed; */
   padding-top: 5px;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
   /* border-bottom: grey 3px solid; */
 }
 
@@ -36,6 +46,7 @@ input {
   width: 100%;
   margin: auto;
   background-color: rgb(233, 242, 255);
+  padding: 5px 0px;
 }
 
 #city-state {
@@ -49,6 +60,11 @@ input {
 
 #city-state > label {
   margin: 0;
+}
+
+#city-state-inputs-information {
+  /* border: 2px solid red; */
+  width: 100%;
 }
 
 .comma {

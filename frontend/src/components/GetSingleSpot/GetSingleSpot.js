@@ -11,39 +11,16 @@ function ShowSingleSpotDetails() {
 
   //! session user id = 4
   const sessionUser = useSelector((state) => state.session.user);
-  console.log("sessionUser.id", sessionUser.id);
   const spot = useSelector((state) => state.spots.singleSpot);
-  console.log(
-    "🚀 ~ file: GetSingleSpot.js:16 ~ ShowSingleSpotDetails ~ spot.ownerId:",
-    spot.ownerId
-  );
-
   const allReviewsObject = useSelector((state) => state.reviews.spot);
-  console.log(
-    "🚀 ~ file: GetSingleSpot.js:15 ~ ShowSingleSpotDetails ~ allReviewsObject:",
-    allReviewsObject
-  );
-  // const userReviewArray = Object.values(allReviewsObject);
-  // console.log(
-  //   "🚀 ~ file: GetSingleSpot.js:15 ~ ShowSingleSpotDetails ~ userReview:",
-  //   userReviewArray
-  // );
-
-  // console.log("userReviewArray[0].userId", userReviewArray[0].userId);
-  // console.log("userReviewArray[0].userId", userReviewArray[0].userId);
-
   const { spotId } = useParams();
-
   useEffect(() => {
     dispatch(getSingleSpotThunk(spotId));
     dispatch(getAllReviewsThunk(spotId));
   }, [dispatch, spotId]);
 
   const reviewArr = Object.values(allReviewsObject);
-  console.log(
-    "🚀 ~ file: GetSingleSpot.js:36 ~ ShowSingleSpotDetails ~ reviewArr:",
-    reviewArr
-  );
+  console.log("🚀🚀🚀🚀🚀🚀 ~ ShowSingleSpotDetails ~ reviewArr:", reviewArr);
 
   if (!spot || Object.keys(spot).length === 0) {
     return null;
@@ -59,13 +36,39 @@ function ShowSingleSpotDetails() {
 
   let counter = 1;
 
+  // date
+  const newDateFormatter = (date) => {
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    const adjustedDate = new Date(date);
+    const month = months[adjustedDate.getMonth()];
+    const year = adjustedDate.getFullYear();
+
+    return `${month} ${year}`;
+  };
+
   return (
     <>
       <div id="spot-details-container">
         <div id="spot-details">
-          <h1>{spot.name}</h1>
-          <div id="cityStateCountry">
-            {spot.city}, {spot.state}, {spot.country}
+          <div id="spot-details-header">
+            <h1>{spot.name}</h1>
+            <div id="cityStateCountry">
+              {spot.city}, {spot.state}, {spot.country}
+            </div>
           </div>
           <div id="all-images">
             {spot.SpotImages &&
@@ -77,52 +80,36 @@ function ShowSingleSpotDetails() {
                 />
               ))}
           </div>
-          {/* <div id="spot-images-container">
-            {spot.SpotImages && spot.SpotImages.length > 0 && (
-              <div id="first-image">
-                <img src={spot.SpotImages[0].url} alt={`Main Image`} />
-              </div>
-            )}
-            <div id="other-images">
-              {spot.SpotImages &&
-                spot.SpotImages.slice(1, 5).map((image) => (
-                  <img src={image.url} key={image.id} alt={`Other Images`} />
-                ))}
-            </div>
-          </div> */}
           <div id="mid-section-container">
             <div id="hosted-by">
-              <p>
+              <h1>
                 Hosted by {spot?.Owner && spot?.Owner?.firstName}{" "}
                 {spot?.Owner && spot?.Owner?.lastName}
-              </p>
+              </h1>
               <div>
-                <p>{spot.description}</p>
+                <h2>{spot.description}</h2>
               </div>
             </div>
 
             <div id="callout-box">
               <div id="callout-top">
-                <div id="price">${spot.price} night</div>
-                {/* <div>
-                  {spot.numReviews === 0
-                    ? `New`
-                    : spot.numReviews === 1
-                    ? `1 Review`
-                    : `${spot.numReviews} Reviews`}
-                </div> */}
+                <div id="price">
+                  <h2>${spot.price} night</h2>
+                </div>
                 <div>
                   <div id="reviews-and-ratings">
-                    <i className="fa-solid fa-star"></i>
-                    {spot.numReviews === 0
-                      ? null
-                      : `${spot?.avgRating?.toFixed(2)}`}
-                    {!spot.numReviews ? " " : " · "}
-                    {spot.numReviews === 0
-                      ? `New`
-                      : spot.numReviews === 1
-                      ? `1 Review`
-                      : `${spot.numReviews} Reviews`}
+                    <h2>
+                      <i className="fa-solid fa-star"></i>
+                      {spot.numReviews === 0
+                        ? null
+                        : `${spot?.avgRating?.toFixed(2)}`}
+                      {!spot.numReviews ? " " : " · "}
+                      {spot.numReviews === 0
+                        ? `New`
+                        : spot.numReviews === 1
+                        ? `1 Review`
+                        : `${spot.numReviews} Reviews`}
+                    </h2>
                   </div>
                 </div>
               </div>
@@ -137,17 +124,18 @@ function ShowSingleSpotDetails() {
 
         <div>
           <div id="reviews-and-ratings-2">
-            <i id="star" className="fa-solid fa-star"></i>
-            {spot.numReviews === 0 ? null : `${spot?.avgRating?.toFixed(2)}`}
-            {!spot.numReviews ? " " : " · "}
-            {spot.numReviews === 0
-              ? `New`
-              : spot.numReviews === 1
-              ? `1 Review`
-              : `${spot.numReviews} Reviews`}
+            <h2>
+              <i id="star" className="fa-solid fa-star"></i>
+              {spot.numReviews === 0 ? null : `${spot?.avgRating?.toFixed(2)}`}
+              {!spot.numReviews ? " " : " · "}
+              {spot.numReviews === 0
+                ? `New`
+                : spot.numReviews === 1
+                ? `1 Review`
+                : `${spot.numReviews} Reviews`}
+            </h2>
           </div>
         </div>
-
         <div id="reviews">
           <div>
             <div>
@@ -155,8 +143,8 @@ function ShowSingleSpotDetails() {
                 <>
                   <div id="single-review">
                     <h3>{singleReview?.User?.firstName}</h3>
-                    <h4>{singleReview?.createdAt?.substring(0, 7)}</h4>
-                    <h5>{singleReview?.review}</h5>
+                    <h4>{newDateFormatter(singleReview.createdAt)}</h4>
+                    <h4>{singleReview?.review}</h4>
                   </div>
                 </>
               ))}

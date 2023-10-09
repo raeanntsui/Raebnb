@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { NavLink, useHistory } from "react-router-dom";
 import "./LoginForm.css";
 
 function LoginFormModal() {
@@ -10,6 +11,7 @@ function LoginFormModal() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,6 +30,7 @@ function LoginFormModal() {
   const loginDemoUser = (e) => {
     e.preventDefault();
     setErrors({});
+    history.push("/");
     return dispatch(
       sessionActions.login({ credential: "Demo-lition", password: "password" })
     )
@@ -40,34 +43,56 @@ function LoginFormModal() {
       });
   };
 
-  // const
   return (
     <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username or Email
-          <input
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.credential && <p>{errors.credential}</p>}
-        <button type="submit">Log In</button>
-        <button type="submit" onClick={loginDemoUser}>
-          Log in as Demo User
-        </button>
+      <h1 id="h1-form">Log In</h1>
+      <form id="form-content-width" onSubmit={handleSubmit}>
+        <div id="inputs-information">
+          <label>
+            Username or Email
+            <input
+              type="text"
+              value={credential}
+              onChange={(e) => setCredential(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div id="inputs-information">
+          <label>
+            Password
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+          {errors.credential && <p id="p-error">{errors.credential}</p>}
+        </div>
+        <div id="modal-buttons-up-down">
+          <div id="btn">
+            <button
+              id={
+                !credential || !password
+                  ? "reject-button-shake"
+                  : "login-button"
+              }
+              disabled={!credential || !password}
+              type="submit">
+              Log In
+            </button>
+          </div>
+          <div id="btn">
+            <button
+              id="accepted-pressed-button"
+              // disabled={!password}
+              type="submit"
+              onClick={loginDemoUser}>
+              Log in as Demo User
+            </button>
+          </div>
+        </div>
       </form>
     </>
   );

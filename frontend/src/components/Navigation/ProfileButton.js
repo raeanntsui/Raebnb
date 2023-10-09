@@ -46,27 +46,29 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <div id="test">
-        <button id="dropdown-button-w-icons" onClick={openMenu}>
-          <div>
-            <i id="bars-icon" className="fa-solid fa-bars"></i>
-          </div>
-          <div>
-            <i id="person-icon" className="fa-solid fa-user" />
-          </div>
-        </button>
-      </div>
+      {/* <div id="test"> */}
+      <button id="dropdown-button-w-icons" onClick={openMenu}>
+        <div>
+          <i id="bars-icon" className="fa-solid fa-bars"></i>
+        </div>
+        <div>
+          <i id="person-icon" className="fa-solid fa-user" />
+        </div>
+      </button>
+      {/* </div> */}
 
       <ul id="dropdown-info" className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>Hello, {user.firstName}</li>
+            <li>
+              <h2 id="dropdown-h2">Hello, {user.firstName}</h2>
+            </li>
             <li>{user.email}</li>
             <li>
-              <NavLink exact to="/spots/current">
-                <button id="manage-spot-button">Manage Spots</button>
+              <NavLink id="navlink-test" exact to="/spots/current">
+                {/* <button id="manage-spot-button">Manage Spots</button> */}
+                Manage Spots
               </NavLink>
-
               <button onClick={logout} className="logout-button">
                 Log Out
               </button>

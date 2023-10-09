@@ -41,58 +41,60 @@ function ManageSpot() {
 
   return (
     <>
-      <div id="manage-spot-div-master">
-        <div id="one">
-          <h1>Manage Spots</h1>
-        </div>
-        <div id="two">
-          <div id="user-single-spot">
-            {userSpotsArray.map((spot) => (
-              <>
-                <div id="single-spot">
-                  <NavLink
-                    key={spot.id}
-                    to={`/spots/${spot.id}`}
-                    id="get-all-spots-nav-link">
-                    <div id="image-div">
-                      <img src={spot.previewImage} alt={spot.name} />
-                      <div id="manage-city-state-rating">
-                        <div id="manage-city-state">
-                          <p>
-                            {spot.city}, {spot.state}
-                          </p>
-                          <p>${spot.price} night</p>
-                        </div>
-                        <div id="manage-rating">
-                          <i className="fa-solid fa-star"></i>{" "}
-                          {!spot.avgRating || isNaN(spot.avgRating)
-                            ? `New`
-                            : parseFloat(spot.avgRating).toFixed(2)}
-                        </div>
-                      </div>
+      <div id="manage-spots-header-and-button">
+        <h1>Manage Spots</h1>
+        <NavLink exact to="/spots/new" id="create-new-spot">
+          {sessionUser && (
+            <button id="create-spot-button">Create a New Spot</button>
+          )}
+        </NavLink>
+      </div>
+      <div id="all-spots-container">
+        {userSpotsArray.map((spot) => (
+          <>
+            <div id="single-spot">
+              <NavLink
+                key={spot.id}
+                to={`/spots/${spot.id}`}
+                id="get-all-spots-nav-link">
+                <div id="image-div">
+                  <div id="image-div-child">
+                    <img
+                      id="manage-spots-image"
+                      src={spot.previewImage}
+                      alt={spot.name}
+                    />
+                  </div>
+                  <div id="manage-city-state-rating">
+                    <div id="manage-city-state">
+                      <p>
+                        {spot.city}, {spot.state}
+                      </p>
+                      <p>${spot.price} night</p>
                     </div>
-                  </NavLink>
-                  <div id="update-delete">
-                    <div>
-                      <NavLink
-                        to={`/spots/${spot.id}/edit`}
-                        id="get-all-spots-nav-link">
-                        <button id="update-button">Update</button>
-                      </NavLink>
-                    </div>
-                    <div id="delete-button-test">
-                      <OpenModalButton
-                        id="test-button"
-                        buttonText="Delete"
-                        modalComponent={<DeleteSpot spot={spot} />}
-                      />
+                    <div id="manage-rating">
+                      <i className="fa-solid fa-star"></i>{" "}
+                      {!spot.avgRating || isNaN(spot.avgRating)
+                        ? `New`
+                        : parseFloat(spot.avgRating).toFixed(2)}
                     </div>
                   </div>
                 </div>
-              </>
-            ))}
-          </div>
-        </div>
+              </NavLink>
+              <div id="update-delete">
+                <NavLink to={`/spots/${spot.id}/edit`}>
+                  <button id="update-button">Update</button>
+                </NavLink>
+                {/* <div></div> */}
+                <OpenModalButton
+                  id="delete-button"
+                  buttonText="Delete"
+                  modalComponent={<DeleteSpot spot={spot} />}
+                />
+              </div>
+            </div>
+          </>
+        ))}
       </div>
     </>
   );

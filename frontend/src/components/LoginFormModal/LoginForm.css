@@ -1,0 +1,30 @@
+#login-button {
+  background-color: #ff5a5f;
+  color: white;
+  border: none;
+}
+
+#login-button:hover {
+  background-color: #ff5a60a7;
+  transition: 0.3s ease-out;
+  color: white;
+  border: none;
+}
+
+#demo-submit-button {
+  background-color: #ff5a5f;
+  color: white;
+  transition: 0.05s;
+}
+
+#modal-buttons-up-down {
+  /* border: green 5px dashed; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+#btn {
+  padding: 5px;
+}

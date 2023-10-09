@@ -44,11 +44,11 @@ function NewReviewModal({ spot }) {
   return (
     <>
       <div>
-        {currentSessionUser?.id &&
-        currentSessionUser?.id !== currentSpotDetails?.Owner?.id &&
-        !filteredReview ? (
-          <>
-            <h2>Be the first to post a review</h2>
+        {!currentSessionUser ? (
+          <h2>Star Icon And New</h2>
+        ) : currentSessionUser?.id !== currentSpotDetails?.Owner?.id ? (
+          <div>
+            <h2>Be the first the post a review!</h2>
             <button
               onClick={() => {
                 setModalContent(<PostReviewModalContent spot={spot} />);
@@ -56,12 +56,33 @@ function NewReviewModal({ spot }) {
               type="submit">
               Post Your Review
             </button>
+          </div>
+        ) : null}
+        {/* {currentSessionUser?.id &&
+        currentSessionUser?.id !== currentSpotDetails?.Owner?.id &&
+        !filteredReview &&
+        !currentSpotReviewsArray ? (
+          <>
+            <button
+              onClick={() => {
+                setModalContent(<PostReviewModalContent spot={spot} />);
+              }}
+              type="submit">
+              Post Your Review
+            </button>
+            <h2>Be the first to post a review!</h2>
           </>
-        ) : // <OpenModalButton id="nothing"
-        //   buttonText="Post Your Review"
-        //   modalComponent={<PostReviewModalContent spot={spot} />}
-        // />
-        null}
+        ) : currentSessionUser?.id &&
+          currentSessionUser?.id !== currentSpotDetails?.Owner?.id &&
+          !filteredReview ? (
+          <button
+            onClick={() => {
+              setModalContent(<PostReviewModalContent spot={spot} />);
+            }}
+            type="submit">
+            Post Your Review
+          </button>
+        ) : null} */}
       </div>
       <div>
         {currentSessionUser.id === filteredReview?.userId ? (

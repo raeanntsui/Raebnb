@@ -151,52 +151,61 @@ function NewSpot() {
           </h3>
         </div>
         <div className="inputs">
-          <label>
-            Country
-            <input
-              type="text"
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-              placeholder="Country"
-            />
-          </label>
-          {submit && validationErrors.country && (
-            <p>{validationErrors.country}</p>
-          )}
-          <label>
-            Street Address
-            <input
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              placeholder="Street Address"></input>
-          </label>
-          {submit && validationErrors.address && (
-            <p>{validationErrors.address}</p>
-          )}
-          <div id="city-state">
+          <div id="inputs-information">
             <label>
-              City
+              Country
               <input
                 type="text"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                placeholder="City"></input>
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+                placeholder="Country"
+              />
             </label>
-
-            {submit && validationErrors.city && <p>{validationErrors.city}</p>}
-
-            <label>
-              State
-              <input
-                type="text"
-                value={state}
-                onChange={(e) => setState(e.target.value)}
-                placeholder="State"></input>
-            </label>
-            {submit && validationErrors.state && (
-              <p>{validationErrors.state}</p>
+            {submit && validationErrors.country && (
+              <p id="p-error">{validationErrors.country}</p>
             )}
+          </div>
+          <div id="inputs-information">
+            <label>
+              Street Address
+              <input
+                type="text"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                placeholder="Street Address"></input>
+            </label>
+            {submit && validationErrors.address && (
+              <p id="p-error">{validationErrors.address}</p>
+            )}
+          </div>
+          <div id="city-state">
+            <div id="city-state-inputs-information">
+              <label>
+                City
+                <input
+                  type="text"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  placeholder="City"></input>
+              </label>
+
+              {submit && validationErrors.city && (
+                <p id="p-error">{validationErrors.city}</p>
+              )}
+            </div>
+            <div id="city-state-inputs-information">
+              <label>
+                State
+                <input
+                  type="text"
+                  value={state}
+                  onChange={(e) => setState(e.target.value)}
+                  placeholder="State"></input>
+              </label>
+              {submit && validationErrors.state && (
+                <p id="p-error">{validationErrors.state}</p>
+              )}
+            </div>
           </div>
         </div>
 
@@ -208,15 +217,18 @@ function NewSpot() {
           </h3>
         </div>
         <div className="inputs">
-          <textarea
-            className="textarea-box"
-            value={description}
-            placeholder="Please write at least 30 characters"
-            onChange={(e) => setDescription(e.target.value)}></textarea>
+          <div id="inputs-information">
+            <textarea
+              className="textarea-box"
+              value={description}
+              placeholder="Please write at least 30 characters"
+              onChange={(e) => setDescription(e.target.value)}></textarea>
+          </div>
+          {submit && validationErrors.description && (
+            <p id="p-error">{validationErrors.description}</p>
+          )}
         </div>
-        {submit && validationErrors.description && (
-          <p>{validationErrors.description}</p>
-        )}
+
         <div className="titles">
           <h2>Create a title for your spot</h2>
           <h3>
@@ -225,13 +237,18 @@ function NewSpot() {
           </h3>
         </div>
         <div className="inputs">
-          <input
-            type="text"
-            value={title}
-            placeholder="Name of your spot"
-            onChange={(e) => setTitle(e.target.value)}></input>
+          <div id="inputs-information">
+            <input
+              type="text"
+              value={title}
+              placeholder="Name of your spot"
+              onChange={(e) => setTitle(e.target.value)}></input>
+          </div>
+          {submit && validationErrors.title && (
+            <p id="p-error">{validationErrors.title}</p>
+          )}
         </div>
-        {submit && validationErrors.title && <p>{validationErrors.title}</p>}
+
         <div className="titles">
           <h2>Set a base price for your spot</h2>
           <h3>
@@ -240,58 +257,75 @@ function NewSpot() {
           </h3>
         </div>
         <div className="inputs">
-          <input
-            type="number"
-            value={price}
-            placeholder="Price per night (USD)"
-            onChange={(e) => setPrice(e.target.value)}></input>
+          <div id="inputs-information">
+            <input
+              type="number"
+              value={price}
+              placeholder="Price per night (USD)"
+              onChange={(e) => setPrice(e.target.value)}></input>
+          </div>
+          {submit && validationErrors.price && (
+            <p id="p-error">{validationErrors.price}</p>
+          )}
         </div>
-        {submit && validationErrors.price && <p>{validationErrors.price}</p>}
+
         <div className="titles">
           <h2>Liven up your spot with photos</h2>
           <h3>Submit a link to at least one photo to publish your spot.</h3>
         </div>
         <div className="inputs">
-          <input
-            type="text"
-            value={previewImage}
-            placeholder="Preview Image URL"
-            onChange={(e) => setPreviewImage(e.target.value)}></input>
-          {submit && validationErrors.previewImage && (
-            <p>{validationErrors.previewImage}</p>
-          )}
-          <input
-            type="text"
-            value={firstImageURL}
-            placeholder="Image URL"
-            onChange={(e) => setFirstImageURL(e.target.value)}></input>
-          {submit && validationErrors.firstImageURL && (
-            <p>{validationErrors.firstImageURL}</p>
-          )}
-          <input
-            type="text"
-            value={secondImageURL}
-            placeholder="Image URL"
-            onChange={(e) => setSecondImageURL(e.target.value)}></input>
-          {submit && validationErrors.secondImageURL && (
-            <p>{validationErrors.secondImageURL}</p>
-          )}
-          <input
-            type="text"
-            value={thirdImageURL}
-            placeholder="Image URL"
-            onChange={(e) => setThirdImageURL(e.target.value)}></input>
-          {submit && validationErrors.thirdImageURL && (
-            <p>{validationErrors.thirdImageURL}</p>
-          )}
-          <input
-            type="text"
-            value={fourthImageURL}
-            placeholder="Image URL"
-            onChange={(e) => setFourthImageURL(e.target.value)}></input>
-          {submit && validationErrors.fourthImageURL && (
-            <p>{validationErrors.fourthImageURL}</p>
-          )}
+          <div id="inputs-information">
+            <input
+              type="text"
+              value={previewImage}
+              placeholder="Preview Image URL"
+              onChange={(e) => setPreviewImage(e.target.value)}></input>
+            {submit && validationErrors.previewImage && (
+              <p id="p-error">{validationErrors.previewImage}</p>
+            )}
+          </div>
+          <div id="inputs-information">
+            {" "}
+            <input
+              type="text"
+              value={firstImageURL}
+              placeholder="Image URL"
+              onChange={(e) => setFirstImageURL(e.target.value)}></input>
+            {submit && validationErrors.firstImageURL && (
+              <p id="p-error">{validationErrors.firstImageURL}</p>
+            )}
+          </div>
+          <div id="inputs-information">
+            <input
+              type="text"
+              value={secondImageURL}
+              placeholder="Image URL"
+              onChange={(e) => setSecondImageURL(e.target.value)}></input>
+            {submit && validationErrors.secondImageURL && (
+              <p id="p-error">{validationErrors.secondImageURL}</p>
+            )}
+          </div>
+          <div id="inputs-information">
+            {" "}
+            <input
+              type="text"
+              value={thirdImageURL}
+              placeholder="Image URL"
+              onChange={(e) => setThirdImageURL(e.target.value)}></input>
+            {submit && validationErrors.thirdImageURL && (
+              <p id="p-error">{validationErrors.thirdImageURL}</p>
+            )}
+          </div>
+          <div id="inputs-information">
+            <input
+              type="text"
+              value={fourthImageURL}
+              placeholder="Image URL"
+              onChange={(e) => setFourthImageURL(e.target.value)}></input>
+            {submit && validationErrors.fourthImageURL && (
+              <p id="p-error">{validationErrors.fourthImageURL}</p>
+            )}
+          </div>
         </div>
         <button id="create-spot-button" type="submit">
           Create Spot

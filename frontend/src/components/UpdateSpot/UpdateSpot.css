@@ -1,31 +1,17 @@
 #update-spot-button {
-  display: block;
-  /* margin-top: 20px; */
+  background-color: #ff5a6099;
   color: white;
-  border: 2px solid black;
-  box-shadow: 2px 2px 2px black;
-  border-radius: 3px;
-  border: black 2px solid;
+}
+
+#update-spot-button:hover {
+  transition: 0.3s;
   background-color: #ff5a5f;
-  /* text-align: center; */
-  margin: 20px auto;
 }
 
-#inputs-one {
-  border-bottom: 2px solid black;
-  padding-bottom: 20px;
+#update-spot-button:not(:hover) {
+  transition: 0.3s;
 }
 
-#update-describe {
-  border-bottom: 2px solid black;
-  padding-bottom: 20px;
-}
-
-#update-titles {
-  border-bottom: 2px solid black;
-  padding-bottom: 20px;
-}
-#update-price {
-  border-bottom: 2px solid black;
-  padding-bottom: 20px;
+input {
+  padding-left: 10px;
 }

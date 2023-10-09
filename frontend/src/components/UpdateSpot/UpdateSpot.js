@@ -85,109 +85,125 @@ function UpdateSpot() {
   return (
     <div id="form-container">
       <h1>Update your Spot</h1>
-      <form onSubmit={handleSubmit}>
-        <div id="titles">
+      <form id="create-form" onSubmit={handleSubmit}>
+        <div className="titles">
           <h2>Where's your place located?</h2>
           <h3>
             Guests will only get your exact address once they booked a
             reservation.
           </h3>
         </div>
-        <div id="inputs-one">
-          <label>
-            Country
-            <input
-              type="text"
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-              placeholder="Country"
-            />
-          </label>
-          {submit && validationErrors.country && (
-            <p>{validationErrors.country}</p>
-          )}
-          <label>
-            Street Address
-            <input
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              placeholder="Street Address"></input>
-          </label>
-          {submit && validationErrors.address && (
-            <p>{validationErrors.address}</p>
-          )}
-          <div id="city-state">
+        <div className="inputs">
+          <div id="inputs-information">
             <label>
-              City
+              Country
               <input
                 type="text"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                placeholder="City"></input>
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+                placeholder="Country"
+              />
             </label>
-            {submit && validationErrors.city && <p>{validationErrors.city}</p>}
-            <label>
-              State
-              <input
-                type="text"
-                value={state}
-                onChange={(e) => setState(e.target.value)}
-                placeholder="State"></input>
-            </label>
-            {submit && validationErrors.state && (
-              <p>{validationErrors.state}</p>
+            {submit && validationErrors.country && (
+              <p>{validationErrors.country}</p>
             )}
+          </div>
+          <div className="titles">
+            <label>
+              Street Address
+              <input
+                type="text"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                placeholder="Street Address"></input>
+            </label>
+            {submit && validationErrors.address && (
+              <p>{validationErrors.address}</p>
+            )}
+          </div>
+          <div id="city-state">
+            <div id="city-state-inputs-information">
+              <label>
+                City
+                <input
+                  type="text"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  placeholder="City"></input>
+              </label>
+              {submit && validationErrors.city && (
+                <p>{validationErrors.city}</p>
+              )}
+            </div>
+            <div id="city-state-inputs-information">
+              <label>
+                State
+                <input
+                  type="text"
+                  value={state}
+                  onChange={(e) => setState(e.target.value)}
+                  placeholder="State"></input>
+              </label>
+              {submit && validationErrors.state && (
+                <p>{validationErrors.state}</p>
+              )}
+            </div>
           </div>
         </div>
 
-        <div id="update-describe">
+        <div className="titles">
           <h2>Describe your place to guests.</h2>
           <h3>
             Mention the best features of your space, any special amenities like
             fast wifi or parking, and what you love about the neighborhood.
           </h3>
-          <div>
-            <textarea
-              className="textarea-box"
-              value={description}
-              placeholder="Please write at least 30 characters"
-              onChange={(e) => setDescription(e.target.value)}></textarea>
-          </div>
         </div>
-        {submit && validationErrors.description && (
-          <p>{validationErrors.description}</p>
-        )}
-        <div id="update-titles">
+        <div className="inputs">
+          <textarea
+            className="textarea-box"
+            value={description}
+            placeholder="Please write at least 30 characters"
+            onChange={(e) => setDescription(e.target.value)}></textarea>
+          {submit && validationErrors.description && (
+            <p>{validationErrors.description}</p>
+          )}
+        </div>
+
+        <div className="titles">
           <h2>Create a title for your spot</h2>
           <h3>
             Catch guests' attention with a spot title that highlights what makes
             your place special.
           </h3>
-          <div>
+        </div>
+        <div className="inputs">
+          <div id="inputs-information">
             <input
               type="text"
               value={title}
               placeholder="Name of your spot"
               onChange={(e) => setTitle(e.target.value)}></input>
           </div>
+          {submit && validationErrors.title && <p>{validationErrors.title}</p>}
         </div>
-        {submit && validationErrors.title && <p>{validationErrors.title}</p>}
-        <div id="update-price">
+
+        <div className="titles">
           <h2>Set a base price for your spot</h2>
           <h3>
             Competitive pricing can help your listing stand out and rank higher
             in search results
           </h3>
-          <div>
+        </div>
+        <div className="inputs">
+          <div id="inputs-information">
             <input
               type="number"
               value={price}
               placeholder="Price per night (USD)"
               onChange={(e) => setPrice(e.target.value)}></input>
           </div>
+          {submit && validationErrors.price && <p>{validationErrors.price}</p>}
         </div>
-        {submit && validationErrors.price && <p>{validationErrors.price}</p>}
         <button id="update-spot-button" type="submit">
           Update your Spot
         </button>
