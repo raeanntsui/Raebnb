@@ -2,9 +2,19 @@
   padding-bottom: 20px;
 }
 
-button:hover {
-  background-color: lightgrey;
-  text-decoration: none;
+#create-spot-button {
+  /* background-color: blue; */
+  background-color: #ff5a6099;
+  color: white;
+}
+
+#create-spot-button:hover {
+  background-color: #ff5a5f;
+  transition: 0.3s;
+}
+
+#create-spot-button:not(:hover) {
+  transition: 0.3s;
 }
 
 #form-container {
