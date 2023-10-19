@@ -30,29 +30,30 @@ const deleteReviewActionCreator = (reviewId) => {
 
 //! ****************** REVIEW THUNKS
 export const getAllReviewsThunk = (spotId) => async (dispatch) => {
-  // retrieve all the reviews at specified spotId
-  const res = await csrfFetch(`/api/spots/${spotId}/reviews`);
-  if (res.ok) {
-    // parse the json response body showing the reviews from specified spotId
-    const reviews = await res.json();
-    // dispatch to the redux store that were getting all reviews
-    dispatch(getAllReviewsActionCreator(reviews));
-    return res;
+  try {
+    const res = await csrfFetch(`/api/spots/${spotId}/reviews`);
+    if (res.ok) {
+      const reviews = await res.json();
+      // reviews coming from action creator
+      dispatch(getAllReviewsActionCreator(reviews));
+      return res;
+    }
+  } catch (e) {
+    return await e.json();
   }
 };
+
 export const createNewReviewThunk = (review, spotId) => async (dispatch) => {
-  // console.log("before csrfFetch");
   let res;
   res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(review),
   });
+
   if (res.ok) {
-    // console.log("res for new review", res);
     const newReview = await res.json();
     dispatch(createNewReviewActionCreator(review));
-    // dispatch(getSingleSpotThunk(review));
     return newReview;
   } else {
     const errors = await res.json();

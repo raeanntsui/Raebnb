@@ -5,6 +5,7 @@ import { getSingleSpotThunk } from "../../store/spots";
 import { getAllReviewsThunk } from "../../store/reviews";
 import "./GetSingleSpot.css";
 import NewReviewModal from "../Reviews/CreateReview";
+import GetAllReviews from "../Reviews/GetAllReviews";
 
 function ShowSingleSpotDetails() {
   const dispatch = useDispatch();
@@ -121,37 +122,7 @@ function ShowSingleSpotDetails() {
             </div>
           </div>
         </div>
-
-        <div>
-          <div id="reviews-and-ratings-2">
-            <h2>
-              <i id="star" className="fa-solid fa-star"></i>
-              {spot.numReviews === 0 ? null : `${spot?.avgRating?.toFixed(2)}`}
-              {!spot.numReviews ? " " : " · "}
-              {spot.numReviews === 0
-                ? `New`
-                : spot.numReviews === 1
-                ? `1 Review`
-                : `${spot.numReviews} Reviews`}
-            </h2>
-          </div>
-        </div>
-        <div id="reviews">
-          <div>
-            <div>
-              {reviewArr.toReversed().map((singleReview) => (
-                <>
-                  <div id="single-review">
-                    <h3>{singleReview?.User?.firstName}</h3>
-                    <h4>{newDateFormatter(singleReview.createdAt)}</h4>
-                    <h4>{singleReview?.review}</h4>
-                  </div>
-                </>
-              ))}
-            </div>
-          </div>
-        </div>
-        <NewReviewModal spot={spot} />
+        <GetAllReviews />
       </div>
     </>
   );

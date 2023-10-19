@@ -155,8 +155,6 @@ const initialState = {
 };
 
 // 5. spots reducer
-// state = current state of app
-// action = action that has occurred
 const spotsDetailsReducer = (state = initialState, action) => {
   let newState;
   const newStateAllSpots = { ...state.allSpots };
