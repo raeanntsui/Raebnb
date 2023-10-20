@@ -48,6 +48,7 @@ function NewReviewModal({ spot }) {
         currentSpotReviewsArray.length === 0 ? (
           <div>
             <button
+              id="post-review"
               onClick={() => {
                 setModalContent(<PostReviewModalContent spot={spot} />);
               }}
@@ -57,31 +58,6 @@ function NewReviewModal({ spot }) {
             <h2>Be the first the post a review!</h2>
           </div>
         ) : null}
-        {/* {currentSessionUser?.id &&
-        currentSessionUser?.id !== currentSpotDetails?.Owner?.id &&
-        !filteredReview &&
-        !currentSpotReviewsArray ? (
-          <>
-            <button
-              onClick={() => {
-                setModalContent(<PostReviewModalContent spot={spot} />);
-              }}
-              type="submit">
-              Post Your Review
-            </button>
-            <h2>Be the first to post a review!</h2>
-          </>
-        ) : currentSessionUser?.id &&
-          currentSessionUser?.id !== currentSpotDetails?.Owner?.id &&
-          !filteredReview ? (
-          <button
-            onClick={() => {
-              setModalContent(<PostReviewModalContent spot={spot} />);
-            }}
-            type="submit">
-            Post Your Review
-          </button>
-        ) : null} */}
       </div>
       <div>
         {currentSessionUser.id === filteredReview?.userId ? (
@@ -91,15 +67,7 @@ function NewReviewModal({ spot }) {
               <DeleteReview review={filteredReview} spot={spot} />
             }
           />
-        ) : //  <button
-        //     onClick={() => {
-        //       setModalContent(<DeleteReview review={filteredReview} />);
-        //     }}
-        //     type="submit"
-        //   >
-        //     Delete Review
-        //   </button>
-        null}
+        ) : null}
       </div>
     </>
   );

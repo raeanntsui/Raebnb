@@ -13,6 +13,7 @@ function SignupFormModal() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [disabled, setDisabled] = useState(true);
   const { closeModal } = useModal();
 
   const handleSubmit = (e) => {
@@ -41,6 +42,11 @@ function SignupFormModal() {
         "Confirm Password field must be the same as the Password field",
     });
   };
+
+  // const disableSubmit =
+  //   (!email && !username && !firstName && !lastName && !password) ||
+  //   username.length < 4 ||
+  //   password.length < 6;
 
   return (
     <>
@@ -107,7 +113,17 @@ function SignupFormModal() {
         </label>
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
         <div id="sign-up-button-container">
-          <button id="sign-up-button" onClick={handleSubmit} type="submit">
+          <button
+            id="sign-up-button"
+            onClick={handleSubmit}
+            // disabled={
+            //   username.length < 4 ||
+            //   password.length < 6 ||
+            //   !email ||
+            //   !firstName ||
+            //   !lastName
+            // }
+            type="submit">
             Sign Up
           </button>
         </div>

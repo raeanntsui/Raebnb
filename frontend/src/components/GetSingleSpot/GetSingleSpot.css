@@ -44,6 +44,8 @@
 
 #callout-button {
   background-color: #ff5a5f;
+  /* box-shadow: #ff5a5f 0px 6px 16px;
+  border: 1px solid #ff5a5f; */
   color: white;
   border: none;
   transition: 0.03s;
