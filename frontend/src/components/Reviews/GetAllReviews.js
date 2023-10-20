@@ -19,7 +19,7 @@ function GetAllReviews() {
   }, [dispatch, spotId]);
 
   const reviewArr = Object.values(allReviewsObject);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ ShowSingleSpotDetails ~ reviewArr:", reviewArr);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ ShowSingleSpotDetails ~ reviewArr:", reviewArr);
 
   if (!spot || Object.keys(spot).length === 0) {
     return null;
@@ -29,8 +29,11 @@ function GetAllReviews() {
     return null;
   }
 
+  if (!reviewArr) return null;
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ reviewArr:", reviewArr);
   let counter = 1;
 
+  // console.log("reviewArr[1]", reviewArr[0].User.firstName);
   // date
   const newDateFormatter = (date) => {
     const months = [
@@ -57,22 +60,22 @@ function GetAllReviews() {
 
   return (
     <>
+      <NewReviewModal spot={spot} />
       <div id="reviews">
         <div>
           <div>
-            {reviewArr.toReversed().map((singleReview) => (
-              <>
-                <div id="single-review">
-                  <h3>{singleReview?.User?.firstName}</h3>
-                  <h4>{newDateFormatter(singleReview.createdAt)}</h4>
-                  <h4>{singleReview?.review}</h4>
-                </div>
-              </>
-            ))}
+            {reviewArr.length > 0
+              ? reviewArr.reverse().map((singleReview) => (
+                  <div key={singleReview.id} id="single-review">
+                    <h3>{singleReview.User && singleReview.User.firstName}</h3>
+                    <h4>{newDateFormatter(singleReview.createdAt)}</h4>
+                    <h4>{singleReview.review}</h4>
+                  </div>
+                ))
+              : null}
           </div>
         </div>
       </div>
-      <NewReviewModal spot={spot} />
     </>
   );
 }
