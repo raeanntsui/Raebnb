@@ -12,6 +12,11 @@
   /* line-height: 25px; */
 }
 
+a:hover,
+button:hover {
+  cursor: pointer;
+}
+
 h1 {
   font-size: 20px;
   font-weight: 700;

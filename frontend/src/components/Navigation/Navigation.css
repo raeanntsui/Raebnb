@@ -3,20 +3,31 @@
 }
 
 .profile-dropdown {
-  /* margin-left: -60px; */
   border: 1px solid rgb(221, 221, 221);
   border-radius: 12px;
-  /* padding: 0px 10px; */
   box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
   background-color: white;
   list-style: none;
   padding: 10px 10px;
-  /* float: right; */
   margin-top: 10px;
-  /* top: 8%; */
-  /* right: 18%; */
-  z-index: 1;
   position: absolute;
+}
+
+#li-link:hover {
+  color: #ff5a5f;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+#li-link-2:hover {
+  color: #ff5a5f;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+#li-link:not(:hover),
+#li-link-2:not(:hover) {
+  transition: 0.3s;
 }
 
 #dropdown-h2 {
