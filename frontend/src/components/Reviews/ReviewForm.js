@@ -74,44 +74,48 @@ export default function PostReviewModalContent({ spot }) {
         value={description}
         onChange={(e) => setDescription(e.target.value)}></textarea>
       <p>{submit && validationErrors.description}</p>
-      <div id="stars1">
-        <i
-          className={
-            displayStarRating >= 1 ? "fa-solid fa-star" : "fa-regular fa-star"
-          }
-          onMouseEnter={() => setHoverStarRating(1)}
-          onMouseLeave={() => setHoverStarRating(0)}
-          onClick={() => setStarRating(1)}></i>
-        <i
-          className={
-            displayStarRating >= 2 ? "fa-solid fa-star" : "fa-regular fa-star"
-          }
-          onMouseEnter={() => setHoverStarRating(2)}
-          onMouseLeave={() => setHoverStarRating(0)}
-          onClick={() => setStarRating(2)}></i>
-        <i
-          className={
-            displayStarRating >= 3 ? "fa-solid fa-star" : "fa-regular fa-star"
-          }
-          onMouseEnter={() => setHoverStarRating(3)}
-          onMouseLeave={() => setHoverStarRating(0)}
-          onClick={() => setStarRating(3)}></i>
-        <i
-          className={
-            displayStarRating >= 4 ? "fa-solid fa-star" : "fa-regular fa-star"
-          }
-          onMouseEnter={() => setHoverStarRating(4)}
-          onMouseLeave={() => setHoverStarRating(0)}
-          onClick={() => setStarRating(4)}></i>
-        <i
-          className={
-            displayStarRating >= 5 ? "fa-solid fa-star" : "fa-regular fa-star"
-          }
-          onMouseEnter={() => setHoverStarRating(5)}
-          onMouseLeave={() => setHoverStarRating(0)}
-          onClick={() => setStarRating(5)}></i>
+      <div id="stars-box">
+        <div id="stars">
+          <i
+            className={
+              displayStarRating >= 1 ? "fa-solid fa-star" : "fa-regular fa-star"
+            }
+            onMouseEnter={() => setHoverStarRating(1)}
+            onMouseLeave={() => setHoverStarRating(0)}
+            onClick={() => setStarRating(1)}></i>
+          <i
+            className={
+              displayStarRating >= 2 ? "fa-solid fa-star" : "fa-regular fa-star"
+            }
+            onMouseEnter={() => setHoverStarRating(2)}
+            onMouseLeave={() => setHoverStarRating(0)}
+            onClick={() => setStarRating(2)}></i>
+          <i
+            className={
+              displayStarRating >= 3 ? "fa-solid fa-star" : "fa-regular fa-star"
+            }
+            onMouseEnter={() => setHoverStarRating(3)}
+            onMouseLeave={() => setHoverStarRating(0)}
+            onClick={() => setStarRating(3)}></i>
+          <i
+            className={
+              displayStarRating >= 4 ? "fa-solid fa-star" : "fa-regular fa-star"
+            }
+            onMouseEnter={() => setHoverStarRating(4)}
+            onMouseLeave={() => setHoverStarRating(0)}
+            onClick={() => setStarRating(4)}></i>
+          <i
+            className={
+              displayStarRating >= 5 ? "fa-solid fa-star" : "fa-regular fa-star"
+            }
+            onMouseEnter={() => setHoverStarRating(5)}
+            onMouseLeave={() => setHoverStarRating(0)}
+            onClick={() => setStarRating(5)}></i>
+        </div>
+        <div id="stars2">
+          <h3>Stars</h3>
+        </div>
       </div>
-      <div id="stars2">Stars</div>
       <button
         disabled={!starRating}
         id="submit-review-button"

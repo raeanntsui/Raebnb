@@ -11,13 +11,14 @@
   background-color: white;
   list-style: none;
   padding: 10px 10px;
-  float: right;
+  /* float: right; */
   margin-top: 10px;
   /* top: 8%; */
   /* right: 18%; */
   z-index: 1;
-  position: relative;
+  position: absolute;
 }
+
 #dropdown-h2 {
   font-weight: 700;
 }
@@ -127,7 +128,7 @@
   padding: 0px 10px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
   background-color: white;
-  /* position: fixed; */
+  /* position: absolute; */
 }
 
 #dropdown-button-w-icons:active {
