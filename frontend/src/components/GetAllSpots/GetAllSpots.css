@@ -1,18 +1,22 @@
 .all-spots-container {
   /* border: black 4px dotted; */
+  max-width: 1024px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
   /* align-items: center; */
   justify-items: center;
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
 }
 
 .landing-page-image {
-  min-width: 250px;
+  /* min-width: 250px;
+  width: 90%;
+  height: 205px; */
+  min-width: 245px;
   width: 100%;
-  height: 205px;
+  height: 240px;
   object-fit: cover;
   border-radius: 10px;
 }

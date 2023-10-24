@@ -18,6 +18,7 @@ function ShowAllSpots() {
     dispatch(getAllSpotsThunk());
     return null;
   }
+
   return (
     <>
       <div className="all-spots-container">
