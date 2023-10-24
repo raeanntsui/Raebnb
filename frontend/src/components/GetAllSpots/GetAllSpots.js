@@ -18,6 +18,7 @@ function ShowAllSpots() {
     return null;
   }
 
+  // hi
   return (
     <>
       <div className="all-spots-container">
