@@ -12,8 +12,8 @@ function NewReviewModal({ spot }) {
   const { setModalContent, setOnModalClose } = useModal();
   // console.log("spot kasjdlakjdsakldja", spot);
   //! current session user
-  const currentSessionUser = useSelector((state) => state.session.user);
-  // console.log("currentSessionUser (session.user)", currentSessionUser);
+  const currentSessionUser = useSelector((state) => state.session.user.id);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ currentSessionUser:", currentSessionUser);
 
   //! current spot's details
   const currentSpotDetails = useSelector((state) => state.spots.singleSpot);
@@ -40,16 +40,16 @@ function NewReviewModal({ spot }) {
   let filteredReview = currentSpotReviewsArray.find(
     (review) => currentSessionUser.id === review.userId
   );
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ filteredReview:", filteredReview);
 
   return (
     <>
       <div>
-        {!currentSessionUser ? (
-          <h2>Star Icon And New</h2>
-        ) : currentSessionUser?.id !== currentSpotDetails?.Owner?.id ? (
+        {currentSessionUser &&
+        currentSessionUser?.id !== currentSpotDetails?.Owner?.id ? (
           <div>
-            <h2>Be the first the post a review!</h2>
             <button
+              id="post-review"
               onClick={() => {
                 setModalContent(<PostReviewModalContent spot={spot} />);
               }}
@@ -57,51 +57,20 @@ function NewReviewModal({ spot }) {
               Post Your Review
             </button>
           </div>
-        ) : null}
-        {/* {currentSessionUser?.id &&
-        currentSessionUser?.id !== currentSpotDetails?.Owner?.id &&
-        !filteredReview &&
-        !currentSpotReviewsArray ? (
-          <>
-            <button
-              onClick={() => {
-                setModalContent(<PostReviewModalContent spot={spot} />);
-              }}
-              type="submit">
-              Post Your Review
-            </button>
-            <h2>Be the first to post a review!</h2>
-          </>
-        ) : currentSessionUser?.id &&
-          currentSessionUser?.id !== currentSpotDetails?.Owner?.id &&
-          !filteredReview ? (
-          <button
-            onClick={() => {
-              setModalContent(<PostReviewModalContent spot={spot} />);
-            }}
-            type="submit">
-            Post Your Review
-          </button>
-        ) : null} */}
+        ) : (
+          <div>Cannot post review</div>
+        )}
       </div>
-      <div>
-        {currentSessionUser.id === filteredReview?.userId ? (
+      {/* <div>
+        {currentSessionUser && currentSessionUser.id === filteredReview ? (
           <OpenModalButton
             buttonText="Delete Review"
             modalComponent={
               <DeleteReview review={filteredReview} spot={spot} />
             }
           />
-        ) : //  <button
-        //     onClick={() => {
-        //       setModalContent(<DeleteReview review={filteredReview} />);
-        //     }}
-        //     type="submit"
-        //   >
-        //     Delete Review
-        //   </button>
-        null}
-      </div>
+        ) : null}
+      </div> */}
     </>
   );
 }

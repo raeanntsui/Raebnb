@@ -24,7 +24,6 @@ function NewSpot() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  // runs after component loads
   useEffect(() => {
     let errorsObject = {};
     if (!country) errorsObject.country = "Country is required";
@@ -328,6 +327,7 @@ function NewSpot() {
           </div>
         </div>
         <button id="create-spot-button" type="submit">
+          {" "}
           Create Spot
         </button>
       </form>

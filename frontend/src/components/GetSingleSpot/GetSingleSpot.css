@@ -1,3 +1,23 @@
+#delete-button > button {
+  margin-left: 0;
+  /* border: 4px dashed blue; */
+  background-color: #ff5a5f;
+  color: white;
+}
+
+#delete-button:hover > button:hover {
+  transition: 0.3s;
+  background-color: #ff5a6098;
+}
+
+#delete-button:not(:hover) > button:not(:hover) {
+  transition: 0.3s;
+}
+
+.fa-solid {
+  color: #ff9529;
+}
+
 #spot-details-container {
   /* border: 5px dashed green; */
   margin: 10px 10px;
@@ -44,6 +64,8 @@
 
 #callout-button {
   background-color: #ff5a5f;
+  /* box-shadow: #ff5a5f 0px 6px 16px;
+  border: 1px solid #ff5a5f; */
   color: white;
   border: none;
   transition: 0.03s;

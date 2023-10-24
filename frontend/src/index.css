@@ -1,24 +1,31 @@
 /* TODO Add site wide styles */
 * {
-  /* font-family: "Montserrat", sans-serif; */
-  font-family: "Poppins", sans-serif;
-  /* background-color: lightgrey; */
-  font-weight: 400;
   max-width: 1024px;
+  /* max-width: calc(100% - 50px); */
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
   margin: 0 auto;
-  /* line-height: 25px; */
   text-decoration: none;
+  /* object-fit: fill; */
+  /* font-family: "Montserrat", sans-serif; */
+  /* background-color: lightgrey; */
+  /* line-height: 25px; */
+}
+
+a:hover,
+button:hover {
+  cursor: pointer;
 }
 
 h1 {
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 700;
   /* color: blue; */
 }
 
 h2 {
   font-size: 18px;
-  font-weight: 600;
+  /* font-weight: 600; */
   /* color: green; */
   /* font-weight: bold; */
 }
@@ -36,7 +43,7 @@ h4 {
 p {
   font-size: 12px;
   color: black;
-  /* font-weight: 500; */
+  /* font-weight: 600; */
 }
 
 #p-error {
@@ -74,16 +81,6 @@ button {
 
 #accepted-pressed-button:active {
   transform: scale(0.9);
-}
-
-#reject-button-shake:active {
-  /* transform: translateX(6px); */
-  background-color: grey;
-  /* display: inline-block;
-  vertical-align: middle;
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  transition-duration: 0.3s; */
 }
 
 /* Modal Input Information */
