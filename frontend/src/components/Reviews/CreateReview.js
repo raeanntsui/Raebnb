@@ -61,7 +61,7 @@ function NewReviewModal({ spot }) {
           <div>Cannot post review</div>
         )}
       </div>
-      <div>
+      {/* <div>
         {currentSessionUser && currentSessionUser.id === filteredReview ? (
           <OpenModalButton
             buttonText="Delete Review"
@@ -70,7 +70,7 @@ function NewReviewModal({ spot }) {
             }
           />
         ) : null}
-      </div>
+      </div> */}
     </>
   );
 }

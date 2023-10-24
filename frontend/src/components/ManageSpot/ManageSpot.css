@@ -1,5 +1,5 @@
 #all-spots-container {
-  border: black 4px dotted;
+  /* border: black 4px dotted; */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
@@ -24,13 +24,9 @@
   line-height: 40px;
 }
 
-#update-delete {
-  border: 2px solid red;
-  /* width: 150px; */
-}
-
 #update-button {
-  background-color: greenyellow;
+  background-color: #ff5a5f;
+  color: white;
   transition: 0.03s;
 }
 
@@ -38,6 +34,7 @@
   transform: scale(0.9);
 }
 
-#delete-button {
-  background-color: aquamarine;
+#manage-rating {
+  text-decoration: none;
+  color: black;
 }

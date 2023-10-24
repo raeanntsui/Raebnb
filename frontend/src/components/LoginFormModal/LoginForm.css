@@ -28,3 +28,7 @@
 #btn {
   padding: 5px;
 }
+
+#reject-button-shake:active {
+  cursor: not-allowed;
+}
