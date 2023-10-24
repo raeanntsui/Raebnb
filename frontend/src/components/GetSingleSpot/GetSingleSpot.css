@@ -1,3 +1,8 @@
+#delete-button {
+  margin-left: 0;
+  border: 3px solid green;
+}
+
 #spot-details-container {
   /* border: 5px dashed green; */
   margin: 10px 10px;

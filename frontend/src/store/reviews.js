@@ -54,7 +54,9 @@ export const createNewReviewThunk = (review, spotId) => async (dispatch) => {
     });
     if (res.ok) {
       const newReview = await res.json();
-      dispatch(createNewReviewActionCreator(newReview));
+      // dispatch(getAllReviewsActionCreator(newReview));
+      // dispatch(createNewReviewActionCreator(newReview));
+      await dispatch(getAllReviewsThunk(spotId));
       return newReview;
     }
   } catch (e) {
