@@ -57,16 +57,12 @@ const deleteSpotActionCreator = (spotId) => {
 
 //******************! 3. Thunks
 //? getAllSpots thunk
-// make network requests
 export const getAllSpotsThunk = () => async (dispatch) => {
   const res = await csrfFetch("/api/spots");
   if (res.ok) {
-    // parse res.body as JSON
     const spots = await res.json();
-    // dispatch redux action with the fetched spots data
     dispatch(getAllSpotsActionCreator(spots));
-    // return the res object
-    return res;
+    return spots;
   }
 };
 //? getSingleSpot thunk
@@ -155,7 +151,7 @@ const initialState = {
 };
 
 // 5. spots reducer
-const spotsDetailsReducer = (state = initialState, action) => {
+const spotsReducer = (state = initialState, action) => {
   let newState;
   const newStateAllSpots = { ...state.allSpots };
   switch (action.type) {
@@ -171,8 +167,8 @@ const spotsDetailsReducer = (state = initialState, action) => {
     case CREATE_NEW_SPOT:
       return {
         ...state,
-        singleSpot: action.spot,
-        allSpots: newStateAllSpots,
+        // singleSpot: action.spot,
+        allSpots: { ...newStateAllSpots, singleSpot: action.spot },
       };
     case UPDATE_SPOT:
       return {
@@ -191,4 +187,4 @@ const spotsDetailsReducer = (state = initialState, action) => {
   }
 };
 
-export default spotsDetailsReducer;
+export default spotsReducer;

@@ -116,13 +116,13 @@ function SignupFormModal() {
           <button
             id="sign-up-button"
             onClick={handleSubmit}
-            // disabled={
-            //   username.length < 4 ||
-            //   password.length < 6 ||
-            //   !email ||
-            //   !firstName ||
-            //   !lastName
-            // }
+            disabled={
+              username.length < 4 ||
+              password.length < 6 ||
+              !email ||
+              !firstName ||
+              !lastName
+            }
             type="submit">
             Sign Up
           </button>

@@ -113,33 +113,4 @@ const reviewsReducer = (state = initialState, action) => {
   }
 };
 
-// const reviewsReducer = (state = initialState, action) => {
-//   let newState;
-//   switch (action.type) {
-//     case GET_ALL_REVIEWS:
-//       newState = { ...state, spot: {} };
-//       action.reviews.spot.forEach((review) => {
-//         newState.spot[review.id] = review;
-//       });
-//       return newState;
-//     case CREATE_NEW_REVIEW:
-//       newState = {
-//         ...state,
-//         spot: { ...state.spot },
-//         user: { ...state.user },
-//       };
-//       newState.spot[action.review.id] = action.review;
-//       return newState;
-//     case DELETE_REVIEW:
-//       const reviewsObj = { ...state.spot };
-//       delete reviewsObj[action.reviewId];
-//       return {
-//         ...state,
-//         spot: { ...reviewsObj },
-//       };
-//     default:
-//       return state;
-//   }
-// };
-
 export default reviewsReducer;

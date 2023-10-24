@@ -117,7 +117,7 @@ export default function PostReviewModalContent({ spot }) {
         </div>
       </div>
       <button
-        disabled={!starRating}
+        disabled={!starRating && !description}
         id="submit-review-button"
         type="submit"
         onClick={handleSubmit}>

@@ -4,15 +4,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSingleSpotThunk } from "../../store/spots";
 import { getAllReviewsThunk } from "../../store/reviews";
 import NewReviewModal from "../Reviews/CreateReview";
+import PostReviewModalContent from "./ReviewForm";
+import OpenModalButton from "../OpenModalButton";
 
 function GetAllReviews() {
+  const { spotId } = useParams();
   const dispatch = useDispatch();
 
-  //! session user id = 4
   const sessionUser = useSelector((state) => state.session.user);
   const spot = useSelector((state) => state.spots.singleSpot);
+  const reviews = useSelector((state) => state.reviews);
   const allReviewsObject = useSelector((state) => state.reviews.spot);
-  const { spotId } = useParams();
+
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ allReviewsObject:", allReviewsObject);
+  // console.log("🚀🚀🚀🚀🚀🚀!!!! ~ reviews:", reviews);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ spotId:", spotId);
+
   useEffect(() => {
     dispatch(getSingleSpotThunk(spotId));
     dispatch(getAllReviewsThunk(spotId));
@@ -21,20 +28,23 @@ function GetAllReviews() {
   const reviewArr = Object.values(allReviewsObject);
   // console.log("🚀🚀🚀🚀🚀🚀 ~ ShowSingleSpotDetails ~ reviewArr:", reviewArr);
 
-  if (!spot || Object.keys(spot).length === 0) {
+  if (
+    !spot ||
+    Object.keys(spot).length === 0 ||
+    !allReviewsObject ||
+    !reviewArr
+  ) {
     return null;
   }
 
-  if (!allReviewsObject) {
-    return null;
-  }
+  // if (!allReviewsObject) {
+  //   return null;
+  // }
 
-  if (!reviewArr) return null;
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ reviewArr:", reviewArr);
+  // if (!reviewArr) return null;
+
   let counter = 1;
 
-  // console.log("reviewArr[1]", reviewArr[0].User.firstName);
-  // date
   const newDateFormatter = (date) => {
     const months = [
       "January",
@@ -60,21 +70,14 @@ function GetAllReviews() {
 
   return (
     <>
-      <NewReviewModal spot={spot} />
-      <div id="reviews">
-        <div>
-          <div>
-            {reviewArr.length > 0
-              ? reviewArr.reverse().map((singleReview) => (
-                  <div key={singleReview.id} id="single-review">
-                    <h3>{singleReview.User && singleReview.User.firstName}</h3>
-                    <h4>{newDateFormatter(singleReview.createdAt)}</h4>
-                    <h4>{singleReview.review}</h4>
-                  </div>
-                ))
-              : null}
+      <div>
+        {reviewArr.reverse().map((singleReview) => (
+          <div key={singleReview.id} id="single-review">
+            <h3>{singleReview.User && singleReview.User.firstName}</h3>
+            <h4>{newDateFormatter(singleReview.createdAt)}</h4>
+            <h4>{singleReview.review}</h4>
           </div>
-        </div>
+        ))}
       </div>
     </>
   );

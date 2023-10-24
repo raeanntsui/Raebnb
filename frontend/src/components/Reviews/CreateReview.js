@@ -12,8 +12,8 @@ function NewReviewModal({ spot }) {
   const { setModalContent, setOnModalClose } = useModal();
   // console.log("spot kasjdlakjdsakldja", spot);
   //! current session user
-  const currentSessionUser = useSelector((state) => state.session.user);
-  // console.log("currentSessionUser (session.user)", currentSessionUser);
+  const currentSessionUser = useSelector((state) => state.session.user.id);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ currentSessionUser:", currentSessionUser);
 
   //! current spot's details
   const currentSpotDetails = useSelector((state) => state.spots.singleSpot);
@@ -40,12 +40,13 @@ function NewReviewModal({ spot }) {
   let filteredReview = currentSpotReviewsArray.find(
     (review) => currentSessionUser.id === review.userId
   );
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ filteredReview:", filteredReview);
 
   return (
     <>
       <div>
-        {currentSessionUser?.id !== currentSpotDetails?.Owner?.id &&
-        currentSpotReviewsArray.length === 0 ? (
+        {currentSessionUser &&
+        currentSessionUser?.id !== currentSpotDetails?.Owner?.id ? (
           <div>
             <button
               id="post-review"
@@ -55,12 +56,13 @@ function NewReviewModal({ spot }) {
               type="submit">
               Post Your Review
             </button>
-            <h2>Be the first the post a review!</h2>
           </div>
-        ) : null}
+        ) : (
+          <div>Cannot post review</div>
+        )}
       </div>
       <div>
-        {currentSessionUser.id === filteredReview?.userId ? (
+        {currentSessionUser.id === filteredReview ? (
           <OpenModalButton
             buttonText="Delete Review"
             modalComponent={

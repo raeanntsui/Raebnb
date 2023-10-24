@@ -3,25 +3,26 @@ import { useParams, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleSpotThunk } from "../../store/spots";
 import { getAllReviewsThunk } from "../../store/reviews";
+import DeleteReview from "../DeleteReview/DeleteReview";
 import "./GetSingleSpot.css";
 import NewReviewModal from "../Reviews/CreateReview";
 import GetAllReviews from "../Reviews/GetAllReviews";
-
+import OpenModalButton from "../OpenModalButton";
 function ShowSingleSpotDetails() {
   const dispatch = useDispatch();
 
-  //! session user id = 4
   const sessionUser = useSelector((state) => state.session.user);
   const spot = useSelector((state) => state.spots.singleSpot);
   const allReviewsObject = useSelector((state) => state.reviews.spot);
   const { spotId } = useParams();
+
   useEffect(() => {
     dispatch(getSingleSpotThunk(spotId));
     dispatch(getAllReviewsThunk(spotId));
   }, [dispatch, spotId]);
 
   const reviewArr = Object.values(allReviewsObject);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ ShowSingleSpotDetails ~ reviewArr:", reviewArr);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ ShowSingleSpotDetails ~ reviewArr:", reviewArr);
 
   if (!spot || Object.keys(spot).length === 0) {
     return null;
@@ -60,6 +61,17 @@ function ShowSingleSpotDetails() {
 
     return `${month} ${year}`;
   };
+
+  let existingReview;
+
+  if (sessionUser) {
+    console.log("🚀🚀🚀🚀🚀🚀 ~ sessionUser:", sessionUser);
+    existingReview = reviewArr.find(
+      (review) => review.User.id === sessionUser.id
+    );
+
+    console.log("🚀🚀🚀🚀🚀🚀 ~ existingReview:", existingReview);
+  }
 
   return (
     <>
@@ -122,7 +134,27 @@ function ShowSingleSpotDetails() {
             </div>
           </div>
         </div>
+
         <GetAllReviews />
+        {sessionUser?.id !== spot?.Owner?.id &&
+        !existingReview &&
+        (!reviewArr || reviewArr.length === 0) ? (
+          <>
+            <h1>Be the first to post a review!</h1>
+            <NewReviewModal spot={spot} />
+          </>
+        ) : sessionUser?.id !== spot?.Owner?.id &&
+          !existingReview &&
+          reviewArr ? (
+          <NewReviewModal spot={spot} />
+        ) : existingReview ? (
+          <OpenModalButton
+            buttonText="Delete Review"
+            modalComponent={
+              <DeleteReview review={existingReview} spot={spot} />
+            }
+          />
+        ) : null}
       </div>
     </>
   );
