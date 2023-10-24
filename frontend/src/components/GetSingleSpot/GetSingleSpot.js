@@ -156,13 +156,15 @@ function ShowSingleSpotDetails() {
           reviewArr ? (
           <NewReviewModal spot={spot} />
         ) : existingReview ? (
-          <OpenModalButton
-            style="margin-left: 0;"
-            buttonText="Delete Review"
-            modalComponent={
-              <DeleteReview review={existingReview} spot={spot} />
-            }
-          />
+          <div id="delete-button">
+            <OpenModalButton
+              style="margin-left: 0;"
+              buttonText="Delete Review"
+              modalComponent={
+                <DeleteReview review={existingReview} spot={spot} />
+              }
+            />
+          </div>
         ) : null}
         <GetAllReviews />
       </div>
