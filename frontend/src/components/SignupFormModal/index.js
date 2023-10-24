@@ -114,7 +114,7 @@ function SignupFormModal() {
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
         <div id="sign-up-button-container">
           <button
-            id="sign-up-button"
+            id={disabled ? "disabled-signup" : "enabled-signup"}
             onClick={handleSubmit}
             disabled={
               username.length < 4 ||

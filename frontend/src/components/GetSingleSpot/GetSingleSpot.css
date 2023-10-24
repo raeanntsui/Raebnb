@@ -3,6 +3,10 @@
   /* border: 4px dashed blue; */
   background-color: #ff5a5f;
   color: white;
+  width: 100px;
+  font-size: 10px;
+  height: 25px;
+  margin-top: 10px;
 }
 
 #delete-button:hover > button:hover {
