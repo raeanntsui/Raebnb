@@ -11,7 +11,7 @@
   padding: 10px 10px;
   margin-top: 10px;
   position: absolute;
-  min-width: 0px;
+  min-width: 65px;
 }
 
 #li-link:hover {
