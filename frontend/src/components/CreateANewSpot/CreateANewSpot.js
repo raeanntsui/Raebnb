@@ -328,7 +328,7 @@ function NewSpot() {
         </div>
         <button id="create-spot-button" type="submit">
           {" "}
-          disabled={validationErrors}
+          {/* disabled={validationErrors} */}
           Create Spot
         </button>
       </form>
