@@ -15,38 +15,41 @@ function ShowAllSpots() {
   }, [dispatch]);
 
   if (!allSpots || !allSpots.length) {
-    dispatch(getAllSpotsThunk());
     return null;
   }
+
+  // hi
   return (
     <>
       <div className="all-spots-container">
-        {allSpots.map((spot) => (
-          <NavLink key={spot.id} to={`/spots/${spot.id}`} className="NavLink">
-            <img
-              src={spot.previewImage}
-              alt={spot.name}
-              className="landing-page-image"
-              title={spot.name}
-            />
-            <div className="spot-details">
-              <div className="location-price">
-                <p id="location">
-                  {spot.city}, {spot.state}
-                </p>
-                <p className="p2">${spot.price} night</p>
+        {allSpots.map((spot) =>
+          spot ? (
+            <NavLink key={spot.id} to={`/spots/${spot.id}`} className="NavLink">
+              <img
+                src={spot.previewImage}
+                alt={spot.name}
+                className="landing-page-image"
+                title={spot.name}
+              />
+              <div className="spot-details">
+                <div className="location-price">
+                  <p id="location">
+                    {spot.city}, {spot.state}
+                  </p>
+                  <p className="p2">${spot.price} night</p>
+                </div>
+                <div className="rating">
+                  <p>
+                    <i id="filled-star" className="fa-solid fa-star"></i>{" "}
+                    {!spot.avgRating || isNaN(spot.avgRating)
+                      ? `New`
+                      : parseFloat(spot.avgRating).toFixed(2)}
+                  </p>
+                </div>
               </div>
-              <div className="rating">
-                <p>
-                  <i id="filled-star" className="fa-solid fa-star"></i>{" "}
-                  {!spot.avgRating || isNaN(spot.avgRating)
-                    ? `New`
-                    : parseFloat(spot.avgRating).toFixed(2)}
-                </p>
-              </div>
-            </div>
-          </NavLink>
-        ))}
+            </NavLink>
+          ) : null
+        )}
       </div>
     </>
   );
