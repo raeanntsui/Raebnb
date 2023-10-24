@@ -11,22 +11,14 @@ function GetAllReviews() {
   const { spotId } = useParams();
   const dispatch = useDispatch();
 
-  const sessionUser = useSelector((state) => state.session.user);
   const spot = useSelector((state) => state.spots.singleSpot);
-  const reviews = useSelector((state) => state.reviews);
   const allReviewsObject = useSelector((state) => state.reviews.spot);
-
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ allReviewsObject:", allReviewsObject);
-  // console.log("🚀🚀🚀🚀🚀🚀!!!! ~ reviews:", reviews);
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ spotId:", spotId);
+  const reviewArr = Object.values(allReviewsObject);
 
   useEffect(() => {
     dispatch(getSingleSpotThunk(spotId));
     dispatch(getAllReviewsThunk(spotId));
   }, [dispatch, spotId]);
-
-  const reviewArr = Object.values(allReviewsObject);
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ ShowSingleSpotDetails ~ reviewArr:", reviewArr);
 
   if (
     !spot ||

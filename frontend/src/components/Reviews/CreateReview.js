@@ -62,7 +62,7 @@ function NewReviewModal({ spot }) {
         )}
       </div>
       <div>
-        {currentSessionUser.id === filteredReview ? (
+        {currentSessionUser && currentSessionUser.id === filteredReview ? (
           <OpenModalButton
             buttonText="Delete Review"
             modalComponent={

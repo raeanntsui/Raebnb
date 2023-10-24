@@ -22,7 +22,6 @@ function ShowSingleSpotDetails() {
   }, [dispatch, spotId]);
 
   const reviewArr = Object.values(allReviewsObject);
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ ShowSingleSpotDetails ~ reviewArr:", reviewArr);
 
   if (!spot || Object.keys(spot).length === 0) {
     return null;
@@ -136,14 +135,27 @@ function ShowSingleSpotDetails() {
         </div>
 
         <GetAllReviews />
-        {sessionUser?.id !== spot?.Owner?.id &&
+        {/* {!sessionUser || !sessionUser.id ? (
+          <div>
+            {reviewArr.reverse().map((singleReview) => (
+              <div key={singleReview.id} id="single-review">
+                <h3>{singleReview.User && singleReview.User.firstName}</h3>
+                <h4>{newDateFormatter(singleReview.createdAt)}</h4>
+                <h4>{singleReview.review}</h4>
+              </div>
+            ))}
+          </div>
+        ) : null} */}
+        {sessionUser &&
+        sessionUser?.id !== spot?.Owner?.id &&
         !existingReview &&
         (!reviewArr || reviewArr.length === 0) ? (
           <>
             <h1>Be the first to post a review!</h1>
             <NewReviewModal spot={spot} />
           </>
-        ) : sessionUser?.id !== spot?.Owner?.id &&
+        ) : sessionUser &&
+          sessionUser?.id !== spot?.Owner?.id &&
           !existingReview &&
           reviewArr ? (
           <NewReviewModal spot={spot} />
