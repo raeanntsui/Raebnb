@@ -73,15 +73,17 @@ function ManageSpot() {
                 </div>
               </NavLink>
               <div id="update-delete">
-                <NavLink to={`/spots/${spot.id}/edit`}>
-                  <button id="update-button">Update</button>
-                </NavLink>
-                {/* <div></div> */}
-                <OpenModalButton
-                  id="delete-button"
-                  buttonText="Delete"
-                  modalComponent={<DeleteSpot spot={spot} />}
-                />
+                <div id="update1">
+                  <NavLink to={`/spots/${spot.id}/edit`}>
+                    <button id="update-button">Update</button>
+                  </NavLink>
+                </div>
+                <div id="update2">
+                  <OpenModalButton
+                    buttonText="Delete"
+                    modalComponent={<DeleteSpot spot={spot} />}
+                  />
+                </div>
               </div>
             </div>
           </>

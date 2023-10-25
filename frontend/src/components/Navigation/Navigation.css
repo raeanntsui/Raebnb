@@ -151,3 +151,7 @@
 #person-icon {
   color: rgb(0, 0, 0);
 }
+
+.logout-button {
+  width: 125px;
+}
