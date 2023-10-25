@@ -65,6 +65,8 @@ function GetAllReviews() {
     );
   }
 
+  //
+
   return (
     <>
       <div id="reviews">
@@ -75,7 +77,8 @@ function GetAllReviews() {
             </h3>
             <h4>{newDateFormatter(singleReview.createdAt)}</h4>
             <h4>{singleReview.review}</h4>
-            {currentSessionUser.id === singleReview.User.id ? (
+            {currentSessionUser &&
+            currentSessionUser.id === singleReview.User.id ? (
               <div id="delete-button">
                 <OpenModalButton
                   // style="background-color: green; !important; height: 30px; width: 50px; margin-left: 0;"
