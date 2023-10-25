@@ -9,6 +9,7 @@
 }
 
 #manage-spots-image {
+  /* max-width: 250px; */
   width: 100%;
   height: 205px;
   object-fit: cover;
@@ -28,6 +29,14 @@
   background-color: #ff5a5f;
   color: white;
   transition: 0.03s;
+  width: 100%;
+}
+
+#delete-spot {
+  background-color: green;
+  color: white;
+  transition: 0.03s;
+  width: 45%;
 }
 
 #update-button:active {
@@ -37,4 +46,38 @@
 #manage-rating {
   text-decoration: none;
   color: black;
+  font-size: 12px;
+  /* font-weight: 500; */
+  margin: 0;
+}
+
+#manage-city-state-rating {
+  /* border: 2px solid green; */
+  display: flex;
+  justify-content: space-between;
+}
+
+#manage-city-state {
+  /* border: 3px dashed red; */
+  margin: 0;
+}
+
+.modal-button {
+  width: 100%;
+}
+
+#update-delete {
+  display: flex;
+  /* border: 2px solid red; */
+  margin: 0;
+  padding: 10px 0px;
+  gap: 5px;
+}
+
+#update1 {
+  width: 50%;
+}
+
+#update2 {
+  width: 50%;
 }

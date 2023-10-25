@@ -72,9 +72,9 @@ function GetAllReviews() {
       <div id="reviews">
         {reviewArr.reverse().map((singleReview) => (
           <div key={singleReview.id} id="single-review">
-            <h3 id="gsp-name">
+            <h2 id="gsp-name">
               {singleReview.User && singleReview.User.firstName}
-            </h3>
+            </h2>
             <h4>{newDateFormatter(singleReview.createdAt)}</h4>
             <h4>{singleReview.review}</h4>
             {currentSessionUser &&
