@@ -13,7 +13,7 @@ function GetAllReviews() {
   const dispatch = useDispatch();
 
   const currentSessionUser = useSelector((state) => state.session.user);
-  console.log("🚀🚀🚀🚀🚀🚀 ~ currentSessionUser:", currentSessionUser);
+  // console.log("🚀🚀🚀🚀🚀🚀 ~ currentSessionUser:", currentSessionUser);
   const spot = useSelector((state) => state.spots.singleSpot);
   const allReviewsObject = useSelector((state) => state.reviews.spot);
   const reviewArr = Object.values(allReviewsObject);
