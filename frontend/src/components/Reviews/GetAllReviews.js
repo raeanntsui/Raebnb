@@ -18,7 +18,7 @@ function GetAllReviews() {
   useEffect(() => {
     dispatch(getSingleSpotThunk(spotId));
     dispatch(getAllReviewsThunk(spotId));
-  }, [dispatch, spotId]);
+  }, [dispatch, spotId, reviewArr.length]);
 
   if (
     !spot ||
@@ -65,7 +65,9 @@ function GetAllReviews() {
       <div>
         {reviewArr.reverse().map((singleReview) => (
           <div key={singleReview.id} id="single-review">
-            <h3 id="gsp-name">{singleReview.User && singleReview.User.firstName}</h3>
+            <h3 id="gsp-name">
+              {singleReview.User && singleReview.User.firstName}
+            </h3>
             <h4>{newDateFormatter(singleReview.createdAt)}</h4>
             <h4>{singleReview.review}</h4>
           </div>
