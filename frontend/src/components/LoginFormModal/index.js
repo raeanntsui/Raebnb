@@ -74,11 +74,19 @@ function LoginFormModal() {
           <div id="btn">
             <button
               id={
-                !credential || !password
+                !credential ||
+                credential.length < 4 ||
+                !password ||
+                password.length < 6
                   ? "reject-button-shake"
                   : "login-button"
               }
-              disabled={!credential || !password}
+              disabled={
+                !credential ||
+                credential.length < 4 ||
+                !password ||
+                password.length < 6
+              }
               type="submit">
               Log In
             </button>
