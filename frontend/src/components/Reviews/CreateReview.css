@@ -28,13 +28,22 @@ textarea {
   align-items: center;
 }
 
-#submit-review-button {
+/* .submit-review-button {
   justify-content: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 10px;
   padding-bottom: 10px;
+} */
+
+#disabled-review-submit:active {
+  cursor: not-allowed;
+}
+
+#enabled-review-submit {
+  background-color: #ff5a5f;
+  color: white;
 }
 
 #post-review {

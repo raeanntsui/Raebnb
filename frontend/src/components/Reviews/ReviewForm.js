@@ -32,8 +32,10 @@ export default function PostReviewModalContent({ spot }) {
       errorsObject.description =
         "Please enter a minimum of 10 characters for your review";
     // if an error exists, state will update with error property in the errorsObject
+    if (!starRating)
+      errorsObject.starRating = "Please enter a valid star rating";
     setValidationErrors(errorsObject);
-  }, [description]);
+  }, [description, starRating]);
 
   // console.log("🚀 ~ file: ReviewForm.js:45 ~ handleSubmit ~ spotId:", spotId);
   //! prevent entire page reload
@@ -116,13 +118,26 @@ export default function PostReviewModalContent({ spot }) {
           <h3>Stars</h3>
         </div>
       </div>
+      <p>{submit && validationErrors.starRating}</p>
       <button
-        disabled={!starRating && !description}
+        // disabled={!starRating || !description}
         id="submit-review-button"
         type="submit"
         onClick={handleSubmit}>
         Submit Review
       </button>
+      {/* <button
+        id={
+          !starRating || !description || description.length < 10
+            ? "disabled-review-submit"
+            : "enabled-review-submit"
+        }
+        disabled={!starRating || !description || description.length < 10}
+        // className="submit-review-button"
+        type="submit"
+        onClick={handleSubmit}>
+        Submit Review
+      </button> */}
     </form>
   );
 }
