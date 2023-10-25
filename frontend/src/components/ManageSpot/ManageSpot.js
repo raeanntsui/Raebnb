@@ -7,39 +7,6 @@ import DeleteSpot from "../DeleteSpot/DeleteSpot";
 import "./ManageSpot.css";
 
 function ManageSpot() {
-  // const { current } = useParams;
-  // console.log("🚀🚀🚀🚀🚀🚀 ~ current:", current);
-
-  // const dispatch = useDispatch();
-  // const sessionUser = useSelector((state) => state.session.user);
-  // console.log(
-  //   "🚀 ~ file: ManageSpot.js:11 ~ ManageSpot ~ sessionUser:",
-  //   sessionUser
-  // );
-  // const spots = useSelector((state) => state.spots.allSpots);
-  // //   console.log("🚀 ~ file: ManageSpot.js:13 ~ ManageSpot ~ spots:", spots);
-
-  // const allSpots = Object.values(spots);
-  // //   console.log("🚀 ~ file: ManageSpot.js:20 ~ ManageSpot ~ allSpots:", allSpots);
-
-  // if (!allSpots || !allSpots.length) {
-  //   dispatch(getAllSpotsThunk());
-  //   return null;
-  // }
-
-  // // if user logs out or no user is logged in currently, redirect to main landing page
-  // if (!sessionUser) {
-  //   return <Redirect to="/"></Redirect>;
-  // }
-
-  // //! filter the spots that are owned by the current session user
-  // const userSpotsArray = allSpots.filter(
-  //   (spot) => spot.ownerId === sessionUser.id
-  // );
-  // console.log(
-  //   "🚀 ~ file: ManageSpot.js:36 ~ ManageSpot ~ userSpotsArray:",
-  //   userSpotsArray
-  // );
   const { current } = useParams();
 
   const dispatch = useDispatch();
