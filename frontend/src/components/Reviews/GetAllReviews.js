@@ -29,12 +29,6 @@ function GetAllReviews() {
     return null;
   }
 
-  // if (!allReviewsObject) {
-  //   return null;
-  // }
-
-  // if (!reviewArr) return null;
-
   let counter = 1;
 
   const newDateFormatter = (date) => {
