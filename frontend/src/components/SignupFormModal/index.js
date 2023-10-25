@@ -117,11 +117,13 @@ function SignupFormModal() {
             id={disabled ? "disabled-signup" : "enabled-signup"}
             onClick={handleSubmit}
             disabled={
-              username.length < 4 ||
-              password.length < 6 ||
+              !username ||
+              !password ||
               !email ||
               !firstName ||
-              !lastName
+              !lastName ||
+              username.length < 4 ||
+              password.length < 6
             }
             type="submit">
             Sign Up

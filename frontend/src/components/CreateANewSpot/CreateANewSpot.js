@@ -327,7 +327,6 @@ function NewSpot() {
           </div>
         </div>
         <button id="create-spot-button" type="submit">
-          {" "}
           Create Spot
         </button>
       </form>
