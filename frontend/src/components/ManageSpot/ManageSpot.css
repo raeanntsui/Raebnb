@@ -37,4 +37,18 @@
 #manage-rating {
   text-decoration: none;
   color: black;
+  font-size: 12px;
+  /* font-weight: 500; */
+  margin: 0;
+}
+
+#manage-city-state-rating {
+  /* border: 2px solid green; */
+  display: flex;
+  justify-content: space-between;
+}
+
+#manage-city-state {
+  /* border: 3px dashed red; */
+  margin: 0;
 }
