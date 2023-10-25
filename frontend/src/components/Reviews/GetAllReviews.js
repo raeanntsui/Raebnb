@@ -6,11 +6,14 @@ import { getAllReviewsThunk } from "../../store/reviews";
 import NewReviewModal from "../Reviews/CreateReview";
 import PostReviewModalContent from "./ReviewForm";
 import OpenModalButton from "../OpenModalButton";
+import DeleteReview from "../DeleteReview/DeleteReview";
 
 function GetAllReviews() {
   const { spotId } = useParams();
   const dispatch = useDispatch();
 
+  const currentSessionUser = useSelector((state) => state.session.user);
+  console.log("🚀🚀🚀🚀🚀🚀 ~ currentSessionUser:", currentSessionUser);
   const spot = useSelector((state) => state.spots.singleSpot);
   const allReviewsObject = useSelector((state) => state.reviews.spot);
   const reviewArr = Object.values(allReviewsObject);
@@ -28,12 +31,6 @@ function GetAllReviews() {
   ) {
     return null;
   }
-
-  // if (!allReviewsObject) {
-  //   return null;
-  // }
-
-  // if (!reviewArr) return null;
 
   let counter = 1;
 
@@ -60,9 +57,17 @@ function GetAllReviews() {
     return `${month} ${year}`;
   };
 
+  let existingReview;
+
+  if (currentSessionUser) {
+    existingReview = reviewArr.find(
+      (review) => review.User.id === currentSessionUser.id
+    );
+  }
+
   return (
     <>
-      <div>
+      <div id="reviews">
         {reviewArr.reverse().map((singleReview) => (
           <div key={singleReview.id} id="single-review">
             <h3 id="gsp-name">
@@ -70,6 +75,17 @@ function GetAllReviews() {
             </h3>
             <h4>{newDateFormatter(singleReview.createdAt)}</h4>
             <h4>{singleReview.review}</h4>
+            {currentSessionUser.id === singleReview.User.id ? (
+              <div id="delete-button">
+                <OpenModalButton
+                  // style="background-color: green; !important; height: 30px; width: 50px; margin-left: 0;"
+                  buttonText="Delete Review"
+                  modalComponent={
+                    <DeleteReview review={existingReview} spot={spotId} />
+                  }
+                />
+              </div>
+            ) : null}
           </div>
         ))}
       </div>

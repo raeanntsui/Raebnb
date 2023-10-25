@@ -64,7 +64,6 @@ function ShowSingleSpotDetails() {
   let existingReview;
 
   if (sessionUser) {
-    console.log("🚀🚀🚀🚀🚀🚀 ~ sessionUser:", sessionUser);
     existingReview = reviewArr.find(
       (review) => review.User.id === sessionUser.id
     );
@@ -155,17 +154,18 @@ function ShowSingleSpotDetails() {
           !existingReview &&
           reviewArr ? (
           <NewReviewModal spot={spot} />
-        ) : existingReview ? (
-          <div id="delete-button">
-            <OpenModalButton
-              style="margin-left: 0;"
-              buttonText="Delete Review"
-              modalComponent={
-                <DeleteReview review={existingReview} spot={spot} />
-              }
-            />
-          </div>
-        ) : null}
+        ) : // : existingReview ? (
+        //   <div id="delete-button">
+        //     <OpenModalButton
+        //       style="margin-left: 0;"
+        //       buttonText="Delete Review"
+        //       modalComponent={
+        //         <DeleteReview review={existingReview} spot={spot} />
+        //       }
+        //     />
+        //   </div>
+        // )
+        null}
         <GetAllReviews />
       </div>
     </>
