@@ -3,6 +3,8 @@
   /* border: 4px dashed blue; */
   background-color: #ff5a5f;
   color: white;
+  height: 30px;
+  width: 130px;
 }
 
 #delete-button:hover > button:hover {
