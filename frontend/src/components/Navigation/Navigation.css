@@ -12,8 +12,13 @@
   margin-top: 10px;
   position: absolute;
   /* min-width: 65px; */
-  width: fit-content;
+  width: 125px;
   margin-left: -75px;
+}
+
+#li-link,
+#li-link-2 {
+  text-align: center;
 }
 
 #li-link:hover {
