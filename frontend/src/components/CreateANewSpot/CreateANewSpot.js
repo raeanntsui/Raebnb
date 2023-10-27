@@ -37,6 +37,8 @@ function NewSpot() {
     if (title.length > 50)
       errorsObject.title = "Name must be under 50 characters long";
     if (!price) errorsObject.price = "Price is required";
+    if (price < 1)
+      errorsObject.price = "Price must be greater than $0 a night!";
     if (!previewImage) errorsObject.previewImage = "Preview image is required";
     if (
       previewImage &&
