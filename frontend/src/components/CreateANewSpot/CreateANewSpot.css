@@ -2,6 +2,10 @@
   padding-bottom: 20px;
 }
 
+#create-spot-button-div {
+  padding-top: 15px;
+}
+
 #create-spot-button {
   /* background-color: blue; */
   background-color: #ff5a6099;
@@ -40,7 +44,7 @@ form > p {
   /* border: 5px blue dashed; */
   padding-top: 5px;
   padding-bottom: 10px;
-  /* border-bottom: grey 3px solid; */
+  border-bottom: 2px solid rgba(128, 128, 128, 0.629);
 }
 
 input {
