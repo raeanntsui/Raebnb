@@ -123,7 +123,7 @@ export default function PostReviewModalContent({ spot }) {
         type="submit"
         disabled={!starRating || !description || description.length < 10}
         onClick={handleSubmit}>
-        Submit Review
+        Submit Your Review
       </button>
 
       {/* <button
