@@ -10,10 +10,10 @@
   list-style: none;
   padding: 10px 10px;
   margin-top: 10px;
-  position: relative;
+  position: absolute;
   /* min-width: 65px; */
   width: fit-content;
-  margin-left: -65px;
+  margin-left: -75px;
 }
 
 #li-link:hover {
