@@ -81,7 +81,6 @@ function GetAllReviews() {
             currentSessionUser.id === singleReview.User.id ? (
               <div id="delete-button">
                 <OpenModalButton
-                  // style="background-color: green; !important; height: 30px; width: 50px; margin-left: 0;"
                   buttonText="Delete Review"
                   modalComponent={
                     <DeleteReview review={existingReview} spot={spotId} />

@@ -83,6 +83,13 @@ button {
   transform: scale(0.9);
 }
 
+#accepted-pressed-button:hover {
+  background-color: #ff5a60a7;
+  transition: 0.3s ease-out;
+  color: white;
+  border: none;
+}
+
 /* Modal Input Information */
 #inputs-information {
   padding-top: 0px;

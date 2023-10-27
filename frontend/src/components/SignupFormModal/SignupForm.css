@@ -30,3 +30,7 @@
 #sign-up-button-container > #disabled-signup > button {
   border: 2px dashed green;
 }
+/* 
+#disabled-signup:hover {
+  cursor: not-allowed;
+} */

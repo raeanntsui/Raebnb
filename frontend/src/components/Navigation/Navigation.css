@@ -61,6 +61,12 @@
   border: #ff5a5f solid 1px;
 }
 
+#create-spot-button:hover {
+  background-color: #ff5a608a;
+  border: none;
+  transition: 0.3s;
+}
+
 #create-spot-button:active {
   transform: scale(0.9);
   transition: 0.05s;
@@ -154,4 +160,15 @@
 
 .logout-button {
   width: 125px;
+}
+
+.logout-button:hover {
+  background-color: #717171a7;
+  transition: 0.3s ease-out;
+  /* color: white; */
+  border: none;
+}
+
+.logout-button:active {
+  transform: scale(0.9);
 }

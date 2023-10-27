@@ -9,13 +9,14 @@
 }
 
 #create-spot-button:hover {
+  /* background-color: green; */
   background-color: #ff5a5f;
   transition: 0.3s;
 }
-
+/* 
 #create-spot-button:not(:hover) {
   transition: 0.3s;
-}
+} */
 
 #form-container {
   /* border: green 5px solid; */
