@@ -6,10 +6,10 @@ import "./UpdateSpot.css";
 
 function UpdateSpot() {
   const currentSpot = useSelector((state) => state.spots.singleSpot);
-  console.log(
-    "🚀 ~ file: UpdateSpot.js:9 ~ UpdateSpot ~ currentSpot:",
-    currentSpot
-  );
+  // console.log(
+  //   "🚀 ~ file: UpdateSpot.js:9 ~ UpdateSpot ~ currentSpot:",
+  //   currentSpot
+  // );
 
   const { spotId } = useParams();
   const [validationErrors, setValidationErrors] = useState({});
@@ -37,7 +37,11 @@ function UpdateSpot() {
     if (description && description.length < 30)
       errorsObject.description = "Description needs a minimum of 30 characters";
     if (!title) errorsObject.title = "Name is required";
+    if (title.length > 50)
+      errorsObject.title = "Name must be under 50 characters long";
     if (!price) errorsObject.price = "Price is required";
+    if (price < 1)
+      errorsObject.price = "Price must be greater than $0 a night!";
 
     // if an error exists, state will update with error property in the errorsObject
     setValidationErrors(errorsObject);
@@ -105,7 +109,7 @@ function UpdateSpot() {
               />
             </label>
             {submit && validationErrors.country && (
-              <p>{validationErrors.country}</p>
+              <p id="p-error">{validationErrors.country}</p>
             )}
           </div>
           <div className="titles">
@@ -118,7 +122,7 @@ function UpdateSpot() {
                 placeholder="Street Address"></input>
             </label>
             {submit && validationErrors.address && (
-              <p>{validationErrors.address}</p>
+              <p id="p-error">{validationErrors.address}</p>
             )}
           </div>
           <div id="city-state">
@@ -132,7 +136,7 @@ function UpdateSpot() {
                   placeholder="City"></input>
               </label>
               {submit && validationErrors.city && (
-                <p>{validationErrors.city}</p>
+                <p id="p-error">{validationErrors.city}</p>
               )}
             </div>
             <div id="city-state-inputs-information">
@@ -145,7 +149,7 @@ function UpdateSpot() {
                   placeholder="State"></input>
               </label>
               {submit && validationErrors.state && (
-                <p>{validationErrors.state}</p>
+                <p id="p-error">{validationErrors.state}</p>
               )}
             </div>
           </div>
@@ -165,7 +169,7 @@ function UpdateSpot() {
             placeholder="Please write at least 30 characters"
             onChange={(e) => setDescription(e.target.value)}></textarea>
           {submit && validationErrors.description && (
-            <p>{validationErrors.description}</p>
+            <p id="p-error">{validationErrors.description}</p>
           )}
         </div>
 
@@ -184,7 +188,9 @@ function UpdateSpot() {
               placeholder="Name of your spot"
               onChange={(e) => setTitle(e.target.value)}></input>
           </div>
-          {submit && validationErrors.title && <p>{validationErrors.title}</p>}
+          {submit && validationErrors.title && (
+            <p id="p-error">{validationErrors.title}</p>
+          )}
         </div>
 
         <div className="titles">
@@ -202,7 +208,9 @@ function UpdateSpot() {
               placeholder="Price per night (USD)"
               onChange={(e) => setPrice(e.target.value)}></input>
           </div>
-          {submit && validationErrors.price && <p>{validationErrors.price}</p>}
+          {submit && validationErrors.price && (
+            <p id="p-error">{validationErrors.price}</p>
+          )}
         </div>
         <div id="update-spot-button-div">
           <button id="update-spot-button" type="submit">
