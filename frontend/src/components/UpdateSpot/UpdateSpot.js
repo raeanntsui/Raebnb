@@ -204,9 +204,11 @@ function UpdateSpot() {
           </div>
           {submit && validationErrors.price && <p>{validationErrors.price}</p>}
         </div>
-        <button id="update-spot-button" type="submit">
-          Update your Spot
-        </button>
+        <div id="update-spot-button-div">
+          <button id="update-spot-button" type="submit">
+            Update your Spot
+          </button>
+        </div>
       </form>
     </div>
   );
