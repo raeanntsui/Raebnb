@@ -199,7 +199,7 @@ function UpdateSpot() {
           <h2>Set a base price for your spot</h2>
           <h3>
             Competitive pricing can help your listing stand out and rank higher
-            in search results
+            in search results.
           </h3>
         </div>
         <div className="inputs">
