@@ -40,6 +40,22 @@ h4 {
   font-size: 14px;
   /* color: rgb(64, 115, 224); */
 }
+
+h5 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 14px;
+  color: grey;
+}
+
+h7 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
 p {
   font-size: 12px;
   color: black;
@@ -81,6 +97,13 @@ button {
 
 #accepted-pressed-button:active {
   transform: scale(0.9);
+}
+
+#accepted-pressed-button:hover {
+  background-color: #ff5a60a7;
+  transition: 0.3s ease-out;
+  color: white;
+  border: none;
 }
 
 /* Modal Input Information */

@@ -143,7 +143,7 @@ function NewSpot() {
       <h1 id="h1-create-new-spot">Create a new Spot</h1>
       <form id="create-form" onSubmit={handleSubmit}>
         <div className="titles">
-          <h2>Where's your place located?</h2>
+          <h7>Where's your place located?</h7>
           <h3>
             Guests will only get your exact address once they booked a
             reservation.
@@ -209,7 +209,7 @@ function NewSpot() {
         </div>
 
         <div className="titles">
-          <h2>Describe your place to guests.</h2>
+          <h7>Describe your place to guests.</h7>
           <h3>
             Mention the best features of your space, any special amenities like
             fast wifi or parking, and what you love about the neighborhood.
@@ -229,7 +229,7 @@ function NewSpot() {
         </div>
 
         <div className="titles">
-          <h2>Create a title for your spot</h2>
+          <h7>Create a title for your spot</h7>
           <h3>
             Catch guests' attention with a spot title that highlights what makes
             your place special.
@@ -249,7 +249,7 @@ function NewSpot() {
         </div>
 
         <div className="titles">
-          <h2>Set a base price for your spot</h2>
+          <h7>Set a base price for your spot</h7>
           <h3>
             Competitive pricing can help your listing stand out and rank higher
             in search results
@@ -269,7 +269,7 @@ function NewSpot() {
         </div>
 
         <div className="titles">
-          <h2>Liven up your spot with photos</h2>
+          <h7>Liven up your spot with photos</h7>
           <h3>Submit a link to at least one photo to publish your spot.</h3>
         </div>
         <div className="inputs">
@@ -326,9 +326,11 @@ function NewSpot() {
             )}
           </div>
         </div>
-        <button id="create-spot-button" type="submit">
-          Create Spot
-        </button>
+        <div id="create-spot-button-div">
+          <button id="create-spot-button" type="submit">
+            Create Spot
+          </button>
+        </div>
       </form>
     </div>
   );

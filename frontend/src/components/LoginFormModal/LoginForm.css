@@ -29,6 +29,7 @@
   padding: 5px;
 }
 
-#reject-button-shake:active {
+#reject-button-shake:active,
+#reject-button-shake:hover {
   cursor: not-allowed;
 }
