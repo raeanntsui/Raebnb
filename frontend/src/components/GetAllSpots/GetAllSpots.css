@@ -19,6 +19,7 @@
   height: 240px;
   object-fit: cover;
   border-radius: 10px;
+  max-width: 245px;
 }
 
 .spot-details {
