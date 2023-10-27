@@ -31,7 +31,8 @@
   margin-bottom: 10px;
   display: flex;
   flex-direction: row;
-  /* border-bottom: 2px solid black; */
+  border-bottom: 2px solid black;
+  padding-bottom: 15px;
   min-height: 130px;
 }
 

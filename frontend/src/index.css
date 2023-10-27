@@ -40,6 +40,17 @@ h4 {
   font-size: 14px;
   /* color: rgb(64, 115, 224); */
 }
+
+h5 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 14px;
+  color: grey;
+}
+
 p {
   font-size: 12px;
   color: black;
