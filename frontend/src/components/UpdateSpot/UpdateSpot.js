@@ -40,7 +40,7 @@ function UpdateSpot() {
     if (title && title.length > 50)
       errorsObject.title = "Name must be under 50 characters long";
     if (!price) errorsObject.price = "Price is required";
-    if (price < 1)
+    if (price && price < 1)
       errorsObject.price = "Price must be greater than $0 a night!";
 
     // if an error exists, state will update with error property in the errorsObject
