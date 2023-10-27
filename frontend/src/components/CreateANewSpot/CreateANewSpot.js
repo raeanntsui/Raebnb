@@ -39,6 +39,9 @@ function NewSpot() {
     if (!price) errorsObject.price = "Price is required";
     if (price && price < 1)
       errorsObject.price = "Price must be greater than $0 a night!";
+    if (price && price > 999999)
+      errorsObject.price = "Price must less than $999,999 a night!";
+
     if (!previewImage) errorsObject.previewImage = "Preview image is required";
     if (
       previewImage &&
