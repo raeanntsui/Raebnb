@@ -12,29 +12,30 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await SpotImage.bulkCreate(
       [
+        // Nook's Cranny
         {
           spotId: 1,
-          url: "https://a0.muscache.com/im/pictures/950b5439-cce6-41db-bef6-463e6855fa4f.jpg?im_w=1200",
+          url: "https://animalcrossingworld.com/wp-content/uploads/2020/02/Switch_ACNH_0220-Direct_Facilities_SCRN_04.jpg",
           preview: true,
         },
         {
           spotId: 1,
-          url: "https://a0.muscache.com/im/pictures/885532ba-9b34-4a34-a712-82b3a77845d7.jpg?im_w=1200",
+          url: "https://cdn.vox-cdn.com/thumbor/_DzCjsmMBg-2p2TJiXDUa3tyG8A=/1400x0/filters:no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/19811736/2020031615352500_02CB906EA538A35643C1E1484C4B947D.jpg",
           preview: false,
         },
         {
           spotId: 1,
-          url: "https://a0.muscache.com/im/pictures/05cbf846-320b-4357-b5ba-d0962b1ee3c1.jpg?im_w=1200",
+          url: "https://i.pinimg.com/474x/da/68/06/da6806aeccd714734c13b4334a0ac575.jpg",
           preview: false,
         },
         {
           spotId: 1,
-          url: "https://a0.muscache.com/im/pictures/88186409-9534-4d5b-a43d-ccdcb95eebde.jpg?im_w=1200",
+          url: "https://www.gamespot.com/a/uploads/scale_landscape/1552/15524586/3645562-2020030109275400-02cb906ea538a35643c1e1484c4b947d.jpg",
           preview: false,
         },
         {
           spotId: 1,
-          url: "https://a0.muscache.com/im/pictures/edc00a90-3053-410b-aeec-cbda0877647d.jpg?im_w=1200",
+          url: "https://www.gamespot.com/a/uploads/original/1575/15759911/3659574-2020040613095200-02cb906ea538a35643c1e1484c4b947d.jpg",
           preview: false,
         },
         {

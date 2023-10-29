@@ -12,46 +12,68 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await User.bulkCreate(
       [
+        //1
         {
-          firstName: "Raeann",
-          lastName: "Tsui",
-          email: "demo@user.io",
-          username: "Demo-lition",
+          firstName: "Tom",
+          lastName: "Nook",
+          email: "tom@ac.com",
+          username: "tomnook",
           hashedPassword: bcrypt.hashSync("password"),
         },
+        //2
         {
-          firstName: "James",
-          lastName: "Smith",
-          email: "user1@user.io",
-          username: "FakeUser1",
-          hashedPassword: bcrypt.hashSync("password"),
-        },
-        {
-          firstName: "Christopher",
-          lastName: "Lee",
-          email: "user2@user.io",
-          username: "FakeUser2",
-          hashedPassword: bcrypt.hashSync("password"),
-        },
-        {
-          firstName: "Mary",
-          lastName: "Jane",
+          firstName: "Blathers",
+          lastName: "Futa",
           email: "user3@user.io",
           username: "FakeUser3",
           hashedPassword: bcrypt.hashSync("password"),
         },
+        //3
         {
-          firstName: "Jenny",
-          lastName: "Lane",
-          email: "user4@user.io",
-          username: "FakeUser4",
+          firstName: "Isabelle",
+          lastName: "Shizue",
+          email: "isabelle@ac.com",
+          username: "isabelle",
           hashedPassword: bcrypt.hashSync("password"),
         },
+        //4
         {
-          firstName: "Emily",
-          lastName: "Chou",
-          email: "user5@user.io",
-          username: "FakeUser5",
+          firstName: "Brewster",
+          lastName: "Pigeon",
+          email: "brewster@ac.com",
+          username: "therooster",
+          hashedPassword: bcrypt.hashSync("password"),
+        },
+        //5
+        {
+          firstName: "Mabel",
+          lastName: "Hedgehog",
+          email: "mabel@ac.com",
+          username: "mabel",
+          hashedPassword: bcrypt.hashSync("password"),
+        },
+        //6
+        {
+          firstName: "Orville",
+          lastName: "Dodo",
+          email: "orville@ac.com",
+          username: "orville",
+          hashedPassword: bcrypt.hashSync("password"),
+        },
+        //7
+        {
+          firstName: "Merengue",
+          lastName: "Rhino",
+          email: "merengue@ac.com",
+          username: "merengue",
+          hashedPassword: bcrypt.hashSync("password"),
+        },
+        //8
+        {
+          firstName: "Maple",
+          lastName: "Bear",
+          email: "maple@ac.com",
+          username: "maple",
           hashedPassword: bcrypt.hashSync("password"),
         },
       ],

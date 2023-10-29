@@ -1,15 +1,22 @@
 /* TODO Add site wide styles */
-* {
-  max-width: 1024px;
+*,
+html,
+body {
+  /* max-width: 1024px; */
+  /* width: 80%; */
   /* max-width: calc(100% - 50px); */
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   margin: 0 auto;
   text-decoration: none;
+  /* background-image: url("https://catwithmonocle.com/wp-content/uploads/2020/03/ac-new-horizons-leaf-pattern-v2-1920x1080-1.jpg"); */
+  /* background-image: url("https://catwithmonocle.com/wp-content/uploads/2020/02/ac-new-horizons-nook-pattern-1920x1080-1.jpg"); */
+
   /* object-fit: fill; */
   /* font-family: "Montserrat", sans-serif; */
   /* background-color: lightgrey; */
   /* line-height: 25px; */
+  /* background: blue; */
 }
 
 a:hover,
