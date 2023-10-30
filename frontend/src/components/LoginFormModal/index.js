@@ -46,6 +46,9 @@ function LoginFormModal() {
   return (
     <>
       <h1 id="h1-form">Log In</h1>
+      <div id="login-error">
+        {errors.credential && <p id="p-error">{errors.credential}</p>}
+      </div>
       <form id="form-content-width" onSubmit={handleSubmit}>
         <div id="inputs-information">
           <label>
@@ -68,7 +71,6 @@ function LoginFormModal() {
               required
             />
           </label>
-          {errors.credential && <p id="p-error">{errors.credential}</p>}
         </div>
         <div id="modal-buttons-up-down">
           <div id="btn">

@@ -34,3 +34,10 @@
 #disabled-signup:hover {
   cursor: not-allowed;
 } */
+
+#error-messages-signup {
+  /* border: 2px solid green; */
+  display: flex;
+  justify-content: center;
+  padding: 5px 0px;
+}

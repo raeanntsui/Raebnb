@@ -103,12 +103,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid rgba(128, 128, 128, 0.629);
+  /* border-bottom: 2px solid rgba(128, 128, 128, 0.629); */
+  max-width: 1024px;
+}
+
+#grey-bar {
+  border-bottom: 1px solid rgba(181, 181, 181, 0.506);
   margin-bottom: 15px;
 }
 
 #raebnb-logo {
-  padding: 0px 5px;
+  /* padding: 0px 5px; */
   height: 35px;
   transform: rotate(180deg);
   /* font-weight: 800; */
@@ -124,12 +129,12 @@
   align-items: center;
   justify-content: space-between;
   display: flex;
-  padding: 5px 10px;
+  padding: 5px 0px;
   color: #ff5a5f;
   text-decoration: none;
   font-weight: bold;
   font-size: 20px;
-  margin-left: 5px;
+  margin-left: 0px;
   /* position: fixed; */
 }
 
