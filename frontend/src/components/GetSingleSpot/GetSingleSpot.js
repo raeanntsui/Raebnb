@@ -74,8 +74,8 @@ function ShowSingleSpotDetails() {
       <div id="spot-details-container">
         <div id="spot-details">
           <div id="spot-details-header">
-            <h1>{spot.name}</h1>
             <div id="cityStateCountry">
+              <h1>{spot.name}</h1>
               {spot.city}, {spot.state}, {spot.country}
             </div>
           </div>
@@ -108,7 +108,7 @@ function ShowSingleSpotDetails() {
                 <div>
                   <div id="reviews-and-ratings">
                     <h2>
-                      <i className="fa-solid fa-star"></i>
+                      <i className="fa-solid fa-star"></i>{" "}
                       {spot.numReviews === 0
                         ? null
                         : `${spot?.avgRating?.toFixed(2)}`}
@@ -131,7 +131,7 @@ function ShowSingleSpotDetails() {
           </div>
         </div>
         <h1>
-          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>{" "}
           {spot.numReviews === 0 ? null : `${spot?.avgRating?.toFixed(2)}`}
           {!spot.numReviews ? " " : " · "}
           {spot.numReviews === 0

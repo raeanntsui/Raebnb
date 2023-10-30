@@ -45,6 +45,7 @@
 #li-2 {
   border-bottom: solid 1px grey;
   padding-bottom: 5px;
+  word-wrap: break-word;
 }
 
 #li-3 {
@@ -113,10 +114,9 @@
 }
 
 #raebnb-logo {
-  /* padding: 0px 5px; */
+  margin-right: 10px;
   height: 35px;
   transform: rotate(180deg);
-  /* font-weight: 800; */
 }
 
 #raebnb-h1 {

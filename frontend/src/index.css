@@ -81,8 +81,7 @@ p {
   color: #717171;
 }
 
-.NavLink {
-  text-decoration: none;
+.NavLink:hover {
 }
 
 button {
@@ -119,7 +118,7 @@ button {
 /* Modal Input Information */
 #inputs-information {
   padding-top: 0px;
-  padding-bottom: 15px;
+  /* padding-bottom: 15px; */
 }
 
 #h1-form {
