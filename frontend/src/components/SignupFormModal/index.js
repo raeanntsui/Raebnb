@@ -51,6 +51,14 @@ function SignupFormModal() {
   return (
     <>
       <h1 id="sign-up-h1">Sign Up</h1>
+      <div id="error-messages-signup">
+        {errors.email && <h8>{errors.email}</h8>}
+        {errors.username && <h8>{errors.username}</h8>}
+        {errors.firstName && <h8>{errors.firstName}</h8>}
+        {errors.lastName && <h8>{errors.lastName}</h8>}
+        {errors.confirmPassword && <h8>{errors.confirmPassword}</h8>}
+      </div>
+
       <form id="form-content-width" onSubmit={handleSubmit}>
         <label>
           Email
@@ -61,7 +69,6 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
         <label>
           Username
           <input
@@ -71,7 +78,6 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
         <label>
           First Name
           <input
@@ -81,7 +87,6 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.firstName && <p>{errors.firstName}</p>}
         <label>
           Last Name
           <input
@@ -91,7 +96,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.lastName && <p>{errors.lastName}</p>}
+
         <label>
           Password
           <input
@@ -101,7 +106,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+        {/* {errors.password && <p>{errors.password}</p>} */}
         <label>
           Confirm Password
           <input
@@ -111,7 +116,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+
         <div id="sign-up-button-container">
           <button
             id={disabled ? "disabled-signup" : "enabled-signup"}

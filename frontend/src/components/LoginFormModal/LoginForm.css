@@ -33,3 +33,7 @@
 #reject-button-shake:hover {
   cursor: not-allowed;
 }
+
+#login-error {
+  text-align: center;
+}

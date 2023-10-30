@@ -1,11 +1,15 @@
 /* TODO Add site wide styles */
-* {
-  max-width: 1024px;
+*,
+html,
+body {
+  /* max-width: 1400px; */
   /* max-width: calc(100% - 50px); */
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   margin: 0 auto;
+  /* margin: 0px 30px; */
   text-decoration: none;
+  /* background-image: url("https://i.imgur.com/P93TNBe.png"); */
   /* object-fit: fill; */
   /* font-family: "Montserrat", sans-serif; */
   /* background-color: lightgrey; */
@@ -56,6 +60,12 @@ h7 {
   font-weight: 600;
 }
 
+h8 {
+  font-size: 12px;
+  color: red;
+  text-align: center;
+}
+
 p {
   font-size: 12px;
   color: black;
@@ -71,8 +81,7 @@ p {
   color: #717171;
 }
 
-.NavLink {
-  text-decoration: none;
+.NavLink:hover {
 }
 
 button {
@@ -109,7 +118,7 @@ button {
 /* Modal Input Information */
 #inputs-information {
   padding-top: 0px;
-  padding-bottom: 15px;
+  /* padding-bottom: 15px; */
 }
 
 #h1-form {
