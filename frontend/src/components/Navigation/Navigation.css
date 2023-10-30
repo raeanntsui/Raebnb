@@ -97,6 +97,9 @@
 }
 
 /* Navigation */
+#nav-bar-grey-line {
+  border-bottom: 2px solid rgba(128, 128, 128, 0.629);
+}
 
 #header-nav-bar-container {
   /* border: red dashed 3px; */
@@ -104,8 +107,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid rgba(128, 128, 128, 0.629);
-  /* margin-bottom: 15px; */
   max-width: 1250px;
 }
 
