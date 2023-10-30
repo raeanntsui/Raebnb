@@ -1,5 +1,15 @@
+#manage-spots-entire {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 1024px;
+  /* clear: both; */
+  /* border: 5px solid red; */
+}
+
 #all-spots-container {
   /* border: black 4px dotted; */
+  max-width: 1024px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
@@ -17,12 +27,19 @@
 }
 
 #manage-spots-header-and-button {
-  display: flex;
+  /* border: 4px dashed green; */
+  position: relative;
+  /* left: 0; */
+  /* float: left; */
+  /* align-content: left; */
   flex-direction: column;
-  float: left;
+  display: flex;
   padding-top: 0px;
   padding-bottom: 15px;
   line-height: 40px;
+  margin-left: 0;
+  padding-left: 5px;
+  /* margin */
 }
 
 #update-button {

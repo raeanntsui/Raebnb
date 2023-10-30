@@ -12,7 +12,7 @@ function ManageSpot() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const spots = useSelector((state) => state.spots.allSpots);
-  console.log("🚀 ~ file: ManageSpot.js:13 ~ ManageSpot ~ spots:", spots);
+  // console.log("🚀 ~ file: ManageSpot.js:13 ~ ManageSpot ~ spots:", spots);
 
   const allSpots = Object.values(spots);
   //   console.log("🚀 ~ file: ManageSpot.js:20 ~ ManageSpot ~ allSpots:", allSpots);
@@ -31,7 +31,7 @@ function ManageSpot() {
   }, [dispatch, userSpotsArray.length]);
 
   return (
-    <>
+    <div id="manage-spots-entire">
       <div id="manage-spots-header-and-button">
         <h1>Manage Spots</h1>
         <NavLink exact to="/spots/new" id="create-new-spot">
@@ -89,7 +89,7 @@ function ManageSpot() {
           </>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

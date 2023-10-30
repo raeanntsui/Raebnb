@@ -72,22 +72,31 @@ function GetAllReviews() {
       <div id="reviews">
         {reviewArr.reverse().map((singleReview) => (
           <div key={singleReview.id} id="single-review">
-            <h5 id="gsp-name">
-              {singleReview.User && singleReview.User.firstName}
-            </h5>
-            <h6>{newDateFormatter(singleReview.createdAt)}</h6>
-            <h4>{singleReview.review}</h4>
-            {currentSessionUser &&
-            currentSessionUser.id === singleReview.User.id ? (
-              <div id="delete-button">
-                <OpenModalButton
-                  buttonText="Delete Review"
-                  modalComponent={
-                    <DeleteReview review={existingReview} spot={spotId} />
-                  }
-                />
+            <div id="review-icon">
+              <i class="fa-regular fa-face-smile"></i>
+            </div>
+            <div id="review-chunk">
+              <div id="firstname">
+                {singleReview.User && singleReview.User.firstName}
               </div>
-            ) : null}
+              <div id="date">
+                <h6>{newDateFormatter(singleReview.createdAt)}</h6>
+              </div>
+              <div id="actual-review">
+                <h4>{singleReview.review}</h4>
+              </div>
+              {currentSessionUser &&
+              currentSessionUser.id === singleReview.User.id ? (
+                <div id="delete-button">
+                  <OpenModalButton
+                    buttonText="Delete Review"
+                    modalComponent={
+                      <DeleteReview review={existingReview} spot={spotId} />
+                    }
+                  />
+                </div>
+              ) : null}
+            </div>
           </div>
         ))}
       </div>
