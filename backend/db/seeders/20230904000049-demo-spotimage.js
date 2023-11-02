@@ -12,304 +12,212 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await SpotImage.bulkCreate(
       [
+        // Nook's Cranny
         {
           spotId: 1,
-          url: "https://a0.muscache.com/im/pictures/950b5439-cce6-41db-bef6-463e6855fa4f.jpg?im_w=1200",
+          url: "https://animalcrossingworld.com/wp-content/uploads/2020/02/Switch_ACNH_0220-Direct_Facilities_SCRN_04.jpg",
           preview: true,
         },
         {
           spotId: 1,
-          url: "https://a0.muscache.com/im/pictures/885532ba-9b34-4a34-a712-82b3a77845d7.jpg?im_w=1200",
-          preview: false,
-        },
-        {
-          spotId: 1,
-          url: "https://a0.muscache.com/im/pictures/05cbf846-320b-4357-b5ba-d0962b1ee3c1.jpg?im_w=1200",
+          url: "https://cdn.vox-cdn.com/thumbor/_DzCjsmMBg-2p2TJiXDUa3tyG8A=/1400x0/filters:no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/19811736/2020031615352500_02CB906EA538A35643C1E1484C4B947D.jpg",
           preview: false,
         },
         {
           spotId: 1,
-          url: "https://a0.muscache.com/im/pictures/88186409-9534-4d5b-a43d-ccdcb95eebde.jpg?im_w=1200",
+          url: "https://i.pinimg.com/474x/da/68/06/da6806aeccd714734c13b4334a0ac575.jpg",
           preview: false,
         },
         {
           spotId: 1,
-          url: "https://a0.muscache.com/im/pictures/edc00a90-3053-410b-aeec-cbda0877647d.jpg?im_w=1200",
+          url: "https://www.gamespot.com/a/uploads/scale_landscape/1552/15524586/3645562-2020030109275400-02cb906ea538a35643c1e1484c4b947d.jpg",
+          preview: false,
+        },
+        {
+          spotId: 1,
+          url: "https://www.gamespot.com/a/uploads/original/1575/15759911/3659574-2020040613095200-02cb906ea538a35643c1e1484c4b947d.jpg",
+          preview: false,
+        },
+        // Museum
+        {
+          spotId: 2,
+          url: "https://www.tz.de/bilder/2020/05/19/13768937/815341824-animal-crossing-horizons-alle-infos-museumstag-stempeljagd-2tyMMSkLieea.jpg",
+          preview: true,
+        },
+        {
+          spotId: 2,
+          url: "https://oyster.ignimgs.com/mediawiki/apis.ign.com/animal-crossing-new-horizons/d/d8/Museum_Entry_Lobby.png?width=1280",
           preview: false,
         },
         {
           spotId: 2,
-          url: "https://a0.muscache.com/im/pictures/b29cf85f-0be2-4be7-84ed-398194fb9111.jpg?im_w=960",
-          preview: true,
-        },
-        {
-          spotId: 2,
-          url: "https://a0.muscache.com/im/pictures/0a54ea84-71b1-431a-a8a2-7767c6b0bdb1.jpg?im_w=720",
+          url: "https://oyster.ignimgs.com/mediawiki/apis.ign.com/animal-crossing-new-horizons/4/49/Museum_Guide_-_Art_Header.png?width=1280",
           preview: false,
         },
         {
           spotId: 2,
-          url: "https://a0.muscache.com/im/pictures/1ffd450f-34da-4e0a-9935-373e7127dd29.jpg?im_w=720",
+          url: "https://static1.srcdn.com/wordpress/wp-content/uploads/2021/05/Animal-Crossing-New-Horizons-Bug-Catching-Guide.jpg",
           preview: false,
         },
         {
           spotId: 2,
-          url: "https://a0.muscache.com/im/pictures/afb3a5d9-933c-4b0c-bbef-158d1f06087b.jpg?im_w=720",
+          url: "https://oyster.ignimgs.com/mediawiki/apis.ign.com/animal-crossing-new-horizons/e/ec/Museum_Guide_-_Sea_Creatures_Header.png?width=1280",
           preview: false,
         },
-        {
-          spotId: 2,
-          url: "https://a0.muscache.com/im/pictures/e722ad32-8a35-464f-b23a-52e2c883fd67.jpg?im_w=720",
-          preview: false,
-        },
+        // Resident Services
         {
           spotId: 3,
-          url: "https://a0.muscache.com/im/pictures/636cc221-8ed7-444a-b055-5eef10d7bd35.jpg?im_w=960",
+          url: "https://dodo.ac/np/images/thumb/9/9f/NH_Resident_Services_Building.jpg/1200px-NH_Resident_Services_Building.jpg",
           preview: true,
         },
         {
           spotId: 3,
-          url: "https://a0.muscache.com/im/pictures/ebf1a50d-1f37-4cfc-a593-d3a0842e91ff.jpg?im_w=720",
+          url: "https://dodo.ac/np/images/8/8a/NH_Resident_Services_Interior.png",
           preview: false,
         },
         {
           spotId: 3,
-          url: "https://a0.muscache.com/im/pictures/493e7a26-0645-469a-8b3f-af1153f13386.jpg?im_w=720",
+          url: "https://www.businessinsider.in/thumb/msid-74813009,width-700,height-525/It-all-starts-with-Tom-Nook-who-basically-runs-the-island-and-is-your-best-resource-if-youre-not-sure-where-to-begin-.jpg",
           preview: false,
         },
         {
           spotId: 3,
-          url: "https://a0.muscache.com/im/pictures/32d07c83-fb72-4f3c-8d03-9fe175707d23.jpg?im_w=720",
+          url: "https://img.gamewith.net/article/thumbnail/rectangle/17000.png",
           preview: false,
         },
         {
           spotId: 3,
-          url: "https://a0.muscache.com/im/pictures/0d6d8086-bbc8-4917-8d42-7e769912c147.jpg?im_w=720",
+          url: "https://oyster.ignimgs.com/mediawiki/apis.ign.com/animal-crossing-new-horizons/a/aa/Screen_Shot_2020-03-09_at_1.24.25_AM.png?width=1280",
+          preview: false,
+        },
+        // The Roost
+        {
+          spotId: 4,
+          url: "https://www.digitaltrends.com/wp-content/uploads/2021/11/img_9644.jpg?p=1",
+          preview: true,
+        },
+        {
+          spotId: 4,
+          url: "https://images.nintendolife.com/96aceea85218b/the-roost.large.jpg",
           preview: false,
         },
         {
           spotId: 4,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-763885585696103626/original/779f2d62-505b-482f-8243-0cd8ed8a7df1.jpeg?im_w=960",
-          preview: true,
-        },
-        {
-          spotId: 4,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-763885585696103626/original/2e72f931-2b09-48f6-817a-450a4299bda9.jpeg?im_w=720",
+          url: "https://cdn.vox-cdn.com/thumbor/X6eyz-COUuLJG-lycQeWf3w6sLc=/0x0:1920x1080/1200x800/filters:focal(807x387:1113x693)/cdn.vox-cdn.com/uploads/chorus_image/image/70093932/Switch_ACNH_ND20211015_Update_SCRN_42__1_.0.jpg",
           preview: false,
         },
         {
           spotId: 4,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-763885585696103626/original/42d282b9-a5ef-481b-b01f-7f58cb65ac7e.jpeg?im_w=720",
+          url: "https://techstory.in/wp-content/uploads/2021/09/acnh-roost-blogroll-1632435579709.jpg",
           preview: false,
         },
         {
           spotId: 4,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-763885585696103626/original/65fc8e5f-8b99-4ed1-855f-37fd59bdac20.jpeg?im_w=720",
+          url: "https://static1.srcdn.com/wordpress/wp-content/uploads/2021/11/Animal-Crossing-Players-Frustrated-By-Missing-Brewster-Cafe-Feature.jpg",
           preview: false,
         },
-        {
-          spotId: 4,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-763885585696103626/original/64e35d2b-9d96-4033-bb49-48e4584c8591.jpeg?im_w=720",
-          preview: false,
-        },
+        // Able Sisters
         {
           spotId: 5,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-895985054806353651/original/cedbb508-1a29-4582-8bab-041f7125c262.jpeg?im_w=960",
+          url: "https://staticg.sportskeeda.com/editor/2021/10/70865-16332456446990-800.jpg",
           preview: true,
         },
         {
           spotId: 5,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-895985054806353651/original/df2867c8-96c1-4a74-b841-1b1064a37a25.jpeg?im_w=720",
+          url: "https://oyster.ignimgs.com/mediawiki/apis.ign.com/animal-crossing-new-horizons/0/0a/Tailors_Screenshot_2021-11-20_17-53-54.png?width=1280",
           preview: false,
         },
         {
           spotId: 5,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-895985054806353651/original/0704a915-bca8-4e19-9e27-d7eb0ee37812.jpeg?im_w=720",
+          url: "https://oyster.ignimgs.com/mediawiki/apis.ign.com/animal-crossing-new-horizons/5/5d/Tailors_Screenshot_2021-11-20_17-56-14.png?width=1280",
           preview: false,
         },
         {
           spotId: 5,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-895985054806353651/original/f25556bd-8304-4759-a488-0295e2729b8b.jpeg?im_w=720",
+          url: "https://cdn.staticneo.com/ew/thumb/1/1b/ACNH_AB2.jpg/662px-ACNH_AB2.jpg",
           preview: false,
         },
         {
           spotId: 5,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-895985054806353651/original/93ed1bb7-a3c1-405b-bde0-b178a6722f5b.jpeg?im_w=720",
+          url: "https://cdn.staticneo.com/ew/thumb/8/8b/ACNH_AB3.jpg/662px-ACNH_AB3.jpg",
+          preview: false,
+        },
+        // Dodo Airlines
+        {
+          spotId: 6,
+          url: "https://static1.srcdn.com/wordpress/wp-content/uploads/2021/12/Animal-Crossing-Dodo.jpg",
+          preview: true,
+        },
+        {
+          spotId: 6,
+          url: "https://oyster.ignimgs.com/mediawiki/apis.ign.com/animal-crossing-new-horizons/3/33/Screen_Shot_2020-03-14_at_8.44.16_PM.png",
           preview: false,
         },
         {
           spotId: 6,
-          url: "https://a0.muscache.com/im/pictures/1dc8da6b-09b8-4946-977e-327a8fdc7a7b.jpg?im_w=960",
-          preview: true,
-        },
-        {
-          spotId: 6,
-          url: "https://a0.muscache.com/im/pictures/4a7bb376-954a-4ecb-a221-57c47f2274a2.jpg?im_w=720",
+          url: "https://cdn.mos.cms.futurecdn.net/2bmcxKPSunDP5Gej7vhrq5.jpg",
           preview: false,
         },
         {
           spotId: 6,
-          url: "https://a0.muscache.com/im/pictures/c1031dd1-a0ab-4a38-a91c-d0375d3f719a.jpg?im_w=720",
+          url: "https://www.belltreeforums.com/attachments/ez2ltckuwaetssg-jpg.270603/",
           preview: false,
         },
         {
           spotId: 6,
-          url: "https://a0.muscache.com/im/pictures/cd24d834-4705-45bc-b74d-c35be8c321a6.jpg?im_w=720",
+          url: "https://pbs.twimg.com/media/ERZJKLxXsAA4sjy.jpg",
           preview: false,
         },
-        {
-          spotId: 6,
-          url: "https://a0.muscache.com/im/pictures/4bee0ffd-0c20-4933-a61b-5f0bf9caf037.jpg?im_w=720",
-          preview: false,
-        },
+        // Merengue's House
         {
           spotId: 7,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-913780341436109726/original/e6b34143-d676-4250-8cf3-794ae4354def.jpeg?im_w=960",
+          url: "https://64.media.tumblr.com/40276bc5adc5f2075a0d00f0058fe374/tumblr_q8rcv7sDhm1u1rjwjo1_1280.jpg",
           preview: true,
         },
         {
           spotId: 7,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-913780341436109726/original/c325064b-2cb6-4a18-a700-661979faa463.jpeg?im_w=720",
+          url: "https://pbs.twimg.com/media/EUsoJaYUcAEC2AZ.jpg",
           preview: false,
         },
         {
           spotId: 7,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-913780341436109726/original/abfb139f-36ff-4fad-a795-eb1e3bad73b1.jpeg?im_w=720",
+          url: "https://www.thelostgamer.com/wp-content/uploads/2022/05/merengue-animal-crossing.jpg",
           preview: false,
         },
         {
           spotId: 7,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-913780341436109726/original/cc835a63-ff6a-4b28-978f-bea1c7508410.jpeg?im_w=720",
+          url: "https://nfccardstore.com/cdn/shop/products/image_b6c51687-a38b-443c-bbba-e1d85d1d3a62_1024x1024@2x.jpg?v=1638717942",
           preview: false,
         },
         {
           spotId: 7,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-913780341436109726/original/53cddbca-0253-4c24-85c6-cdefa2ac4dc2.jpeg?im_w=720",
+          url: "https://www.denofgeek.com/wp-content/uploads/2021/04/animal-crossing-merengue.jpg?w=1024",
           preview: false,
         },
+        // Campsite
         {
           spotId: 8,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-979302104097472904/original/dfe20b3a-0d6b-4399-9229-5b8fa8439b57.jpeg?im_w=960",
+          url: "https://i.pinimg.com/736x/82/53/e3/8253e3243fe1d21313ac2df7716e9294.jpg",
           preview: true,
         },
         {
           spotId: 8,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-979302104097472904/original/a729cfc2-82a7-4e55-b0c6-8bd6d27aef67.jpeg?im_w=720",
+          url: "https://dodo.ac/np/images/thumb/5/5c/NH_Campsite_Interior.png/250px-NH_Campsite_Interior.png",
           preview: false,
         },
         {
           spotId: 8,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-979302104097472904/original/98701065-5f0c-4c80-b422-1faab0c195b5.jpeg?im_w=720",
+          url: "https://oyster.ignimgs.com/mediawiki/apis.ign.com/animal-crossing-new-horizons/d/d3/Screen_Shot_2020-03-09_at_12.11.23_AM.png?width=1280",
           preview: false,
         },
         {
           spotId: 8,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-979302104097472904/original/8f871176-4f6e-4921-be26-684f284a1af1.jpeg?im_w=720",
+          url: "https://www.heypoorplayer.com/wp-content/uploads/2020/04/2020033114443000-02CB906EA538A35643C1E1484C4B947D.jpg",
           preview: false,
         },
         {
           spotId: 8,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-979302104097472904/original/9ba922e2-ec6f-41fd-9c6c-257acf053720.jpeg?im_w=720",
-          preview: false,
-        },
-        {
-          spotId: 9,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-665281774254913421/original/5c91b70d-6e2a-44f0-9760-b0a6765d988b.jpeg?im_w=960",
-          preview: true,
-        },
-        {
-          spotId: 9,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-665281774254913421/original/eaaedde0-b359-4f62-ae1d-b964e451d2b9.jpeg?im_w=720",
-          preview: false,
-        },
-        {
-          spotId: 9,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-665281774254913421/original/2a619dca-66b7-4378-b0e9-fcf863177b96.jpeg?im_w=720",
-          preview: false,
-        },
-        {
-          spotId: 9,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-665281774254913421/original/35d18525-bae6-4e63-8f7b-8457651147ab.jpeg?im_w=720",
-          preview: false,
-        },
-        {
-          spotId: 9,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-665281774254913421/original/b20f680d-269e-49b9-8f4e-8974c29d8e66.jpeg?im_w=720",
-          preview: false,
-        },
-        {
-          spotId: 10,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-42608254/original/b59aae1e-6022-4f00-b12f-eae4d1c9a868.jpeg?im_w=960",
-          preview: true,
-        },
-        {
-          spotId: 10,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-42608254/original/6b72f42a-8d83-4458-a04d-396df46c0a68.jpeg?im_w=720",
-          preview: false,
-        },
-        {
-          spotId: 10,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-42608254/original/f98ab5d5-4570-498e-87e0-658ab9f87828.jpeg?im_w=720",
-          preview: false,
-        },
-        {
-          spotId: 10,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-42608254/original/ed6be19a-94ce-40b3-aa1d-1b0ddac9f502.jpeg?im_w=720",
-          preview: false,
-        },
-        {
-          spotId: 10,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-42608254/original/09503757-9fce-41a2-a8d7-6232a96656cc.jpeg?im_w=720",
-          preview: false,
-        },
-        {
-          spotId: 11,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-769123918254654824/original/c1a2f7ef-0791-420c-a6fd-d0fd8ad6aa49.jpeg?im_w=960",
-          preview: true,
-        },
-        {
-          spotId: 11,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-769123918254654824/original/f1812bed-59a6-4275-af37-5ed2eaf7d7a4.jpeg?im_w=720",
-          preview: false,
-        },
-        {
-          spotId: 11,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-769123918254654824/original/b535e0db-1f9e-45b7-839e-0d665485f64e.jpeg?im_w=720",
-          preview: false,
-        },
-        {
-          spotId: 11,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-769123918254654824/original/b951a76b-a82b-428a-9ace-870ef0102f8c.jpeg?im_w=720",
-          preview: false,
-        },
-        {
-          spotId: 11,
-          url: "https://a0.muscache.com/im/pictures/miso/Hosting-769123918254654824/original/71a5cd3c-e61b-4b3e-ba70-c83c9147151a.jpeg?im_w=720",
-          preview: false,
-        },
-        {
-          spotId: 12,
-          url: "https://a0.muscache.com/im/pictures/5b2c2e37-58ea-42aa-ac23-40d566510eb7.jpg?im_w=960",
-          preview: true,
-        },
-        {
-          spotId: 12,
-          url: "https://a0.muscache.com/im/pictures/94db21f5-8f34-4560-a6a3-3f967fe7eb5d.jpg?im_w=720",
-          preview: false,
-        },
-        {
-          spotId: 12,
-          url: "https://a0.muscache.com/im/pictures/a66da3aa-b250-4e1a-a7df-21fe59aab0e1.jpg?im_w=720",
-          preview: false,
-        },
-        {
-          spotId: 12,
-          url: "https://a0.muscache.com/im/pictures/672c784b-d8aa-4ba1-9baf-869099e28749.jpg?im_w=720",
-          preview: false,
-        },
-        {
-          spotId: 12,
-          url: "https://a0.muscache.com/im/pictures/7ff2700e-4d01-4c8e-b2bb-872b4a4ed23b.jpg?im_w=720",
+          url: "https://i.pinimg.com/564x/d7/9d/ce/d79dce1b4d3b258fe12a7c2c5622f3dd.jpg",
           preview: false,
         },
       ],
