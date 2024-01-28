@@ -51,7 +51,7 @@ module.exports = {
           lng: -84.5399,
           name: "Resident Services",
           description:
-            "The town hall is at the heart of the island, where you find the mayor's office and essential services. A bustling, informative hub for players, talk to Isabelle for more information. Stop by in the morning and join the villagers for a group stretch activity!",
+            "The town hall is at the heart of the island. Come find the mayor's office and essential services. A bustling, informative hub for players, talk to Isabelle for more information. Stop by in the morning and join the villagers for a group stretch activity!",
           price: 29,
         },
         {
@@ -65,7 +65,7 @@ module.exports = {
           lng: -84.5399,
           name: "The Roost",
           description:
-            "Enjoy a warm cup of coffee for 200 bells handcrafted by Brewster! The Roost in Animal Crossing is a charming café where you can sip coffee, listen to music, and interact with your favorite villagers. It's a warm and inviting spot to relax and enjoy the company of your animal neighbors.",
+            "Enjoy a warm cup of coffee for 200 bells handcrafted by Brewster! The Roost in Animal Crossing is a charming café where you can sip coffee, listen to music, and interact with your favorite villagers.",
           price: 200,
         },
         {
@@ -79,7 +79,7 @@ module.exports = {
           lng: -84.5399,
           name: "Able Sisters Shop",
           description:
-            "The Able Sisters shop in Animal Crossing is a popular fashion boutique run by the hedgehog sisters, Mabel and Sabel. It offers a wide variety of clothing, accessories, and even custom designs. See what designs you come up with and let the Able sisters make it a reality. Come check it out!",
+            "The Able Sisters shop in Animal Crossing is a popular fashion boutique run by the hedgehog sisters, Mabel and Sabel. It offers a wide variety of clothing, accessories, and even custom designs.",
           price: 99,
         },
         {
@@ -93,7 +93,7 @@ module.exports = {
           lng: -84.5399,
           name: "Dodo Airlines",
           description:
-            "Dodo Airlines in Animal Crossing: New Horizons is your gateway to adventure. Operated by Wilbur and Orville, this quirky airline service connects you with friends on other islands and lets you explore distant lands. It's the go-to place when you're ready to embark on exciting journeys, whether it's visiting friends, traveling for special events, or embarking on mystery tours to discover new resources and experiences.",
+            "Dodo Airlines in Animal Crossing: New Horizons is your gateway to adventure. Operated by Wilbur and Orville, this quirky airline service connects you with friends on other islands and lets you explore distant lands.",
           price: 459,
         },
         {
