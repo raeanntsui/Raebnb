@@ -32,7 +32,7 @@ function LoginFormModal() {
     setErrors({});
     history.push("/");
     return dispatch(
-      sessionActions.login({ credential: "Demo-lition", password: "password" })
+      sessionActions.login({ credential: "maple", password: "password" })
     )
       .then(closeModal)
       .catch(async (res) => {
