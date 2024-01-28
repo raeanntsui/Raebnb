@@ -165,7 +165,7 @@ module.exports = {
         },
         {
           spotId: 6,
-          url: "https://pbs.twimg.com/media/ERZJKLxXsAA4sjy.jpg",
+          url: "https://mypotatogames.com/wp-content/uploads/2020/06/dodo_airlines.jpg",
           preview: false,
         },
         // Merengue's House

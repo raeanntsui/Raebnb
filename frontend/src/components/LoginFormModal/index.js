@@ -47,7 +47,7 @@ function LoginFormModal() {
     <>
       <h1 id="h1-form">Log In</h1>
       <div id="login-error">
-        {errors.credential && <p id="p-error">{errors.credential}</p>}
+        {/* {errors.credential && <p id="p-error">{errors.credential}</p>} */}
       </div>
       <form id="form-content-width" onSubmit={handleSubmit}>
         <div id="inputs-information">
@@ -60,6 +60,7 @@ function LoginFormModal() {
               required
             />
           </label>
+          {errors.credential && <h8>{errors.credential}</h8>}
         </div>
         <div id="inputs-information">
           <label>
@@ -71,24 +72,25 @@ function LoginFormModal() {
               required
             />
           </label>
+          {errors.password && <h8>{errors.password}</h8>}
         </div>
         <div id="modal-buttons-up-down">
           <div id="btn">
             <button
-              id={
-                !credential ||
-                credential.length < 4 ||
-                !password ||
-                password.length < 6
-                  ? "reject-button-shake"
-                  : "login-button"
-              }
-              disabled={
-                !credential ||
-                credential.length < 4 ||
-                !password ||
-                password.length < 6
-              }
+              // id={
+              //   !credential ||
+              //   credential.length < 4 ||
+              //   !password ||
+              //   password.length < 6
+              //     ? "reject-button-shake"
+              //     : "login-button"
+              // }
+              // disabled={
+              //   !credential ||
+              //   credential.length < 4 ||
+              //   !password ||
+              //   password.length < 6
+              // }
               type="submit">
               Log In
             </button>

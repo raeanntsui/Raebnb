@@ -51,62 +51,68 @@ function SignupFormModal() {
   return (
     <>
       <h1 id="sign-up-h1">Sign Up</h1>
-      <div id="error-messages-signup">
-        {errors.email && <h8>{errors.email}</h8>}
-        {errors.username && <h8>{errors.username}</h8>}
-        {errors.firstName && <h8>{errors.firstName}</h8>}
-        {errors.lastName && <h8>{errors.lastName}</h8>}
-        {errors.confirmPassword && <h8>{errors.confirmPassword}</h8>}
-      </div>
-
+      <div id="error-messages-signup"></div>
       <form id="form-content-width" onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Username
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          First Name
-          <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Last Name
-          <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-        </label>
-
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {/* {errors.password && <p>{errors.password}</p>} */}
+        <div>
+          <label>
+            Email
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        {errors.email && <h8>{errors.email}</h8>}
+        <div>
+          <label>
+            Username
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        {errors.username && <h8>{errors.username}</h8>}
+        <div>
+          <label>
+            First Name
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        {errors.firstName && <h8>{errors.firstName}</h8>}
+        <div>
+          <label>
+            Last Name
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        {errors.lastName && <h8>{errors.lastName}</h8>}
+        <div>
+          <label>
+            Password
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        {errors.password && <p>{errors.password}</p>}
         <label>
           Confirm Password
           <input
@@ -116,20 +122,11 @@ function SignupFormModal() {
             required
           />
         </label>
-
+        {errors.confirmPassword && <h8>{errors.confirmPassword}</h8>}
         <div id="sign-up-button-container">
           <button
             id={disabled ? "disabled-signup" : "enabled-signup"}
             onClick={handleSubmit}
-            disabled={
-              !username ||
-              !password ||
-              !email ||
-              !firstName ||
-              !lastName ||
-              username.length < 4 ||
-              password.length < 6
-            }
             type="submit">
             Sign Up
           </button>
